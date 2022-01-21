@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine3.12
+FROM ruby:2.7.1-alpine3.10
 
 ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc libc-dev nodejs tzdata mysql-dev mysql-client yarn" \
     DEV_PACKAGES="build-base curl-dev" \
