@@ -84,7 +84,7 @@ jobs:
 
       - run:
           name: install-packages
-          command: npm install
+          command: yarn install
           working_directory: ~/repo/frontend
       - save_cache:
           paths:
@@ -93,7 +93,7 @@ jobs:
 
       - run:
           name: test
-          command: npm run test
+          command: yarn run test
           working_directory: ~/repo/frontend
 
 workflows:
