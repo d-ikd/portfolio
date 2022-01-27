@@ -1,35 +1,35 @@
-/* Cluster Defenition */
-resource "aws_ecs_cluster" "myportfolio-ecs-cluster" {
-  name = "myportfolio-ecs-cluster"
+/* Defenition of Cluster */
+resource "aws_ecs_cluster" "realshinkitv-ecs-cluster" {
+  name = "realshinkitv-ecs-cluster"
 }
 
 /* Front TaskDefinition */
-resource "aws_ecs_task_definition" "myportfolio-frontend-task" {
-  family                   = "myportfolio-frontend-task"
+resource "aws_ecs_task_definition" "realshinkitv-frontend-task" {
+  family                   = "realshinkitv-frontend-task"
   cpu                      = "512"
   memory                   = "1024"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/myportfolio_frontend_definition.json")
+  container_definitions    = file("./tasks/realshinkitv_frontend_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
 /* Back TaskDefinition */
-resource "aws_ecs_task_definition" "myportfolio-backend-task" {
-  family                   = "myportfolio-backend-task"
+resource "aws_ecs_task_definition" "realshinkitv-backend-task" {
+  family                   = "realshinkitv-backend-task"
   cpu                      = "256"
   memory                   = "512"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/myportfolio_back_definition.json")
+  container_definitions    = file("./tasks/realshinkitv_back_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
 /* Front ServiceDefinition */
-resource "aws_ecs_service" "myportfolio-frontend-ecs-service" {
-  name                              = "myportfolio-frontend-ecs-service"
-  cluster                           = aws_ecs_cluster.myportfolio-ecs-cluster.arn
-  task_definition                   = "${aws_ecs_task_definition.myportfolio-frontend-task.family}:${max("${aws_ecs_task_definition.myportfolio-frontend-task.revision}", "${data.aws_ecs_task_definition.myportfolio-frontend-task.revision}")}"
+resource "aws_ecs_service" "realshinkitv-frontend-ecs-service" {
+  name                              = "realshinkitv-frontend-ecs-service"
+  cluster                           = aws_ecs_cluster.realshinkitv-ecs-cluster.arn
+  task_definition                   = "${aws_ecs_task_definition.realshinkitv-frontend-task.family}:${max("${aws_ecs_task_definition.realshinkitv-frontend-task.revision}", "${data.aws_ecs_task_definition.realshinkitv-frontend-task.revision}")}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
   platform_version                  = "1.3.0"
@@ -38,26 +38,26 @@ resource "aws_ecs_service" "myportfolio-frontend-ecs-service" {
   network_configuration {
     assign_public_ip = true
     security_groups = [
-      aws_security_group.myportfolio-ecs-sg.id
+      aws_security_group.realshinkitv-ecs-sg.id
     ]
     subnets = [
-      aws_subnet.myportfolio-front-1a.id,
-      aws_subnet.myportfolio-front-1c.id
+      aws_subnet.realshinkitv-front-1a.id,
+      aws_subnet.realshinkitv-front-1c.id
     ]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.myportfolio-alb-frontend-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-alb-frontend-tg.arn
     container_name   = "frontend-container"
     container_port   = "80"
   }
 }
 
 /* Back ServiceDefinition */
-resource "aws_ecs_service" "myportfolio-backend-ecs-service" {
-  name                              = "myportfolio-backend-ecs-service"
-  cluster                           = aws_ecs_cluster.myportfolio-ecs-cluster.arn
-  task_definition                   = "${aws_ecs_task_definition.myportfolio-backend-task.family}:${max("${aws_ecs_task_definition.myportfolio-backend-task.revision}", "${data.aws_ecs_task_definition.myportfolio-backend-task.revision}")}"
+resource "aws_ecs_service" "realshinkitv-backend-ecs-service" {
+  name                              = "realshinkitv-backend-ecs-service"
+  cluster                           = aws_ecs_cluster.realshinkitv-ecs-cluster.arn
+  task_definition                   = "${aws_ecs_task_definition.realshinkitv-backend-task.family}:${max("${aws_ecs_task_definition.realshinkitv-backend-task.revision}", "${data.aws_ecs_task_definition.realshinkitv-backend-task.revision}")}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
   platform_version                  = "1.3.0"
@@ -66,16 +66,16 @@ resource "aws_ecs_service" "myportfolio-backend-ecs-service" {
   network_configuration {
     assign_public_ip = true
     security_groups = [
-      aws_security_group.myportfolio-ecs-sg.id
+      aws_security_group.realshinkitv-ecs-sg.id
     ]
     subnets = [
-      aws_subnet.myportfolio-back-1a.id,
-      aws_subnet.myportfolio-back-1c.id
+      aws_subnet.realshinkitv-back-1a.id,
+      aws_subnet.realshinkitv-back-1c.id
     ]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.myportfolio-alb-backend-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-alb-backend-tg.arn
     container_name   = "backend-container"
     container_port   = "3000"
   }
@@ -83,8 +83,8 @@ resource "aws_ecs_service" "myportfolio-backend-ecs-service" {
 
 /* Task for Migration */
 resource "aws_ecs_task_definition" "db-migrate" {
-  family                   = "myportfolio-db-migrate"
-  container_definitions    = file("./tasks/myportfolio_db_migrate_definition.json")
+  family                   = "realshinkitv-db-migrate"
+  container_definitions    = file("./tasks/realshinkitv_db_migrate_definition.json")
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -93,13 +93,13 @@ resource "aws_ecs_task_definition" "db-migrate" {
 }
 
 /* data */
-data "aws_ecs_task_definition" "myportfolio-frontend-task" {
-  depends_on      = [aws_ecs_task_definition.myportfolio-frontend-task]
-  task_definition = aws_ecs_task_definition.myportfolio-frontend-task.family
+data "aws_ecs_task_definition" "realshinkitv-frontend-task" {
+  depends_on      = [aws_ecs_task_definition.realshinkitv-frontend-task]
+  task_definition = aws_ecs_task_definition.realshinkitv-frontend-task.family
 }
-data "aws_ecs_task_definition" "myportfolio-backend-endtask" {
-  depends_on      = [aws_ecs_task_definition.myportfolio-backend-endtask]
-  task_definition = aws_ecs_task_definition.myportfolio-backend-endtask.family
+data "aws_ecs_task_definition" "realshinkitv-backend-task" {
+  depends_on      = [aws_ecs_task_definition.realshinkitv-backend-task]
+  task_definition = aws_ecs_task_definition.realshinkitv-backend-task.family
 }
 
 /* Reference AmazonECSTaskExecutionRolePolicy */

@@ -2,8 +2,8 @@
 variable "aws_db_user" {}
 variable "aws_db_password" {}
 
-resource "aws_db_parameter_group" "myportfolio-db-parameter" {
-  name   = "myportfolio-db-parameter"
+resource "aws_db_parameter_group" "realshinkitv-db-parameter" {
+  name   = "realshinkitv-db-parameter"
   family = "mysql5.7"
 
   parameter {
@@ -33,7 +33,7 @@ resource "aws_db_parameter_group" "myportfolio-db-parameter" {
 }
 
 /* Database Instance */
-resource "aws_db_instance" "myportfolio-db" {
+resource "aws_db_instance" "realshinkitv-db" {
   # identifier              = Endpoint of Database"
   allocated_storage       = 20
   instance_class          = "db.t2.micro"
@@ -48,9 +48,9 @@ resource "aws_db_instance" "myportfolio-db" {
   copy_tags_to_snapshot   = true
   max_allocated_storage   = 200
   skip_final_snapshot     = true
-  vpc_security_group_ids  = [aws_security_group.myportfolio-rds-sg.id]
-  parameter_group_name    = aws_db_parameter_group.myportfolio-db-parameter.name
-  db_subnet_group_name    = aws_db_subnet_group.myportfolio-rds-subnet-group.name
+  vpc_security_group_ids  = [aws_security_group.realshinkitv-rds-sg.id]
+  parameter_group_name    = aws_db_parameter_group.realshinkitv-db-parameter.name
+  db_subnet_group_name    = aws_db_subnet_group.realshinkitv-rds-subnet-group.name
   enabled_cloudwatch_logs_exports = [
     "audit",
     "error",
@@ -65,8 +65,8 @@ resource "aws_db_instance" "myportfolio-db" {
 }
 
 /* Subnet */
-resource "aws_db_subnet_group" "myportfolio-rds-subnet-group" {
-  name        = "myportfolio-rds-subnet-group"
-  description = "rds subnet for myportfolio"
-  subnet_ids  = [aws_subnet.myportfolio-back-1a.id, aws_subnet.myportfolio-back-1c.id]
+resource "aws_db_subnet_group" "realshinkitv-rds-subnet-group" {
+  name        = "realshinkitv-rds-subnet-group"
+  description = "rds subnet for realshinkitv"
+  subnet_ids  = [aws_subnet.realshinkitv-back-1a.id, aws_subnet.realshinkitv-back-1c.id]
 }

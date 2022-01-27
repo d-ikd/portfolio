@@ -1,8 +1,8 @@
-resource "aws_eip" "myportfolio-ngw-eip" {
+resource "aws_eip" "realshinkitv-ngw-eip" {
   vpc        = true
-  depends_on = [aws_internet_gateway.myportfolio-igw]
+  depends_on = [aws_internet_gateway.realshinkitv-igw]
 
   tags = {
-    Name = "myportfolio-ngw-eip"
+    Name = "realshinkitv-ngw-eip"
   }
 }
