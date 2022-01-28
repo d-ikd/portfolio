@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "realshinkitv-backend-task" {
   memory                   = "512"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/realshinkitv_back_definition.json")
+  container_definitions    = file("./tasks/realshinkitv_backend_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
@@ -47,7 +47,7 @@ resource "aws_ecs_service" "realshinkitv-frontend-ecs-service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.realshinkitv-alb-frontend-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-frontend-alb-tg.arn
     container_name   = "frontend-container"
     container_port   = "80"
   }
@@ -75,7 +75,7 @@ resource "aws_ecs_service" "realshinkitv-backend-ecs-service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.realshinkitv-alb-backend-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-backend-alb-tg.arn
     container_name   = "backend-container"
     container_port   = "3000"
   }
