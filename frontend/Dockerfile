@@ -13,3 +13,6 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 
 ADD . /app
+
+#After add terraform
+EXPOSE 3000
