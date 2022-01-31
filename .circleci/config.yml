@@ -106,7 +106,7 @@ jobs:
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
           path: "./backend"
-          dockerfile: backend/Dockerfile.prd
+          dockerfile: Dockerfile.prd
 
   build_and_push_image_frontend:
     machine:
@@ -119,7 +119,7 @@ jobs:
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
           path: "./frontend/"
-          dockerfile: frontend/Dockerfile.prd
+          dockerfile: Dockerfile.prd
 
 workflows:
   version: 2
