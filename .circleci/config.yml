@@ -1,5 +1,8 @@
 version: 2.1
-
+orbs:
+  aws-ecr: circleci/aws-ecr@6.15.3
+  aws-ecs: circleci/aws-ecs@2.1.0
+  aws-cli: circleci/aws-cli@1.4.1
 jobs:
   test_backend:
     docker:
@@ -8,7 +11,6 @@ jobs:
           RAILS_ENV: test
           DB_HOST: "127.0.0.1"
       - image: circleci/mysql:5.7.32
-
     working_directory: ~/repo
 
     steps:
@@ -17,7 +19,6 @@ jobs:
           keys:
             - gem-cache-v1-{{ checksum "~/repo/backend/Gemfile.lock" }}
             - gem-cache-v1-
-
       - run:
           name: Install bundler
           command: gem install bundler -v 2.2.15
@@ -72,7 +73,6 @@ jobs:
       - image: circleci/node:16
         environment:
           NODE_ENV: test
-
     working_directory: ~/repo
 
     steps:
@@ -95,6 +95,32 @@ jobs:
           command: yarn run test
           working_directory: ~/repo/frontend
 
+  build_and_push_image_backend:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ACCOUNT_URL
+          repo: "realshinkitv-backend"
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
+          path: "./backend"
+          dockerfile: Dockerfile.prd
+
+  build_and_push_image_frontend:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ACCOUNT_URL
+          repo: "realshinkitv-frontend"
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
+          path: "./frontend/"
+          dockerfile: Dockerfile.prd
+
 workflows:
   version: 2
   test:
@@ -104,6 +130,20 @@ workflows:
             branches:
               only: main
       - test_frontend:
+          filters:
+            branches:
+              only: main
+      - build_and_push_image_backend:
+          requires:
+            - test_frontend
+            - test_backend
+          filters:
+            branches:
+              only: main
+      - build_and_push_image_frontend:
+          requires:
+            - test_frontend
+            - test_backend
           filters:
             branches:
               only: main
