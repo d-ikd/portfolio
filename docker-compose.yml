@@ -2,64 +2,88 @@ version: "3"
 
 services:
   db:
-    container_name: db
+    # container_name: db
     image: mysql:5.7
     environment:
       TZ: Asia/Tokyo
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_ALLOW_EMPTY_PASSWORD: $MYSQL_ALLOW_EMPTY_PASSWORD
+    restart: always
     volumes:
-      - mysql_data:/var/lib/mysql
-    ports:
-      - 3307:3306
-    networks:
-      app_net:
-        ipv4_address: '172.21.0.2'
+      - mysql_data:/var/lib/mysql:cached
+    # ports:
+    #   - 3307:3306
+    # networks:
+    #   app_net:
+    #     ipv4_address: '172.21.0.2'
 
   backend:
-    container_name: backend
-    build: ./backend/
-    image: backend
+    build:
+      context: ./backend
+      args:
+        WORKDIR: $WORKDIR
+        CONTAINER_PORT: $CONTAINER_PORT
+    # container_name: backend
+    # build: ./backend/
+    # image: backend
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_ALLOW_EMPTY_PASSWORD: $MYSQL_ALLOW_EMPTY_PASSWORD
+      API_DOMAIN: "localhost:$FRONT_PORT"
     stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    ports:
+      - "$API_PORT:$CONTAINER_PORT"
+      # - 5000:3000
     volumes:
-      - ./backend:/app:cached
+      - ./backend:/$WORKDIR:cached
       - bundle_data:/usr/local/bundle:cached
       - /app/vendor
       - /app/tmp
       - /app/log
       - /app/.git
-    environment:
-      TZ: Asia/Tokyo
-    depends_on:
-      - db
-    ports:
-      - 5000:3000
-    networks:
-      app_net:
-        ipv4_address: '172.21.0.3'
+#    networks:
+#      app_net:
+#        ipv4_address: '172.21.0.3'
 
   frontend:
-    container_name: front
-    build: ./frontend/
-    image: frontend
-    volumes:
-      - ./frontend:/app
-    ports:
-      - 3000:3000
+    build:
+      context: ./frontend
+      args:
+        WORKDIR: $WORKDIR
+        CONTAINER_PORT: $CONTAINER_PORT
+        API_URL: "http://localhost:$API_PORT"
     command: yarn run dev
-    networks:
-      app_net:
-        ipv4_address: '172.21.0.4'
+#    container_name: frontend
+#    build: ./frontend/
+#    image: frontend
+    volumes:
+      - ./frontend:/$WORKDIR:cached
+      - node_modules_volume:/$WORKDIR/node_modules
+# node_modulesはホストと共有しないでvolumeマウント
 
-networks:
-  app_net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.21.0.0/24
+#    - ./frontend:/app
+    ports:
+      - "$FRONT_PORT:$CONTAINER_PORT"
+#    - 3000:3000
+#    networks:
+#      app_net:
+#        ipv4_address: '172.21.0.4'
+    depends_on:
+      - backend
+
+#networks:
+#  app_net:
+#    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.21.0.0/24
 
 volumes:
   mysql_data:
   bundle_data:
+  node_modules_volume:
