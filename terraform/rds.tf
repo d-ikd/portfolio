@@ -59,7 +59,7 @@ resource "aws_db_instance" "realshinkitv-db" {
   ]
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 
 }
