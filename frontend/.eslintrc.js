@@ -5,7 +5,6 @@ module.exports = {
     node: true
   },
   extends: [
-    '@nuxtjs/eslint-config-typescript',
     'eslint:recommended',
     'prettier',
     'prettier/vue',
@@ -26,11 +25,5 @@ module.exports = {
         "trailingComma": "es5"
       }
     ]
-  },
-  overrides: [
-    {
-      files: ["*.vue"],
-      processor: "vue/.vue"
-    }
-  ]
+  }
 }

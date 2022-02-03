@@ -41,11 +41,11 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
@@ -75,19 +75,19 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
-          to: '/inspire'
-        }
+          to: '/inspire',
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Vuetify.js',
     }
-  }
+  },
 }
 </script>
