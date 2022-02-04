@@ -37,7 +37,9 @@ jobs:
           key: gem-cache-v1-{{ checksum "~/repo/backend/Gemfile.lock" }}
           paths:
             - ~/repo/backend/vendor/bundle
+
       - run: sleep 10
+
       # Database setup
       - run:
           command: bundle exec rails db:create
@@ -125,25 +127,25 @@ workflows:
   version: 2
   test:
     jobs:
-      - test_backend:
-          filters:
-            branches:
-              only: main
-      - test_frontend:
-          filters:
-            branches:
-              only: main
+      # - test_backend:
+      #     filters:
+      #       branches:
+      #         only: main
+      # - test_frontend:
+      #     filters:
+      #       branches:
+      #         only: main
       - build_and_push_image_backend:
-          requires:
-            - test_frontend
-            - test_backend
+          # requires:
+          #   - test_frontend
+          #   - test_backend
           filters:
             branches:
               only: main
       - build_and_push_image_frontend:
-          requires:
-            - test_frontend
-            - test_backend
+          # requires:
+          #   - test_frontend
+          #   - test_backend
           filters:
             branches:
               only: main
