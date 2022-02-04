@@ -147,3 +147,48 @@ workflows:
           filters:
             branches:
               only: main
+      - aws-ecs/update-task-definition:
+          family: realshinkitv-db-migrate
+          # family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
+          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+          aws-region: AWS_REGION
+          requires:
+            - build_and_push_image_backend
+          filters:
+            branches:
+              only: main
+      - aws-ecs/run-task:
+          cluster: realshinkitv-ecs-cluster
+          # cluster: ${CLUSTER_NAME}
+          task-definition: realshinkitv-db-migrate
+          # task-definition: ${TASK_MIGRATE}
+          subnet-ids: "${SUBNET_PUBLIC_1A},${SUBNET_PUBLIC_1C}"
+          assign-public-ip: ENABLED
+          security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
+          requires:
+            - aws-ecs/update-task-definition
+          filters:
+            branches:
+              only: main
+
+      - aws-ecs/deploy-service-update:
+          family: realshinkitv-frontend-task
+          service-name: realshinkitv-frontend-ecs-service
+          cluster-name: realshinkitv-ecs-cluster
+          container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
+          requires:
+            - build_and_push_image_frontend
+          filters:
+            branches:
+              only: main
+      - aws-ecs/deploy-service-update:
+          requires:
+            - build_and_push_image_frontend
+            - build_and_push_image_backend
+          family: realshinkitv-backend-task
+          service-name: realshinkitv-backend-ecs-service
+          cluster-name: realshinkitv-ecs-cluster
+          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: main
