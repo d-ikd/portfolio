@@ -152,7 +152,7 @@ workflows:
       - aws-ecs/update-task-definition:
           family: realshinkitv-db-migrate
           # family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
-          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=realshinkitv-backend-container,tag=${CIRCLE_SHA1}"
           aws-region: AWS_REGION
           requires:
             - build_and_push_image_backend
@@ -178,7 +178,7 @@ workflows:
           family: realshinkitv-frontend-task
           service-name: realshinkitv-frontend-ecs-service
           cluster-name: realshinkitv-ecs-cluster
-          container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=realshinkitv-frontend-container,tag=${CIRCLE_SHA1}"
           requires:
             - build_and_push_image_frontend
           filters:
@@ -191,7 +191,7 @@ workflows:
           family: realshinkitv-backend-task
           service-name: realshinkitv-backend-ecs-service
           cluster-name: realshinkitv-ecs-cluster
-          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=realshinkitv-backend-container,tag=${CIRCLE_SHA1}"
           filters:
             branches:
               only: main
