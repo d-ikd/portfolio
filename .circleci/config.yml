@@ -157,6 +157,7 @@ workflows:
           filters:
             branches:
               only: main
+
       - aws-ecs/run-task:
           cluster: realshinkitv-ecs-cluster
           # cluster: ${CLUSTER_NAME}
