@@ -165,7 +165,7 @@ workflows:
           # cluster: ${CLUSTER_NAME}
           task-definition: realshinkitv-db-migrate
           # task-definition: ${TASK_MIGRATE}
-          subnet-ids: "${SUBNET_PUBLIC_1A},${SUBNET_PUBLIC_1C}"
+          subnet-ids: subnet-0158621c9ce42a787,subnet-062655b15bbe447d7
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
           requires:
