@@ -17,20 +17,20 @@ resource "aws_route53_record" "realshinkitv-host-zone-record" {
 
 
 # フロント用
-# resource "aws_route53_zone" "realshinkitv-zone" {
-#   name = "realshinkitv.com"
-#   tags = {
-#     "realshinkitv" = "realshinkitv.com"
-#   }
-# }
-# resource "aws_route53_record" "realshinkitv-zone-record" {
-#   zone_id = aws_route53_zone.realshinkitv-zone.id
-#   name    = aws_route53_zone.realshinkitv-zone.name
-#   type    = "A"
+resource "aws_route53_zone" "realshinkitv-zone" {
+  name = "realshinkitv.com"
+  tags = {
+    "realshinkitv" = "realshinkitv.com"
+  }
+}
+resource "aws_route53_record" "realshinkitv-zone-record" {
+  zone_id = aws_route53_zone.realshinkitv-zone.id
+  name    = aws_route53_zone.realshinkitv-zone.name
+  type    = "A"
 
-#   alias {
-#     name                   = aws_lb.realshinkitv-alb.dns_name
-#     zone_id                = aws_lb.realshinkitv-alb.zone_id
-#     evaluate_target_health = true
-#   }
-# }
+  alias {
+    name                   = aws_lb.realshinkitv-alb.dns_name
+    zone_id                = aws_lb.realshinkitv-alb.zone_id
+    evaluate_target_health = true
+  }
+}
