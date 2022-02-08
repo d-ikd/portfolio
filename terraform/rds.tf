@@ -1,7 +1,3 @@
-/* RDS */
-variable "aws_db_user" {}
-variable "aws_db_password" {}
-
 resource "aws_db_parameter_group" "realshinkitv-db-parameter" {
   name   = "realshinkitv-db-parameter"
   family = "mysql5.7"
@@ -32,9 +28,7 @@ resource "aws_db_parameter_group" "realshinkitv-db-parameter" {
   }
 }
 
-/* Database Instance */
 resource "aws_db_instance" "realshinkitv-db" {
-  # identifier              = Endpoint of Database"
   allocated_storage       = 20
   instance_class          = "db.t2.micro"
   engine                  = "MySQL"
@@ -64,9 +58,5 @@ resource "aws_db_instance" "realshinkitv-db" {
 
 }
 
-/* Subnet */
-resource "aws_db_subnet_group" "realshinkitv-rds-subnet-group" {
-  name        = "realshinkitv-rds-subnet-group"
-  description = "rds subnet for realshinkitv"
-  subnet_ids  = [aws_subnet.realshinkitv-back-1a.id, aws_subnet.realshinkitv-back-1c.id]
-}
+variable "aws_db_user" {}
+variable "aws_db_password" {}
