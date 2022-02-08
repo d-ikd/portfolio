@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "realshinkitv-s3-bucket" {
   }
 }
 
-resource "aws_s3_bucket" "realshinkitv_alb_log" {
+resource "aws_s3_bucket" "realshinkitv-alb-log" {
   bucket = "artifact-terraform-for-realshinkitv"
 
   lifecycle_rule {
