@@ -1,4 +1,3 @@
-# パブリックバケット
 resource "aws_s3_bucket" "realshinkitv-s3-bucket" {
   bucket = "realshinkitv-s3-bucket-for-images"
   acl    = "public-read"
@@ -8,7 +7,6 @@ resource "aws_s3_bucket" "realshinkitv-s3-bucket" {
   }
 }
 
-# ログバケット
 resource "aws_s3_bucket" "realshinkitv_alb_log" {
   bucket = "artifact-terraform-for-realshinkitv"
 
