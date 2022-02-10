@@ -88,7 +88,7 @@ resource "aws_lb_listener" "realshinkitv-back-https-listener" {
   load_balancer_arn = aws_lb.realshinkitv-back-alb.arn
   port              = "443"
   protocol          = "HTTPS"
-  certificate_arn   = aws_acm_certificate.realshinkitv-back-acm.arn
+  certificate_arn   = aws_acm_certificate.realshinkitv-acm.arn
 
   default_action {
     target_group_arn = aws_lb_target_group.realshinkitv-alb-back-tg.arn

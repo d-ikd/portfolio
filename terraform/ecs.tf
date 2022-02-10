@@ -1,27 +1,27 @@
 /* クラスター */
-resource "aws_ecs_cluster" "realshikitv-ecs-cluster" {
-  name = "realshikitv-ecs-cluster"
+resource "aws_ecs_cluster" "realshinkitv-ecs-cluster" {
+  name = "realshinkitv-ecs-cluster"
 }
 
 
 /* フロント側 */
 
 /* タスク定義 */
-resource "aws_ecs_task_definition" "realshikitv-front-task" {
-  family                   = "realshikitv-front-task"
+resource "aws_ecs_task_definition" "realshinkitv-front-task" {
+  family                   = "realshinkitv-front-task"
   cpu                      = "512"
   memory                   = "1024"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/realshikitv_front_definition.json")
+  container_definitions    = file("./tasks/realshinkitv_frontend_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
 /* サービス定義 */
-resource "aws_ecs_service" "realshikitv-front-ecs-service" {
-  name                              = "realshikitv-front-ecs-service"
-  cluster                           = aws_ecs_cluster.realshikitv-ecs-cluster.arn
-  task_definition                   = "${aws_ecs_task_definition.realshikitv-front-task.family}:${max("${aws_ecs_task_definition.realshikitv-front-task.revision}", "${data.aws_ecs_task_definition.realshikitv-front-task.revision}")}"
+resource "aws_ecs_service" "realshinkitv-front-ecs-service" {
+  name                              = "realshinkitv-front-ecs-service"
+  cluster                           = aws_ecs_cluster.realshinkitv-ecs-cluster.arn
+  task_definition                   = "${aws_ecs_task_definition.realshinkitv-front-task.family}:${max("${aws_ecs_task_definition.realshinkitv-front-task.revision}", "${data.aws_ecs_task_definition.realshinkitv-front-task.revision}")}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
   platform_version                  = "1.3.0"
@@ -30,16 +30,16 @@ resource "aws_ecs_service" "realshikitv-front-ecs-service" {
   network_configuration {
     assign_public_ip = true
     security_groups = [
-      aws_security_group.realshikitv-ecs-sg.id
+      aws_security_group.realshinkitv-ecs-sg.id
     ]
     subnets = [
-      aws_subnet.realshikitv-front-1a.id,
-      aws_subnet.realshikitv-front-1c.id
+      aws_subnet.realshinkitv-front-1a.id,
+      aws_subnet.realshinkitv-front-1c.id
     ]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.realshikitv-alb-front-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-alb-front-tg.arn
     container_name   = "front-container"
     container_port   = "80"
   }
@@ -49,21 +49,21 @@ resource "aws_ecs_service" "realshikitv-front-ecs-service" {
 /* バック側 */
 
 /* タスク定義 */
-resource "aws_ecs_task_definition" "realshikitv-back-task" {
-  family                   = "realshikitv-back-task"
+resource "aws_ecs_task_definition" "realshinkitv-back-task" {
+  family                   = "realshinkitv-back-task"
   cpu                      = "256"
   memory                   = "512"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/realshikitv_back_definition.json")
+  container_definitions    = file("./tasks/realshinkitv_backend_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
 /* サービス定義 */
-resource "aws_ecs_service" "realshikitv-back-ecs-service" {
-  name                              = "realshikitv-back-ecs-service"
-  cluster                           = aws_ecs_cluster.realshikitv-ecs-cluster.arn
-  task_definition                   = "${aws_ecs_task_definition.realshikitv-back-task.family}:${max("${aws_ecs_task_definition.realshikitv-back-task.revision}", "${data.aws_ecs_task_definition.realshikitv-back-task.revision}")}"
+resource "aws_ecs_service" "realshinkitv-back-ecs-service" {
+  name                              = "realshinkitv-back-ecs-service"
+  cluster                           = aws_ecs_cluster.realshinkitv-ecs-cluster.arn
+  task_definition                   = "${aws_ecs_task_definition.realshinkitv-back-task.family}:${max("${aws_ecs_task_definition.realshinkitv-back-task.revision}", "${data.aws_ecs_task_definition.realshinkitv-back-task.revision}")}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
   platform_version                  = "1.3.0"
@@ -72,16 +72,16 @@ resource "aws_ecs_service" "realshikitv-back-ecs-service" {
   network_configuration {
     assign_public_ip = true
     security_groups = [
-      aws_security_group.realshikitv-ecs-sg.id
+      aws_security_group.realshinkitv-ecs-sg.id
     ]
     subnets = [
-      aws_subnet.realshikitv-back-1a.id,
-      aws_subnet.realshikitv-back-1c.id
+      aws_subnet.realshinkitv-back-1a.id,
+      aws_subnet.realshinkitv-back-1c.id
     ]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.realshikitv-alb-back-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-alb-back-tg.arn
     container_name   = "back-container"
     container_port   = "3000"
   }
@@ -100,8 +100,8 @@ resource "aws_ecs_task_definition" "db-create" {
 
 /* マイグレーション用タスク */
 resource "aws_ecs_task_definition" "db-migrate" {
-  family                   = "realshikitv-db-migrate"
-  container_definitions    = file("./tasks/realshikitv_db_migrate_definition.json")
+  family                   = "realshinkitv-db-migrate"
+  container_definitions    = file("./tasks/realshinkitv_db_migrate_definition.json")
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -110,13 +110,13 @@ resource "aws_ecs_task_definition" "db-migrate" {
 }
 
 /* ファミリーを指定するだけで、そのファミリーの最新のACTIVEリビジョンを見つけることができる */
-data "aws_ecs_task_definition" "realshikitv-front-task" {
-  depends_on      = [aws_ecs_task_definition.realshikitv-front-task]
-  task_definition = aws_ecs_task_definition.realshikitv-front-task.family
+data "aws_ecs_task_definition" "realshinkitv-front-task" {
+  depends_on      = [aws_ecs_task_definition.realshinkitv-front-task]
+  task_definition = aws_ecs_task_definition.realshinkitv-front-task.family
 }
-data "aws_ecs_task_definition" "realshikitv-back-task" {
-  depends_on      = [aws_ecs_task_definition.realshikitv-back-task]
-  task_definition = aws_ecs_task_definition.realshikitv-back-task.family
+data "aws_ecs_task_definition" "realshinkitv-back-task" {
+  depends_on      = [aws_ecs_task_definition.realshinkitv-back-task]
+  task_definition = aws_ecs_task_definition.realshinkitv-back-task.family
 }
 
 
