@@ -1,7 +1,7 @@
 [
   {
-    "name": "backend-container",
-    "image": "811331963814.dkr.ecr.ap-northeast-1.amazonaws.com/realshinkitv-backend",
+    "name": "back-container",
+    "image": "811331963814.dkr.ecr.ap-northeast-1.amazonaws.com/realshinkitv-back",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
