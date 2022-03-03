@@ -23,7 +23,7 @@ ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc libc-dev nodejs tzdata 
 WORKDIR ${HOME}
 
 ADD Gemfile ${HOME}/Gemfile
-# ADD Gemfile.lock ${HOME}/Gemfile.lock
+ADD Gemfile.lock ${HOME}/Gemfile.lock
 
 RUN apk update && \
     apk upgrade && \
