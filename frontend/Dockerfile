@@ -1,18 +1,23 @@
 FROM node:12.22.0-alpine
 
-WORKDIR /app
+ARG WORKDIR
+ARG CONTAINER_PORT
+ARG API_URL
 
-ENV LANG=C.UTF-8 \
-    TZ=Asia/Tokyo
+ENV HOME=/${WORKDIR} \
+    LANG=C.UTF-8 \
+    TZ=Asia/Tokyo \
+    HOST=0.0.0.0 \
+    API_URL=${API_URL}
+# ENV PATH ${HOME}/node_modules/.bin:$PATH
+
+WORKDIR ${HOME}
+# ADD . ${WORKDIR}
 
 RUN apk update && \
     apk upgrade && \
     npm install -g n && \
-    npm install -g create-nuxt-app && \
     yarn install &&\
     rm -rf /var/cache/apk/*
 
-ADD . /app
-
-#After add terraform
-EXPOSE 3000
+EXPOSE ${CONTAINER_PORT}
