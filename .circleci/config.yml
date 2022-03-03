@@ -69,7 +69,7 @@ workflows:
                 - main
       - aws-ecr/build-and-push-image:
           name: "build-and-push-frontend"
-          account-url: AWS_ECR_ACCOUNT_URL
+          account-url: AWS_ECR_ACCOUNT_URL #811331963814.dkr.ecr.ap-northeast-1.amazonaws.com
           region: AWS_REGION
           repo: ${REPO_NAME_FRONT}
           tag: "${CIRCLE_SHA1}"
