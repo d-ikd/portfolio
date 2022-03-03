@@ -53,9 +53,13 @@ workflows:
       - test:
           requires:
             - build
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
       - aws-ecr/build-and-push-image:
           name: "build-and-push-backend"
-          account-url: AWS_ACCOUNT_URL
+          account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           repo: ${REPO_NAME_BACK}
           tag: "${CIRCLE_SHA1}"
@@ -67,9 +71,13 @@ workflows:
             branches:
               only:
                 - main
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
       - aws-ecr/build-and-push-image:
           name: "build-and-push-frontend"
-          account-url: AWS_ACCOUNT_URL
+          account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           repo: ${REPO_NAME_FRONT}
           tag: "${CIRCLE_SHA1}"
