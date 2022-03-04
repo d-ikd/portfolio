@@ -7,8 +7,8 @@ resource "aws_lb" "realshinkitv-alb" {
   enable_deletion_protection = false
 
   subnets = [
-    aws_subnet.realshinkitv-front-1a.id,
-    aws_subnet.realshinkitv-front-1c.id
+    aws_subnet.realshinkitv-frontend-1a.id,
+    aws_subnet.realshinkitv-frontend-1c.id
   ]
 
   security_groups = [
@@ -19,16 +19,16 @@ resource "aws_lb" "realshinkitv-alb" {
     Name = "realshinkitv-alb"
   }
 }
-resource "aws_lb" "realshinkitv-back-alb" {
-  name                       = "realshinkitv-back-alb"
+resource "aws_lb" "realshinkitv-backend-alb" {
+  name                       = "realshinkitv-backend-alb"
   load_balancer_type         = "application"
   internal                   = false
   idle_timeout               = 60
   enable_deletion_protection = false
 
   subnets = [
-    aws_subnet.realshinkitv-back-1a.id,
-    aws_subnet.realshinkitv-back-1c.id
+    aws_subnet.realshinkitv-backend-1a.id,
+    aws_subnet.realshinkitv-backend-1c.id
   ]
 
   security_groups = [
@@ -36,7 +36,7 @@ resource "aws_lb" "realshinkitv-back-alb" {
   ]
 
   tags = {
-    Name = "realshinkitv-back-alb"
+    Name = "realshinkitv-backend-alb"
   }
 }
 
@@ -60,17 +60,17 @@ resource "aws_lb_listener" "realshinkitv-https-listener" {
   load_balancer_arn = aws_lb.realshinkitv-alb.arn
   port              = "443"
   protocol          = "HTTPS"
-  certificate_arn   = aws_acm_certificate.realshinkitv-front-acm.arn
+  certificate_arn   = aws_acm_certificate.realshinkitv-frontend-acm.arn
 
   default_action {
-    target_group_arn = aws_lb_target_group.realshinkitv-alb-front-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-alb-frontend-tg.arn
     type             = "forward"
   }
 }
 
 # バックエンド用
-resource "aws_lb_listener" "realshinkitv-back-http-listener" {
-  load_balancer_arn = aws_lb.realshinkitv-back-alb.arn
+resource "aws_lb_listener" "realshinkitv-backend-http-listener" {
+  load_balancer_arn = aws_lb.realshinkitv-backend-alb.arn
   port              = "80"
   protocol          = "HTTP"
 
@@ -84,21 +84,21 @@ resource "aws_lb_listener" "realshinkitv-back-http-listener" {
     }
   }
 }
-resource "aws_lb_listener" "realshinkitv-back-https-listener" {
-  load_balancer_arn = aws_lb.realshinkitv-back-alb.arn
+resource "aws_lb_listener" "realshinkitv-backend-https-listener" {
+  load_balancer_arn = aws_lb.realshinkitv-backend-alb.arn
   port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = aws_acm_certificate.realshinkitv-acm.arn
 
   default_action {
-    target_group_arn = aws_lb_target_group.realshinkitv-alb-back-tg.arn
+    target_group_arn = aws_lb_target_group.realshinkitv-alb-backend-tg.arn
     type             = "forward"
   }
 }
 
 /* target-group */
-resource "aws_lb_target_group" "realshinkitv-alb-front-tg" {
-  name        = "realshinkitv-alb-front-tg"
+resource "aws_lb_target_group" "realshinkitv-alb-frontend-tg" {
+  name        = "realshinkitv-alb-frontend-tg"
   target_type = "ip"
   vpc_id      = aws_vpc.realshinkitv-vpc.id
   port        = 80
@@ -117,8 +117,8 @@ resource "aws_lb_target_group" "realshinkitv-alb-front-tg" {
   }
 }
 
-resource "aws_lb_target_group" "realshinkitv-alb-back-tg" {
-  name        = "realshinkitv-alb-back-tg"
+resource "aws_lb_target_group" "realshinkitv-alb-backend-tg" {
+  name        = "realshinkitv-alb-backend-tg"
   target_type = "ip"
   vpc_id      = aws_vpc.realshinkitv-vpc.id
   port        = 80

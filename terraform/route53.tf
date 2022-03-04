@@ -9,8 +9,8 @@ resource "aws_route53_record" "realshinkitv-host-zone-record" {
   type    = "A"
 
   alias {
-    name                   = aws_lb.realshinkitv-back-alb.dns_name
-    zone_id                = aws_lb.realshinkitv-back-alb.zone_id
+    name                   = aws_lb.realshinkitv-backend-alb.dns_name
+    zone_id                = aws_lb.realshinkitv-backend-alb.zone_id
     evaluate_target_health = true
   }
 }
@@ -18,9 +18,9 @@ resource "aws_route53_record" "realshinkitv-host-zone-record" {
 
 # フロント用
 resource "aws_route53_zone" "realshinkitv-zone" {
-  name = "realshinkitv.com"
+  name = "realchinkitv.com"
   tags = {
-    "realshinkitv" = "realshinkitv.com"
+    "realchinkitv" = "realchinkitv.com"
   }
 }
 resource "aws_route53_record" "realshinkitv-zone-record" {

@@ -1,9 +1,9 @@
-resource "aws_cloudwatch_log_group" "realshinkitv-ecs-back" {
-  name              = "/ecs/back"
+resource "aws_cloudwatch_log_group" "realshinkitv-ecs-backend" {
+  name              = "/ecs/backend"
   retention_in_days = 180
 }
-resource "aws_cloudwatch_log_group" "realshinkitv-ecs-front" {
-  name              = "/ecs/front"
+resource "aws_cloudwatch_log_group" "realshinkitv-ecs-frontend" {
+  name              = "/ecs/frontend"
   retention_in_days = 180
 }
 resource "aws_cloudwatch_log_group" "realshinkitv-ecs-db-create" {

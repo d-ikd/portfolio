@@ -1,14 +1,14 @@
 [
   {
-    "name": "front-container",
-    "image": "811331963814.dkr.ecr.ap-northeast-1.amazonaws.com/realshinkitv-front",
+    "name": "frontend-container",
+    "image": "811331963814.dkr.ecr.ap-northeast-1.amazonaws.com/realshinkitv-frontend",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
         "awslogs-region": "ap-northeast-1",
-        "awslogs-stream-prefix": "front",
-        "awslogs-group": "/ecs/front"
+        "awslogs-stream-prefix": "frontend",
+        "awslogs-group": "/ecs/frontend"
       }
     },
     "portMappings": [

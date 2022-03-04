@@ -1,5 +1,5 @@
 /* フロント側SSL証明書 */
-resource "aws_acm_certificate" "realshinkitv-front-acm" {
+resource "aws_acm_certificate" "realshinkitv-frontend-acm" {
   domain_name               = aws_route53_record.realshinkitv-zone-record.name
   subject_alternative_names = ["*.realshinkitv.com", ]
   validation_method         = "DNS"
