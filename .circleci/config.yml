@@ -57,9 +57,9 @@ workflows:
           name: "build-and-push-backend"
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
-          repo: ${REPO_NAME_BACKEND}
+          repo: ${REPO_NAME_BACK}
           tag: "${CIRCLE_SHA1}"
-          path: "./backend"
+          path: "./backend/"
           dockerfile: Dockerfile.prd
           requires:
             - test
@@ -71,9 +71,9 @@ workflows:
           name: "build-and-push-frontend"
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
-          repo: ${REPO_NAME_FRONTEND}
+          repo: ${REPO_NAME_FRONT}
           tag: "${CIRCLE_SHA1}"
-          path: "./frontend"
+          path: "./frontend/"
           dockerfile: Dockerfile.prd
           requires:
             - test
