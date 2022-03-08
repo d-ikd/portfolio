@@ -1,128 +1,3 @@
-# version: 2.1
-# orbs:
-#   aws-ecr: circleci/aws-ecr@6.15.3
-#   aws-ecs: circleci/aws-ecs@2.1.0
-#   aws-cli: circleci/aws-cli@1.4.1
-# # 実行するjob
-# jobs:
-#   # buildするjob
-#   build:
-#     machine:
-#       image: circleci/classic:edge
-#     steps:
-#       - checkout
-#       - run:
-#           name: docker-compose build
-#           command: docker-compose build
-#   # testするjob
-#   test:
-#     machine:
-#       image: circleci/classic:edge
-#     steps:
-#       - checkout
-#       - run:
-#           name: docker-compose up -d
-#           command: docker-compose up -d
-#       - run: sleep 10
-#       # バックエンド側テスト
-#       - run:
-#           name: docker-compose run backend rails db:create RAILS_ENV=test
-#           command: docker-compose run backend rails db:create RAILS_ENV=test
-#       - run:
-#           name: docker-compose run backend rails db:migrate RAILS_ENV=test
-#           command: docker-compose run backend rails db:migrate RAILS_ENV=test
-#       - run:
-#           name: docker-compose run backend bundle exec rspec spec
-#           command: docker-compose run backend bundle exec rspec spec
-#       - run:
-#           name: docker-compose run frontend yarn install
-#           command: docker-compose run frontend yarn install
-#       # フロントエンド側テスト
-#       - run:
-#           name: docker-compose run frontend yarn run test
-#           command: docker-compose run frontend yarn test
-#       - run:
-#           name: docker-compose down
-#           command: docker-compose down
-
-# # 順番を制御するworkflow
-# workflows:
-#   build_and_test_and_deploy:
-#     jobs:
-#       - build
-#       - test:
-#           requires:
-#             - build
-#       - aws-ecr/build-and-push-image:
-#           name: "build-and-push-backend"
-#           account-url: AWS_ECR_ACCOUNT_URL
-#           region: AWS_REGION
-#           repo: ${REPO_NAME_BACK}
-#           tag: "${CIRCLE_SHA1}"
-#           path: "./backend"
-#           dockerfile: backend/Dockerfile.prd
-#           requires:
-#             - test
-#           filters:
-#             branches:
-#               only:
-#                 - main
-#       - aws-ecr/build-and-push-image:
-#           name: "build-and-push-frontend"
-#           account-url: AWS_ECR_ACCOUNT_URL
-#           region: AWS_REGION
-#           repo: ${REPO_NAME_FRONT}
-#           tag: "${CIRCLE_SHA1}"
-#           path: "./frontend"
-#           dockerfile: frontend/Dockerfile.prd
-#           requires:
-#             - test
-#           filters:
-#             branches:
-#               only:
-#                 - main
-#       - aws-ecs/update-task-definition:
-#           family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
-#           container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
-#           aws-region: AWS_REGION
-#           requires:
-#             - build-and-push-backend
-#           filters:
-#             branches:
-#               only: main
-#       - aws-ecs/run-task:
-#           cluster: ${CLUSTER_NAME}
-#           task-definition: ${TASK_MIGRATE}
-#           subnet-ids: "${SUBNET_PUBLIC_1A},${SUBNET_PUBLIC_1C}"
-#           assign-public-ip: ENABLED
-#           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
-#           requires:
-#             - aws-ecs/update-task-definition
-#           filters:
-#             branches:
-#               only: main
-#       - aws-ecs/deploy-service-update:
-#           family: ${FAMILY_NAME_BACK}
-#           service-name: ${SERVICE_NAME_BACK}
-#           cluster-name: ${CLUSTER_NAME}
-#           container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
-#           requires:
-#             - aws-ecs/run-task
-#           filters:
-#             branches:
-#               only:
-#                 - main
-#       - aws-ecs/deploy-service-update:
-#           family: ${FAMILY_NAME_FRONT}
-#           service-name: ${SERVICE_NAME_FRONT}
-#           cluster-name: ${CLUSTER_NAME}
-#           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
-#           requires:
-#             - build-and-push-frontend
-#           filters:
-#             branches:
-#               only:
-#                 - main
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.15.3
@@ -162,8 +37,6 @@ jobs:
           key: gem-cache-v1-{{ checksum "~/repo/backend/Gemfile.lock" }}
           paths:
             - ~/repo/backend/vendor/bundle
-
-      - run: sleep 10
 
       # Database setup
       - run:
@@ -232,8 +105,8 @@ jobs:
           repo: "realshinkitv-backend"
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
-          path: "./backend"
-          dockerfile: backend/Dockerfile.prd
+          path: "./backend/"
+          dockerfile: Dockerfile.prd
 
   build_and_push_image_frontend:
     machine:
@@ -245,8 +118,8 @@ jobs:
           repo: "realshinkitv-frontend"
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
-          path: "./frontend"
-          dockerfile: frontend/Dockerfile.prd
+          path: "./frontend/"
+          dockerfile: Dockerfile.prd
 
 workflows:
   version: 2
@@ -274,49 +147,49 @@ workflows:
           filters:
             branches:
               only: main
-      - aws-ecs/update-task-definition:
-          family: realshinkitv-db-migrate
-          # family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
-          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
-          aws-region: AWS_REGION
-          requires:
-            - build_and_push_image_backend
-          filters:
-            branches:
-              only: main
+      # - aws-ecs/update-task-definition:
+      #     family: realshinkitv-db-migrate
+      #     # family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
+      #     container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+      #     aws-region: AWS_REGION
+      #     requires:
+      #       - build_and_push_image_backend
+      #     filters:
+      #       branches:
+      #         only: main
 
-      - aws-ecs/run-task:
-          cluster: realshinkitv-ecs-cluster
-          # cluster: ${CLUSTER_NAME}
-          task-definition: realshinkitv-db-migrate
-          # task-definition: ${TASK_MIGRATE}
-          subnet-ids: subnet-0158621c9ce42a787,subnet-062655b15bbe447d7
-          assign-public-ip: ENABLED
-          security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
-          requires:
-            - aws-ecs/update-task-definition
-          filters:
-            branches:
-              only: main
+      # - aws-ecs/run-task:
+      #     cluster: realshinkitv-ecs-cluster
+      #     # cluster: ${CLUSTER_NAME}
+      #     task-definition: realshinkitv-db-migrate
+      #     # task-definition: ${TASK_MIGRATE}
+      #     subnet-ids: subnet-0158621c9ce42a787,subnet-062655b15bbe447d7
+      #     assign-public-ip: ENABLED
+      #     security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
+      #     requires:
+      #       - aws-ecs/update-task-definition
+      #     filters:
+      #       branches:
+      #         only: main
 
-      - aws-ecs/deploy-service-update:
-          family: realshinkitv-frontend-task
-          service-name: realshinkitv-frontend-ecs-service
-          cluster-name: realshinkitv-ecs-cluster
-          container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
-          requires:
-            - build_and_push_image_frontend
-          filters:
-            branches:
-              only: main
-      - aws-ecs/deploy-service-update:
-          requires:
-            - build_and_push_image_frontend
-            - build_and_push_image_backend
-          family: realshinkitv-backend-task
-          service-name: realshinkitv-backend-ecs-service
-          cluster-name: realshinkitv-ecs-cluster
-          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: main
+      # - aws-ecs/deploy-service-update:
+      #     family: realshinkitv-frontend-task
+      #     service-name: realshinkitv-frontend-ecs-service
+      #     cluster-name: realshinkitv-ecs-cluster
+      #     container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
+      #     requires:
+      #       - build_and_push_image_frontend
+      #     filters:
+      #       branches:
+      #         only: main
+      # - aws-ecs/deploy-service-update:
+      #     requires:
+      #       - build_and_push_image_frontend
+      #       - build_and_push_image_backend
+      #     family: realshinkitv-backend-task
+      #     service-name: realshinkitv-backend-ecs-service
+      #     cluster-name: realshinkitv-ecs-cluster
+      #     container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+      #     filters:
+      #       branches:
+      #         only: main
