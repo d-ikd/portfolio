@@ -6,7 +6,7 @@ ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
 
 ADD package.json /app/package.json
-# ADD package-lock.json /app/package-lock.json
+ADD package-lock.json /app/package-lock.json
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \

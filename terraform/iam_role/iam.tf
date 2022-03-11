@@ -18,11 +18,13 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
+/* IAM Role Defenition */
 resource "aws_iam_policy" "default" {
   name   = var.name
   policy = var.policy
 }
 
+/* Attach IAM Policy to IAM Role */
 resource "aws_iam_role_policy_attachment" "default" {
   role       = aws_iam_role.default.name
   policy_arn = aws_iam_policy.default.arn
