@@ -7,6 +7,7 @@ resource "aws_iam_role" "default" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
+/* IAM Role TrustPolicies --identifierに関連付け-- */
 data "aws_iam_policy_document" "assume_role" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -36,4 +37,20 @@ output "iam_role_arn" {
 
 output "iam_role_name" {
   value = aws_iam_role.default.name
+}
+
+
+data "aws_iam_policy_document" "ecs_task_role_policy_document" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "logs:DescribeLogStreams",
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+
+    resources = ["*"]
+  }
 }
