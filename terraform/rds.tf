@@ -59,9 +59,8 @@ resource "aws_db_instance" "cs-db" {
   ]
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
-
 }
 
 /* Subnet */
