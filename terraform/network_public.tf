@@ -102,3 +102,25 @@ resource "aws_route_table_association" "cs-back-rtb-1c" {
   subnet_id      = aws_subnet.cs-back-1c.id
   route_table_id = aws_route_table.cs-back-rtb.id
 }
+
+
+/* Add   after ECS deploy  */
+resource "aws_eip" "cs-ngw-eip" {
+  vpc        = true
+  depends_on = [aws_internet_gateway.cs-igw]
+
+  tags = {
+    Name = "cs-ngw-eip"
+  }
+}
+
+
+resource "aws_nat_gateway" "cs-ngw" {
+  allocation_id = aws_eip.cs-ngw-eip.id
+  subnet_id     = aws_subnet.cs-front-1a.id
+  depends_on    = [aws_internet_gateway.cs-igw]
+
+  tags = {
+    Name = "cs-ngw"
+  }
+}
