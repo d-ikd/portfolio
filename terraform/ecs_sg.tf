@@ -63,8 +63,10 @@ resource "aws_security_group_rule" "cs-ecs-sg-rule6" {
 resource "aws_security_group_rule" "cs-ecs-sg-rule7" {
   description       = "cs-ecs-sg-rule7"
   type              = "ingress"
-  from_port         = 8080
-  to_port           = 8080
+  from_port         = 5000
+  to_port           = 5000
+  # from_port         = 8080
+  # to_port           = 8080
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.cs-ecs-sg.id

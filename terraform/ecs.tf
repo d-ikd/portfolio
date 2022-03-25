@@ -24,7 +24,6 @@ resource "aws_ecs_task_definition" "cs-backend-task" {
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
-
 /* Backend: ServiceDefenition */
 resource "aws_ecs_service" "cs-backend-ecs-service" {
   name            = "cs-backend-ecs-service"
@@ -84,6 +83,16 @@ resource "aws_ecs_service" "cs-frontend-ecs-service" {
   }
 }
 
+/* Tasks for Create */
+resource "aws_ecs_task_definition" "db-create" {
+  family                   = "cs-db-create"
+  container_definitions    = file("./tasks/cs_db_create_definition.json")
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = "256"
+  memory                   = "512"
+  execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
+}
 
 /* Tasks for Migration */
 resource "aws_ecs_task_definition" "db-migrate" {

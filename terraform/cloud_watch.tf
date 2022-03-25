@@ -1,9 +1,13 @@
-resource "aws_cloudwatch_log_group" "cs-ecs-back" {
+resource "aws_cloudwatch_log_group" "cs-ecs-backend" {
   name              = "/ecs/backend"
   retention_in_days = 180
 }
-resource "aws_cloudwatch_log_group" "cs-ecs-front" {
+resource "aws_cloudwatch_log_group" "cs-ecs-frontend" {
   name              = "/ecs/frontend"
+  retention_in_days = 180
+}
+resource "aws_cloudwatch_log_group" "cs-ecs-db-create" {
+  name              = "/ecs/db-create"
   retention_in_days = 180
 }
 resource "aws_cloudwatch_log_group" "cs-ecs-db-migrate" {
