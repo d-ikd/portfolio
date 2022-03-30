@@ -23,7 +23,7 @@
     "environment": [
       {
         "name": "API_DOMAIN",
-        "value": "https://realchinkitv.com"
+        "value": "https://realshinkitv.com"
       },
       {
         "name": "WORKDIR",
