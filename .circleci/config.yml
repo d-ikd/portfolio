@@ -102,10 +102,10 @@ jobs:
       - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
+          repo: "cs-backend"
           region: AWS_REGION
-          repo: ${REPO_NAME_BACK}
           tag: "${CIRCLE_SHA1}"
-          path: "./backend/"
+          path: "./backend"
           dockerfile: Dockerfile.prd
 
   build_and_push_image_frontend:
@@ -115,8 +115,8 @@ jobs:
       - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
+          repo: "cs-frontend"
           region: AWS_REGION
-          repo: ${REPO_NAME_FRONT}
           tag: "${CIRCLE_SHA1}"
           path: "./frontend/"
           dockerfile: Dockerfile.prd
