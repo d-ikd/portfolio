@@ -25,3 +25,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore .env for logining of admin.
+/.env
+
+/public/uploads
+
+.ash_history

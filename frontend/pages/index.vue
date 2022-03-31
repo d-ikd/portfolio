@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <h1 class="title">
-        Zenn-app
+        shinki-app
       </h1>
       <h2 class="subtitle">
         {{ subTitle }}
@@ -22,16 +22,14 @@
 export default {
   data() {
     return {
-      subTitle: 'Zenn is good service!!',
+      subTitle: 'Shinki-app is good service!!',
       tasks: [],
     }
   },
   methods: {
     async getSomething() {
       // タスク一覧を取得するための API を叩く
-      const response = await this.$axios.$get(
-        'http://localhost:5000/api/v1/tasks'
-      )
+      const response = await this.$axios.$get('api/v1/tasks')
       this.tasks = JSON.parse(response.tasks)
     },
   },

@@ -30,7 +30,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    'plugins/axios'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -50,7 +52,12 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+   axios: {
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://realchinkitv.com'
+        : 'http://localhost:5000',
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
