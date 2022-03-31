@@ -31,7 +31,7 @@ test:
   database: app_test
   # ↓↓CiecleCI に通すときはコメントイン
   host: 127.0.0.1
-  username: root
+  # username: root
   # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
