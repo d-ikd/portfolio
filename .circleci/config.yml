@@ -37,7 +37,7 @@ jobs:
           key: gem-cache-v1-{{ checksum "~/repo/backend/Gemfile.lock" }}
           paths:
             - ~/repo/backend/vendor/bundle
-      - run: sleep 10
+
       # Database setup
       - run:
           command: bundle exec rails db:create
