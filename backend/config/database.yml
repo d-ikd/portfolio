@@ -16,7 +16,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   # ↓↓CiecleCI に通すときはコメントアウト
-  password: <%= ENV['MYSQL_ROOT_PASSWORD'] || '' %>
+  # password: <%= ENV['MYSQL_ROOT_PASSWORD'] || '' %>
   host: db
 
 development:
@@ -30,8 +30,8 @@ test:
   <<: *default
   database: app_test
   # ↓↓CiecleCI に通すときはコメントイン
-  # host: 127.0.0.1
-  username: root
+  host: 127.0.0.1
+  # username: root
   password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
