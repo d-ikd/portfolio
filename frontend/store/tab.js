@@ -1,7 +1,7 @@
 export const state = () => ({
   rankingTab: 0,
   newTab: 0,
-  search: "フード",
+  search: 'フード',
 })
 
 export const getters = {
@@ -24,12 +24,12 @@ export const mutations = {
 
 export const actions = {
   getRankingTab({ commit }, payload) {
-    commit("setRankingTab", payload)
+    commit('setRankingTab', payload)
   },
   getNewTab({ commit }, payload) {
-    commit("setNewTab", payload)
+    commit('setNewTab', payload)
   },
   getSearch({ commit }, payload) {
-    commit("setSearch", payload)
+    commit('setSearch', payload)
   },
 }

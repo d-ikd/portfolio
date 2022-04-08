@@ -18,7 +18,7 @@ export const actions = {
       .$get(`/api/v1/users/${paramsId}`)
       .then((res) => {
         console.log(res.data)
-        commit("setUser", res.data)
+        commit('setUser', res.data)
       })
       .catch((err) => {
         console.log(err)

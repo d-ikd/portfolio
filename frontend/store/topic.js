@@ -14,6 +14,6 @@ export const mutations = {
 
 export const actions = {
   getTab({ commit }, payload) {
-    commit("setTab", payload)
+    commit('setTab', payload)
   },
 }

@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'spa',
+  ssr: false,
+  // mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -30,9 +31,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    'plugins/axios'
-  ],
+  plugins: ['plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -47,13 +46,18 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    "nuxt-webfontloader",
+    'nuxt-webfontloader',
   ],
+  webfontloader: {
+    google: {
+      families: [],
+    },
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-   axios: {
+  axios: {
     baseURL:
       process.env.NODE_ENV === 'production'
         ? 'https://realchinkitv.com'
