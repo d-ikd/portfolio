@@ -91,3 +91,5 @@ sw.*
 
 .ash_history
 .npmrc
+
+assets/*.jpeg
