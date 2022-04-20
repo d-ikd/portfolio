@@ -47,6 +47,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'nuxt-webfontloader',
+    '@nuxtjs/auth',
   ],
   webfontloader: {
     google: {
@@ -80,6 +81,27 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+        },
+      },
+    },
+  },
+  auth: {
+    redirect: {
+      login: '/users/login',
+      logout: '/',
+      callback: false,
+      home: '/',
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/v1/auth/sign_in',
+            method: 'post',
+            propertyName: 'token',
+          },
+          logout: false,
+          user: false,
         },
       },
     },
