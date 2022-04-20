@@ -1,37 +1,44 @@
 <template>
-  <v-app-bar :clipped-left="clipped" app dark>
-    <TheHeaderSettingDialog />
-    <TheHeaderLogo />
-    <TheHeaderTabs />
-    <TheHeaderSearch />
-    <TheHeaderLogin />
+  <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar-nav-icon
+      @click.stop="$emit('toggle-drawer')"
+    ></v-app-bar-nav-icon>
+    <!-- <v-toolbar-title>
+      <v-img :src="img" max-width="200" max-height="200"> </v-img>
+    </v-toolbar-title> -->
+    <nuxt-link to="/" class="link">
+      <v-toolbar-title class="header-title" v-text="title" />
+    </nuxt-link>
+    <v-spacer />
+    <v-btn icon>
+      <v-icon>mdi-magnify</v-icon>
+    </v-btn>
+    <v-btn class="ml-5 mr-4">
+      ログイン
+    </v-btn>
   </v-app-bar>
 </template>
 
 <script>
-import TheHeaderLogo from '~/components/layouts/TheHeaderLogo.vue'
-import TheHeaderTabs from '~/components/layouts/TheHeaderTabs.vue'
-import TheHeaderSearch from '~/components/layouts/TheHeaderSearch.vue'
-import TheHeaderLogin from '~/components/layouts/TheHeaderLogin.vue'
-import TheHeaderSettingDialog from '~/components/layouts/TheHeaderSettingDialog.vue'
-import { mapGetters, mapActions } from 'vuex'
-/* import headerAvatar from "~/components/HeaderAvatar.vue" */
-/* import signUpModal from "~/components/SignUpModal.vue" */
-// import searchForm from "~/components/SearchForm.vue"
-
 export default {
-  components: {
-    TheHeaderLogo,
-    TheHeaderTabs,
-    TheHeaderSearch,
-    TheHeaderLogin,
-    TheHeaderSettingDialog,
-    /* signUpModal, */
-  },
   data() {
     return {
+      clipped: true,
       drawer: null,
+      fixed: false,
+      title: 'STUCTIVE',
     }
   },
 }
 </script>
+
+<style>
+.header-title {
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  color: #393939;
+}
+.link {
+  text-decoration: none;
+}
+</style>

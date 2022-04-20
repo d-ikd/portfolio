@@ -23,16 +23,16 @@
           <v-tabs-items v-model="tab" touchless>
             <v-container>
               <v-tab-item class="px-2">
-                <edit-avatar />
+                <!-- <edit-avatar /> -->
                 <v-divider />
-                <!--                 <edit-profile /> -->
+                <!-- <edit-profile /> -->
               </v-tab-item>
               <v-tab-item class="px-2">
-                <!--                 <edit-email /> -->
+                <!-- <edit-email /> -->
                 <v-divider />
-                <!--                 <edit-password /> -->
+                <!-- <edit-password /> -->
                 <v-divider />
-                <!--                 <delete-user /> -->
+                <!-- <delete-user /> -->
               </v-tab-item>
             </v-container>
           </v-tabs-items>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import editAvatar from '~/components/editUser/EditAvatar'
+// import editAvatar from '~/components/editUser/EditAvatar'
 // import editEmail from "~/components/editUser/EditEmail"
 // import editPassword from "~/components/editUser/EditPassword"
 // import editProfile from "~/components/editUser/EditProfile"
@@ -51,7 +51,7 @@ import editAvatar from '~/components/editUser/EditAvatar'
 
 export default {
   components: {
-    editAvatar,
+    // editAvatar,
     // editEmail,
     // editPassword,
     // editProfile,

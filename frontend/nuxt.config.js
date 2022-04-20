@@ -52,7 +52,12 @@ export default {
   ],
   webfontloader: {
     google: {
-      families: [],
+      families: [
+        'Slabo+27px',
+        'Fraunces',
+        'Noto+Sans:wght@700',
+        'Noto+Sans+JP:wght@900',
+      ],
     },
   },
   /*
@@ -97,9 +102,9 @@ export default {
       silentFallbackWarn: true,
       messages: {
         ja: require('./locales/ja.json'),
-        en: require('./locales/en.json')
-      }
-    }
+        en: require('./locales/en.json'),
+      },
+    },
   },
   auth: {
     redirect: {
