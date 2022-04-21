@@ -1,28 +1,22 @@
 export const state = () => ({
-  user: {},
+  current_user: {},
+  isLoggedIn: false,
 })
 
 export const getters = {
-  user: (state) => state.user,
+  current_user: (state) => state.current_user,
+  isLoggedIn: (state) => state.isLoggedIn,
 }
 
 export const mutations = {
-  setUser(state, user) {
-    state.user = user
+  setCurrentUser(state, user) {
+    console.log('vuex store にcurrent user をセット')
+    state.current_user = user
+    state.isLoggedIn = true
+    console.log(state)
   },
-}
-
-export const actions = {
-  async getUser({ commit }, paramsId) {
-    await this.$axios
-      .$get(`/api/v1/users/${paramsId}`)
-      .then((res) => {
-        console.log(res.data)
-        commit('setUser', res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-        return err
-      })
-  },
+  // removeCurrentUser(state, user){
+  //   state.current_user = {}
+  //   state.isLoggedIn = false
+  // },
 }

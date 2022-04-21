@@ -48,21 +48,9 @@ export default {
   },
   methods: {
     editEmail() {
-      this.$axios
-        .put('api/v1/auth', this.user, {
-          headers: {
-            'access-token': localStorage.getItem('access-token'),
-            uid: localStorage.getItem('uid'),
-            client: localStorage.getItem('client'),
-          },
-        })
-        .then((response) => {
-          localStorage.setItem('access-token', response.headers['access-token'])
-          localStorage.setItem('client', response.headers.client)
-          localStorage.setItem('uid', response.headers.uid)
-          localStorage.setItem('token-type', response.headers['token-type'])
-          window.location.href = '/'
-        })
+      this.$axios.put('api/v1/auth', this.user).then((response) => {
+        window.location.href = '/'
+      })
     },
   },
 }
