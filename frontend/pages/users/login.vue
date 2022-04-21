@@ -23,7 +23,7 @@
             <v-btn
               color="light-green darken-1"
               class="white--text"
-              @click="loginWithAuthModule"
+              @click="login"
             >
               ログイン
             </v-btn>
@@ -43,22 +43,18 @@ export default {
     }
   },
   methods: {
-    // loginメソッドの呼び出し
-    async loginWithAuthModule() {
-      await this.$auth
-        .loginWith('local', {
-          // emailとpasswordの情報を送信
-          data: {
-            email: this.email,
-            password: this.password,
-          },
+    async login() {
+      await this.$axios
+        .$post('/api/v1/auth/sign_in', {
+          email: this.email,
+          password: this.password,
         })
         .then(
           (res) => {
             console.log('ログイン成功' + ' /pages/login.vue')
             console.log(res)
-            console.log(res.data.data)
-            this.$store.commit('user/setCurrentUser', res.data.data)
+            console.log(res.data)
+            this.$store.commit('user/setCurrentUser', res.data)
             return res
           },
           (error) => {

@@ -47,7 +47,6 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'nuxt-webfontloader',
-    '@nuxtjs/auth',
     'nuxt-i18n',
   ],
   webfontloader: {
@@ -106,32 +105,32 @@ export default {
       },
     },
   },
-  auth: {
-    redirect: {
-      login: '/users/login',
-      logout: '/',
-      callback: false,
-      home: '/',
-    },
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: '/api/v1/auth/sign_in',
-            method: 'post',
-            propertyName: 'token',
-          },
-          logout: false /* true→falseへ */,
-          user: false,
-        },
-      },
-    },
-  },
+  // auth: {
+  //   redirect: {
+  //     login: '/users/login',
+  //     logout: '/',
+  //     callback: false,
+  //     home: '/',
+  //   },
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: {
+  //           url: '/api/v1/auth/sign_in',
+  //           method: 'post',
+  //           propertyName: 'token',
+  //         },
+  //         logout: false /* true→falseへ */,
+  //         user: false,
+  //       },
+  //     },
+  //   },
+  // },
   /*
    ** Build configuration
    */
   build: {},
-  router: {
-    middleware: ['auth'],
-  },
+  // router: {
+  //   middleware: ['auth'],
+  // },
 }
