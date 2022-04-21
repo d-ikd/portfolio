@@ -2,9 +2,7 @@
   <v-app>
     <the-header />
     <v-main>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-main>
     <the-footer />
   </v-app>

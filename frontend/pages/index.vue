@@ -1,11 +1,12 @@
 <template>
-  <v-app style="height: 4000px">
+  <div style="height: 4000px">
     <h1>Hello.Vue</h1>
-  </v-app>
+  </div>
 </template>
 
 <script>
 export default {
+  layout: 'default',
   // data() {},
   // methods: {
   //   async getSomething() {
