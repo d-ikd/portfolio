@@ -121,7 +121,7 @@ export default {
             method: 'post',
             propertyName: 'token',
           },
-          logout: false,
+          logout: false, /* true→falseへ */
           user: false,
         },
       },
@@ -131,4 +131,7 @@ export default {
    ** Build configuration
    */
   build: {},
+  router: {
+    middleware: ['auth']
+  }
 }
