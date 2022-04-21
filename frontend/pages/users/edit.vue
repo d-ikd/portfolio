@@ -9,6 +9,9 @@
         </v-card-title>
         <v-card-text>
           <v-form ref="form" lazy-validation>
+            <p>
+              現在のメールアドレス: {{ $store.state.auth.currentUser.email }}
+            </p>
             <v-text-field
               v-model="user.email"
               prepend-icon="mdi-email"
@@ -48,9 +51,19 @@ export default {
   },
   methods: {
     editEmail() {
-      this.$axios.put('api/v1/auth', this.user).then((response) => {
-        window.location.href = '/'
-      })
+      this.$axios
+        .put('api/v1/auth', this.user, {
+          headers: {
+            'access-token': localStorage.getItem('access-token'),
+            uid: localStorage.getItem('uid'),
+            client: localStorage.getItem('client'),
+          },
+        })
+        .then((res) => {
+          console.log(res)
+          this.$store.commit('auth/setCurrentUser', res.data)
+          this.$router.push('/')
+        })
     },
   },
 }

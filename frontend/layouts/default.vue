@@ -1,13 +1,6 @@
 <template>
   <v-app>
-    <template v-if="$store.state.user.isLoggedIn">
-      <login-header
-        @toggle-drawer="$refs.drawer.drawer = !$refs.drawer.drawer"
-      />
-    </template>
-    <template v-else>
-      <the-header @toggle-drawer="$refs.drawer.drawer = !$refs.drawer.drawer" />
-    </template>
+    <the-header @toggle-drawer="$refs.drawer.drawer = !$refs.drawer.drawer" />
     <v-main>
       <nuxt />
     </v-main>
@@ -18,13 +11,10 @@
 <script>
 import theHeader from '~/components/layouts/TheHeader.vue'
 import theFooter from '~/components/layouts/TheFooter.vue'
-import loginHeader from '~/components/layouts/LoginHeader.vue'
 export default {
   components: {
     theHeader,
     theFooter,
-    loginHeader,
   },
-  // data() {},
 }
 </script>

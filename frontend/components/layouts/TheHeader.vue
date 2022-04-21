@@ -10,20 +10,31 @@
       <v-toolbar-title class="header-title" v-text="title" />
     </nuxt-link>
     <v-spacer />
-    <p>ログイン状態:{{ $store.state.user.isLoggedIn }}</p>
+    <p>ログイン状態:{{ $store.state.auth.isLoggedIn }}</p>
     <v-btn icon>
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
-    <v-btn class="ml-5 mr-2" to="/users/signup">
-      新規登録
-    </v-btn>
-    <v-btn class="ml-4 mr-2" to="/users/login">
-      ログイン
-    </v-btn>
+    <template v-if="!$store.state.auth.isLoggedIn">
+      <v-btn class="ml-5 mr-2" to="/users/signup">
+        新規登録
+      </v-btn>
+      <v-btn class="ml-4 mr-2" to="/users/login">
+        ログイン
+      </v-btn>
+    </template>
+    <template v-else>
+      <v-btn class="ml-5 mr-2" to="/users/edit">
+        編集
+      </v-btn>
+      <v-btn class="ml-4 mr-2" to="/" @click="logout">
+        ログアウト
+      </v-btn>
+    </template>
   </v-app-bar>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -32,6 +43,11 @@ export default {
       fixed: false,
       title: 'STUCTIVE',
     }
+  },
+  methods: {
+    ...mapActions({
+      logout: 'auth/logout',
+    }),
   },
 }
 </script>
