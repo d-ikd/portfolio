@@ -73,7 +73,7 @@ export const actions = {
       .then((res) => {
         console.log('ログアウト成功')
         commit('setCurrentUser', null)
-        commit('setIsLoggedIn', false)
+        commit('setIsLoggedIn', {})
         this.$router.push('/')
         console.log(res)
         return res

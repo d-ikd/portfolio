@@ -66,6 +66,9 @@
           </v-form>
         </v-card-text>
       </v-card>
+      <v-btn color="red darken-1" class="white--text" @click="deleteUser">
+        退会
+      </v-btn>
     </v-container>
   </v-app>
 </template>
@@ -113,6 +116,29 @@ export default {
           console.log(res)
           this.$store.commit('auth/setCurrentUser', res.data)
           this.$router.push('/')
+        })
+    },
+    deleteUser() {
+      this.$axios
+        .delete('api/v1/auth', {
+          headers: {
+            'access-token': localStorage.getItem('access-token'),
+            uid: localStorage.getItem('uid'),
+            client: localStorage.getItem('client'),
+          },
+        })
+        .then((res) => {
+          console.log('ユーザー削除完了')
+          this.$store.commit('auth/setCurrentUser', {})
+          this.$store.commit('auth/setIsLoggedIn', false)
+          this.$router.push('/')
+          console.log(res)
+          return res
+        })
+        .catch((err) => {
+          console.log('ログアウト失敗')
+          console.log(err)
+          return err
         })
     },
   },
