@@ -1,8 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  ssr: false,
-  // mode: 'spa',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -31,7 +30,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['plugins/axios'],
+  plugins: [
+    'plugins/axios',
+    { src: '~/plugins/localStorage.js', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -48,6 +50,7 @@ export default {
     '@nuxtjs/axios',
     'nuxt-webfontloader',
     'nuxt-i18n',
+    'nuxt-client-init-module',
   ],
   webfontloader: {
     google: {
@@ -120,7 +123,7 @@ export default {
   //           method: 'post',
   //           propertyName: 'token',
   //         },
-  //         logout: false /* true→falseへ */,
+  //         logout: false,
   //         user: false,
   //       },
   //     },
