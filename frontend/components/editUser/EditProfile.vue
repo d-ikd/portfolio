@@ -38,8 +38,7 @@ export default {
   },*/
   methods: {
     async changeUserProfile() {
-      alert('Get Something!!')
-      /*
+      alert('Get Something!!')/*
       const formData = new FormData()
       formData.append("name", this.name)
       formData.append("profile", this.profile)
@@ -72,7 +71,7 @@ export default {
             },
             { root: true }
           )
-        })*/
+        }) */
     },
   },
 }

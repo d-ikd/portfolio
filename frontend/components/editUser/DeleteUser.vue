@@ -31,7 +31,7 @@ export default {
   methods: {
     deleteUser() {
       alert('Get Something!!')
-      /*      this.$axios
+      /* this.$axios
         .delete("api/v1/auth", {
           headers: {
             "access-token": localStorage.getItem("access-token"),
@@ -67,7 +67,7 @@ export default {
             },
             { root: true }
           )
-        })*/
+        }) */
     },
   },
 }

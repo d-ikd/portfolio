@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     async changeUserEmail() {
-      alert('Get things!!')
-      /*      const formData = new FormData()
+      alert('Get things!!')/*
+      const formData = new FormData()
       formData.append("email", this.email)
       await this.$axios
         .put("api/v1/auth", formData, {
@@ -70,7 +70,7 @@ export default {
             },
             { root: true }
           )
-        })*/
+        }) */
     },
   },
 }

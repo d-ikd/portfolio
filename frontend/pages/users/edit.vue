@@ -66,6 +66,7 @@
           </v-form>
         </v-card-text>
       </v-card>
+      <edit-avatar />
       <v-btn color="red darken-1" class="white--text" @click="deleteUser">
         退会
       </v-btn>
@@ -74,7 +75,11 @@
 </template>
 
 <script>
+import editAvatar from '~/components/editUser/EditAvatar.vue'
 export default {
+  components: {
+    editAvatar,
+  },
   data() {
     return {
       user: {

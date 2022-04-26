@@ -4,8 +4,7 @@
       <v-icon> mdi-account-box </v-icon>
       <span>アイコン画像</span>
     </v-row>
-    <!--
-    <v-row justify="center" class="pt-6">
+    <!-- <v-row justify="center" class="pt-6">
       <v-avatar size="100">
         <template v-if="image.url !== null">
           <v-img v-if="input_image !== null" :src="input_image" />
@@ -19,8 +18,8 @@
     <v-file-input
       v-model="editImage"
       accept="image/png, image/jpeg, image/bmp"
-      prepend-icon="mdi-image"
-      label="画像を選択してください  // v-model='editImage'"
+      prepend-icon="mdi-account-box"
+      label="変更するアバター画像を選択してください"
       class="pt-14"
       @change="setImage"
     />
@@ -40,7 +39,7 @@ export default {
   // },
   data() {
     return {
-      /* image: this.$store.getters["auth/currentUser"].image, */
+      // image: this.$store.getters["auth/currentUser"].image,
       editImage: '',
       input_image: null,
     }
@@ -98,7 +97,7 @@ export default {
             },
             { root: true }
           )
-        })*/
+        }) */
     },
   },
 }

@@ -57,8 +57,8 @@ export default {
   },
   methods: {
     changeUserPassword() {
-      alert('Get Something!!')
-      /*      this.$axios
+      alert('Get Something!!')/*
+      this.$axios
         .put("api/v1/auth/password", this.pas, {
           headers: {
             "access-token": localStorage.getItem("access-token"),
@@ -89,7 +89,7 @@ export default {
             },
             { root: true }
           )
-        })*/
+        }) */
     },
   },
 }
