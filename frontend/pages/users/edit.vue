@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import editAvatar from '~/components/editUser/EditAvatar.vue'
+import editAvatar from '~/components/editUser/EditAvatar'
 import editEmail from '~/components/editUser/EditEmail'
-import editPassword from '~/components/editUser/EditPassword.vue'
+import editPassword from '~/components/editUser/EditPassword'
 import editProfile from '~/components/editUser/EditProfile'
 import deleteUser from '~/components/editUser/DeleteUser'
 export default {

@@ -23,7 +23,7 @@
             </a>
           </v-col>
           <v-col cols="12" lg="5" class="pa-2 text-right">
-            <!-- <font-awesome-icon icon="angle-right" /> -->
+            <font-awesome-icon icon="angle-right" />
           </v-col>
         </v-row>
         <v-divider></v-divider>
@@ -38,7 +38,7 @@
             </a>
           </v-col>
           <v-col cols="12" lg="5" class="pa-2 text-right">
-            <!-- <font-awesome-icon icon="angle-right" /> -->
+            <font-awesome-icon icon="angle-right" />
           </v-col>
         </v-row>
       </v-col>

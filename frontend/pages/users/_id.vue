@@ -1,20 +1,30 @@
 <template>
   <div>
+    <!-- ========== Profile ========== -->
     <template v-if="loading">
-      <v-card class="red lighten-3 pt-6">
-        <!-- <v-card class="grey lighten-3 pt-6"> -->
-        <v-container class="lighten-3 px-13 top-card">
-          <v-row class="mx-1" no-gutters>
-            <v-col cols="2" class="text-center">
-              <user-avatar :size="105" :user="user" />
-            </v-col>
-            <v-col cols="10">
-              <v-sheet class="blue lighten-3 ml-2b mb-10">
-                <div class="user-name mt-3">
-                  <h2 class="display-1">
-                    {{ user.name }}
-                  </h2>
-                  <template v-if="loginUser && loginUser.id !== user.id">
+      <v-parallax
+        height="300"
+        :src="require(`@/assets/images/default.png`)"
+      ></v-parallax>
+      <v-card>
+        <v-row class="mx-1 pb-10" no-gutters>
+          <v-col cols="2" class="text-center">
+            <user-avatar :size="150" :user="user" class="ma-n16" />
+          </v-col>
+          <v-col cols="10">
+            <v-sheet>
+              <div class="user-name mt-3">
+                <h2 class="display-1">
+                  {{ user.name }}
+                </h2>
+                <template v-if="loginUser && loginUser.id == user.id">
+                  <div class="pr-10">
+                    <user-id-setting />
+                  </div>
+                </template>
+
+                <template v-if="loginUser && loginUser.id !== user.id">
+                  <div class="pr-10">
                     <v-btn
                       v-if="follow"
                       rounded
@@ -24,6 +34,7 @@
                       @click="unfollowUser"
                       @mouseover="mouseover"
                       @mouseleave="mouseleave"
+                      style="text-transform: none"
                     >
                       {{ message }}
                     </v-btn>
@@ -31,51 +42,51 @@
                       v-else
                       rounded
                       min-width="125px"
-                      outlined
                       color="blue"
                       @click="followUser"
+                      style="text-transform: none"
+                      class="font-weight-bold"
                     >
                       <v-icon class="mr-2"> mdi-account-plus </v-icon>
-                      フォロー
+                      Follow
                     </v-btn>
-                  </template>
-                </div>
-                <p class="subtitle-1 my-3">{{ user.profile }}</p>
-                <div class="following pt-2">
-                  <p>
-                    <span class="font-weight-bold">
-                      {{ user.followings.length }}
-                    </span>
-                    フォロー
-                  </p>
-                  <p class="ml-3">
-                    <span class="font-weight-bold">
-                      {{ user.followers.length }}
-                    </span>
-                    フォロワー
-                  </p>
-                </div>
-              </v-sheet>
-            </v-col>
-          </v-row>
-          <v-divider />
-          <v-tabs v-model="tab" background-color="blue lighten-3" height="60">
-            <v-tabs-slider></v-tabs-slider>
+                  </div>
+                </template>
+              </div>
+              <p class="subtitle-1 my-3">{{ user.profile }}</p>
+              <div class="following pt-2">
+                <p>
+                  <span class="font-weight-bold">
+                    {{ user.followings.length }}
+                  </span>
+                  Following
+                </p>
+                <p class="ml-3">
+                  <span class="font-weight-bold">
+                    {{ user.followers.length }}
+                  </span>
+                  Followers
+                </p>
+              </div>
+            </v-sheet>
+          </v-col>
+        </v-row>
+        <v-divider />
 
-            <v-tab v-for="item in items" :key="item.title">
-              {{ item.title }}
-            </v-tab>
-          </v-tabs>
-        </v-container>
+        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+          <v-tab v-for="item in items" :key="item.title">
+            {{ item.title }}
+          </v-tab>
+        </v-tabs>
       </v-card>
     </template>
-    <v-container class="px-13" style="background-color: #fbfbfb">
+    <!-- ========== Profile ========== -->
+
+    <!-- ========== Tabs ========== -->
+    <v-container class="px-13">
       <v-row>
         <v-col cols="12">
-          <v-tabs-items v-model="tab" style="background-color: #fbfbfb">
-            <v-tab-item>
-              <user-menu-list :menus="user.menus" />
-            </v-tab-item>
+          <v-tabs-items v-model="tab">
             <v-tab-item>
               <user-post-list :posts="user.postlike" />
             </v-tab-item>
@@ -95,26 +106,29 @@
         </v-col>
       </v-row>
     </v-container>
+    <!-- ========== Tabs ========== -->
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-/* import userPostList from "~/components/infoUser/UserPostList.vue" */
-/* import userList from "~/components/infoUser/UserList.vue" */
-/* import userReviewList from "~/components/infoUser/UserReviewList.vue" */
-/* import userLikeReviewList from "~/components/infoUser/UserLikeReviewList.vue" */
-/* import userMenuList from "~/components/infoUser/UserMenuList.vue" */
+// import userPostList from "~/components/infoUser/UserPostList.vue"
+// import userList from "~/components/infoUser/UserList.vue"
+// import userReviewList from "~/components/infoUser/UserReviewList.vue"
+// import userLikeReviewList from "~/components/infoUser/UserLikeReviewList.vue"
+// import userIdSetting from "~/components/editUser/UserIdSetting.vue"
+/* import userMenuList from "~/components/UserMenuList.vue" */
 export default {
-  name: 'WithChildren',
+  name: 'RR',
   components: {
     userAvatar,
-    /* userPostList, */
-    /* userList, */
-    /* userReviewList, */
-    /* userLikeReviewList, */
-    /*  userMenuList, */
+    // userPostList,
+    // userList,
+    // userReviewList,
+    // userLikeReviewList,
+    // userIdSetting,
+    /*     userMenuList, */
   },
   data() {
     return {
@@ -123,10 +137,9 @@ export default {
       tab: null,
       follow: false,
       message: 'フォロー中',
-      color: 'red white--text',
+      color: 'blue white--text',
       items: [
-        { title: 'Menu' },
-        { title: 'Fav to Post' },
+        { title: 'Fav' },
         { title: 'Review' },
         { title: 'Fav to Review' },
         { title: 'Follow' },
@@ -148,7 +161,7 @@ export default {
   },
   watch: {
     postUpdate() {
-      // フード再取得時にユーザーを更新
+      // POST再取得時にユーザーを更新
       this.$axios.get(`api/v1/users/${this.$route.params.id}`).then((res) => {
         this.$store.commit('user/setUser', res.data, { root: true })
         console.log(res.data)
@@ -180,11 +193,11 @@ export default {
   methods: {
     mouseover() {
       this.color = 'red white--text'
-      this.message = 'フォロー解除'
+      this.message = 'Unfollow'
     },
     mouseleave() {
       this.color = 'blue white--text'
-      this.message = 'フォロー中'
+      this.message = 'Following'
     },
     followUser() {
       this.$axios
@@ -196,7 +209,7 @@ export default {
           this.$store.commit('flashMessage/setMessage', ' フォローしました。', {
             root: true,
           })
-          this.$store.commit('flashMessage/setType', 'success', { root: true })
+          this.$store.commit('flashMessage/setType', '#48A1EB', { root: true })
           this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
             this.$store.commit('flashMessage/setStatus', false, { root: true })
@@ -229,7 +242,7 @@ export default {
             ' フォロー解除しました。',
             { root: true }
           )
-          this.$store.commit('flashMessage/setType', 'info', { root: true })
+          this.$store.commit('flashMessage/setType', '#E35B4B', { root: true })
           this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
             this.$store.commit('flashMessage/setStatus', false, { root: true })
