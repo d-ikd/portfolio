@@ -90,6 +90,8 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     excon (0.92.2)
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.14.2)
     fog-aws (3.13.0)
       fog-core (~> 2.1)
@@ -237,6 +239,7 @@ DEPENDENCIES
   devise
   devise_token_auth
   dotenv-rails
+  faker
   ffi (= 1.14.2)
   fog-aws
   listen (~> 3.2)

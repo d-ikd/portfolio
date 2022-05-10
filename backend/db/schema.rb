@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_020810) do
+ActiveRecord::Schema.define(version: 2022_05_10_095453) do
+
+  create_table "choise_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_choise_posts_on_menu_id"
+    t.index ["post_id", "menu_id"], name: "index_choise_posts_on_post_id_and_menu_id", unique: true
+    t.index ["post_id"], name: "index_choise_posts_on_post_id"
+  end
+
+  create_table "menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.string "timezone"
+    t.integer "timezone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "date", "timezone"], name: "index_menus_on_user_id_and_date_and_timezone", unique: true
+    t.index ["user_id"], name: "index_menus_on_user_id"
+  end
 
   create_table "pickups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "post_id", null: false
@@ -30,9 +51,17 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+    t.string "name"
+    t.text "details"
+    t.float "calorie"
+    t.float "carbonhydrate"
+    t.float "protein"
+    t.float "lipid"
+    t.string "category"
+    t.string "maker"
     t.string "image"
+    t.date "release"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,12 +107,6 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "title", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -115,6 +138,9 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "choise_posts", "menus"
+  add_foreign_key "choise_posts", "posts"
+  add_foreign_key "menus", "users"
   add_foreign_key "pickups", "posts"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
