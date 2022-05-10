@@ -1,151 +1,65 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-card width="400px" class="mx-auto mt-5">
-        <v-card-title>
-          <h1 class="display-1">
-            メールアドレス変更
-          </h1>
-        </v-card-title>
-        <v-card-text>
-          <v-form ref="form" lazy-validation>
-            <p>
-              現在のメールアドレス: {{ $store.state.auth.currentUser.email }}
-            </p>
-            <v-text-field
-              v-model="user.email"
-              prepend-icon="mdi-email"
-              label="新しいメールアドレス"
-            />
-            <v-text-field
-              v-model="user.password"
-              prepend-icon="mdi-lock"
-              append-icon="mdi-eye-off"
-              label="パスワード"
-            />
-            <v-card-actions>
-              <v-btn
-                color="light-green darken-1"
-                class="white--text"
-                @click="editEmail"
-              >
-                保存する
-              </v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card-text>
-      </v-card>
-      <v-card width="400px" class="mx-auto mt-5">
-        <v-card-title>
-          <h1 class="display-1">
-            パスワード変更
-          </h1>
-        </v-card-title>
-        <v-card-text>
-          <v-form ref="form" lazy-validation>
-            <v-text-field
-              v-model="pas.password"
-              prepend-icon="mdi-email"
-              label="新しいパスワード"
-            />
-            <v-text-field
-              v-model="pas.password_confirmation"
-              prepend-icon="mdi-lock"
-              append-icon="mdi-eye-off"
-              label="新しいパスワード確認"
-            />
-            <v-card-actions>
-              <v-btn
-                color="light-green darken-1"
-                class="white--text"
-                @click="editPassword"
-              >
-                保存する
-              </v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card-text>
-      </v-card>
-      <edit-avatar />
-      <v-btn color="red darken-1" class="white--text" @click="deleteUser">
-        退会
-      </v-btn>
-    </v-container>
-  </v-app>
+  <v-container>
+    <v-row justify="center">
+      <v-col xl="5" lg="7" sm="9" cols="12">
+        <v-card class="mx-auto">
+          <v-tabs
+            v-model="tab"
+            fixed-tabs
+            centered
+            background-color="grey lighten-2"
+            slider-color="info"
+            icons-and-text
+          >
+            <v-tab class="ma-0 pa-0">
+              プロフィール
+              <v-icon>mdi-account</v-icon>
+            </v-tab>
+            <v-tab class="ma-0 pa-0">
+              登録情報
+              <v-icon>mdi-account-cog</v-icon>
+            </v-tab>
+          </v-tabs>
+          <v-tabs-items v-model="tab" touchless>
+            <v-container>
+              <v-tab-item class="px-2">
+                <edit-avatar />
+                <v-divider />
+                <edit-profile />
+              </v-tab-item>
+              <v-tab-item class="px-2">
+                <edit-email />
+                <v-divider />
+                <edit-password />
+                <v-divider />
+                <delete-user />
+              </v-tab-item>
+            </v-container>
+          </v-tabs-items>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import editAvatar from '~/components/editUser/EditAvatar.vue'
+import editEmail from '~/components/editUser/EditEmail'
+import editPassword from '~/components/editUser/EditPassword.vue'
+import editProfile from '~/components/editUser/EditProfile'
+import deleteUser from '~/components/editUser/DeleteUser'
 export default {
   components: {
     editAvatar,
+    editEmail,
+    editPassword,
+    editProfile,
+    deleteUser,
   },
   data() {
     return {
-      user: {
-        password: '',
-        email: '',
-      },
-      pas: {
-        password: '',
-        password_confirmation: '',
-      },
+      tab: null,
     }
-  },
-  methods: {
-    editEmail() {
-      this.$axios
-        .put('api/v1/auth', this.user, {
-          headers: {
-            'access-token': localStorage.getItem('access-token'),
-            uid: localStorage.getItem('uid'),
-            client: localStorage.getItem('client'),
-          },
-        })
-        .then((res) => {
-          console.log(res)
-          this.$store.commit('auth/setCurrentUser', res.data)
-          this.$router.push('/')
-        })
-    },
-    editPassword() {
-      this.$axios
-        .put('api/v1/auth/password', this.pas, {
-          headers: {
-            'access-token': localStorage.getItem('access-token'),
-            uid: localStorage.getItem('uid'),
-            client: localStorage.getItem('client'),
-          },
-        })
-        .then((res) => {
-          console.log(res)
-          this.$store.commit('auth/setCurrentUser', res.data)
-          this.$router.push('/')
-        })
-    },
-    deleteUser() {
-      this.$axios
-        .delete('api/v1/auth', {
-          headers: {
-            'access-token': localStorage.getItem('access-token'),
-            uid: localStorage.getItem('uid'),
-            client: localStorage.getItem('client'),
-          },
-        })
-        .then((res) => {
-          console.log('ユーザー削除完了')
-          this.$store.commit('auth/setCurrentUser', {})
-          this.$store.commit('auth/setIsLoggedIn', false)
-          this.$router.push('/')
-          console.log(res)
-          return res
-        })
-        .catch((err) => {
-          console.log('ログアウト失敗')
-          console.log(err)
-          return err
-        })
-    },
   },
 }
 </script>

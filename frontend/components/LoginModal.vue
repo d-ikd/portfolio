@@ -1,13 +1,17 @@
 <template>
-  <v-container>
-    <v-card width="400px" class="mx-auto mt-5">
-      <v-card-title>
-        <h1 class="display-1">
-          ログイン
-        </h1>
-      </v-card-title>
-      <v-card-text>
-        <v-form ref="form" v-model="isValid">
+  <v-card>
+    <v-system-bar lights-out>
+      <v-spacer></v-spacer>
+      <v-btn icon class="mt-6" large @click="loginDialog(false)">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-system-bar>
+    <v-card-title>
+      <span class="headline">ログイン</span>
+    </v-card-title>
+    <v-card-text>
+      <v-form ref="form" v-model="isValid">
+        <v-container>
           <v-text-field
             v-model="user.email"
             :rules="emailRules"
@@ -26,23 +30,33 @@
             :append-icon="toggle.icon"
             :type="toggle.type"
             autocomplete="on"
-            @click:append="show = !show"
             label="パスワード"
+            @click:append="show = !show"
           />
-          <v-card-actions>
-            <v-btn
-              :disabled="!isValid"
-              color="light-green darken-1"
-              class="white--text"
-              @click="login(user)"
-            >
-              ログイン
-            </v-btn>
-          </v-card-actions>
-        </v-form>
-      </v-card-text>
-    </v-card>
-  </v-container>
+        </v-container>
+        <v-card-actions>
+          <v-btn
+            :disabled="!isValid"
+            color="light-green darken-1"
+            class="white--text pa-5 mt-3"
+            block
+            @click="loginUser"
+          >
+            ログイン
+          </v-btn>
+        </v-card-actions>
+      </v-form>
+    </v-card-text>
+    <v-card-text class="text-center caption pb-5">
+      <span class="signup-link" @click="guestLogin">
+        ゲストユーザーでログイン
+      </span>
+    </v-card-text>
+    <v-card-text class="text-center caption pb-5">
+      アカウントをお持ちでないですか？
+      <span class="signup-link" @click="signUpLink"> 新規登録 </span>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -56,6 +70,10 @@ export default {
       user: {
         email: '',
         password: '',
+      },
+      guest: {
+        email: 'guestuser4501@gmail.com',
+        password: 'guestuser',
       },
       emailRules: [(v) => !!v || '', (v) => /.+@.+\..+/.test(v) || ''],
     }
@@ -84,8 +102,32 @@ export default {
   methods: {
     ...mapActions({
       login: 'auth/login',
+      loginDialog: 'modal/loginUser',
+      signUpDialog: 'modal/signUpUser',
     }),
+    loginUser() {
+      this.login(this.user)
+      this.loginDialog(false)
+    },
+    guestLogin() {
+      this.login(this.guest)
+      this.loginDialog(false)
+    },
+    signUpLink() {
+      this.loginDialog(false)
+      this.signUpDialog(true)
+    },
   },
-  layout: 'default',
 }
 </script>
+
+<style scoped>
+.signup-link {
+  color: #2196f3;
+  cursor: pointer;
+}
+.signup-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+</style>

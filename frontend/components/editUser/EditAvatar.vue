@@ -4,7 +4,7 @@
       <v-icon> mdi-account-box </v-icon>
       <span>アイコン画像</span>
     </v-row>
-    <!-- <v-row justify="center" class="pt-6">
+    <v-row justify="center" class="pt-6">
       <v-avatar size="100">
         <template v-if="image.url !== null">
           <v-img v-if="input_image !== null" :src="input_image" />
@@ -14,12 +14,12 @@
           <v-img v-if="input_image" :src="input_image" />
         </template>
       </v-avatar>
-    </v-row> -->
+    </v-row>
     <v-file-input
       v-model="editImage"
       accept="image/png, image/jpeg, image/bmp"
-      prepend-icon="mdi-account-box"
-      label="変更するアバター画像を選択してください"
+      prepend-icon="mdi-image"
+      label="画像を選択してください  // v-model='editImage'"
       class="pt-14"
       @change="setImage"
     />
@@ -39,7 +39,7 @@ export default {
   // },
   data() {
     return {
-      // image: this.$store.getters["auth/currentUser"].image,
+      image: this.$store.getters['auth/currentUser'].image,
       editImage: '',
       input_image: null,
     }
@@ -61,27 +61,25 @@ export default {
       }
     },
     async changeUserAvatar() {
-      alert(
-        'Get things!'
-      ) /*
+      alert('Get things!')
       const formData = new FormData()
-      if (this.editImage != "") {
-        formData.append("image", this.editImage)
+      if (this.editImage != '') {
+        formData.append('image', this.editImage)
       }
       await this.$axios
-        .put("api/v1/auth", formData, {
+        .put('api/v1/auth', formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         })
         .then((res) => {
           console.log(res)
-          this.$store.commit("auth/setCurrentUser", res.data.data)
+          this.$store.commit('auth/setCurrentUser', res.data.data)
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "アバター画像を更新しました。",
-              type: "success",
+              message: 'アバター画像を更新しました。',
+              type: 'success',
               status: true,
             },
             { root: true }
@@ -89,15 +87,15 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "アバター画像の更新に失敗しました。",
-              type: "error",
+              message: 'アバター画像の更新に失敗しました。',
+              type: 'error',
               status: true,
             },
             { root: true }
           )
-        }) */
+        })
     },
   },
 }

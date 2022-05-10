@@ -30,32 +30,31 @@
 
 <script>
 export default {
-  /*   data() {
+  data() {
     return {
-      name: this.$store.getters["auth/currentUser"].name,
-      profile: this.$store.getters["auth/currentUser"].profile,
+      name: this.$store.getters['auth/currentUser'].name,
+      profile: this.$store.getters['auth/currentUser'].profile,
     }
-  },*/
+  },
   methods: {
     async changeUserProfile() {
-      alert('Get Something!!')/*
       const formData = new FormData()
-      formData.append("name", this.name)
-      formData.append("profile", this.profile)
+      formData.append('name', this.name)
+      formData.append('profile', this.profile)
       await this.$axios
-        .put("api/v1/auth", formData, {
+        .put('api/v1/auth', formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         })
         .then((res) => {
           console.log(res)
-          this.$store.commit("auth/setCurrentUser", res.data.data)
+          this.$store.commit('auth/setCurrentUser', res.data.data)
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "ユーザープロフィールを更新しました。",
-              type: "success",
+              message: 'ユーザープロフィールを更新しました。',
+              type: 'success',
               status: true,
             },
             { root: true }
@@ -63,15 +62,15 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "プロフィールの更新に失敗しました。",
-              type: "error",
+              message: 'プロフィールの更新に失敗しました。',
+              type: 'error',
               status: true,
             },
             { root: true }
           )
-        }) */
+        })
     },
   },
 }

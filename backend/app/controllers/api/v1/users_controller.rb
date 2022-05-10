@@ -21,7 +21,7 @@ module Api
 
       def destroy
         user = User.find(params[:id])
-        if user,destroy
+        if user.destroy
           render json: user
         else
           render json: { status: 400 }

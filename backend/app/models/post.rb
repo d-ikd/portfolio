@@ -9,6 +9,17 @@ class Post < ApplicationRecord
   has_many :pickups, dependent: :destroy
   has_many :recommends, dependent: :destroy
 
+  def avg_rate
+    if self.reviews.empty?
+      0.0
+    else
+      # self.reviews.average(:rate).round(1)
+      total_point = self.reviews.inject(0) { |sum, add| sum + add.rate }
+      number_of_people = self.reviews.inject(0) { |sum| sum + 1 }.to_f
+      total_point / number_of_people
+    end
+  end
+
   def self.search(food_name)
     Post.where(['name LIKE ?', "%#{post_name}%"])
   end

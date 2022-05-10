@@ -4,15 +4,15 @@
       <v-col xl="7" lg="9" sm="11" cols="12">
         <v-card class="mx-auto">
           <v-card-text class="mt-7 display-3 font-weight-black text-center">
-            Stuctiveとは？
+            私たちとは？
           </v-card-text>
 
           <v-col cols="12">
             <h3 class="mt-7 text-center">
-              Stuctiveは効率的に勉強ができて
+              〇〇をよく利用する方の為の
             </h3>
             <h3 class="mt-3 text-center">
-              投げ銭も可能なアプリです。
+              〇〇レビュー＆ヘルスケアアプリです。
             </h3>
             <h4 class="mt-16 text-center">
               基本機能はログイン無しで閲覧可能ですのでお気軽にご覧下さい。

@@ -7,16 +7,24 @@ Rails.application.routes.draw do
         registrations: 'api/v1/auth/registrations'
       }
       get 'isLike', to: 'post_likes#isLike'
-      get 'allpost', to: 'posts#allfood'
+      get 'allpost', to: 'posts#allpost'
       get 'new_post', to: 'posts#new_post'
-      get 'new_plan_post', to: 'foods#new_plan_post'
+      get 'new_plan_post', to: 'posts#new_plan_post'
       resources :posts, only: %i[index show create update destroy] do
         get :search, on: :collection
       end
+      resources :users, only: %i[index show destroy] do
+        get :search, on: :collection
+      end
+      resources :reviews, only: %i[index create update destroy]
+      resources :menus, only: %i[index create update destroy]
       resources :recommends, only: %i[index create destroy]
       resources :pickups, only: %i[index create destroy]
-      resources :tasks, only: %i[index]
-      resources :users, only: %i[index show destroy]
+      resources :choise_menus, only: %i[create update destroy]
+      resource :relationships, only: %i[create destroy]
+      resource :post_likes, only: %i[create destroy]
+      resource :review_likes, only: %i[create destroy]
+      # resources :tasks, only: %i[index]
       get 'health_check', to: 'health_check#index'
     end
   end

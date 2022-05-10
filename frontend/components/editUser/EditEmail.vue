@@ -30,31 +30,30 @@
 export default {
   data() {
     return {
-      /*
-      email: this.$store.getters["auth/currentUser"].email,
-      originEmail: this.$store.getters["auth/currentUser"].uid,*/
-      guest: 'guestuser4501@gmail.com',
+      email: this.$store.getters['auth/currentUser'].email,
+      originEmail: this.$store.getters['auth/currentUser'].uid,
+      guest: 'guestuser20220106@gmail.com',
     }
   },
   methods: {
     async changeUserEmail() {
-      alert('Get things!!')/*
+      alert('Get things!!')
       const formData = new FormData()
-      formData.append("email", this.email)
+      formData.append('email', this.email)
       await this.$axios
-        .put("api/v1/auth", formData, {
+        .put('api/v1/auth', formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         })
         .then((res) => {
           console.log(res)
-          this.$store.commit("auth/setCurrentUser", res.data.data)
+          this.$store.commit('auth/setCurrentUser', res.data.data)
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "メールアドレスを更新しました。",
-              type: "success",
+              message: 'メールアドレスを更新しました。',
+              type: 'success',
               status: true,
             },
             { root: true }
@@ -62,15 +61,15 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "メールアドレスの更新に失敗しました。",
-              type: "error",
+              message: 'メールアドレスの更新に失敗しました。',
+              type: 'error',
               status: true,
             },
             { root: true }
           )
-        }) */
+        })
     },
   },
 }

@@ -1,6 +1,6 @@
 export const state = () => ({
-  message: "",
-  type: "",
+  message: '',
+  type: '',
   status: false,
 })
 
@@ -24,11 +24,11 @@ export const mutations = {
 
 export const actions = {
   showMessage({ commit }, { message, type, status }) {
-    commit("setMessage", message)
-    commit("setType", type)
-    commit("setStatus", status)
+    commit('setMessage', message)
+    commit('setType', type)
+    commit('setStatus', status)
     setTimeout(() => {
-      commit("setStatus", !status)
+      commit('setStatus', !status)
     }, 700)
   },
 }

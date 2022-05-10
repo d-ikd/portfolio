@@ -51,45 +51,44 @@ export default {
         password: '',
         password_confirmation: '',
       },
-      /*      email: this.$store.getters["auth/currentUser"].uid, */
-      guest: 'guestuser4501@gmail.com',
+      email: this.$store.getters['auth/currentUser'].uid,
+      guest: 'guestuser20220106@gmail.com',
     }
   },
   methods: {
     changeUserPassword() {
-      alert('Get Something!!')/*
       this.$axios
-        .put("api/v1/auth/password", this.pas, {
+        .put('api/v1/auth/password', this.pas, {
           headers: {
-            "access-token": localStorage.getItem("access-token"),
-            uid: localStorage.getItem("uid"),
-            client: localStorage.getItem("client"),
+            'access-token': localStorage.getItem('access-token'),
+            uid: localStorage.getItem('uid'),
+            client: localStorage.getItem('client'),
           },
         })
         .then((res) => {
           console.log(res)
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "パスワードを更新しました。",
-              type: "success",
+              message: 'パスワードを更新しました。',
+              type: 'success',
               status: true,
             },
             { root: true }
           )
-          this.$router.push("/")
+          this.$router.push('/')
         })
         .catch(() => {
           this.$store.dispatch(
-            "flashMessage/showMessage",
+            'flashMessage/showMessage',
             {
-              message: "パスワードの更新に失敗しました。",
-              type: "error",
+              message: 'パスワードの更新に失敗しました。',
+              type: 'error',
               status: true,
             },
             { root: true }
           )
-        }) */
+        })
     },
   },
 }

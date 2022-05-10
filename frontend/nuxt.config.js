@@ -31,8 +31,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    'plugins/axios',
-    { src: '~/plugins/localStorage.js', ssr: false }
+    { src: '~/plugins/axios.js', ssr: false },
+    { src: '~/plugins/localStorage.js', ssr: false },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -48,10 +48,19 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     'nuxt-webfontloader',
     'nuxt-i18n',
     'nuxt-client-init-module',
   ],
+  proxy: {
+    '/api': {
+      target: 'http://localhost:5000',
+      pathRewrite: {
+        '^/api': '/api',
+      },
+    },
+  },
   webfontloader: {
     google: {
       families: [
@@ -94,23 +103,24 @@ export default {
     },
   },
   // Doc: https://nuxt-community.github.io/nuxt-i18n/basic-usage.html#nuxt-link
-  i18n: {
-    locales: ['ja', 'en'],
-    defaultLocale: 'ja',
-    // Doc: https://kazupon.github.io/vue-i18n/api/#properties
-    vueI18n: {
-      fallbackLocale: 'ja',
-      // silentTranslationWarn: true,
-      silentFallbackWarn: true,
-      messages: {
-        ja: require('./locales/ja.json'),
-        en: require('./locales/en.json'),
-      },
-    },
-  },
+  // i18n: {
+  //   locales: ['ja', 'en'],
+  //   defaultLocale: 'ja',
+  //   // Doc: https://kazupon.github.io/vue-i18n/api/#properties
+  //   vueI18n: {
+  //     fallbackLocale: 'ja',
+  //     // silentTranslationWarn: true,
+  //     silentFallbackWarn: true,
+  //     messages: {
+  //       ja: require('./locales/ja.json'),
+  //       en: require('./locales/en.json'),
+  //     },
+  //   },
+  // },
   // auth: {
   //   redirect: {
-  //     login: '/users/login',
+  //     login: '/',
+  //     /* login: '/users/login',  */
   //     logout: '/',
   //     callback: false,
   //     home: '/',
@@ -121,7 +131,7 @@ export default {
   //         login: {
   //           url: '/api/v1/auth/sign_in',
   //           method: 'post',
-  //           propertyName: 'token',
+  //           propertyName: 'false',
   //         },
   //         logout: false,
   //         user: false,

@@ -1,4 +1,4 @@
-export default function({ $axios }) {
+export default function({ $axios, redirect }) {
   // $axios.setToken("access_token")
   $axios.onRequest((config) => {
     console.log('-------- start /plugins/axios.js------------')
@@ -6,7 +6,7 @@ export default function({ $axios }) {
     config.headers['access-token'] = window.localStorage.getItem('access-token')
     config.headers.uid = window.localStorage.getItem('uid')
     config.headers['token-type'] = window.localStorage.getItem('token-type')
-    config.headers.expiry = window.localStorage.getItem('expiry')
+    config.headers['expiry'] = window.localStorage.getItem('expiry')
     config.headers['content-type'] = 'application/json'
     console.log(config)
   })
@@ -21,7 +21,7 @@ export default function({ $axios }) {
       localStorage.setItem('client', response.headers.client)
       localStorage.setItem('uid', response.headers.uid)
       localStorage.setItem('token-type', response.headers['token-type'])
-      localStorage.setItem('expiry', response.headers.expiry)
+      localStorage.setItem('expiry', response.headers['expiry'])
     } else {
       console.log('認証情報を発見できませんでした')
     }

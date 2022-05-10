@@ -1,6 +1,6 @@
 <template>
-  <v-footer color="sky blue" dark app>
-    footer ok
+  <v-footer color="success" dark app>
+    OK
   </v-footer>
 </template>
 

@@ -1,15 +1,15 @@
 <template>
   <div>
-<!--
     <template v-if="loading">
-      <v-card class="grey lighten-3 pt-6">
-        <v-container class="grey lighten-3 px-13 top-card">
+      <v-card class="red lighten-3 pt-6">
+        <!-- <v-card class="grey lighten-3 pt-6"> -->
+        <v-container class="lighten-3 px-13 top-card">
           <v-row class="mx-1" no-gutters>
             <v-col cols="2" class="text-center">
               <user-avatar :size="105" :user="user" />
             </v-col>
             <v-col cols="10">
-              <v-sheet class="grey lighten-3 ml-2b mb-10">
+              <v-sheet class="blue lighten-3 ml-2b mb-10">
                 <div class="user-name mt-3">
                   <h2 class="display-1">
                     {{ user.name }}
@@ -59,8 +59,9 @@
             </v-col>
           </v-row>
           <v-divider />
-          <v-tabs v-model="tab" background-color="grey lighten-3" height="60">
+          <v-tabs v-model="tab" background-color="blue lighten-3" height="60">
             <v-tabs-slider></v-tabs-slider>
+
             <v-tab v-for="item in items" :key="item.title">
               {{ item.title }}
             </v-tab>
@@ -76,7 +77,7 @@
               <user-menu-list :menus="user.menus" />
             </v-tab-item>
             <v-tab-item>
-              <user-food-list :foods="user.foodlike" />
+              <user-post-list :posts="user.postlike" />
             </v-tab-item>
             <v-tab-item>
               <user-review-list :reviews="user.reviews" />
@@ -93,76 +94,63 @@
           </v-tabs-items>
         </v-col>
       </v-row>
-    </v-container> -->
+    </v-container>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-/* import userAvatar from "~/components/UserAvatar.vue"
-import userFoodList from "~/components/UserFoodList.vue"
-import userList from "~/components/UserList.vue"
-import userReviewList from "~/components/UserReviewList.vue"
-import userLikeReviewList from "~/components/UserLikeReviewList.vue"
-import userMenuList from "~/components/UserMenuList.vue"
- */
+import { mapGetters } from 'vuex'
+import userAvatar from '~/components/infoUser/UserAvatar.vue'
+/* import userPostList from "~/components/infoUser/UserPostList.vue" */
+/* import userList from "~/components/infoUser/UserList.vue" */
+/* import userReviewList from "~/components/infoUser/UserReviewList.vue" */
+/* import userLikeReviewList from "~/components/infoUser/UserLikeReviewList.vue" */
+/* import userMenuList from "~/components/infoUser/UserMenuList.vue" */
 export default {
-  name: "Withthings",
+  name: 'WithChildren',
   components: {
-/*     userAvatar,
-    userFoodList,
-    userList,
-    userReviewList,
-    userLikeReviewList,
-    userMenuList,
- */  },
+    userAvatar,
+    /* userPostList, */
+    /* userList, */
+    /* userReviewList, */
+    /* userLikeReviewList, */
+    /*  userMenuList, */
+  },
   data() {
     return {
       // user: {},
       loading: false,
       tab: null,
       follow: false,
-      message: "フォロー中",
-      color: "blue white--text",
+      message: 'フォロー中',
+      color: 'red white--text',
       items: [
-        {
-          title: "献立",
-        },
-        {
-          title: "食べたい！",
-        },
-        {
-          title: "投稿した口コミ",
-        },
-        {
-          title: "いいねした口コミ",
-        },
-        {
-          title: "フォロー",
-        },
-        {
-          title: "フォロワー",
-        },
+        { title: 'Menu' },
+        { title: 'Fav to Post' },
+        { title: 'Review' },
+        { title: 'Fav to Review' },
+        { title: 'Follow' },
+        { title: 'Follower' },
       ],
     }
   },
   computed: {
-/*     ...mapGetters({
-      user: "user/user",
-      loginUser: "auth/loginUser",
+    ...mapGetters({
+      user: 'user/user',
+      loginUser: 'auth/loginUser',
     }),
-    foodUpdate() {
-      return this.$store.state.food.food
+    postUpdate() {
+      return this.$store.state.post.post
     },
     // userUpdate() {
     //   return this.$store.state.auth.loginUser
     // },
- */  },
+  },
   watch: {
-    foodUpdate() {
+    postUpdate() {
       // フード再取得時にユーザーを更新
       this.$axios.get(`api/v1/users/${this.$route.params.id}`).then((res) => {
-        this.$store.commit("user/setUser", res.data, { root: true })
+        this.$store.commit('user/setUser', res.data, { root: true })
         console.log(res.data)
       })
     },
@@ -176,7 +164,7 @@ export default {
   },
   created() {
     this.$axios.get(`api/v1/users/${this.$route.params.id}`).then((res) => {
-      this.$store.commit("user/setUser", res.data, { root: true })
+      this.$store.commit('user/setUser', res.data, { root: true })
       console.log(res.data)
       this.loading = true
       if (this.loginUser) {
@@ -190,36 +178,36 @@ export default {
     })
   },
   methods: {
-/*     mouseover() {
-      this.color = "red white--text"
-      this.message = "フォロー解除"
+    mouseover() {
+      this.color = 'red white--text'
+      this.message = 'フォロー解除'
     },
     mouseleave() {
-      this.color = "blue white--text"
-      this.message = "フォロー中"
+      this.color = 'blue white--text'
+      this.message = 'フォロー中'
     },
     followUser() {
       this.$axios
-        .post("/api/v1/relationships", {
+        .post('/api/v1/relationships', {
           user_id: this.loginUser.id,
           follow_id: this.user.id,
         })
         .then(() => {
-          this.$store.commit("flashMessage/setMessage", " フォローしました。", {
+          this.$store.commit('flashMessage/setMessage', ' フォローしました。', {
             root: true,
           })
-          this.$store.commit("flashMessage/setType", "success", { root: true })
-          this.$store.commit("flashMessage/setStatus", true, { root: true })
+          this.$store.commit('flashMessage/setType', 'success', { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit("flashMessage/setStatus", false, { root: true })
+            this.$store.commit('flashMessage/setStatus', false, { root: true })
           }, 1000)
           this.$axios.get(`api/v1/users/${this.user.id}`).then((res) => {
             console.log(res.data)
-            this.$store.commit("user/setUser", res.data, { root: true })
+            this.$store.commit('user/setUser', res.data, { root: true })
             this.follow = true
             this.$axios.get(`api/v1/users/${this.loginUser.id}`).then((res) => {
               console.log(res.data)
-              this.$store.commit("auth/setLoginUser", res.data, { root: true })
+              this.$store.commit('auth/setLoginUser', res.data, { root: true })
             })
           })
         })
@@ -229,7 +217,7 @@ export default {
     },
     unfollowUser() {
       this.$axios
-        .delete("/api/v1/relationships", {
+        .delete('/api/v1/relationships', {
           params: {
             user_id: this.loginUser.id,
             follow_id: this.user.id,
@@ -237,29 +225,29 @@ export default {
         })
         .then(() => {
           this.$store.commit(
-            "flashMessage/setMessage",
-            " フォロー解除しました。",
+            'flashMessage/setMessage',
+            ' フォロー解除しました。',
             { root: true }
           )
-          this.$store.commit("flashMessage/setType", "info", { root: true })
-          this.$store.commit("flashMessage/setStatus", true, { root: true })
+          this.$store.commit('flashMessage/setType', 'info', { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit("flashMessage/setStatus", false, { root: true })
+            this.$store.commit('flashMessage/setStatus', false, { root: true })
           }, 1000)
           this.$axios.get(`api/v1/users/${this.user.id}`).then((res) => {
             console.log(res.data)
-            this.$store.commit("user/setUser", res.data, { root: true })
+            this.$store.commit('user/setUser', res.data, { root: true })
             this.follow = false
             this.$axios.get(`api/v1/users/${this.loginUser.id}`).then((res) => {
               console.log(res.data)
-              this.$store.commit("auth/setLoginUser", res.data, { root: true })
+              this.$store.commit('auth/setLoginUser', res.data, { root: true })
             })
           })
         })
         .catch((err) => {
           console.log(err)
         })
-    }, */
+    },
   },
 }
 </script>
