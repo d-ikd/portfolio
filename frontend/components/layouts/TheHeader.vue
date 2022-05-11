@@ -84,7 +84,7 @@ export default {
 .header-title {
   color: white;
   font-size: 40px;
-  font-family: 'Gill Sans', sans-serif;
+  font-family: 'Fraunces', sans-serif;
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
 }
 .link {

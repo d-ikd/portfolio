@@ -1,10 +1,17 @@
 import colors from 'vuetify/es5/util/colors'
 
+require('dotenv').config()
+const { WEATHER_API_KEY } = process.env
+
 export default {
-  mode: 'spa',
+  ssr: false,
+  /* mode: 'spa', */
   /*
    ** Headers of the page
    */
+  env: {
+    WEATHER_API_KEY,
+  },
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
@@ -32,6 +39,7 @@ export default {
    */
   plugins: [
     { src: '~/plugins/axios.js', ssr: false },
+    { src: '~/plugins/dayjs', ssr: false },
     { src: '~/plugins/localStorage.js', ssr: false },
   ],
   /*
@@ -47,13 +55,19 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    '@nuxtjs/axios',
     'nuxt-webfontloader',
     'nuxt-i18n',
     'nuxt-client-init-module',
   ],
   proxy: {
+    '/api': {
+      target: 'https://openweathermap.org',
+      pathRewrite: {
+        '^/api': '/api',
+      },
+    },
     '/api': {
       target: 'http://localhost:5000',
       pathRewrite: {
