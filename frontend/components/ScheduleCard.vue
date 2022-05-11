@@ -1,22 +1,34 @@
 <template>
-  <v-row>
-    <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
-      <v-card width="400" dark flat>
-        <v-hover>
-          <template v-slot:default="{ hover }">
-            <v-card dark flat>
-              <v-btn absolute bottom color="pink" right fab>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
+  <div>
+    <!-- <user-post-list :posts="posts" /> -->
 
-              <v-img
-                height="500px"
-                :src="require(`@/assets/images/hina.jpg`)"
-                gradient="to top, rgba(0,0,0,.10), rgba(0,0,0,.10)"
-              >
+    <v-row>
+      <v-col
+        v-for="post in posts"
+        :key="post.id"
+        class="d-flex child-flex"
+        cols="4"
+      >
+        <v-card width="400" dark flat>
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card dark flat>
+                <v-btn absolute bottom color="pink" right fab>
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
+
+                <v-img
+                  height="500px"
+                  gradient="to top, rgba(0,0,0,.10), rgba(0,0,0,.10)"
+                  v-if="post.image.url"
+                  contain
+                  :src="post.image.url"
+                />
+                <v-img v-else contain :src="defaultImage" />
+
                 <v-app-bar flat color="rgba(0, 0, 0, 0)">
                   <v-toolbar-title class="title white--text pl-0">
-                    雛祭り
+                    {{ post.name }}
                   </v-toolbar-title>
 
                   <v-spacer></v-spacer>
@@ -39,69 +51,86 @@
 
                 <v-container class="fill-height">
                   <v-row align="center">
-                    <strong class="display-4 font-weight-regular mr-6"
-                      >8</strong
-                    >
+                    <strong class="display-4 font-weight-regular mr-6">{{
+                      post.id
+                    }}</strong>
                     <v-row justify="end">
                       <div class="headline font-weight-light">
                         Monday
                       </div>
-                      <div class="text-uppercase font-weight-light">
-                        February 2015
+                      <div>
+                        {{ post.release }}
                       </div>
                     </v-row>
                   </v-row>
                 </v-container>
-              </v-img>
 
-              <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
-                  <v-btn to="/page" nuxt>See more info</v-btn>
-                </v-overlay>
-              </v-fade-transition>
-            </v-card>
-          </template>
-        </v-hover>
+                <v-fade-transition>
+                  <v-overlay v-if="hover" absolute color="#036358">
+                    <v-btn
+                      :to="{ path: `/post/${post.id}` }"
+                      @click="pagelink(post.id)"
+                      >See more info</v-btn
+                    >
+                  </v-overlay>
+                </v-fade-transition>
+              </v-card>
+            </template>
+          </v-hover>
 
-        <v-card-text>
-          <div class="font-weight-bold ml-8 mb-2">
-            Today
-          </div>
-
-          <v-timeline align-top dense>
-            <v-timeline-item
-              v-for="message in messages"
-              :key="message.time"
-              :color="message.color"
-              small
+          <v-card-text>
+            <div class="font-weight-bold ml-8 mb-2">
+              Today
+            </div>
+            <!--
+            <v-timeline
+              align-top
+              dense
             >
-              <div>
-                <div class="font-weight-normal">
-                  <strong>{{ message.from }}</strong> @{{ message.time }}
+              <v-timeline-item
+                v-for="message in messages"
+                :key="message.time"
+                :color="message.color"
+                small
+              >
+                <div>
+                  <div class="font-weight-normal">
+                    <strong>{{ message.from }}</strong> @{{ message.time }}
+                  </div>
+                  <div>{{ message.message }}</div>
                 </div>
-                <div>{{ message.message }}</div>
-              </div>
-            </v-timeline-item>
-          </v-timeline>
-        </v-card-text>
-          <!-- =====test============== -->
-          <v-avatar size="56" class="mt-1">
-            <img
-              alt="user"
-              :src="require(`@/assets/images/default-user.png`)"
-            >
-          </v-avatar>
-          <!-- =====test============== -->
-      </v-card>
-    </v-col>
-  </v-row>
+              </v-timeline-item>
+            </v-timeline> -->
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
+import userPostList from '~/components/infoUser/UserPostList.vue'
+import { mapGetters, mapActions } from 'vuex'
 export default {
+  computed: {
+    ...mapGetters({
+      user: 'user/user',
+      loginUser: 'auth/loginUser',
+    }),
+    postUpdate() {
+      return this.$store.state.post.post
+    },
+    // userUpdate() {
+    //   return this.$store.state.auth.loginUser
+    // },
+  },
+  components: {
+    userPostList,
+  },
   data() {
     return {
-      messages: [
+      defaultImage: require(`@/assets/images/default.png`),
+      messages1: [
         {
           from: '代々木公園',
           message: `ピクニック`,
@@ -121,7 +150,24 @@ export default {
           color: 'deep-purple lighten-1',
         },
       ],
+      posts: [],
     }
+  },
+  created() {
+    this.getPosts().then(() => {
+      this.loading = true
+    })
+    this.$axios.get('api/v1/posts').then((res) => {
+      this.posts = res.data
+    })
+  },
+  methods: {
+    ...mapActions({ getPosts: 'post/getPosts' }),
+  },
+  method: {
+    pagelink(link) {
+      this.$router.push({ path: `/post/${link}` })
+    },
   },
 }
 </script>

@@ -19,7 +19,6 @@
           <v-list-item-subtitle>
             {{ post.maker }}
           </v-list-item-subtitle>
-          <post-card-menu :post="post" />
         </v-list-item>
       </v-row>
       <!-- </v-list-item-group> -->
@@ -28,12 +27,8 @@
 </template>
 
 <script>
-import postCardMenu from '~/components/infoPost/PostCardMenu.vue'
-
 export default {
-  components: {
-    postCardMenu,
-  },
+  components: {},
   props: {
     posts: {
       type: Array,

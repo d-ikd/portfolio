@@ -62,20 +62,23 @@
             <template #activator="{ on, attrs }">
               <v-text-field
                 v-model="release"
-                label="発売日"
+                label="日付"
                 readonly
                 v-bind="attrs"
                 v-on="on"
               />
             </template>
-            <v-date-picker v-model="release" no-title scrollable>
+
+            <v-date-picker v-model="release" scrollable elevation="15">
               <v-spacer></v-spacer>
-              <v-btn text color="primary" @click="menu = false">
-                Cancel
-              </v-btn>
-              <v-btn text color="primary" @click="$refs.menu.save(release)">
-                OK
-              </v-btn>
+              <v-flex justify-center>
+                <v-btn text color="primary" @click="menu = false">
+                  Cancel
+                </v-btn>
+                <v-btn text color="primary" @click="$refs.menu.save(release)">
+                  OK
+                </v-btn>
+              </v-flex>
             </v-date-picker>
           </v-menu>
           <v-card-actions>

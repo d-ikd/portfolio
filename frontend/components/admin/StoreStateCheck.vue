@@ -8,6 +8,8 @@
     <hr />
     <p>post/post: {{ Getters8 }}</p>
     <p>post/posts: {{ Getters9 }}</p>
+    <p>post/getPosts: {{ Getters12 }}</p>
+    <p>post/likePost: {{ Getters13 }}</p>
     <p>food/food: {{ Getters10 }}</p>
     <p>food/foods: {{ Getters11 }}</p>
 
@@ -58,6 +60,12 @@ export default {
     },
     Getters11() {
       return this.$store.getters['food/foods']
+    },
+    Getters12() {
+      return this.$store.getters['post/getPosts']
+    },
+    Getters13() {
+      return this.$store.getters['post/likePost']
     },
     GettersAll() {
       return this.$store.getters
