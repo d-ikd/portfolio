@@ -18,9 +18,7 @@ Rails.application.routes.draw do
       end
       resources :reviews, only: %i[index create update destroy]
       resources :menus, only: %i[index create update destroy]
-      resources :recommends, only: %i[index create destroy]
       resources :pickups, only: %i[index create destroy]
-      resources :choise_menus, only: %i[create update destroy]
       resource :relationships, only: %i[create destroy]
       resource :post_likes, only: %i[create destroy]
       resource :review_likes, only: %i[create destroy]

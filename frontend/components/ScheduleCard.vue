@@ -84,6 +84,14 @@
             </v-timeline-item>
           </v-timeline>
         </v-card-text>
+          <!-- =====test============== -->
+          <v-avatar size="56" class="mt-1">
+            <img
+              alt="user"
+              :src="require(`@/assets/images/default-user.png`)"
+            >
+          </v-avatar>
+          <!-- =====test============== -->
       </v-card>
     </v-col>
   </v-row>
