@@ -125,25 +125,25 @@ workflows:
   version: 2
   test:
     jobs:
-      - test_backend:
-          filters:
-            branches:
-              only: main
-      - test_frontend:
-          filters:
-            branches:
-              only: main
+      # - test_backend:
+      #     filters:
+      #       branches:
+      #         only: main
+      # - test_frontend:
+      #     filters:
+      #       branches:
+      #         only: main
       - build_and_push_image_backend:
-          requires:
-            - test_frontend
-            - test_backend
+          # requires:
+          #   - test_frontend
+          #   - test_backend
           filters:
             branches:
               only: main
       - build_and_push_image_frontend:
-          requires:
-            - test_frontend
-            - test_backend
+          # requires:
+          #   - test_frontend
+          #   - test_backend
           filters:
             branches:
               only: main
@@ -163,7 +163,7 @@ workflows:
           # cluster: ${CLUSTER_NAME}
           task-definition: cs-db-migrate
           # task-definition: ${TASK_MIGRATE}
-          subnet-ids: subnet-06ea7d6f35ef1b166, subnet-00ef6362c46f0c9bf
+          subnet-ids: subnet-0dd315c504b7ca26a, subnet-0082d1c533ff5ce4a
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
           requires:
