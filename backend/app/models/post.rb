@@ -17,7 +17,6 @@ class Post < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :choise_posts, dependent: :destroy
   has_many :pickups, dependent: :destroy
-  has_many :recommends, dependent: :destroy
 
   def avg_rate
     if self.reviews.empty?

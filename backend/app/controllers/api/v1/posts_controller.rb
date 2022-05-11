@@ -11,8 +11,8 @@ module Api
       end
 
       def allpost
-        post = Post.all.includes(:pickups, :recommends)
-        render json: post.as_json(include: %i[pickups recommends])
+        post = Post.all.includes(:pickups)
+        render json: post.as_json(include: %i[pickups])
       end
 
       def new_post
