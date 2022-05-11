@@ -1,13 +1,11 @@
 export const state = () => ({
-  posts: [],
   post: {},
+  posts: [],
 })
-
 export const getters = {
+  post: (state) => state.post,
   posts: (state) => state.posts,
-  post: (state) => state.posts,
 }
-
 export const mutations = {
   setPosts(state, posts) {
     state.posts = posts.data
