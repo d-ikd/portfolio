@@ -1,29 +1,31 @@
 <template>
-  <v-form ref="form" lazy-validation class="mb-6">
-    <v-row class="pt-4 pl-3">
-      <v-icon> mdi-account-box </v-icon>
-      <span>アイコン画像</span>
-    </v-row>
-    <v-row justify="center" class="pt-6">
-      <v-avatar size="100">
-        <template v-if="image.url !== null">
-          <v-img v-if="input_image !== null" :src="input_image" />
-          <v-img v-else :src="image.url" />
-        </template>
-        <template v-else>
-          <v-img v-if="input_image" :src="input_image" />
-        </template>
-      </v-avatar>
-    </v-row>
+  <v-form ref="form" lazy-validation class="ma-16">
+    <v-icon> mdi-account-box </v-icon>
+    <span>アイコン画像</span>
+    <v-avatar size="100">
+      <template v-if="image.url !== null">
+        <v-img v-if="input_image !== null" :src="input_image" />
+        <v-img v-else :src="image.url" />
+      </template>
+      <template v-else>
+        <v-img v-if="input_image" :src="input_image" />
+      </template>
+    </v-avatar>
     <v-file-input
       v-model="editImage"
       accept="image/png, image/jpeg, image/bmp"
       prepend-icon="mdi-image"
-      label="画像を選択してください  // v-model='editImage'"
+      label="画像を選択してください"
       class="pt-14"
       @change="setImage"
     />
-    <v-btn block color="success" class="white--text" @click="changeUserAvatar">
+    <v-btn
+      rounded
+      color="#48A1EB"
+      class="font-weight-bold"
+      min-width="125px"
+      @click="changeUserAvatar"
+    >
       変更
     </v-btn>
   </v-form>
@@ -61,7 +63,6 @@ export default {
       }
     },
     async changeUserAvatar() {
-      alert('Get things!')
       const formData = new FormData()
       if (this.editImage != '') {
         formData.append('image', this.editImage)

@@ -1,21 +1,15 @@
 <template>
-  <v-form ref="form" lazy-validation class="mb-6">
-    <v-row class="pt-4 pl-3">
-      <v-icon> mdi-email-edit </v-icon>
-      <span>メールアドレス</span>
-    </v-row>
-    <v-row justify="center" class="pt-6">
-      <v-text-field
-        v-model="email"
-        label="新しいメールアドレス // v-model='email'"
-        class="px-3"
-      />
-    </v-row>
+  <v-form ref="form" lazy-validation class="ma-16">
+    <v-icon> mdi-email-edit </v-icon>
+    <span>メールアドレス</span>
+    <v-text-field v-model="email" label="新しいメールアドレス" class="px-3" />
+    <v-spacer></v-spacer>
     <v-btn
       v-if="originEmail != guest"
-      block
-      color="success"
-      class="white--text"
+      rounded
+      class="font-weight-bold"
+      min-width="125px"
+      color="#48A1EB"
       @click="changeUserEmail"
     >
       変更
@@ -37,7 +31,6 @@ export default {
   },
   methods: {
     async changeUserEmail() {
-      alert('Get things!!')
       const formData = new FormData()
       formData.append('email', this.email)
       await this.$axios
