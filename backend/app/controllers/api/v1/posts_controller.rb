@@ -1,6 +1,9 @@
 module Api
   module V1
     class PostsController < ApplicationController
+      # before_action :allpost, :new_post, :new_plan_post, only: [:index, :show, :create, :update, :destroy]
+      # https://qiita.com/dl10yr/items/533cecd1d6f9abcfd13c
+
       def index
         @post = Post.all.includes(:like_users, :reviews)
         render json: @post.as_json(include: %i[like_users reviews], methods: :avg_rate)
@@ -8,8 +11,8 @@ module Api
       end
 
       def allpost
-        post = Post.all.includes(:winter_choises, :recommends)
-        render json: post.as_json(include: %i[winter_choises recommends])
+        post = Post.all.includes(:pickups, :recommends)
+        render json: post.as_json(include: %i[pickups recommends])
       end
 
       def new_post
@@ -31,12 +34,13 @@ module Api
       #   render json: @posts
       # end
 
-      # def show
-      #   @post = Post.includes(:like_users, { reviews: [:post, :user, { review_likes: :user },] }).find(params[:id])
-      #   render json: @post.as_json(include: [:like_users, { reviews: { include: [{ user: { only: %w[id image name] } },
-      #                                                                             { post: { only: [:name] } },
-      #                                                                             { review_likes: { include: [{ user: { only: %w[id image name] } }] } }] } }], methods: :avg_rate)
-      # end
+      def show
+        @post = Post.includes(:like_users, { reviews: [:post, :user, { review_likes: :user },] }).find(params[:id])
+        render json: @post.as_json(include: [:like_users, { reviews: { include: [{ user: { only: %w[id image name] } },
+                                                                                 { post: { only: [:name] } },
+                                                                                 { review_likes: { include: [{ user: { only: %w[id image name] }},] } }]}}],
+                                   methods: :avg_rate)
+      end
 
       def create
         @post = Post.new(post_params)
@@ -66,18 +70,17 @@ module Api
         end
       end
 
-      # def search
-      #   if params[:search]
-      #     @post = Post.search(params[:search]).includes(:like_users, :reviews).order(release: :desc)
-      #     render json: @post.as_json(include: %i[like_users reviews], methods: :avg_rate)
-      #   end
-      # end
+      def search
+        if params[:search]
+          @post = Post.search(params[:search]).includes(:like_users, :reviews).order(release: :desc)
+          render json: @post.as_json(include: %i[like_users reviews], methods: :avg_rate)
+        end
+      end
 
       private
 
       def post_params
-        params.permit(:name)
-        # params.permit(:name, :details, :calorie, :carbonhydrate, :protein, :lipid, :category, :maker, :image, :release, :price)
+        params.permit(:name, :details, :calorie, :carbonhydrate, :protein, :lipid, :category, :maker, :image, :release, :price)
       end
     end
   end

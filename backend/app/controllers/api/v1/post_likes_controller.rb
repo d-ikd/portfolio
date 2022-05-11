@@ -1,6 +1,6 @@
 module Api
   module V1
-    class PostsLikesController < ApplicationController
+    class PostLikesController < ApplicationController
       before_action :set_user, only: [:destroy]
 
       def create

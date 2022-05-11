@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :user
 
+  has_many :menus, dependent: :destroy
 
   def unlike(other_post)
     like = self.post_likes.find_by(post_id: other_post.id)
