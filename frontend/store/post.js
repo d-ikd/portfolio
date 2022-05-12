@@ -39,7 +39,7 @@ export const actions = {
         post_id: authData.post,
       })
       .then(() => {
-        commit('flashMessage/setMessage', '食べたいに追加しました。', {
+        commit('flashMessage/setMessage', '「気になる」に追加しました。', {
           root: true,
         })
         commit('flashMessage/setType', 'success', { root: true })
@@ -77,7 +77,7 @@ export const actions = {
       })
       .then(() => {
         console.log('unfollow 成功')
-        commit('flashMessage/setMessage', '食べたいから外しました。', {
+        commit('flashMessage/setMessage', '「気になる」から外しました。', {
           root: true,
         })
         commit('flashMessage/setType', 'info', { root: true })
@@ -94,9 +94,93 @@ export const actions = {
           })
       })
       .catch((err) => {
-        commit('flashMessage/setMessage', '食べたいから外せませんでした。', {
+        commit(
+          'flashMessage/setMessage',
+          '「気になる」から外せませんでした。',
+          {
+            root: true,
+          }
+        )
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
+        setTimeout(() => {
+          commit('flashMessage/setStatus', false, { root: true })
+        }, 1000)
+      })
+  },
+  async joinPost({ commit, rootState }, authData) {
+    await this.$axios
+      .$post('/api/v1/post_joins', {
+        user_id: authData.user,
+        post_id: authData.post,
+      })
+      .then(() => {
+        commit('flashMessage/setMessage', '「参加します」に追加しました。', {
           root: true,
         })
+        commit('flashMessage/setType', 'success', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
+        setTimeout(() => {
+          commit('flashMessage/setStatus', false, { root: true })
+        }, 1000)
+        console.log(rootState.auth.currentUser.id)
+        this.$axios
+          .$get(`/api/v1/users/${rootState.auth.currentUser.id}`)
+          .then((res) => {
+            console.log(res)
+            commit('auth/setLoginUser', res, { root: true })
+            console.log('成功')
+          })
+      })
+      .catch((err) => {
+        commit(
+          'flashMessage/setMessage',
+          '「参加します」の追加に失敗しました。',
+          {
+            root: true,
+          }
+        )
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
+        setTimeout(() => {
+          commit('flashMessage/setStatus', false, { root: true })
+        }, 1000)
+      })
+  },
+  async unJoinPost({ rootState, commit }, authData) {
+    await this.$axios
+      .$delete('/api/v1/post_joins', {
+        params: {
+          user_id: authData.user,
+          post_id: authData.post,
+        },
+      })
+      .then(() => {
+        console.log('unjoin 成功')
+        commit('flashMessage/setMessage', '「参加します」から外しました。', {
+          root: true,
+        })
+        commit('flashMessage/setType', 'info', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
+        setTimeout(() => {
+          commit('flashMessage/setStatus', false, { root: true })
+        }, 1000)
+        this.$axios
+          .$get(`/api/v1/users/${rootState.auth.currentUser.id}`)
+          .then((res) => {
+            console.log(res)
+            commit('auth/setLoginUser', res, { root: true })
+            console.log('成功')
+          })
+      })
+      .catch((err) => {
+        commit(
+          'flashMessage/setMessage',
+          '「参加します」から外せませんでした。',
+          {
+            root: true,
+          }
+        )
         commit('flashMessage/setType', 'error', { root: true })
         commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
@@ -122,7 +206,7 @@ export const actions = {
         },
       })
       .then(() => {
-        commit('flashMessage/setMessage', '口コミを投稿しました', {
+        commit('flashMessage/setMessage', 'メッセージを投稿しました。', {
           root: true,
         })
         commit('flashMessage/setType', 'success', { root: true })
@@ -136,7 +220,7 @@ export const actions = {
         })
       })
       .catch((err) => {
-        commit('flashMessage/setMessage', '口コミの投稿に失敗しました。', {
+        commit('flashMessage/setMessage', 'メッセージの投稿に失敗しました。', {
           root: true,
         })
         commit('flashMessage/setType', 'error', { root: true })
@@ -167,7 +251,7 @@ export const actions = {
         },
       })
       .then(() => {
-        commit('flashMessage/setMessage', '口コミを更新しました', {
+        commit('flashMessage/setMessage', 'メッセージを更新しました。', {
           root: true,
         })
         commit('flashMessage/setType', 'info', { root: true })
@@ -181,7 +265,7 @@ export const actions = {
         })
       })
       .catch((err) => {
-        commit('flashMessage/setMessage', '口コミの投稿に失敗しました。', {
+        commit('flashMessage/setMessage', 'メッセージの更新に失敗しました。', {
           root: true,
         })
         commit('flashMessage/setType', 'error', { root: true })

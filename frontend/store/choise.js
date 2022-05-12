@@ -4,10 +4,10 @@ export const state = () => ({
   message: '',
   post: {},
   posts: [],
-  calorie: 0,
-  carbo: 0,
-  protein: 0,
-  lipid: 0,
+  start_time: 0,
+  finish_time: 0,
+  member: 0,
+  place: 0,
   price: 0,
 })
 
@@ -17,10 +17,10 @@ export const getters = {
   message: (state) => state.message,
   post: (state) => state.post,
   posts: (state) => state.posts,
-  calorie: (state) => state.calorie,
-  carbo: (state) => state.carbo,
-  protein: (state) => state.protein,
-  lipid: (state) => state.lipid,
+  start_time: (state) => state.start_time,
+  finish_time: (state) => state.finish_time,
+  member: (state) => state.member,
+  place: (state) => state.place,
   price: (state) => state.price,
 }
 
@@ -42,17 +42,17 @@ export const mutations = {
       console.log('削除成功')
     })
   },
-  setCalorie(state, payload) {
-    state.calorie = payload
+  setStartTime(state, payload) {
+    state.start_time = payload
   },
-  setCarbo(state, payload) {
-    state.carbo = payload.toFixed(1)
+  setFinishTime(state, payload) {
+    state.finish_time = payload.toFixed(1)
   },
-  setProtein(state, payload) {
-    state.protein = payload.toFixed(1)
+  setMember(state, payload) {
+    state.member = payload.toFixed(1)
   },
-  setLipid(state, payload) {
-    state.lipid = payload.toFixed(1)
+  setPlace(state, payload) {
+    state.place = payload.toFixed(1)
   },
   setPrice(state, payload) {
     state.price = payload
@@ -71,63 +71,63 @@ export const actions = {
   },
   addPost({ state, commit, dispatch }, post) {
     commit('setPosts', post)
-    let calorie = 0.0
-    let carbo = 0.0
-    let protein = 0.0
-    let lipid = 0.0
+    let start_time = 0.0
+    let finish_time = 0.0
+    let member = 0.0
+    let place = 0.0
     let price = 0.0
     state.posts.forEach((f) => {
-      calorie += f.calorie
-      carbo += f.carbonhydrate
-      protein += f.protein
-      lipid += f.lipid
+      start_time += f.start_time
+      finish_time += f.finish_time
+      member += f.member
+      place += f.place
       price += f.price
       console.log('終了')
     })
     console.log('代入')
-    commit('setCalorie', calorie)
-    commit('setCarbo', carbo)
-    commit('setProtein', protein)
-    commit('setLipid', lipid)
+    commit('setStartTime', start_time)
+    commit('setFinishTime', finish_time)
+    commit('setMember', member)
+    commit('setPlace', place)
     commit('setPrice', price)
     dispatch('showPostMessage', {
       status: true,
-      message: '献立に追加しました。',
+      message: '一覧に追加しました。',
     })
-    console.log('表示できたよ')
+    console.log('表示できました')
   },
   deletePost({ state, commit, dispatch }, post) {
     commit('unsetPosts', post)
-    let calorie = 0.0
-    let carbo = 0.0
-    let protein = 0.0
-    let lipid = 0.0
+    let start_time = 0.0
+    let finish_time = 0.0
+    let member = 0.0
+    let place = 0.0
     let price = 0.0
     state.posts.forEach((f) => {
-      calorie += f.calorie
-      carbo += f.carbonhydrate
-      protein += f.protein
-      lipid += f.lipid
+      start_time += f.start_time
+      finish_time += f.finish_time
+      member += f.member
+      place += f.place
       price += f.price
       console.log('終了')
     })
     console.log('代入')
-    commit('setCalorie', calorie)
-    commit('setCarbo', carbo)
-    commit('setProtein', protein)
-    commit('setLipid', lipid)
+    commit('setStartTime', start_time)
+    commit('setFinishTime', start_time)
+    commit('setMember', member)
+    commit('setPlace', place)
     commit('setPrice', price)
     dispatch('showPostMessage', {
       status: true,
-      message: '献立から削除しました。',
+      message: '一覧から削除しました。',
     })
-    console.log('表示できたよ')
+    console.log('表示できました')
   },
   deleteChoise({ commit }) {
-    commit('setCalorie', 0)
-    commit('setCarbo', 0)
-    commit('setProtein', 0.0)
-    commit('setLipid', 0.0)
+    commit('setStartTime', 0)
+    commit('setFinishTime', 0)
+    commit('setMember', 0.0)
+    commit('setPlace', 0.0)
     commit('setPrice', 0)
     commit('resetPosts', [])
   },

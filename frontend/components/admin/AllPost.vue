@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>test</p>
     <v-card v-for="post in posts" :key="post.id" class="mx-2 my-3">
       <div class="d-flex">
         <v-avatar size="40" class="ml-1" tile>
@@ -14,32 +13,19 @@
         <v-menu open-on-hover bottom offset-y>
           <template #activator="{ on, attrs }">
             <v-btn small color="primary" dark v-bind="attrs" v-on="on">
-              トピック
+              Pickup
             </v-btn>
           </template>
-
           <v-list dense>
             <v-list-item link>
               <v-list-item-title
-                v-if="post.recommends[0]"
-                @click="noRecommend(post.recommends[0].id)"
-              >
-                おすすめから解除
-              </v-list-item-title>
-              <v-list-item-title v-else @click="recommend(post.id)">
-                おすすめに追加
-              </v-list-item-title>
-            </v-list-item>
-
-            <v-list-item link>
-              <v-list-item-title
                 v-if="post.pickups[0]"
-                @click="noWinter(post.pickups[0].id)"
+                @click="unpickup(post.pickups[0].id)"
               >
-                冬のおすすめから解除
+                Pickup
               </v-list-item-title>
-              <v-list-item-title v-else @click="winter(post.id)">
-                冬のおすすめに追加
+              <v-list-item-title v-else @click="pickup(post.id)">
+                Unpickup
               </v-list-item-title>
             </v-list-item>
           </v-list>
@@ -56,23 +42,24 @@
       </div>
 
       <div class="caption">
-        <span>価格:{{ post.price }}円</span>
-        <span>開始時間:{{ post.calorie }}kcl</span>
-        <span>終了時間:{{ post.carbonhydrate }}g</span>
-        <span>メンバー:{{ post.protein }}g</span>
-        <span>場所:{{ post.lipid }}g</span>
+        <span>予算:{{ post.price }}円</span>
+        <span>開始時間:{{ post.start_time }}</span>
+        <span>終了時間:{{ post.finish_time }}</span>
+        <span>メンバー:{{ post.member }}人</span>
+        <span>場所:{{ post.place }}</span>
         <span>投稿日:{{ post.release }}</span>
         <span>カテゴリ:{{ post.category }}</span>
       </div>
-      <div class="caption">
+      <!-- <div class="caption">
         <span v-if="post.pickups[0]">ピックアップ</span>
-      </div>
+      </div> -->
     </v-card>
   </div>
 </template>
 
 <script>
 import postEdit from '~/components/admin/PostEdit.vue'
+
 export default {
   components: {
     postEdit,
@@ -92,55 +79,31 @@ export default {
         .delete(`api/v1/posts/${id}`)
         .then((res) => {
           console.log(res.data)
-          console.log('フード削除')
+          console.log('カード削除')
         })
         .catch((err) => {
           console.log(err)
         })
     },
-    winter(id) {
+    pickup(id) {
       this.$axios
         .post('api/v1/pickups', {
           post_id: id,
         })
         .then((res) => {
           console.log(res.data)
-          console.log('冬のおすすめ追加')
+          console.log('ピックアップに追加')
         })
         .catch((err) => {
           console.log(err)
         })
     },
-    recommend(id) {
-      this.$axios
-        .post('api/v1/recommends', {
-          post_id: id,
-        })
-        .then((res) => {
-          console.log(res.data)
-          console.log('おすすめ追加')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    noWinter(id) {
+    unpickup(id) {
       this.$axios
         .delete(`api/v1/pickups/${id}`)
         .then((res) => {
           console.log(res.data)
-          console.log('冬のおすすめから削除')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    noRecommend(id) {
-      this.$axios
-        .delete(`api/v1/recommends/${id}`)
-        .then((res) => {
-          console.log(res.data)
-          console.log('おすすめから削除')
+          console.log('ピックアップから削除')
         })
         .catch((err) => {
           console.log(err)

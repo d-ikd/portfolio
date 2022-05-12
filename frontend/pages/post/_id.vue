@@ -1,10 +1,9 @@
 <template>
   <div style="background-color: green">
-    <v-parallax
-      height="500"
-      src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
-    >
-      <div>
+    <v-parallax :src="post.image.url">
+      <!-- "post.image.url" -->
+      <!-- .$get(`/api/v1/posts/${this.$route.params.id}`) -->
+      <div align="right">
         <v-chip
           class="ma-5 font-weight-bold"
           color="blue-grey darken-2"
@@ -14,24 +13,27 @@
           {{ post.category }}
         </v-chip>
       </div>
+      <span v-if="post.release">test</span>
+
       <div class="display-1 ma-16 font-weight-bold">
         {{ post.name }}
       </div>
     </v-parallax>
+    <v-card align="right" justify="end">
+      <v-spacer />{{ createDate }} に {{ user.name }} さんが投稿。
+    </v-card>
 
     <v-container class="pt-7 px-10">
       <template v-if="loading">
-        <v-card flat style="background-color: blue">
-          <p>作成日 : {{ createDate }}</p>
-
-          <!-- ====気になるボタン==== -->
+        <!-- ====気になるボタン==== -->
+        <div align="center" justify="end">
           <v-btn
             v-if="like"
             class="mx-5"
             color="red white--text font-weight-bold"
             @click="nice"
           >
-            気になるを外す
+            <v-icon>mdi-heart-off</v-icon>
           </v-btn>
           <v-btn
             v-else
@@ -39,15 +41,35 @@
             color="green white--text font-weight-bold"
             @click="nice"
           >
-            気になる！
+            <v-icon>mdi-heart</v-icon>
           </v-btn>
-          <!-- ====気になるボタン==== -->
+        </div>
+        <!-- ====気になるボタン==== -->
 
-          <div class="subtitle-1 mt-2 text-decoration-underline">
-            {{ post.maker }}
-          </div>
+        <!-- ====Join ボタン==== -->
+        <div align="center" justify="end">
+          <v-btn
+            v-if="join"
+            class="mx-5"
+            color="red white--text font-weight-bold"
+            @click="joining"
+          >
+            <v-icon>mdi-heart-off</v-icon>
+          </v-btn>
+          <v-btn
+            v-else
+            class="mx-5"
+            color="green white--text font-weight-bold"
+            @click="joining"
+          >
+            <v-icon>mdi-walk</v-icon>
+          </v-btn>
+        </div>
+        <!-- ====Join ボタン==== -->
 
-          <v-divider />
+        <span>details: {{ post.details }}</span>
+
+        <v-card flat>
           <v-sheet style="background-color: pink">
             <v-row no-gutters>
               <v-col cols="12" sm="4">
@@ -87,54 +109,15 @@
                 </div>
                 <!-- ======== ハートレビュー ========= -->
 
-                <!-- ======== メッセージ＆気になる ========= -->
-                <div>
-                  メッセージ :
-                  <user-dialog-review
-                    :users="post.reviews"
-                    :title="'メッセージしたユーザー'"
-                  />
-                  <br />
-                  気になる :
-                  <user-dialog
-                    :users="post.like_users"
-                    :title="'気になるユーザー'"
-                  />
-                </div>
-                <!-- ======== メッセージ＆気になる ========= -->
-
                 <v-divider />
                 <div v-if="login" class="font-weight-bold my-5">
-                  <!--
-                    <v-btn
-                      v-if="add"
-                      color="red accent-3 white--text font-weight-bold"
-                      @click="deleteMenu"
-                    >
-                      献立から外す
-                    </v-btn>
-                    <v-btn
-                      v-else
-                      color="indigo accent-3 white--text font-weight-bold"
-                      @click="addMenu"
-                    >
-                      献立に追加
-                    </v-btn> -->
-                  <post-review-modal v-if="review" :post="post" />
-
-                  <span>details: {{ post.details }}</span>
                   <hr />
-                  <span>protein: {{ post.protein }}g</span>
-                  <span>価格: {{ post.price }}円</span>
+                  <span>メンバー: {{ post.member }}</span>
+                  <span>予算: {{ post.price }}円</span>
                   <span>カテゴリ: {{ post.category }}</span>
-                  <a class="product-spec-link">maker: {{ post.maker }}</a>
-                  <span>calorie: {{ post.calorie }}kcal</span>
-                  <span>carbonhydrate: {{ post.carbonhydrate }}g</span>
-                  <span>lipid: {{ post.lipid }}g</span>
-                  <span v-if="post.release"
-                    >releaseDate: {{ releaseDate }}</span
-                  >
-                  <span v-else>不明</span>
+                  <span>start_time: {{ post.start_time }}</span>
+                  <span>finish_time: {{ post.finish_time }}</span>
+                  <span>場所: {{ post.place }}</span>
                 </div>
               </v-col>
             </v-row>
@@ -171,6 +154,19 @@
     <v-divider class="mb-8" />
 
     <postAlbum />
+
+    <!-- ======== メッセージ＆気になる ========= -->
+    <div>
+      メッセージ :
+      <user-dialog-review
+        :users="post.reviews"
+        :title="'メッセージしたユーザー'"
+      />
+      <br />
+      気になる :
+      <user-dialog :users="post.like_users" :title="'気になるユーザー'" />
+    </div>
+    <!-- ======== メッセージ＆気になる ========= -->
   </div>
 </template>
 
@@ -195,6 +191,7 @@ export default {
     return {
       loading: false,
       like: false,
+      join: false,
       review: true,
       add: false,
       createDate: '',
@@ -253,8 +250,13 @@ export default {
             }
           })
         }
-        this.createDate = this.$dayjs(this.post.updated_at).format('YYYY/MM/DD')
+        this.createDate = this.$dayjs(this.post.updated_at).format(
+          'YYYY年MM月DD日'
+        )
         this.releaseDate = this.$dayjs(this.post.release).format('YYYY/MM/DD')
+        this.releaseYear = this.$dayjs(this.post.release).format('YYYY')
+        this.releaseMonth = this.$dayjs(this.post.release).format('MM')
+        this.releaseDay = this.$dayjs(this.post.release).format('DD')
         this.loading = true
       })
   },
@@ -262,6 +264,8 @@ export default {
     ...mapActions({
       likePost: 'post/likePost',
       unLikePost: 'post/unLikePost',
+      joinPost: 'post/joinPost',
+      unJoinPost: 'post/unJoinPost',
       addPost: 'choise/addPost',
       deletePost: 'choise/deletePost',
     }),
@@ -290,6 +294,32 @@ export default {
         })
       }
     },
+    joining() {
+      const postData = {
+        user: this.user.id,
+        post: this.post.id,
+      }
+      if (this.join) {
+        this.unJoinPost(postData).then(() => {
+          this.$axios
+            .$get(`/api/v1/posts/${this.$route.params.id}`)
+            .then((res) => {
+              this.$store.commit('post/setPost', res, { root: true })
+              this.join = false
+            })
+        })
+      } else {
+        this.joinPost(postData).then(() => {
+          this.$axios
+            .$get(`/api/v1/posts/${this.$route.params.id}`)
+            .then((res) => {
+              this.$store.commit('post/setPost', res, { root: true })
+              this.join = true
+            })
+        })
+      }
+    },
+
     /*
     addMenu() {
       this.addPost(this.post)

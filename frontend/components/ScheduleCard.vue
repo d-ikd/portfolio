@@ -16,6 +16,26 @@
                 <v-btn absolute bottom color="pink" right fab>
                   <v-icon>mdi-heart</v-icon>
                 </v-btn>
+                <!-- ====気になるボタン==== -->
+                <div align="center" justify="end">
+                  <v-btn
+                    v-if="like"
+                    class="mx-5"
+                    color="red white--text font-weight-bold"
+                    @click="nice"
+                  >
+                    <v-icon>mdi-heart-off</v-icon>
+                  </v-btn>
+                  <v-btn
+                    v-else
+                    class="mx-5"
+                    color="green white--text font-weight-bold"
+                    @click="nice"
+                  >
+                    <v-icon>mdi-heart</v-icon>
+                  </v-btn>
+                </div>
+                <!-- ====気になるボタン==== -->
 
                 <v-img
                   height="500px"

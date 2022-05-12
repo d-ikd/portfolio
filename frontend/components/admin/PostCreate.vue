@@ -134,16 +134,16 @@
           <v-text-field
             v-model.number="member"
             placeholder="例: 5"
-            label="人数 (人)"
+            label="人数 ( 人 )"
           />
           <v-text-field
             v-model.number="price"
             placeholder="例: 2000"
-            label="予算 (円 / 一人当たり)"
+            label="予算 ( 円 / 一人当たり )"
           />
           <v-text-field
             v-model.number="place"
-            placeholder="例: 代々木公園"
+            placeholder="例: 岡崎公園"
             label="場所"
           />
           <v-select
