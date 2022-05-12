@@ -1,12 +1,11 @@
 class Post < ApplicationRecord
-  validates :name, presence: true
-  # , uniqueness: { case_sensitive: true }
-  # validates :calorie, presence: true
-  # validates :carbonhydrate, presence: true
-  # validates :protein, presence: true
-  # validates :lipid, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: true }
+  validates :start_time, presence: false
+  validates :finish_time, presence: false
+
+  # validates :member, presence: true
+  # validates :place, presence: true
   # validates :details, presence: true
-  # validates :maker, presence: true
   # validates :category, presence: true
   # validates :price, presence: true
 
@@ -14,6 +13,10 @@ class Post < ApplicationRecord
 
   has_many :post_likes, dependent: :destroy
   has_many :like_users, through: :post_likes, source: :user
+
+  has_many :post_joins, dependent: :destroy
+  has_many :join_users, through: :post_joins, source: :user
+
   has_many :reviews, dependent: :destroy
   has_many :choise_posts, dependent: :destroy
   has_many :pickups, dependent: :destroy
@@ -32,5 +35,4 @@ class Post < ApplicationRecord
   def self.search(post_name)
     Post.where(['name LIKE ?', "%#{post_name}%"])
   end
-
 end

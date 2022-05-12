@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         registrations: 'api/v1/auth/registrations'
       }
       get 'isLike', to: 'post_likes#isLike'
+      get 'isJoin', to: 'post_joins#isJoin'
       get 'allpost', to: 'posts#allpost'
       get 'new_post', to: 'posts#new_post'
       get 'new_plan_post', to: 'posts#new_plan_post'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
       resources :pickups, only: %i[index create destroy]
       resource :relationships, only: %i[create destroy]
       resource :post_likes, only: %i[create destroy]
+      resource :post_joins, only: %i[create destroy]
       resource :review_likes, only: %i[create destroy]
 
       get 'health_check', to: 'health_check#index'

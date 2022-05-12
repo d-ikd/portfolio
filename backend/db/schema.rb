@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
     t.index ["post_id"], name: "index_pickups_on_post_id"
   end
 
+  create_table "post_joins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_joins_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_post_joins_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_post_joins_on_user_id"
+  end
+
   create_table "post_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -32,12 +42,11 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "details"
-    t.float "calorie"
-    t.float "carbonhydrate"
-    t.float "protein"
-    t.float "lipid"
+    t.time "start_time"
+    t.time "finish_time"
+    t.integer "member"
+    t.float "place"
     t.string "category"
-    t.string "maker"
     t.string "image"
     t.date "release"
     t.integer "price"
@@ -111,6 +120,8 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   end
 
   add_foreign_key "pickups", "posts"
+  add_foreign_key "post_joins", "posts"
+  add_foreign_key "post_joins", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
   add_foreign_key "relationships", "users"

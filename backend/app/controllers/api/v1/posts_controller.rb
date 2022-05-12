@@ -80,7 +80,7 @@ module Api
       private
 
       def post_params
-        params.permit(:name, :details, :calorie, :carbonhydrate, :protein, :lipid, :category, :maker, :image, :release, :price)
+        params.permit(:name, :details, :start_time, :finish_time, :member, :place, :category, :image, :release, :price)
       end
     end
   end
