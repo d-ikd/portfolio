@@ -37,9 +37,6 @@
           <v-list-item-title>
             {{ post.name }}
           </v-list-item-title>
-          <v-list-item-subtitle>
-            {{ post.maker }}
-          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-divider />

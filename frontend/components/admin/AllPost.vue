@@ -57,18 +57,15 @@
 
       <div class="caption">
         <span>価格:{{ post.price }}円</span>
-        <span>カロリー:{{ post.calorie }}kcl</span>
-        <span>炭水化物:{{ post.carbonhydrate }}g</span>
-        <span>タンパク質:{{ post.protein }}g</span>
-        <span>脂質:{{ post.lipid }}g</span>
-        <span>発売日:{{ post.release }}</span>
+        <span>開始時間:{{ post.calorie }}kcl</span>
+        <span>終了時間:{{ post.carbonhydrate }}g</span>
+        <span>メンバー:{{ post.protein }}g</span>
+        <span>場所:{{ post.lipid }}g</span>
+        <span>投稿日:{{ post.release }}</span>
         <span>カテゴリ:{{ post.category }}</span>
-        <span>ブランド:{{ post.maker }}</span>
       </div>
       <div class="caption">
-        トピック:
-        <span v-if="post.recommends[0]">おすすめ</span>
-        <span v-if="post.pickups[0]">冬のおすすめ</span>
+        <span v-if="post.pickups[0]">ピックアップ</span>
       </div>
     </v-card>
   </div>

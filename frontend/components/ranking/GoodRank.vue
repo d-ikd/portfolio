@@ -11,9 +11,6 @@
             <v-list-item-title class="list-item" @click="pagelink(post.id)">
               {{ i + 1 }}<span class="ml-3">{{ post.name }}</span>
             </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ post.maker }}
-            </v-list-item-subtitle>
             <div class="mr-2">
               <v-icon> mdi-silverware-fork-knife </v-icon>
               <span class="pl-2">{{ post.like_users.length }}</span>

@@ -19,37 +19,7 @@
             placeholder="例: これから川遊びにいきましょう。"
             label="詳細"
           />
-          <v-text-field
-            v-model.number="price"
-            placeholder="例:500"
-            label="価格"
-          />
-          <v-text-field
-            v-model.number="calorie"
-            placeholder="例:739"
-            label="カロリー"
-          />
-          <v-text-field
-            v-model.number="carbonhydrate"
-            placeholder="例:112.0"
-            label="炭水化物"
-          />
-          <v-text-field
-            v-model.number="protein"
-            placeholder="例:26.4"
-            label="タンパク質"
-          />
-          <v-text-field
-            v-model.number="lipid"
-            placeholder="例:21.1"
-            label="脂質"
-          />
-          <v-select
-            v-model="category"
-            :items="categoryList"
-            label="カテゴリー"
-          />
-          <v-select v-model="maker" :items="makerList" label="販売メーカー" />
+
           <v-menu
             ref="menu"
             v-model="menu"
@@ -62,7 +32,7 @@
             <template #activator="{ on, attrs }">
               <v-text-field
                 v-model="release"
-                label="日付"
+                label="開催日"
                 readonly
                 v-bind="attrs"
                 v-on="on"
@@ -81,8 +51,109 @@
               </v-flex>
             </v-date-picker>
           </v-menu>
-          <v-card-actions>
-            <!--
+
+          <!--
+            <v-text-field
+              v-model.number="start_time"
+              placeholder=""
+              label="開始時間"
+            />-->
+
+          <v-menu
+            ref="starttimepicker"
+            v-model="starttimepicker"
+            :close-on-content-click="false"
+            :return-value.sync="start_time"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template #activator="{ on, attrs }">
+              <v-text-field
+                v-model="start_time"
+                label="開始時刻"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+
+            <v-time-picker v-model="start_time" elevation="15">
+              <v-spacer></v-spacer>
+              <v-flex justify-center>
+                <v-btn text color="primary" @click="starttimepicker = false">
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.starttimepicker.save(start_time)"
+                >
+                  OK
+                </v-btn>
+              </v-flex>
+            </v-time-picker>
+          </v-menu>
+
+          <v-menu
+            ref="finishtimepicker"
+            v-model="finishtimepicker"
+            :close-on-content-click="false"
+            :return-value.sync="finish_time"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template #activator="{ on, attrs }">
+              <v-text-field
+                v-model="finish_time"
+                label="終了時刻"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+
+            <v-time-picker v-model="finish_time" elevation="15">
+              <v-spacer></v-spacer>
+              <v-flex justify-center>
+                <v-btn text color="primary" @click="finishtimepicker = false">
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.finishtimepicker.save(finish_time)"
+                >
+                  OK
+                </v-btn>
+              </v-flex>
+            </v-time-picker>
+          </v-menu>
+
+          <v-text-field
+            v-model.number="member"
+            placeholder="例: 5"
+            label="人数 (人)"
+          />
+          <v-text-field
+            v-model.number="price"
+            placeholder="例: 2000"
+            label="予算 (円 / 一人当たり)"
+          />
+          <v-text-field
+            v-model.number="place"
+            placeholder="例: 代々木公園"
+            label="場所"
+          />
+          <v-select
+            v-model="category"
+            :items="categoryList"
+            label="カテゴリー"
+          />
+
+          <!--
+            <v-card-actions>
               <v-btn
                 color="light-green darken-1"
                 class="white--text"
@@ -90,8 +161,8 @@
                 @click="dialog = false"
               >
                 保存する
-              </v-btn> -->
-          </v-card-actions>
+              </v-btn>
+            </v-card-actions> -->
 
           <v-row
             class="green lighten-4"
@@ -126,37 +197,17 @@ export default {
       name: '',
       image: '',
       details: '',
-      calorie: '',
-      carbonhydrate: '',
-      protein: '',
-      lipid: '',
+      start_time: '',
+      finish_time: '',
+      member: '',
+      place: '',
       category: '',
-      maker: '',
       price: '',
       release: '',
-      categoryList: [
-        'おにぎり',
-        'お弁当',
-        'サンドイッチ',
-        'パン',
-        '麺類',
-        '惣菜',
-        'スープ',
-        'サラダ',
-        'お寿司',
-        '揚げ物',
-        '中華まん',
-        'グラタン・ドリア',
-        'デザート',
-        'その他',
-      ],
-      makerList: [
-        'セブンイレブン',
-        'ファミリーマート',
-        'ローソン',
-        'ミニストップ',
-      ],
+      categoryList: ['インドア', 'アウトドア'],
       menu: false,
+      starttimepicker: false,
+      finishtimepicker: false,
       today: '',
     }
   },
@@ -178,12 +229,11 @@ export default {
       formData.append('name', this.name)
       formData.append('image', this.image)
       formData.append('details', this.details)
-      formData.append('calorie', this.calorie)
-      formData.append('carbonhydrate', this.carbonhydrate)
-      formData.append('protein', this.protein)
-      formData.append('lipid', this.lipid)
+      formData.append('start_time', this.start_time)
+      formData.append('finish_time', this.finish_time)
+      formData.append('member', this.member)
+      formData.append('place', this.place)
       formData.append('category', this.category)
-      formData.append('maker', this.maker)
       formData.append('release', this.release)
       formData.append('price', this.price)
       const config = {

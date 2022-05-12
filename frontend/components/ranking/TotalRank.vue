@@ -11,9 +11,6 @@
             <v-list-item-title class="list-item" @click="pagelink(post.id)">
               {{ i + 1 }}<span class="ml-3">{{ post.name }}</span>
             </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ post.maker }}
-            </v-list-item-subtitle>
             <div class="mr-1">
               <v-rating
                 v-model="post.avg_rate"

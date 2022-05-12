@@ -44,50 +44,49 @@
           <v-file-input
             accept="image/png, image/jpeg, image/bmp"
             outlined
-            label="商品画像"
+            label="サムネイル"
             @change="setImage"
           />
           <v-text-field
             v-model="name"
-            placeholder="例:大盛りご飯スタミナ豚丼"
-            label="商品名"
+            placeholder="例: ピクニック"
+            label="タイトル"
           />
           <v-textarea
             v-model="details"
-            placeholder="例:にんにくの効いた甘くて濃いタレで仕上げた豚丼。"
-            label="商品詳細"
+            placeholder="例: 隅田川で石投げ"
+            label="詳細"
           />
           <v-text-field
             v-model.number="price"
-            placeholder="例:500"
+            placeholder="例: 3000"
             label="価格"
           />
           <v-text-field
-            v-model.number="calorie"
-            placeholder="例:739"
-            label="カロリー"
+            v-model.number="start_time"
+            placeholder=""
+            label="開始時刻"
           />
           <v-text-field
-            v-model.number="carbonhydrate"
-            placeholder="例:112.0"
-            label="炭水化物"
+            v-model.number="finish_time"
+            placeholder=""
+            label="終了時刻"
           />
           <v-text-field
-            v-model.number="protein"
-            placeholder="例:26.4"
-            label="タンパク質"
+            v-model.number="member"
+            placeholder="例: 5"
+            label="メンバー (人)"
           />
           <v-text-field
-            v-model.number="lipid"
-            placeholder="例:21.1"
-            label="脂質"
+            v-model.number="place"
+            placeholder="例: 代々木公園"
+            label="場所"
           />
           <v-select
             v-model="category"
             :items="categoryList"
             label="カテゴリー"
           />
-          <v-select v-model="maker" :items="makerList" label="販売メーカー" />
           <v-menu
             ref="menu"
             v-model="menu"
@@ -100,7 +99,7 @@
             <template #activator="{ on, attrs }">
               <v-text-field
                 v-model="release"
-                label="発売日"
+                label="投稿日"
                 readonly
                 v-bind="attrs"
                 v-on="on"
@@ -145,31 +144,14 @@ export default {
       name: this.post.name,
       image: this.post.image,
       details: this.post.details,
-      calorie: this.post.calorie,
-      carbonhydrate: this.post.carbonhydrate,
-      protein: this.post.protein,
-      lipid: this.post.lipid,
+      start_time: this.post.start_time,
+      finish_time: this.post.finish_time,
+      member: this.post.member,
+      place: this.post.place,
       category: this.post.category,
-      maker: this.post.maker,
       price: this.post.price,
       release: this.post.release,
-      categoryList: [
-        'おにぎり',
-        'お弁当',
-        'パン',
-        '麺類',
-        '惣菜',
-        'サラダ',
-        'お寿司',
-        '揚げ物',
-        'その他',
-      ],
-      makerList: [
-        'セブンイレブン',
-        'ファミリーマート',
-        'ローソン',
-        'ミニストップ',
-      ],
+      categoryList: ['インドア', 'アウトドア'],
       menu: false,
       today: '',
     }
@@ -181,12 +163,11 @@ export default {
       formData.append('name', this.name)
       formData.append('image', this.image)
       formData.append('details', this.details)
-      formData.append('calorie', this.calorie)
-      formData.append('carbonhydrate', this.carbonhydrate)
-      formData.append('protein', this.protein)
-      formData.append('lipid', this.lipid)
+      formData.append('start_time', this.start_time)
+      formData.append('finish_time', this.finish_time)
+      formData.append('member', this.member)
+      formData.append('place', this.place)
       formData.append('category', this.category)
-      formData.append('maker', this.maker)
       formData.append('release', this.release)
       formData.append('price', this.price)
       const config = {
@@ -198,7 +179,7 @@ export default {
         .patch(`api/v1/posts/${this.id}`, formData, config)
         .then((res) => {
           console.log(res)
-          console.log('フードを更新しました')
+          console.log('投稿を更新しました')
           this.editDialog = false
         })
         .catch((err) => {

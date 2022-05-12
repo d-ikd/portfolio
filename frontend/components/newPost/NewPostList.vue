@@ -12,9 +12,6 @@
             <v-list-item-title class="list-item" @click="pagelink(post.id)">
               <span class="ml-3">{{ post.name }}</span>
             </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ post.maker }}
-            </v-list-item-subtitle>
             <post-card-menu :post="post" />
           </v-list-item>
         </template>

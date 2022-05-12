@@ -16,9 +16,6 @@
           <v-list-item-title class="list-item" @click="pagelink(post.id)">
             {{ post.name }}
           </v-list-item-title>
-          <v-list-item-subtitle>
-            {{ post.maker }}
-          </v-list-item-subtitle>
         </v-list-item>
       </v-row>
       <!-- </v-list-item-group> -->

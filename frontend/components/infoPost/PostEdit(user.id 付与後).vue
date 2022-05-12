@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="editDialog" max-width="600">
+  <v-dialog v-model="editPostDialog" max-width="600">
     <template #activator="{ on: dialog, attrs }">
       <v-tooltip top>
         <template
@@ -7,7 +7,7 @@
           #activator="{ on: tooltip }"
         >
           <v-btn
-            v-if="review.user_id === $store.state.auth.loginUser.id"
+            v-if="post.user_id === $store.state.auth.loginUser.id"
             v-bind="attrs"
             icon
             v-on="{ ...dialog, ...tooltip }"
@@ -22,7 +22,7 @@
     <v-card>
       <v-system-bar lights-out>
         <v-spacer></v-spacer>
-        <v-btn icon class="mt-5" @click="editDialog = false">
+        <v-btn icon class="mt-5" @click="editPostDialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-system-bar>
@@ -94,9 +94,9 @@
               color="light-green darken-1"
               class="white--text font-weight-bold pa-5 mt-3"
               block
-              @click="postReviewEdit"
+              @click="postPostEdit"
             >
-              更新
+              口コミ編集
             </v-btn>
           </v-card-actions>
         </v-form>
@@ -117,15 +117,15 @@ export default {
   },
   data() {
     return {
-      editDialog: false,
-      reviewEdit: {
-        title: this.review.title,
-        content: this.review.content,
-        rate: this.review.rate,
-        image: this.review.image,
-        user_id: this.review.user_id,
-        post_id: this.review.post_id,
-        reviewId: this.review.id,
+      editPostDialog: false,
+      postEdit: {
+        title: this.post.title,
+        content: this.post.content,
+        rate: this.post.rate,
+        image: this.post.image,
+        user_id: this.post.user_id,
+        post_id: this.post.post_id,
+        postId: this.post.id,
       },
       input_image: null,
     }
@@ -133,7 +133,7 @@ export default {
   computed: {},
   methods: {
     ...mapActions({ editReview: 'post/editReview' }),
-    postReviewEdit() {
+    postPostEdit() {
       this.editReview(this.reviewEdit)
       this.editDialog = false
     },
