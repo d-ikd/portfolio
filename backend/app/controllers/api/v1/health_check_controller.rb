@@ -2,7 +2,7 @@ module Api
   module V1
     class HealthCheckController < ApplicationController
       def index
-        head 200
+        head :ok
       end
     end
   end

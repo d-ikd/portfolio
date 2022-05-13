@@ -35,10 +35,10 @@ module Api
       # end
 
       def show
-        @post = Post.includes(:like_users, { reviews: [:post, :user, { review_likes: :user },] }).find(params[:id])
+        @post = Post.includes(:like_users, { reviews: [:post, :user, { review_likes: :user }] }).find(params[:id])
         render json: @post.as_json(include: [:like_users, { reviews: { include: [{ user: { only: %w[id image name] } },
                                                                                  { post: { only: [:name] } },
-                                                                                 { review_likes: { include: [{ user: { only: %w[id image name] }},] } }]}}],
+                                                                                 { review_likes: { include: [{ user: { only: %w[id image name] } }] } }] } }],
                                    methods: :avg_rate)
       end
 

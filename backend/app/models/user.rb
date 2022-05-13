@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+class User < ApplicationRecord
+  # Include default devise modules.
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  # :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
   mount_uploader :image, ImageUploader
@@ -24,8 +22,6 @@ class User < ActiveRecord::Base
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :user
-
-  has_many :menus, dependent: :destroy
 
   def unjoin(other_post)
     join = self.post_joins.find_by(post_id: other_post.id)
@@ -58,5 +54,4 @@ class User < ActiveRecord::Base
   def self.search(user_name)
     User.where(['name LIKE ?', "%#{user_name}%"])
   end
-
 end
