@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: skyblue">
     <!-- ========== Profile ========== -->
     <template v-if="loading">
       <v-parallax
@@ -59,13 +59,13 @@
                   <span class="font-weight-bold">
                     {{ user.followings.length }}
                   </span>
-                  Following
+                  フォロー
                 </p>
                 <p class="ml-3">
                   <span class="font-weight-bold">
                     {{ user.followers.length }}
                   </span>
-                  Followers
+                  フォロワー
                 </p>
               </div>
             </v-sheet>
@@ -87,6 +87,9 @@
       <v-row>
         <v-col cols="12">
           <v-tabs-items v-model="tab">
+            <v-tab-item>
+              <user-post-list :posts="user.postjoin" />
+            </v-tab-item>
             <v-tab-item>
               <user-post-list :posts="user.postlike" />
             </v-tab-item>
@@ -139,11 +142,12 @@ export default {
       message: 'フォロー中',
       color: 'blue white--text',
       items: [
-        { title: 'Fav' },
-        { title: 'Review' },
-        { title: 'Fav to Review' },
-        { title: 'Follow' },
-        { title: 'Follower' },
+        { title: '参加する' },
+        { title: '気になる' },
+        { title: 'レビュー' },
+        { title: '気になったレビュー' },
+        { title: 'フォロー' },
+        { title: 'フォロワー' },
       ],
     }
   },

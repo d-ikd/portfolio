@@ -1,7 +1,13 @@
 <template>
-  <v-card flat class="ma-2">
+  <v-card flat class="ma-2" style="background-color: white">
     <v-list style="background-color: white">
-      <v-card v-for="review in reviews" :key="review.id" flat class="mb-2">
+      <v-card
+        v-for="review in reviews"
+        :key="review.id"
+        flat
+        class="mb-2"
+        style="background-color: white"
+      >
         <post-review :review="review" />
       </v-card>
     </v-list>

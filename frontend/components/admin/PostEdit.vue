@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="editDialog" max-width="600">
     <template #activator="{ on, attrs }">
-      <v-btn small v-bind="attrs" v-on="on"> 編集 </v-btn>
+      <v-btn small v-bind="attrs" v-on="on"> 編集する </v-btn>
     </template>
 
     <v-card>
@@ -62,16 +62,77 @@
             placeholder="例: 3000"
             label="価格"
           />
-          <v-text-field
-            v-model.number="start_time"
-            placeholder=""
-            label="開始時刻"
-          />
-          <v-text-field
-            v-model.number="finish_time"
-            placeholder=""
-            label="終了時刻"
-          />
+
+          <v-menu
+            ref="starttimepicker"
+            v-model="starttimepicker"
+            :close-on-content-click="false"
+            :return-value.sync="start_time"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template #activator="{ on, attrs }">
+              <v-text-field
+                v-model="start_time"
+                label="開始時刻"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+
+            <v-time-picker v-model="start_time" elevation="15" format="24hr">
+              <v-spacer></v-spacer>
+              <v-flex justify-center>
+                <v-btn text color="primary" @click="starttimepicker = false">
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.starttimepicker.save(start_time)"
+                >
+                  OK
+                </v-btn>
+              </v-flex>
+            </v-time-picker>
+          </v-menu>
+          <v-menu
+            ref="finishtimepicker"
+            v-model="finishtimepicker"
+            :close-on-content-click="false"
+            :return-value.sync="finish_time"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template #activator="{ on, attrs }">
+              <v-text-field
+                v-model="finish_time"
+                label="終了時刻"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+            <v-time-picker v-model="finish_time" elevation="15" format="24hr">
+              <v-spacer></v-spacer>
+              <v-flex justify-center>
+                <v-btn text color="primary" @click="finishtimepicker = false">
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.finishtimepicker.save(finish_time)"
+                >
+                  OK
+                </v-btn>
+              </v-flex>
+            </v-time-picker>
+          </v-menu>
+
           <v-text-field
             v-model.number="member"
             placeholder="例: 5"
@@ -105,7 +166,7 @@
                 v-on="on"
               />
             </template>
-            <v-date-picker v-model="release" no-title scrollable>
+            <v-date-picker v-model="release" scrollable elevation="15">
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="menu = false"> Cancel </v-btn>
               <v-btn text color="primary" @click="$refs.menu.save(release)">
@@ -118,7 +179,11 @@
               color="light-green darken-1"
               class="white--text"
               @click="postEdit"
+              block
+              x-large
+              icon
             >
+              <v-icon>mdi-cube-send</v-icon>
               保存する
             </v-btn>
           </v-card-actions>
@@ -144,8 +209,8 @@ export default {
       name: this.post.name,
       image: this.post.image,
       details: this.post.details,
-      start_time: this.post.start_time,
-      finish_time: this.post.finish_time,
+      start_time: this.$dayjs(this.post.start_time).format('hh:mm'),
+      finish_time: this.$dayjs(this.post.finish_time).format('hh:mm'),
       member: this.post.member,
       place: this.post.place,
       category: this.post.category,
@@ -153,6 +218,8 @@ export default {
       release: this.post.release,
       categoryList: ['インドア', 'アウトドア'],
       menu: false,
+      starttimepicker: false,
+      finishtimepicker: false,
       today: '',
     }
   },

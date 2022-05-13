@@ -22,7 +22,6 @@
                     v-if="like"
                     class="mx-5"
                     color="red white--text font-weight-bold"
-                    @click="nice"
                   >
                     <v-icon>mdi-heart-off</v-icon>
                   </v-btn>
@@ -30,7 +29,6 @@
                     v-else
                     class="mx-5"
                     color="green white--text font-weight-bold"
-                    @click="nice"
                   >
                     <v-icon>mdi-heart</v-icon>
                   </v-btn>
@@ -149,6 +147,7 @@ export default {
   },
   data() {
     return {
+      like: false,
       defaultImage: require(`@/assets/images/default.png`),
       messages1: [
         {

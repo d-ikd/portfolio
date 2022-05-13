@@ -10,8 +10,6 @@
     <p>post/posts: {{ Getters9 }}</p>
     <p>post/getPosts: {{ Getters12 }}</p>
     <p>post/likePost: {{ Getters13 }}</p>
-    <p>food/food: {{ Getters10 }}</p>
-    <p>food/foods: {{ Getters11 }}</p>
 
     <p>user/user: {{ Getters7 }}</p>
 
@@ -54,12 +52,6 @@ export default {
     },
     Getters9() {
       return this.$store.getters['post/posts']
-    },
-    Getters10() {
-      return this.$store.getters['food/food']
-    },
-    Getters11() {
-      return this.$store.getters['food/foods']
     },
     Getters12() {
       return this.$store.getters['post/getPosts']

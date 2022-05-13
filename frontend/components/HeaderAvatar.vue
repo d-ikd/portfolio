@@ -7,9 +7,11 @@
     open-on-click
   >
     <template #activator="{ on }">
-      <v-btn depressed x-large tile v-on="on">
-        <user-avatar :size="44" :user="currentUser" />
-        <v-icon dense class="ml-1"> mdi-chevron-down </v-icon>
+      <v-btn depressed x-large tile v-on="on" @click="show = !show">
+        <user-avatar :size="45" :user="currentUser" />
+        <v-icon dense class="ml-1">
+          {{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+        </v-icon>
       </v-btn>
     </template>
     <v-card>
@@ -52,6 +54,7 @@ export default {
   },
   data() {
     return {
+      show: false,
       defaultImage: 'http://localhost:3000/fallback/default.png',
     }
   },
