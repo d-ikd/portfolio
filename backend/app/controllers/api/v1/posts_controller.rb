@@ -5,8 +5,8 @@ module Api
       # https://qiita.com/dl10yr/items/533cecd1d6f9abcfd13c
 
       def index
-        @post = Post.all.includes(:like_users, :reviews)
-        render json: @post.as_json(include: %i[like_users reviews], methods: :avg_rate)
+        @post = Post.all.includes(:like_users, :join_users, :reviews)
+        render json: @post.as_json(include: %i[like_users join_users reviews], methods: :avg_rate)
         # render json: @post.as_json(only: [:id, :name,:image],include: {like_users: {only: ['id']}})
       end
 
@@ -35,11 +35,32 @@ module Api
       # end
 
       def show
-        @post = Post.includes(:like_users, { reviews: [:post, :user, { review_likes: :user }] }).find(params[:id])
-        render json: @post.as_json(include: [:like_users, { reviews: { include: [{ user: { only: %w[id image name] } },
-                                                                                 { post: { only: [:name] } },
-                                                                                 { review_likes: { include: [{ user: { only: %w[id image name] } }] } }] } }],
-                                   methods: :avg_rate)
+        @post = Post.includes(
+          :like_users,
+          :join_users,
+          {
+            reviews: [:post, :user, { review_likes: :user }]
+          }
+        ).find(params[:id])
+        render json: @post.as_json(
+          include: [
+            :like_users,
+            :join_users,
+            {
+              reviews: { include: [
+                { user:
+                  { only: %w[id image name] }
+                },
+                { post:
+                  { only: [:name] }
+                },
+                { review_likes:
+                  { include: [{ user: { only: %w[id image name] } }] }
+                }
+              ] }
+            }
+          ], methods: :avg_rate
+        )
       end
 
       def create

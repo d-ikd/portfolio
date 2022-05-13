@@ -58,6 +58,10 @@ jobs:
             bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) \
               || (printf "====== RETRYING...\n\n\n"; bundle exec rspec --only-failures)
           working_directory: ~/repo/backend
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+          working_directory: backend
 
       # collect reports
       - store_test_results:
@@ -125,25 +129,25 @@ workflows:
   version: 2
   test:
     jobs:
-      # - test_backend:
-      #     filters:
-      #       branches:
-      #         only: main
-      # - test_frontend:
-      #     filters:
-      #       branches:
-      #         only: main
+      - test_backend:
+          filters:
+            branches:
+              only: main
+      - test_frontend:
+          filters:
+            branches:
+              only: main
       - build_and_push_image_backend:
-          # requires:
-          #   - test_frontend
-          #   - test_backend
+          requires:
+            - test_frontend
+            - test_backend
           filters:
             branches:
               only: main
       - build_and_push_image_frontend:
-          # requires:
-          #   - test_frontend
-          #   - test_backend
+          requires:
+            - test_frontend
+            - test_backend
           filters:
             branches:
               only: main
