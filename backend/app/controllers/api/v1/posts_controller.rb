@@ -49,13 +49,12 @@ module Api
             {
               reviews: { include: [
                 { user:
-                  { only: %w[id image name] }
+                  { only: %w[id image name] } },
+                {
+                  post: { only: [:name] }
                 },
-                { post:
-                  { only: [:name] }
-                },
-                { review_likes:
-                  { include: [{ user: { only: %w[id image name] } }] }
+                {
+                  review_likes: { include: [{ user: { only: %w[id image name] } }] }
                 }
               ] }
             }
