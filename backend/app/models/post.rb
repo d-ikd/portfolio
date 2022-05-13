@@ -18,7 +18,6 @@ class Post < ApplicationRecord
   has_many :join_users, through: :post_joins, source: :user
 
   has_many :reviews, dependent: :destroy
-  has_many :choise_posts, dependent: :destroy
   has_many :pickups, dependent: :destroy
 
   def avg_rate
