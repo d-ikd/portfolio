@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapSetters, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      message: 'flashMessage/message',
-      type: 'flashMessage/type',
-      status: 'flashMessage/status',
+      message: 'snackbarMessage/message',
+      type: 'snackbarMessage/type',
+      status: 'snackbarMessage/status',
     }),
   },
 }

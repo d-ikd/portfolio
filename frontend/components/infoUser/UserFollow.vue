@@ -30,7 +30,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import userAvatar from '~/components/infoUser/UserAvatar.vue'
+// import userAvatar from "~/components/UserAvatar.vue"
+
 export default {
   components: {
     // userAvatar,
@@ -97,13 +98,21 @@ export default {
           follow_id: this.user.id,
         })
         .then(() => {
-          this.$store.commit('flashMessage/setMessage', ' フォローしました。', {
+          this.$store.commit(
+            'snackbarMessage/setMessage',
+            ' フォローしました。',
+            {
+              root: true,
+            }
+          )
+          this.$store.commit('snackbarMessage/setType', 'success', {
             root: true,
           })
-          this.$store.commit('flashMessage/setType', 'success', { root: true })
-          this.$store.commit('flashMessage/setStatus', true, { root: true })
+          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('flashMessage/setStatus', false, { root: true })
+            this.$store.commit('snackbarMessage/setStatus', false, {
+              root: true,
+            })
           }, 1000)
           this.$axios.get(`api/v1/users/${this.watchUser.id}`).then((res) => {
             console.log(res.data)
@@ -129,14 +138,16 @@ export default {
         })
         .then(() => {
           this.$store.commit(
-            'flashMessage/setMessage',
+            'snackbarMessage/setMessage',
             ' フォロー解除しました。',
             { root: true }
           )
-          this.$store.commit('flashMessage/setType', 'info', { root: true })
-          this.$store.commit('flashMessage/setStatus', true, { root: true })
+          this.$store.commit('snackbarMessage/setType', 'info', { root: true })
+          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('flashMessage/setStatus', false, { root: true })
+            this.$store.commit('snackbarMessage/setStatus', false, {
+              root: true,
+            })
           }, 1000)
           this.$axios.get(`api/v1/users/${this.watchUser.id}`).then((res) => {
             console.log(res.data)

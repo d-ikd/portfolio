@@ -178,10 +178,10 @@
             <v-btn
               color="light-green darken-1"
               class="white--text"
-              @click="postEdit"
               block
               x-large
               icon
+              @click="postEdit"
             >
               <v-icon>mdi-cube-send</v-icon>
               保存する

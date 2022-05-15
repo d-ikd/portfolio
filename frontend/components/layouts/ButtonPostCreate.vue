@@ -1,8 +1,52 @@
 <template>
-  <v-container>
-    <v-card width="400px" class="mx-auto mt-5">
+  <!-- <template v-if="loginUser && loginUser.id == user.id"> -->
+  <v-dialog
+    v-model="dialog"
+    hide-overlay
+    transition="dialog-bottom-transition"
+    max-width="600"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        color="#BDBDBD88"
+        dark
+        x-large
+        fixed
+        fab
+        bottom
+        right
+        v-bind="attrs"
+        class="ma-10"
+        v-on="on"
+      >
+        <v-icon color="white">mdi-pencil</v-icon>
+      </v-btn>
+    </template>
+    <v-card-title class="transparent white--text">
+      <span class="headline"></span>
+
+      <v-spacer></v-spacer>
+
+      <v-menu bottom left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="#BDBDBD88"
+            fab
+            dark
+            x-large
+            v-bind="attrs"
+            v-on="on"
+            @click="dialog = false"
+          >
+            <v-icon color="white"> mdi-close-circle-outline</v-icon>
+          </v-btn>
+        </template>
+      </v-menu>
+    </v-card-title>
+
+    <v-card width="400px" class="mx-auto">
       <v-card-text>
-        <v-form ref="form" lazy-validation>
+        <v-form ref="form" lazy-validation class="pt-10">
           <v-file-input
             accept="image/png, image/jpeg, image/bmp"
             outlined
@@ -69,6 +113,7 @@
                 v-on="on"
               />
             </template>
+
             <v-time-picker v-model="start_time" elevation="15">
               <v-spacer></v-spacer>
               <v-flex justify-center>
@@ -133,7 +178,7 @@
           />
           <v-text-field
             v-model.number="place"
-            placeholder="例: 岡崎公園"
+            placeholder="例: 代々木公園"
             label="場所"
           />
           <v-select
@@ -141,7 +186,7 @@
             :items="categoryList"
             label="カテゴリー"
           />
-
+          <v-divider class="ma-2" />
           <!--
             <v-card-actions>
               <v-btn
@@ -177,13 +222,14 @@
         </v-form>
       </v-card-text>
     </v-card>
-  </v-container>
+  </v-dialog>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      dialog: false,
       name: '',
       image: '',
       details: '',
@@ -235,22 +281,29 @@ export default {
         .post('api/v1/posts', formData, config)
         .then((res) => {
           console.log(res)
-          console.log('投稿が成功しました')
-          this.$store.commit('flashMessage/setMessage', ' 投稿しました', {
+          console.log('Success')
+          this.dialog = false
+          this.$router.go({ path: '/', force: true })
+          this.$store.commit('snackbarMessage/setMessage', ' 投稿しました', {
             root: true,
           })
-          this.$store.commit('flashMessage/setType', 'success', { root: true })
-          this.$store.commit('flashMessage/setStatus', true, { root: true })
+          this.$store.commit('snackbarMessage/setType', 'success', {
+            root: true,
+          })
+          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('flashMessage/setStatus', false, { root: true })
+            this.$store.commit('snackbarMessage/setStatus', false, {
+              root: true,
+            })
           }, 1000)
-          this.$router.push('/')
         })
         .catch((err) => {
           console.log(err)
-          console.log('投稿失敗')
+          console.log('Failure')
         })
     },
   },
 }
 </script>
+
+<style></style>

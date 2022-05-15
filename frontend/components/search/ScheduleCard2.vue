@@ -79,10 +79,22 @@
                             {{ post.release }} [表示させたい場所] 〜
                           </span>
                         </div>
-                        <div class="font-weight-light title mb-2">
-                          Our Vintage kitchen utensils delight.<br />
-                        </div>
+                        <!--           <h3 class="display-1 font-weight-light orange--text mb-2">
+            {{ post.name }}
+          </h3>
+          <div class="font-weight-light title mb-2">
+            Our Vintage kitchen utensils delight.<br>
+          </div> -->
                       </v-card-text>
+                      <!--
+    <div>
+      メッセージ :
+      <user-dialog-review :users="post.reviews" :title="'メッセージしたユーザー'" />
+      <br />
+      気になる :
+      <user-dialog :users="post.like_users" :title="'気になるユーザー'" />
+    </div>
+ -->
                     </v-sheet>
                   </template>
                 </v-hover>
@@ -90,11 +102,7 @@
                 <v-card>
                   <v-card-text>
                     <div class="font-weight-bold ml-8 mb-2">
-                      メッセージ :
-                      <!-- <user-dialog-review :users="post.reviews" :title="'メッセージしたユーザー'" /> -->
-                      <br />
-                      気になる :
-                      <!-- <user-dialog :users="post.like_users" :title="'気になるユーザー'" /> -->
+                      Today
                     </div>
                   </v-card-text>
 
@@ -140,55 +148,32 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import userPostList from '~/components/infoUser/UserPostList.vue'
-// import userDialog from '~/components/infoUser/UserDialog.vue'
-// import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 
 export default {
-  computed: {
-    ...mapGetters({
-      post: 'post/post',
-      user: 'user/user',
-      loginUser: 'auth/loginUser',
-    }),
-    postUpdate() {
-      return this.$store.state.post.post
+  props: {
+    posts: {
+      type: Array,
+      required: true,
     },
-    // userUpdate() {
-    //   return this.$store.state.auth.loginUser
-    // },
-  },
-  components: {
-    userPostList,
-    // userDialog,
-    // userDialogReview
   },
   data() {
     return {
-      text:
-        "I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.",
       show: false,
       like: false,
-      defaultImage: require(`@/assets/images/default.png`),
-      posts: [],
-      start_time: '',
-      finish_time: '',
     }
   },
-  created() {
-    this.getPosts().then(() => {
-      this.loading = true
-    })
-    this.$axios.get('api/v1/posts').then((res) => {
-      this.posts = res.data
-    })
-  },
-  methods: {
-    ...mapActions({ getPosts: 'post/getPosts' }),
-    pagelink(link) {
-      this.$router.push({ path: `/post/${link}` })
+  computed: {
+    child: {
+      get() {
+        return this.posts
+      },
+      /*       set(newVal) {
+        this.$emit('input', newVal);
+      }
+ */
     },
   },
+  methods: {},
 }
 </script>
 

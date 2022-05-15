@@ -15,7 +15,7 @@
             <v-icon> mdi-comment-edit </v-icon>
           </v-btn>
         </template>
-        <span>口コミ編集</span>
+        <span>メッセージ編集</span>
       </v-tooltip>
     </template>
 
@@ -33,7 +33,6 @@
         <v-form ref="form">
           <v-container>
             <div class="d-flex align-center my-2">
-              <span class="font-weight-bold"> 評価 </span>
               <v-rating
                 v-model="reviewEdit.rate"
                 background-color="orange lighten-1"
@@ -48,14 +47,8 @@
                 {{ reviewEdit.rate }}
               </span>
             </div>
-            <v-text-field
-              v-model="reviewEdit.title"
-              label="タイトルを入れてください"
-            />
-            <v-textarea
-              v-model="reviewEdit.content"
-              label="口コミ本文をいれてください"
-            />
+            <v-text-field v-model="reviewEdit.title" label="タイトルを記入" />
+            <v-textarea v-model="reviewEdit.content" label="メッセージを記入" />
             <v-file-input
               v-model="reviewEdit.image"
               accept="image/png, image/jpeg, image/bmp"

@@ -1,22 +1,22 @@
 export const mutations = {
-  sortFoods({ commit }, { sort, foods }) {
+  sortPosts({ commit }, { sort, posts }) {
     const result = []
-    if (sort.onigiri) {
-      foods.filter((value) => {
-        if (value.category.indexOf('おにぎり') !== -1) {
+    if (sort.outdoor) {
+      posts.filter((value) => {
+        if (value.category.includes('アウトドア')) {
           result.push(value)
         }
       })
     }
-    if (sort.bento) {
-      foods.filter((value) => {
-        if (value.category.indexOf('お弁当') !== -1) {
+    if (sort.indoor) {
+      posts.filter((value) => {
+        if (value.category.includes('インドア')) {
           result.push(value)
         }
       })
     }
-    if (!sort.onigiri && !sort.bento) {
-      foods.filter((value) => {
+    if (!sort.outdoor && !sort.indoor) {
+      posts.filter((value) => {
         result.push(value)
       })
     }

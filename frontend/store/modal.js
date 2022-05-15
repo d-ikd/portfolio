@@ -26,7 +26,7 @@ export const actions = {
   },
 }
 
-// ========== To reset "loginModal" =========
+// ========== To reset "loginModal" ==========
 // const initialState = {
 //   // 通常stateに記載する値を記載
 //   loginModal: false,

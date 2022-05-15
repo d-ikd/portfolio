@@ -40,7 +40,6 @@
 <script>
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
-// import { mapActions } from "vuex"
 
 export default {
   components: {

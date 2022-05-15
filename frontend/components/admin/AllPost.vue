@@ -51,7 +51,7 @@
         <span>カテゴリ:{{ post.category }}</span>
       </div>
       <!-- <div class="caption">
-        <span v-if="post.pickups[0]">ピックアップ</span>
+        <span v-if="post.pickups[0]">Pickups</span>
       </div> -->
     </v-card>
   </div>
@@ -79,7 +79,7 @@ export default {
         .delete(`api/v1/posts/${id}`)
         .then((res) => {
           console.log(res.data)
-          console.log('カード削除')
+          console.log('Success')
         })
         .catch((err) => {
           console.log(err)
@@ -92,7 +92,7 @@ export default {
         })
         .then((res) => {
           console.log(res.data)
-          console.log('ピックアップに追加')
+          console.log('added in pickups')
         })
         .catch((err) => {
           console.log(err)
@@ -103,7 +103,7 @@ export default {
         .delete(`api/v1/pickups/${id}`)
         .then((res) => {
           console.log(res.data)
-          console.log('ピックアップから削除')
+          console.log('Success')
         })
         .catch((err) => {
           console.log(err)

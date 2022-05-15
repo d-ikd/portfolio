@@ -12,14 +12,6 @@
     <p>post/likePost: {{ Getters13 }}</p>
 
     <p>user/user: {{ Getters7 }}</p>
-
-    <!--
-    <UserReview />
-    <UserList />
-    <UserLikeReview />
-    <UserFollow />
-    <rinrei :rinrin="number"></rinrei>
-    <p>{{ GettersAll }}</p> -->
   </div>
 </template>
 

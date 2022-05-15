@@ -15,7 +15,7 @@
         ログイン
       </v-btn>
       <v-dialog v-model="loginModal" max-width="600px" persistent>
-        <login-modal />
+        <the-modal-login />
       </v-dialog>
       <v-btn
         class="ml-4 mr-2"
@@ -25,26 +25,26 @@
         新規登録
       </v-btn>
       <v-dialog v-model="signUpModal" max-width="600px" persistent>
-        <sign-up-modal />
+        <the-modal-sign-up />
       </v-dialog>
     </template>
     <template v-else>
-      <header-avatar />
+      <the-header-account-setting />
     </template>
   </v-app-bar>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import headerAvatar from '~/components/HeaderAvatar.vue'
-import signUpModal from '~/components/layouts/SignUpModal.vue'
-import loginModal from '~/components/layouts/LoginModal.vue'
+import theHeaderAccountSetting from '~/components/layouts/TheHeaderAccountSetting.vue'
+import theModalSignUp from '~/components/layouts/TheModalSignUp.vue'
+import theModalLogin from '~/components/layouts/TheModalLogin.vue'
 
 export default {
   components: {
-    headerAvatar,
-    signUpModal,
-    loginModal,
+    theHeaderAccountSetting,
+    theModalSignUp,
+    theModalLogin,
   },
   data() {
     return {

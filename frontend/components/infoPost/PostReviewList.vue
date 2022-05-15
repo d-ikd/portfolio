@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="ma-2" style="background-color: white">
+  <v-card flat style="background-color: white">
     <v-list style="background-color: white">
       <v-card
         v-for="review in reviews"

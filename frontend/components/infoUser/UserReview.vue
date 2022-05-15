@@ -80,7 +80,7 @@
         <div>
           <user-dialog-like
             :users="review.review_likes"
-            :title="'口コミにいいねしたユーザー'"
+            :title="'メッセージにいいねしたユーザー'"
           />
         </div>
         <!-- <v-btn color="cyan white--text font-weight-bold" class="ml-5 mr-3" small>

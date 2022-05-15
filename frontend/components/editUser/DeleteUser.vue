@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       email: this.$store.getters['auth/currentUser'].uid,
-      guest: 'guestuser20220106@gmail.com',
+      guest: process.env.RAILS_GUEST_ADDRESS,
     }
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
           this.$store.commit('auth/setLoginUser', {})
           this.$store.commit('auth/setIsLoggedIn', false)
           this.$store.dispatch(
-            'flashMessage/showMessage',
+            'snackbarMessage/showMessage',
             {
               message: 'ユーザーを削除しました',
               type: 'info',
@@ -56,7 +56,7 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            'flashMessage/showMessage',
+            'snackbarMessage/showMessage',
             {
               message: 'ユーザーの削除に失敗しました。',
               type: 'error',

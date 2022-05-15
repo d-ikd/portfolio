@@ -126,6 +126,7 @@ export default {
         },
         { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
       ],
+
       /* =====Sparkline ==== */
       value: [423, 446, 675, 510, 590, 610, 760],
       /* =====Sparkline ==== */

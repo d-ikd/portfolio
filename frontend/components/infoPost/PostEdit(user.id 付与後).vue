@@ -15,7 +15,7 @@
             <v-icon> mdi-comment-edit </v-icon>
           </v-btn>
         </template>
-        <span>口コミ編集</span>
+        <span>メッセージ編集</span>
       </v-tooltip>
     </template>
 

@@ -11,9 +11,6 @@
         <v-col cols="12">
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <post-create />
-            </v-tab-item>
-            <v-tab-item>
               <all-post :posts="posts" />
             </v-tab-item>
             <v-tab-item>
@@ -38,24 +35,22 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import postCreate from "~/components/admin/PostCreate.vue"
-// import allPost from "~/components/admin/AllPost.vue"
-// import allUser from "~/components/admin/AllUser.vue"
-// import allReview from "~/components/admin/AllReview.vue"
-// import StoreStateCheck from "~/components/admin/StoreStateCheck.vue"
+import allPost from '~/components/admin/AllPost.vue'
+import allUser from '~/components/admin/AllUser.vue'
+import allReview from '~/components/admin/AllReview.vue'
+import StoreStateCheck from '~/components/admin/StoreStateCheck.vue'
+
 export default {
   components: {
-    // postCreate,
-    // allPost,
-    // allUser,
-    // allReview,
-    // StoreStateCheck,
+    allPost,
+    allUser,
+    allReview,
+    StoreStateCheck,
   },
   data() {
     return {
       tab: null,
       items: [
-        { title: 'Create Post' },
         { title: 'Post' },
         { title: 'Review' },
         { title: 'User' },

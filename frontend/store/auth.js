@@ -43,17 +43,16 @@ export const actions = {
           'Content-Type': 'multipart/form-data',
         },
       })
-      // 登録成功時処理
       .then((res) => {
         console.log(res)
         commit('setCurrentUser', res.data.data)
-        commit('flashMessage/setMessage', 'ユーザーを登録しました。', {
+        commit('snackbarMessage/setMessage', 'ユーザーを登録しました。', {
           root: true,
         })
-        commit('flashMessage/setType', 'success', { root: true })
-        commit('flashMessage/setStatus', true, { root: true })
+        commit('snackbarMessage/setType', 'success', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('flashMessage/setStatus', false, { root: true })
+          commit('snackbarMessage/setStatus', false, { root: true })
         }, 1000)
         commit('modal/clickSignUpModal', false, { root: true })
         this.$router.push('/')
@@ -63,20 +62,19 @@ export const actions = {
             console.log('loginUser')
             commit('setLoginUser', res)
             commit('setIsLoggedIn', true)
-            console.log('成功')
+            console.log('Successfully signed up')
           })
         this.$router.push('/')
       })
-      // 登録失敗時処理
       .catch((err) => {
         console.log(err)
-        commit('flashMessage/setMessage', 'ユーザー登録に失敗しました。', {
+        commit('snackbarMessage/setMessage', 'ユーザー登録に失敗しました。', {
           root: true,
         })
-        commit('flashMessage/setType', 'error', { root: true })
-        commit('flashMessage/setStatus', true, { root: true })
+        commit('snackbarMessage/setType', 'error', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('flashMessage/setStatus', false, { root: true })
+          commit('snackbarMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -89,11 +87,13 @@ export const actions = {
       .then((res) => {
         console.log(res.data)
         commit('setCurrentUser', res.data)
-        commit('flashMessage/setMessage', 'ログインしました。', { root: true })
-        commit('flashMessage/setType', 'success', { root: true })
-        commit('flashMessage/setStatus', true, { root: true })
+        commit('snackbarMessage/setMessage', 'ログインしました。', {
+          root: true,
+        })
+        commit('snackbarMessage/setType', 'success', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('flashMessage/setStatus', false, { root: true })
+          commit('snackbarMessage/setStatus', false, { root: true })
         }, 1000)
         commit('modal/clickLoginModal', false, { root: true })
         this.$router.push('/')
@@ -103,7 +103,7 @@ export const actions = {
             console.log('loginUser')
             commit('setLoginUser', res)
             commit('setIsLoggedIn', true)
-            console.log('成功')
+            console.log('Successfully logined')
             if (state.currentUser.admin) {
               commit('setIsAdmin', true)
               this.$router.push('admin')
@@ -114,13 +114,13 @@ export const actions = {
         return res
       })
       .catch((err) => {
-        commit('flashMessage/setMessage', 'ログインに失敗しました。', {
+        commit('snackbarMessage/setMessage', 'ログインに失敗しました。', {
           root: true,
         })
-        commit('flashMessage/setType', 'error', { root: true })
-        commit('flashMessage/setStatus', true, { root: true })
+        commit('snackbarMessage/setType', 'error', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('flashMessage/setStatus', false, { root: true })
+          commit('snackbarMessage/setStatus', false, { root: true })
         }, 1000)
         console.log(err)
         return err
@@ -134,17 +134,14 @@ export const actions = {
         commit('setLoginUser', null)
         commit('setIsLoggedIn', false)
         commit('setIsAdmin', false)
-        commit('flashMessage/setMessage', 'ログアウトしました。', {
+        commit('snackbarMessage/setMessage', 'ログアウトしました。', {
           root: true,
         })
-        commit('flashMessage/setType', 'success', { root: true })
-        commit('flashMessage/setStatus', true, { root: true })
+        commit('snackbarMessage/setType', 'success', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('flashMessage/setStatus', false, { root: true })
+          commit('snackbarMessage/setStatus', false, { root: true })
         }, 1000)
-        commit('choise/setDrawer', false, { root: true })
-        commit('choise/resetPosts', [], { root: true })
-        dispatch('choise/deleteChoise', true, { root: true })
         this.$router.push('/')
         return res
       })
@@ -154,27 +151,18 @@ export const actions = {
         commit('setLoginUser', null)
         commit('setIsLoggedIn', false)
         commit('setIsAdmin', false)
-        commit('flashMessage/setMessage', 'ログアウトしました。', {
+        commit('snackbarMessage/setMessage', 'ログアウトしました。', {
           root: true,
         })
-        commit('flashMessage/setType', 'success', { root: true })
-        commit('flashMessage/setStatus', true, { root: true })
+        commit('snackbarMessage/setType', 'success', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('flashMessage/setStatus', false, { root: true })
+          commit('snackbarMessage/setStatus', false, { root: true })
         }, 1000)
         commit('choise/setDrawer', false, { root: true })
         commit('choise/resetPosts', [], { root: true })
         dispatch('choise/deleteChoise', true, { root: true })
         this.$router.push('/')
-        // commit("flashMessage/setMessage", "ログアウトに失敗しました。", {
-        //   root: true,
-        // })
-        // commit("flashMessage/setType", "", { root: true })
-        // commit("flashMessage/setStatus", true, { root: true })
-        // setTimeout(() => {
-        //   commit("flashMessage/setStatus", false, { root: true })
-        // }, 1000)
-        // return err
       })
   },
 }

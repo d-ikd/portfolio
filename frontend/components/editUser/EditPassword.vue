@@ -61,7 +61,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.$store.dispatch(
-            'flashMessage/showMessage',
+            'snackbarMessage/showMessage',
             {
               message: 'パスワードを更新しました。',
               type: 'success',
@@ -73,7 +73,7 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            'flashMessage/showMessage',
+            'snackbarMessage/showMessage',
             {
               message: 'パスワードの更新に失敗しました。',
               type: 'error',

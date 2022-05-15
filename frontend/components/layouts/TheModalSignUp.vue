@@ -2,16 +2,23 @@
   <v-card>
     <v-system-bar lights-out>
       <v-spacer></v-spacer>
-      <v-btn icon class="mt-6" large @click="loginDialog(false)">
+      <v-btn icon class="mt-6" large @click="signUpDialog(false)">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-system-bar>
-    <v-card-title>
-      <span class="headline">ログイン</span>
+    <v-card-title class="justify-center">
+      <span class="headline">新規登録</span>
     </v-card-title>
     <v-card-text>
       <v-form ref="form" v-model="isValid">
         <v-container>
+          <v-text-field
+            v-model="user.name"
+            :rules="nameRules"
+            :placeholder="nameForm.placeholder"
+            label="ニックネーム"
+            prepend-icon="mdi-lead-pencil"
+          />
           <v-text-field
             v-model="user.email"
             :rules="emailRules"
@@ -31,30 +38,44 @@
             :type="toggle.type"
             autocomplete="on"
             label="パスワード"
-            @click:append="show = !show"
+            @click:append="show1 = !show1"
+          />
+          <v-text-field
+            v-model="user.password_confirmation"
+            :rules="passwordRules.rules"
+            :counter="!noValidation"
+            :hint="passwordRules.hint"
+            :placeholder="passwordRules.placeholder"
+            :hide-details="noValidation"
+            prepend-icon="mdi-lock"
+            :append-icon="toggle.icon"
+            :type="toggle.type"
+            autocomplete="on"
+            label="パスワード確認"
+            @click:append="show2 = !show2"
           />
         </v-container>
         <v-card-actions>
           <v-btn
             :disabled="!isValid"
             color="light-green darken-1"
-            class="white--text pa-5 mt-3"
+            class="white--text pa-5"
             block
-            @click="loginUser"
+            @click="registerUser"
           >
-            ログイン
+            新規登録
           </v-btn>
         </v-card-actions>
       </v-form>
     </v-card-text>
     <v-card-text class="text-center caption pb-5">
-      <span class="signup-link" @click="guestLogin">
+      <span class="login-link" @click="guestLogin">
         ゲストユーザーでログイン
       </span>
     </v-card-text>
     <v-card-text class="text-center caption pb-5">
-      アカウントをお持ちでないですか？
-      <span class="signup-link" @click="signUpLink"> 新規登録 </span>
+      アカウントをお持ちですか？
+      <span class="login-link" @click="loginLink"> ログイン </span>
     </v-card-text>
   </v-card>
 </template>
@@ -63,22 +84,36 @@
 import { mapActions } from 'vuex'
 export default {
   data() {
+    const max = 30
     return {
       isValid: false,
-      show: false,
-      noValidation: true,
+      show1: false,
+      show2: false,
+      noValidation: false,
       user: {
         email: '',
         password: '',
+        password_confirmation: '',
+        name: '',
+        image: '',
       },
       guest: {
-        email: 'guestuser20220106@gmail.com',
-        password: 'guestuser',
+        email: process.env.RAILS_GUEST_ADDRESS,
+        password: process.env.RAILS_GUEST_KEY,
       },
+      max,
+      nameRules: [
+        (v) => !!v || '',
+        (v) => (!!v && max >= v.length) || `${max}文字以内で入力してください`,
+      ],
       emailRules: [(v) => !!v || '', (v) => /.+@.+\..+/.test(v) || ''],
     }
   },
   computed: {
+    nameForm() {
+      const placeholder = this.noValidation ? undefined : 'username'
+      return { placeholder }
+    },
     emailForm() {
       const placeholder = this.noValidation ? undefined : 'your@email.com'
       return { placeholder }
@@ -88,6 +123,7 @@ export default {
       const msg = `${min}。半角英数字•ﾊｲﾌﾝ•ｱﾝﾀﾞｰﾊﾞｰが使えます`
       const required = (v) => !!v || ''
       const format = (v) => /^[\w-]{6,72}$/.test(v) || msg
+
       const rules = this.noValidation ? [required] : [format]
       const hint = this.noValidation ? undefined : msg
       const placeholder = this.noValidation ? undefined : min
@@ -101,32 +137,36 @@ export default {
   },
   methods: {
     ...mapActions({
+      signUp: 'auth/signUp',
       login: 'auth/login',
       loginDialog: 'modal/loginUser',
       signUpDialog: 'modal/signUpUser',
     }),
-    loginUser() {
-      this.login(this.user)
-      this.loginDialog(false)
+    setImage(e) {
+      this.user.image = e
+    },
+    registerUser() {
+      this.signUp(this.user)
+      this.signUpDialog(false)
     },
     guestLogin() {
       this.login(this.guest)
-      this.loginDialog(false)
+      this.signUpDialog(false)
     },
-    signUpLink() {
-      this.loginDialog(false)
-      this.signUpDialog(true)
+    loginLink() {
+      this.signUpDialog(false)
+      this.loginDialog(true)
     },
   },
 }
 </script>
 
 <style scoped>
-.signup-link {
+.login-link {
   color: #2196f3;
   cursor: pointer;
 }
-.signup-link:hover {
+.login-link:hover {
   opacity: 0.8;
   text-decoration: underline;
 }

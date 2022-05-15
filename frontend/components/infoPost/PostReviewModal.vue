@@ -24,7 +24,6 @@
         <v-form ref="form">
           <v-container>
             <div class="d-flex align-center my-2">
-              <span class="font-weight-bold"> 総合評価 </span>
               <v-rating
                 v-model="review.rate"
                 background-color="orange lighten-1"
@@ -45,7 +44,7 @@
             />
             <v-textarea
               v-model="review.content"
-              label="口コミ本文をいれてください"
+              label="メッセージ本文を入れてください"
             />
             <v-file-input
               accept="image/png, image/jpeg, image/bmp"

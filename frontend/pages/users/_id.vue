@@ -4,7 +4,7 @@
     <template v-if="loading">
       <v-parallax
         height="300"
-        :src="require(`@/assets/images/default.png`)"
+        :src="require(`@/assets/images/aomori.jpg`)"
       ></v-parallax>
       <v-card>
         <v-row class="mx-1 pb-10" no-gutters>
@@ -31,10 +31,10 @@
                       min-width="125px"
                       :color="color"
                       class="font-weight-bold"
+                      style="text-transform: none"
                       @click="unfollowUser"
                       @mouseover="mouseover"
                       @mouseleave="mouseleave"
-                      style="text-transform: none"
                     >
                       {{ message }}
                     </v-btn>
@@ -43,9 +43,9 @@
                       rounded
                       min-width="125px"
                       color="blue"
-                      @click="followUser"
                       style="text-transform: none"
                       class="font-weight-bold"
+                      @click="followUser"
                     >
                       <v-icon class="mr-2"> mdi-account-plus </v-icon>
                       Follow
@@ -116,22 +116,19 @@
 <script>
 import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-// import userPostList from "~/components/infoUser/UserPostList.vue"
-// import userList from "~/components/infoUser/UserList.vue"
-// import userReviewList from "~/components/infoUser/UserReviewList.vue"
-// import userLikeReviewList from "~/components/infoUser/UserLikeReviewList.vue"
-// import userIdSetting from "~/components/editUser/UserIdSetting.vue"
-/* import userMenuList from "~/components/UserMenuList.vue" */
+import userPostList from '~/components/infoUser/UserPostList.vue'
+import userList from '~/components/infoUser/UserList.vue'
+import userReviewList from '~/components/infoUser/UserReviewList.vue'
+import userLikeReviewList from '~/components/infoUser/UserLikeReviewList.vue'
+
 export default {
-  name: 'RR',
+  name: 'Stuctive',
   components: {
     userAvatar,
-    // userPostList,
-    // userList,
-    // userReviewList,
-    // userLikeReviewList,
-    // userIdSetting,
-    /*     userMenuList, */
+    userPostList,
+    userList,
+    userReviewList,
+    userLikeReviewList,
   },
   data() {
     return {
@@ -145,7 +142,7 @@ export default {
         { title: '参加する' },
         { title: '気になる' },
         { title: 'レビュー' },
-        { title: '気になったレビュー' },
+        { title: '気になるレビュー' },
         { title: 'フォロー' },
         { title: 'フォロワー' },
       ],
@@ -210,13 +207,21 @@ export default {
           follow_id: this.user.id,
         })
         .then(() => {
-          this.$store.commit('flashMessage/setMessage', ' フォローしました。', {
+          this.$store.commit(
+            'snackbarMessage/setMessage',
+            ' フォローしました。',
+            {
+              root: true,
+            }
+          )
+          this.$store.commit('snackbarMessage/setType', '#48A1EB', {
             root: true,
           })
-          this.$store.commit('flashMessage/setType', '#48A1EB', { root: true })
-          this.$store.commit('flashMessage/setStatus', true, { root: true })
+          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('flashMessage/setStatus', false, { root: true })
+            this.$store.commit('snackbarMessage/setStatus', false, {
+              root: true,
+            })
           }, 1000)
           this.$axios.get(`api/v1/users/${this.user.id}`).then((res) => {
             console.log(res.data)
@@ -242,14 +247,18 @@ export default {
         })
         .then(() => {
           this.$store.commit(
-            'flashMessage/setMessage',
+            'snackbarMessage/setMessage',
             ' フォロー解除しました。',
             { root: true }
           )
-          this.$store.commit('flashMessage/setType', '#E35B4B', { root: true })
-          this.$store.commit('flashMessage/setStatus', true, { root: true })
+          this.$store.commit('snackbarMessage/setType', '#E35B4B', {
+            root: true,
+          })
+          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('flashMessage/setStatus', false, { root: true })
+            this.$store.commit('snackbarMessage/setStatus', false, {
+              root: true,
+            })
           }, 1000)
           this.$axios.get(`api/v1/users/${this.user.id}`).then((res) => {
             console.log(res.data)

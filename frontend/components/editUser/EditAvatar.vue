@@ -2,7 +2,7 @@
   <v-form ref="form" lazy-validation class="ma-16">
     <v-icon> mdi-account-box </v-icon>
     <span>アイコン画像</span>
-    <v-avatar size="100">
+    <!-- <v-avatar size="100">
       <template v-if="image.url !== null">
         <v-img v-if="input_image !== null" :src="input_image" />
         <v-img v-else :src="image.url" />
@@ -10,12 +10,12 @@
       <template v-else>
         <v-img v-if="input_image" :src="input_image" />
       </template>
-    </v-avatar>
+    </v-avatar> -->
     <v-file-input
       v-model="editImage"
       accept="image/png, image/jpeg, image/bmp"
-      prepend-icon="mdi-image"
-      label="画像を選択してください"
+      prepend-icon="mdi-account-box"
+      label="変更するアバター画像を選択してください"
       class="pt-14"
       @change="setImage"
     />
@@ -77,7 +77,7 @@ export default {
           console.log(res)
           this.$store.commit('auth/setCurrentUser', res.data.data)
           this.$store.dispatch(
-            'flashMessage/showMessage',
+            'snackbarMessage/showMessage',
             {
               message: 'アバター画像を更新しました。',
               type: 'success',
@@ -88,7 +88,7 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            'flashMessage/showMessage',
+            'snackbarMessage/showMessage',
             {
               message: 'アバター画像の更新に失敗しました。',
               type: 'error',

@@ -48,7 +48,7 @@ export default {
         .delete(`api/v1/reviews/${id}`)
         .then((res) => {
           console.log(res.data)
-          console.log('投稿削除')
+          console.log('Successfully deleted')
         })
         .catch((err) => {
           console.log(err)
