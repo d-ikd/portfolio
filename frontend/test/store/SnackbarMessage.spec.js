@@ -2,9 +2,9 @@
 // import { createLocalVue } from '@vue/test-utils'
 
 const Vuex = require('vuex')
-const messages = require('../../store/snackbarMessage')
 const { createLocalVue } = require('@vue/test-utils')
 const cloneDeep = require('lodash.clonedeep')
+const messages = require('../../store/snackbarMessage')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -18,9 +18,9 @@ describe('Snackbar', () => {
 
   describe('actions', () => {
     test('Does the Snackbar show?', async () => {
-      const payload = { message: "testmessage", type: "info", status: "true" }
+      const payload = { message: 'testmessage', type: 'info', status: 'true' }
       await store.dispatch('showMessage', payload)
-      expect(store.getters['message']).toEqual(payload.message)
+      expect(store.getters.message).toEqual(payload.message)
     })
   })
 })

@@ -54,7 +54,7 @@
             />
             <v-textarea
               v-model="reviewEdit.content"
-              label="口コミ本文をいれてください"
+              label="メッセージ本文をいれてください"
             />
             <v-file-input
               v-model="reviewEdit.image"
@@ -96,7 +96,7 @@
               block
               @click="postPostEdit"
             >
-              口コミ編集
+              メッセージを編集
             </v-btn>
           </v-card-actions>
         </v-form>

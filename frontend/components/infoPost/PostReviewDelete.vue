@@ -61,7 +61,7 @@ export default {
         .then(() => {
           this.$store.commit(
             'snackbarMessage/setMessage',
-            '口コミを削除しました。',
+            'メッセージを削除しました。',
             { root: true }
           )
           this.$store.commit('snackbarMessage/setType', 'info', { root: true })

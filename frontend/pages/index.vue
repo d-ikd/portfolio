@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import ScheduleCard from '~/components/ScheduleCard.vue'
 
 import Search from '~/components/search/Search.vue'

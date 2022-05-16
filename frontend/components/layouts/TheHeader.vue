@@ -66,13 +66,6 @@ export default {
       loginDialog: 'modal/loginUser',
       signUpDialog: 'modal/signUpUser',
     }),
-    pagelink(link) {
-      if (link == '/ranking') {
-        this.$store.dispatch('tab/getRankingTab', 0)
-      } else if (link == '/food/new') {
-        this.$store.dispatch('tab/getNewTab', 0)
-      }
-    },
     link(link) {
       this.$router.push({ path: `/${link}` })
     },

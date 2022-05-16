@@ -27,7 +27,7 @@ export const mutations = {
   unsetPosts(state, post) {
     state.post = post
     state.post.some(function(v, i) {
-      if (v.id == post.id) state.posts.splice(i, 1)
+      if (v.id === post.id) state.posts.splice(i, 1)
       console.log('Success')
     })
   },

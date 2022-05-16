@@ -64,7 +64,7 @@ export default {
     },
     async changeUserAvatar() {
       const formData = new FormData()
-      if (this.editImage != '') {
+      if (this.editImage !== '') {
         formData.append('image', this.editImage)
       }
       await this.$axios

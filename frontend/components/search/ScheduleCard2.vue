@@ -94,7 +94,7 @@
       気になる :
       <user-dialog :users="post.like_users" :title="'気になるユーザー'" />
     </div>
- -->
+  -->
                     </v-sheet>
                   </template>
                 </v-hover>
@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+// import { mapGetters, mapActions } from 'vuex'
 
 export default {
   props: {

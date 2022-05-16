@@ -18,7 +18,7 @@
         <!--           <v-select v-model="search" :items="items" label="検索項目" /> -->
       </v-col>
     </v-row>
-    <template v-if="search == '投稿' && resPosts.length">
+    <template v-if="search === '投稿' && resPosts.length">
       <schedule-card2 :posts="resPosts" />
     </template>
   </div>
@@ -26,19 +26,19 @@
 
 <script>
 import _debounce from 'lodash.debounce'
-import searchPost from '~/components/search/SearchPost.vue'
-import userList from '~/components/infoUser/UserList.vue'
+// import searchPost from '~/components/search/SearchPost.vue'
+// import userList from '~/components/infoUser/UserList.vue'
 import ScheduleCard2 from '~/components/search/ScheduleCard2.vue'
-import checkbox from '~/components/search/Checkbox.vue'
-import PostList from '~/components/infoPost/PostList.vue'
+// import checkbox from '~/components/search/Checkbox.vue'
+// import PostList from '~/components/infoPost/PostList.vue'
 
 export default {
   components: {
-    searchPost,
+    // searchPost,
     ScheduleCard2,
-    userList,
-    PostList,
-    checkbox,
+    // userList,
+    // PostList,
+    // checkbox,
   },
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     resSearch() {
-      if (this.search == '投稿' && this.searchForm) {
+      if (this.search === '投稿' && this.searchForm) {
         this.$axios
           .$get('api/v1/posts/search', {
             params: {
@@ -84,7 +84,7 @@ export default {
           .catch((error) => {
             console.log(error)
           })
-      } else if (this.search == 'ユーザー' && this.searchForm) {
+      } else if (this.search === 'ユーザー' && this.searchForm) {
         this.$axios
           .$get('api/v1/users/search', {
             params: {
