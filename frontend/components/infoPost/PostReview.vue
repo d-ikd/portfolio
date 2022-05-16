@@ -111,10 +111,9 @@
         </v-col>
       </v-row>
     </v-card>
-  </v-card>
 
-  <!-- ======== Rating & Title ========= -->
-  <!--     <div class="ml-4 d-flex align-center">
+    <!-- ======== Rating & Title ========= -->
+    <!--     <div class="ml-4 d-flex align-center">
       <v-rating
         v-model="rating"
         empty-icon="mdi-heart-outline"
@@ -126,7 +125,8 @@
         small
       />
     </div> -->
-  <!-- ======== Rating & Title ========= -->
+    <!-- ======== Rating & Title ========= -->
+  </v-card>
 </template>
 
 <script>

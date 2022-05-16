@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const actions = {
   async likeReview({ commit, rootState }, authData) {
     await this.$axios
@@ -76,3 +77,4 @@ export const actions = {
       })
   },
 }
+/* eslint-disable */

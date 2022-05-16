@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Button from '~/components/shared/Button'
-import ButtonPostCreate from '~/components/layouts/ButtonPostCreate.vue'
+// import ButtonPostCreate from '~/components/layouts/ButtonPostCreate.vue'
 
 describe('Button', () => {
   test('Display text', () => {

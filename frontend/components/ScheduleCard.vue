@@ -140,26 +140,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import userPostList from '~/components/infoUser/UserPostList.vue'
+// import userPostList from '~/components/infoUser/UserPostList.vue'
 // import userDialog from '~/components/infoUser/UserDialog.vue'
 // import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 
 export default {
-  computed: {
-    ...mapGetters({
-      post: 'post/post',
-      user: 'user/user',
-      loginUser: 'auth/loginUser',
-    }),
-    postUpdate() {
-      return this.$store.state.post.post
-    },
-    // userUpdate() {
-    //   return this.$store.state.auth.loginUser
-    // },
-  },
   components: {
-    userPostList,
+    // userPostList,
     // userDialog,
     // userDialogReview
   },
@@ -174,6 +161,19 @@ export default {
       start_time: '',
       finish_time: '',
     }
+  },
+  computed: {
+    ...mapGetters({
+      post: 'post/post',
+      user: 'user/user',
+      loginUser: 'auth/loginUser',
+    }),
+    postUpdate() {
+      return this.$store.state.post.post
+    },
+    // userUpdate() {
+    //   return this.$store.state.auth.loginUser
+    // },
   },
   created() {
     this.getPosts().then(() => {

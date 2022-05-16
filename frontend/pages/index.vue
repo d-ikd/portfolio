@@ -20,6 +20,10 @@ import ScheduleCard from '~/components/ScheduleCard.vue'
 import Search from '~/components/search/Search.vue'
 
 export default {
+  components: {
+    ScheduleCard,
+    Search,
+  },
   /*
     async asyncData({ $axios }) {
     const weatherData = await $axios.$get(
@@ -32,13 +36,11 @@ export default {
       icon: 'http://openweathermap.org/img/w/'+weatherData.weather[0].icon+'.png'
     }
   }, */
-
   // 環境変数チェック
   // created() {
   //   console.log('It\'s the test!')
   //   console.log(process.env.RAILS_GUEST_ADDRESS)
   // },
-
   data() {
     return {}
   },
@@ -51,14 +53,9 @@ export default {
       return this.$store.state.post.post
     },
   },
-  components: {
-    ScheduleCard,
-    Search,
-  },
   methods: {},
 }
 </script>
-
 <style scoped>
 div {
   border: 5px solid yellow;

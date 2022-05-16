@@ -15,6 +15,7 @@ export const mutations = {
   },
 }
 
+/* eslint-disable */
 export const actions = {
   // setPost({ commit, rootState }, payload) {
   // },
@@ -284,3 +285,4 @@ export const actions = {
       })
   },
 }
+/* eslint-disable */

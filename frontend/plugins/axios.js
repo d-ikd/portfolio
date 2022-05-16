@@ -1,4 +1,4 @@
-export default function({ $axios, redirect }) {
+export default function({ $axios }) {
   // $axios.setToken("access_token")
   $axios.onRequest((config) => {
     console.log('-------- start /plugins/axios.js------------')
