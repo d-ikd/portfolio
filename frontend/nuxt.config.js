@@ -2,6 +2,8 @@ import colors from 'vuetify/es5/util/colors'
 
 require('dotenv').config()
 const { WEATHER_API_KEY } = process.env
+const { RAILS_GUEST_ADDRESS } = process.env
+const { RAILS_GUEST_KEY } = process.env
 
 export default {
   ssr: false,
@@ -11,6 +13,8 @@ export default {
    */
   env: {
     WEATHER_API_KEY,
+    RAILS_GUEST_ADDRESS,
+    RAILS_GUEST_KEY,
   },
   head: {
     title: 'Stuctive',
