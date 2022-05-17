@@ -260,14 +260,14 @@
 import { mapGetters, mapActions } from 'vuex'
 import postReviewModal from '~/components/infoPost/PostReviewModal.vue'
 import postReviewList from '~/components/infoPost/PostReviewList.vue'
-import postAlbum from '~/components/infoPost/PostAlbum.vue'
+import postPhotoshotList from '~/components/infoPost/PostPhotoshotList.vue'
 
 export default {
   name: 'Stuctive',
   components: {
     postReviewModal,
     postReviewList,
-    postAlbum,
+    postPhotoshotList,
   },
   data() {
     return {
