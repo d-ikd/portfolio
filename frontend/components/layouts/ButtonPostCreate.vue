@@ -284,6 +284,7 @@ export default {
           console.log('Success')
           this.dialog = false
           this.$router.go({ path: '/', force: true })
+          /*
           this.$store.commit('snackbarMessage/setMessage', ' 投稿しました', {
             root: true,
           })
@@ -291,6 +292,7 @@ export default {
             root: true,
           })
           this.$store.commit('snackbarMessage/setStatus', true, { root: true })
+          */
           setTimeout(() => {
             this.$store.commit('snackbarMessage/setStatus', false, {
               root: true,

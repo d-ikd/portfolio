@@ -27,12 +27,12 @@
     <!--
                 <v-img v-if="post.image.url" :src="post.image.url" contain />
                 <v-img v-else :src="defaultImage" contain />
- -->
+    -->
     <v-divider class="mt-8" />
 
     <v-container>
       <v-row>
-        <v-col cols="12" sm="6" md="12" lg="10">
+        <v-col cols="12">
           <v-sheet elevation="10" rounded="xl" class="green lighten-2">
             <v-sheet class="pl-5 primary" dark rounded="t-xl">
               <div>
@@ -55,14 +55,14 @@
             </v-sheet>
             <v-sheet class="green lighten-2">
               <v-row no-gutters>
-                <v-col cols="12" sm="6">
+                <v-col cols="6">
                   <v-sheet class="green lighten-2">
                     <v-card-text>
                       {{ post.details }}
                     </v-card-text>
                   </v-sheet>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="6">
                   <v-sheet class="green lighten-2 mb-4">
                     <v-timeline align-top dense>
                       <v-timeline-item color="white lighten-3" fill-dot small>
@@ -169,7 +169,7 @@
 
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" sm="7" md="12" lg="5">
+        <v-col cols="12">
           <v-sheet elevation="10" rounded="xl" class="green lighten-2">
             <v-sheet dark rounded="t-xl"> </v-sheet>
 

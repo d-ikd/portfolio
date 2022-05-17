@@ -145,6 +145,12 @@ import { mapGetters, mapActions } from 'vuex'
 // import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 
 export default {
+  // props: {
+  //   posts: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
   components: {
     // userPostList,
     // userDialog,

@@ -1,5 +1,17 @@
 <template>
   <div style="background-color: white">
+    <v-card flat style="background-color: white">
+      <v-list style="background-color: white">
+        <v-card
+          v-for="image in images"
+          :key="image.id"
+          flat
+          class="mb-2"
+          style="background-color: white"
+        >
+        </v-card>
+      </v-list>
+    </v-card>
     <v-carousel hide-delimiters height="auto">
       <v-carousel-item>
         <v-row no-gutters>
@@ -115,7 +127,17 @@
 </template>
 
 <script>
+// import postReview from '~/components/infoPost/PostReview.vue'
 export default {
+  props: {
+    reviews: {
+      type: Array,
+      required: true,
+    },
+  },
+  components: {
+    // postReview,
+  },
   methods: {
     next() {
       alert('You clicked next!')
