@@ -23,9 +23,8 @@
     </v-row>
   </v-parallax>
 
-    <!-- <v-img v-if="post.image.url" :src="post.image.url" contain />
+  <!-- <v-img v-if="post.image.url" :src="post.image.url" contain />
     <v-img v-else :src="defaultImage" contain /> -->
-
 </template>
 
 <script>

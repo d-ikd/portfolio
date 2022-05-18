@@ -28,7 +28,7 @@
 export default {
   props: {
     post: {
-      type: object,
+      // type: object,
       required: true,
     },
   },

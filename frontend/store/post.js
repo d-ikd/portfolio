@@ -284,5 +284,48 @@ export const actions = {
         }, 1000)
       })
   },
+  async photoPost({ commit }, authData) {
+    const form = new FormData()
+    form.append('user_id', authData.user_id)
+    form.append('post_id', authData.post_id)
+    if (authData.image !== null) {
+      form.append('image', authData.image)
+    }
+    console.log(authData.image)
+    await this.$axios
+      .$post('/api/v1/post_photos', form, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(() => {
+        commit('snackbarMessage/setMessage', 'メッセージを投稿しました', {
+          root: true,
+        })
+        commit('snackbarMessage/setType', 'success', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
+        setTimeout(() => {
+          commit('snackbarMessage/setStatus', false, { root: true })
+        }, 1000)
+        this.$axios.$get(`/api/v1/posts/${authData.post_id}`).then((res) => {
+          commit('setPost', res)
+          console.log('Successfully')
+        })
+      })
+      .catch((err) => {
+        commit(
+          'snackbarMessage/setMessage',
+          'メッセージの投稿に失敗しました。',
+          {
+            root: true,
+          }
+        )
+        commit('snackbarMessage/setType', 'error', { root: true })
+        commit('snackbarMessage/setStatus', true, { root: true })
+        setTimeout(() => {
+          commit('snackbarMessage/setStatus', false, { root: true })
+        }, 1000)
+      })
+  },
 }
 /* eslint-disable */

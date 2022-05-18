@@ -23,11 +23,11 @@
       <v-icon>mdi-heart</v-icon>
     </v-btn> -->
     <v-btn
-      v-if="join"
+      v-if="nice"
       class="mx-5"
       color="red white--text font-weight-bold"
       outlined
-      @click="joining"
+      @click="nice"
     >
       <v-icon>mdi-heart-off</v-icon>
       {{ fronttitle }}
@@ -36,7 +36,7 @@
       v-else
       class="mx-5"
       color="green white--text font-weight-bold"
-      @click="joining"
+      @click="nice"
     >
       <v-icon class="mr-1">mdi-heart</v-icon>
       {{ backtitle }}
