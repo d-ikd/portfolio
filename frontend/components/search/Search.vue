@@ -3,7 +3,7 @@
     <v-row>
       <v-col sm="3" cols="12">
         <template v-if="search == '投稿'">
-          <!-- <checkbox @category="catchCategory" /> -->
+          <checkbox @category="catchCategory" />
         </template>
       </v-col>
       <v-col sm="6" cols="12">
@@ -21,36 +21,54 @@
     <template v-if="search === '投稿' && resPosts.length">
       <schedule-card2 :posts="resPosts" />
     </template>
+    <template v-else>
+      <Schedule-card />
+    </template>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import _debounce from 'lodash.debounce'
-// import searchPost from '~/components/search/SearchPost.vue'
-// import userList from '~/components/infoUser/UserList.vue'
+import searchPost from '~/components/search/SearchPost.vue'
+import userList from '~/components/infoUser/UserList.vue'
 import ScheduleCard2 from '~/components/search/ScheduleCard2.vue'
-// import checkbox from '~/components/search/Checkbox.vue'
-// import PostList from '~/components/infoPost/PostList.vue'
+import checkbox from '~/components/search/Checkbox.vue'
+import PostList from '~/components/infoPost/PostList.vue'
+import ScheduleCard from '~/components/ScheduleCard.vue'
 
 export default {
   components: {
-    // searchPost,
+    searchPost,
     ScheduleCard2,
-    // userList,
-    // PostList,
-    // checkbox,
+    userList,
+    PostList,
+    checkbox,
+    ScheduleCard,
   },
   data() {
     return {
       loading: false,
       items: ['投稿', 'ユーザー'],
       category: [],
-      searchForm: '',
+      searchForm: '*',
       resPosts: [],
       resUsers: [],
     }
   },
   computed: {
+    /* ========== ScheduleCard =========== */
+    ...mapGetters({
+      user: 'user/user',
+      loginUser: 'auth/loginUser',
+    }),
+    postUpdate() {
+      return this.$store.state.post.post
+    },
+    /* ========== ScheduleCard =========== */
+
+    /* ========== Search =========== */
     search: {
       get() {
         return this.$store.state.tab.search
@@ -64,10 +82,6 @@ export default {
     searchForm() {
       _debounce(this.resSearch, 500)()
     },
-  },
-  created() {
-    // const debounce = require('lodash.debounce')
-    // this.delayFunc = debounce(this.resSearch(), 500)
   },
   methods: {
     resSearch() {
@@ -106,5 +120,6 @@ export default {
       this.category = category
     },
   },
+  /* ========== Search =========== */
 }
 </script>

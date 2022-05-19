@@ -6,13 +6,12 @@
       </span>
     </template>
 
-    <v-card class="ma-0">
+    <!--     <v-card class="ma-0">
       <v-card-title style="background-color: #fbfbfb">
         {{ title }}
-        <span> （{{ users.length }}） </span>
+        <span > （{{ users.length }}） </span>
       </v-card-title>
       <v-list two-line style="background-color: #fbfbfb">
-        <!-- <v-list-item-group> -->
         <v-row>
           <v-list-item
             v-for="f in users"
@@ -21,7 +20,7 @@
             class="list"
           >
             <nuxt-link :to="{ path: `/users/${f.user.id}` }">
-              <user-avatar :size="45" :user="f.user" class="list-avatar mx-3" />
+              <user-avatar :size="50" :user="f.user" class="list-avatar mx-3" />
             </nuxt-link>
             <v-list-item-content>
               <v-list-item-title class="list-item" @click="pagelink(f.user.id)">
@@ -33,14 +32,14 @@
           <v-divider />
         </v-row>
       </v-list>
-    </v-card>
+    </v-card> -->
   </v-dialog>
 </template>
 
 <script>
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
-// import { mapActions } from "vuex"
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -57,6 +56,37 @@ export default {
       required: true,
     },
   },
+
+  computed: {
+    ...mapGetters({
+      /*       user: 'user/user',
+      post: 'post/post',
+      loginUser: 'auth/loginUser', */
+    }),
+    postUpdate() {
+      return this.$store.state.post.post
+    },
+    // userUpdate() {
+    //   return this.$store.state.auth.loginUser
+    // },
+  },
+  watch: {
+    postUpdate() {
+      // POST再取得時にユーザーを更新
+      this.$axios.get(`api/v1/users/${this.$post.id}`).then((res) => {
+        this.$store.commit('user/setUser', res.data, { root: true })
+        console.log(res.data)
+      })
+    },
+    // userUpdate() {
+    //   // ユーザー情報更新時にユーザーを更新
+    //   this.$axios.get(`api/v1/users/${this.$route.params.id}`).then((res) => {
+    //     this.$store.commit("user/setUser", res.data, { root: true })
+    //     console.log(res.data)
+    //   })
+    // },
+  },
+
   data() {
     return {
       dialog: false,
@@ -81,6 +111,7 @@ export default {
 }
 .list-item {
   cursor: pointer;
+  color: #2196f3;
 }
 .list-avatar {
   cursor: pointer;

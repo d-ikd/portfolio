@@ -7,22 +7,20 @@
     <!-- <p>今日の天気は{{ weather2 }}です。</p> -->
 
     <!-- <v-btn depressed rounded text @click="initData"> initData </v-btn> -->
-
+    <!-- <search-form /> -->
     <search />
-    <Schedule-card />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import ScheduleCard from '~/components/ScheduleCard.vue'
-
 import Search from '~/components/search/Search.vue'
+// import searchForm from '~/components/search/SearchForm.vue'
 
 export default {
   components: {
-    ScheduleCard,
     Search,
+    // searchForm,
   },
   /*
     async asyncData({ $axios }) {
@@ -36,26 +34,21 @@ export default {
       icon: 'http://openweathermap.org/img/w/'+weatherData.weather[0].icon+'.png'
     }
   }, */
+
   // 環境変数チェック
   // created() {
   //   console.log('It\'s the test!')
   //   console.log(process.env.RAILS_GUEST_ADDRESS)
   // },
+
   data() {
     return {}
   },
-  computed: {
-    ...mapGetters({
-      user: 'user/user',
-      loginUser: 'auth/loginUser',
-    }),
-    postUpdate() {
-      return this.$store.state.post.post
-    },
-  },
+  computed: {},
   methods: {},
 }
 </script>
+
 <style scoped>
 div {
   border: 5px solid yellow;

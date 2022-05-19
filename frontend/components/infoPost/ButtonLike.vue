@@ -1,29 +1,30 @@
 <template>
   <div>
     <!-- <v-btn
-      v-if="like"
-      absolute
-      color="pink lighten-1"
-      class="white--text"
-      fab
-      right
-      top
+    v-if="like"
+    absolute
+    color="pink lighten-1"
+    class="white--text"
+    fab
+    right
+    top
     >
-      <v-icon>mdi-heart-off</v-icon>
+    <v-icon>mdi-heart-off</v-icon>
     </v-btn>
     <v-btn
-      v-else
-      absolute
-      color="pink lighten-1"
-      class="white--text"
-      fab
-      right
-      top
+    v-else
+    absolute
+    color="pink lighten-1"
+    class="white--text"
+    fab
+    right
+    top
     >
-      <v-icon>mdi-heart</v-icon>
+    <v-icon>mdi-heart</v-icon>
     </v-btn> -->
+
     <v-btn
-      v-if="nice"
+      v-if="like"
       class="mx-5"
       color="red white--text font-weight-bold"
       outlined
@@ -82,6 +83,39 @@ export default {
       add: false,
     }
   },
+  computed: {
+    ...mapGetters({
+      loginUser: 'auth/loginUser',
+      login: 'auth/isLoggedIn',
+      watchUser: 'user/user',
+      watchPost: 'post/post',
+    }),
+    loginUserLike() {
+      return this.$store.state.auth.loginUser
+    },
+  },
+  watch: {
+    loginUserLike() {
+      if (this.login) {
+        this.like = false
+        this.loginUser.postlike.forEach((f) => {
+          if (this.post.id === f.id) {
+            this.like = true
+          }
+        })
+      }
+    },
+  },
+  mounted() {
+    if (this.login) {
+      this.like = false
+      this.loginUser.postlike.forEach((f) => {
+        if (this.post.id === f.id) {
+          this.like = true
+        }
+      })
+    }
+  },
   // computed: {
   //   ...mapGetters({
   //     post: 'post/post',
@@ -103,32 +137,28 @@ export default {
     }),
     nice() {
       const postData = {
-        user: this.user.id,
+        user: this.loginUser.id,
         post: this.post.id,
       }
       if (this.like) {
         this.unLikePost(postData).then(() => {
-          this.$axios
-            .$get(`/api/v1/posts/${this.$route.params.id}`)
-            .then((res) => {
-              this.$store.commit('post/setPost', res, { root: true })
-              this.like = false
-            })
+          this.$axios.$get(`/api/v1/posts/${this.post.id}`).then((res) => {
+            this.$store.commit('post/setPost', res, { root: true })
+            this.like = false
+          })
         })
       } else {
         this.likePost(postData).then(() => {
-          this.$axios
-            .$get(`/api/v1/posts/${this.$route.params.id}`)
-            .then((res) => {
-              this.$store.commit('post/setPost', res, { root: true })
-              this.like = true
-            })
+          this.$axios.$get(`/api/v1/posts/${this.post.id}`).then((res) => {
+            this.$store.commit('post/setPost', res, { root: true })
+            this.like = true
+          })
         })
       }
     },
     joining() {
       const postData = {
-        user: this.user.id,
+        user: this.loginUser.id,
         post: this.post.id,
       }
       if (this.join) {

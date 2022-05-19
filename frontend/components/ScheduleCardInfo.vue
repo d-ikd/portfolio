@@ -1,71 +1,44 @@
 <template>
   <v-menu transition="slide-y-reverse-transition">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="secondary" class="ma-2" v-bind="attrs" outlined v-on="on">
-        <v-icon>{{ 'mdi-information-outline' }}</v-icon>
+      <v-btn color="white" class="ma-2" v-bind="attrs" plain x-large v-on="on">
+        <v-icon x-large>{{ 'mdi-information-outline' }}</v-icon>
       </v-btn>
     </template>
 
-    <v-card color="white" max-width="600" min-width="200">
+    <v-card
+      color="white"
+      max-width="600"
+      min-width="200"
+      style="max-height: 600px"
+      class="overflow-y-auto"
+    >
       <v-card :elevation="15" dark class="green secondary ma-3 rounded-card">
         <v-responsive :aspect-ratio="9 / 16">
-          <v-hover>
-            <template v-slot:default="{ hover }">
-              <v-sheet dark flat color="white">
-                <v-img
-                  v-if="post.image.url"
-                  contain
-                  :src="post.image.url"
-                  :aspect-ratio="1 / 1"
-                  class="white--text align-end"
-                >
-                  <!--!!!!!!!!!!!! :aspect-ratio="16/9" !!!!!!!!!!!!-->
-                  <!-- <v-img v-else contain :src="defaultImage"> -->
+          <post-container-like class="g-8" />
+          <post-container-message class="mb-8" />
 
-                  <v-card-title>
-                    <strong
-                      class="display-2 font-weight-regular"
-                      gradient="to top, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                    >
-                      <!-- gradient="to top, rgba(0,0,0,.1), rgba(0,0,0,.5)" -->
-                      {{ post.name }}</strong
-                    >
-                  </v-card-title>
-
-                  <v-fade-transition>
-                    <v-overlay v-if="hover" absolute color="#036358">
-                      <v-btn
-                        large
-                        :to="{ path: `/post/${post.id}` }"
-                        @click="pagelink(post.id)"
-                        >参加ページ</v-btn
-                      >
-                    </v-overlay>
-                  </v-fade-transition>
-                </v-img>
-
-                <v-card-text class="pt-6" style="position: relative;">
-                  <div>
-                    <span class="font-weight-light grey--text title mb-2">
-                      {{ $dayjs(post.release).format('MM/DD') }}
-                      (
-                      {{ $dayjs(post.start_time).format('hh:mm') }}~{{
-                        $dayjs(post.finish_time).format('hh:mm')
-                      }}
-                      ) <br />@{{ post.place }}
-                    </span>
-                  </div>
-                </v-card-text>
-                <v-avatar size="56" class="mt-1">
-                  <img
-                    alt="user"
-                    :src="require(`@/assets/images/default-user.png`)"
-                  />
-                </v-avatar>
-                <div align="right"></div>
-              </v-sheet>
-            </template>
-          </v-hover>
+          <v-sheet dark flat color="white">
+            <v-card-text class="pt-6" style="position: relative;">
+              <div>
+                <span class="font-weight-light grey--text title mb-2">
+                  {{ $dayjs(post.release).format('MM/DD') }}
+                  (
+                  {{ $dayjs(post.start_time).format('hh:mm') }}~{{
+                    $dayjs(post.finish_time).format('hh:mm')
+                  }}
+                  ) <br />@{{ post.place }}
+                </span>
+              </div>
+            </v-card-text>
+            <v-avatar size="56" class="mt-1">
+              <img
+                alt="user"
+                :src="require(`@/assets/images/default-user.png`)"
+              />
+            </v-avatar>
+            <div align="right"></div>
+          </v-sheet>
 
           <v-card-text>
             <div class="font-weight-bold">
@@ -166,6 +139,9 @@ import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 import buttonLike from '~/components/infoPost/ButtonLike.vue'
 import scheduleCardContents from '~/components/ScheduleCardContents.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
+import postParallax from '~/components/infoPost/PostParallax.vue'
+import postContainerLike from '~/components/infoPost/PostContainerLike.vue'
+import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue'
 
 export default {
   // props: {
@@ -181,6 +157,9 @@ export default {
     buttonLike,
     scheduleCardContents,
     scheduleCardInfo,
+    postParallax,
+    postContainerLike,
+    postContainerMessage,
   },
   data() {
     return {

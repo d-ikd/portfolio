@@ -135,7 +135,7 @@ export default {
   computed: {
     ...mapGetters({
       post: 'post/post',
-      user: 'auth/loginUser',
+      loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
       currentPosts: 'favOrNotCheck/posts',
     }),

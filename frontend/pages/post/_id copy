@@ -264,7 +264,7 @@ import postReviewList from '~/components/infoPost/PostReviewList.vue'
 import postAlbum from '~/components/infoPost/PostAlbum.vue'
 
 export default {
-  name: 'MeetWithKids',
+  name: 'Stuctive',
   components: {
     postReviewModal,
     postReviewList,

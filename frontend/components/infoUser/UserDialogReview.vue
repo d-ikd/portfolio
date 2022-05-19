@@ -40,7 +40,7 @@
 <script>
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
-// import { mapActions } from "vuex"
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -66,6 +66,11 @@ export default {
     pagelink(link) {
       this.$router.push({ path: `/users/${link}` })
     },
+  },
+  computed: {
+    ...mapGetters({
+      users: 'user/user',
+    }),
   },
 }
 </script>

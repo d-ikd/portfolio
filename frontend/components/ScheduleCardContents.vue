@@ -9,69 +9,125 @@
               contain
               :src="post.image.url"
               :aspect-ratio="1 / 1"
-              class="white--text align-end"
+              class="white--text"
             >
               <!-- <v-img v-else contain :src="defaultImage"> -->
-
               <v-card-title>
-                <strong
-                  class="display-2 font-weight-regular"
-                  gradient="to top, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                >
-                  {{ post.name }}</strong
-                >
+                <v-row class="mt-n4">
+                  <v-col> </v-col>
+                  <v-col class="mt-auto mr-n8">
+                    <!-- <schedule-card-info :post="post" :user=user  /> -->
+                  </v-col>
+                </v-row>
               </v-card-title>
+              <v-card-title class="mt-15">
+                <v-row>
+                  <v-chip class="ma-2" color="indigo" text-color="white">
+                    <v-avatar>
+                      <img
+                        alt="user"
+                        :src="require(`@/assets/images/default-user.png`)"
+                      />
+                    </v-avatar>
 
-              <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                    {{ post.name }}
+                  </v-chip>
+                </v-row>
+              </v-card-title>
+            </v-img>
+
+            <v-card-text style="position: relative;">
+              <v-btn
+                v-if="like"
+                absolute
+                color="pink lighten-1"
+                class="white--text"
+                fab
+                right
+                top
+              >
+                <v-icon>mdi-heart-off</v-icon>
+              </v-btn>
+              <v-btn
+                v-else
+                absolute
+                color="pink lighten-1"
+                class="white--text"
+                fab
+                right
+                top
+              >
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+
+              <div class="grey--text title">
+                <div class="font-weight-regular text-decoration-underlinemt-n3">
+                  @{{ post.place }}
+                </div>
+                <div class="caption text-center mt-4 shadow-text">
+                  キャッチコピー
+                </div>
+
+                <p
+                  class="font-weight-thin overline mt-4 mb-n1"
+                  align="center"
+                  justify="center"
+                >
+                  {{ $dayjs(post.release).format('MM/DD') }}&nbsp;&nbsp;{{
+                    $dayjs(post.start_time).format('hh:mm')
+                  }}~{{ $dayjs(post.finish_time).format('hh:mm') }}
+                </p>
+              </div>
+
+              <!--                         <v-fade-transition>
+                          <v-overlay v-if="hover" absolute color="#036358">
+                            <v-btn
+                              large
+                              :to="{ path: `/post/${post.id}` }"
+                              @click="pagelink(post.id)"
+                              >参加ページ</v-btn
+                            >
+                          </v-overlay>
+                        </v-fade-transition> -->
+
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                  style="height: 105%;"
+                >
                   <v-btn
-                    large
+                    plain
+                    outlined
+                    x-large
                     :to="{ path: `/post/${post.id}` }"
                     @click="pagelink(post.id)"
                     >参加ページ</v-btn
                   >
-                </v-overlay>
-              </v-fade-transition>
-            </v-img>
-
-            <v-card-text class="pt-6" style="position: relative;">
-              <div>
-                <span class="font-weight-light grey--text title mb-2">
-                  {{ $dayjs(post.release).format('MM/DD') }}
-                  ( {{ $dayjs(post.start_time).format('hh:mm') }}~{{
-                    $dayjs(post.finish_time).format('hh:mm')
-                  }}
-                  ) <br />@{{ post.place }}
-                </span>
-              </div>
+                </div>
+              </v-expand-transition>
             </v-card-text>
-            <v-avatar size="56" class="mt-1">
-              <img
-                alt="user"
-                :src="require(`@/assets/images/default-user.png`)"
-              />
-            </v-avatar>
-
-            <!-- <schedule-card-info :post="post" :user=user /> -->
           </v-sheet>
         </template>
       </v-hover>
-      <!--
-                <v-card-text>
-                  <div class="font-weight-bold ml-8 mb-2">
-                    <br />
-                    <v-icon>mdi-heart</v-icon> (
-                    <user-dialog
-                      :users="post.like_users"
-                      :title="'気になるユーザー'"
-                    />
-                    ) <v-icon>mdi-run</v-icon> (<user-dialog
-                      :users="post.like_users"
-                      :title="'気になるユーザー'"
-                    />
-                    / {{ post.member }} )
-                  </div>
-                </v-card-text> -->
+
+      <v-card-text
+        align="center"
+        justify="center"
+        class="font-weight-bold mt-n5"
+      >
+        <div>
+          <br />
+          <v-icon>mdi-heart</v-icon> (
+          <user-dialog :users="post.like_users" :title="'気になるユーザー'" />
+          )&nbsp;
+          <v-icon>mdi-run</v-icon> (<user-dialog
+            :users="post.join_users"
+            :title="'気になるユーザー'"
+          />
+          / {{ post.member }} )
+        </div>
+      </v-card-text>
     </v-responsive>
   </v-card>
 </template>
@@ -81,7 +137,6 @@ import { mapGetters, mapActions } from 'vuex'
 import userDialog from '~/components/infoUser/UserDialog.vue'
 import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
-import scheduleCardContents from '~/components/ScheduleCardContents.vue'
 
 export default {
   props: {
@@ -97,7 +152,6 @@ export default {
   components: {
     userDialog,
     userDialogReview,
-    scheduleCardContents,
     scheduleCardInfo,
   },
   data() {
@@ -108,6 +162,7 @@ export default {
       // like: false,
       // join: false,
       // add: false,
+      like: false,
       createDate: '',
       releaseDate: '',
       start_time: '',
@@ -176,6 +231,18 @@ export default {
   font-weight: 200;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+}
+
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.9;
+  position: absolute;
+  width: 100%;
+}
+.shadow-text {
+  text-shadow: 2px 5px 10px;
+  border-bottom: double;
 }
 </style>
