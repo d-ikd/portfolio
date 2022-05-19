@@ -6,23 +6,28 @@
     </v-carousel> -->
     <v-row>
       <v-col
-        v-for="(post, i) in reversePosts"
-        :key="post.id"
+        v-for="(p, i) in posts"
+        :key="p.id"
         class="d-flex child-flex flex-wrap"
         cols="4"
       >
         <p class="black--text">index:{{ i + 1 }}</p>
-        <p class="black--text">like:{{ post.like_users.length }}</p>
+        <p class="black--text">like:{{ p.like_users.length }}</p>
+
+        <div class="black--text">
+          <counter-list :users="p.like_users" :post="p" :title="title" />
+        </div>
         <p class="black--text">id:{{ post.id }}</p>
         <button-like
           :user="user"
-          :post="post"
+          :post="p"
           :fronttitle="frontTitle"
           :backtitle="backTitle"
         />
-        <scheduleCardContents :user="user" :post="post" />
+        <scheduleCardContents :user="user" :post="p" />
+
         <!-- <user-dialog-like :users="post.like_users" /> -->
-        <user-dialog-shown :users="post.like_users" :title="title" />
+        <user-dialog-shown :users="p.like_users" :title="title" />
       </v-col>
     </v-row>
   </div>
@@ -34,6 +39,7 @@ import scheduleCardContents from '~/components/ScheduleCardContents.vue'
 import buttonLike from '~/components/infoPost/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
 import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
+import counterList from '~/components/CounterList.vue'
 
 export default {
   // props: {
@@ -48,6 +54,7 @@ export default {
     buttonLike,
     userDialogShown,
     userDialogLike,
+    counterList,
   },
   data() {
     return {
@@ -65,9 +72,9 @@ export default {
     }
   },
   computed: {
-    reversePosts() {
-      return this.posts.slice().reverse()
-    },
+    /*     reversePosts() {
+      return this.posts.slice().reverse();
+    }, */
     ...mapGetters({
       post: 'post/post',
       user: 'auth/loginUser',

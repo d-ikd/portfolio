@@ -18,6 +18,17 @@ import Search from '~/components/search/Search.vue'
 // import searchForm from '~/components/search/SearchForm.vue'
 
 export default {
+  computed: {
+    /* ========== ScheduleCard =========== */
+    ...mapGetters({
+      /* user: 'user/user', */
+      user: 'auth/loginUser',
+    }),
+    /*     postUpdate() {
+      return this.$store.state.post.post
+    }, */
+    /* ========== ScheduleCard =========== */
+  },
   components: {
     Search,
     // searchForm,
@@ -44,7 +55,6 @@ export default {
   data() {
     return {}
   },
-  computed: {},
   methods: {},
 }
 </script>

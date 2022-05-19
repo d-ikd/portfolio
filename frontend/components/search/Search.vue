@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <!--     <v-row>
       <v-col sm="3" cols="12">
         <template v-if="search == '投稿'">
           <checkbox @category="catchCategory" />
@@ -15,15 +15,14 @@
         />
       </v-col>
       <v-col sm="3" cols="12">
-        <!--           <v-select v-model="search" :items="items" label="検索項目" /> -->
+                  <v-select v-model="search" :items="items" label="検索項目" />
       </v-col>
     </v-row>
     <template v-if="search === '投稿' && resPosts.length">
-      <schedule-card2 :posts="resPosts" />
     </template>
-    <template v-else>
-      <Schedule-card />
-    </template>
+    <template v-else> -->
+    <Schedule-card />
+    <!--     </template> -->
   </div>
 </template>
 
@@ -57,25 +56,14 @@ export default {
       resUsers: [],
     }
   },
-  computed: {
-    /* ========== ScheduleCard =========== */
-    ...mapGetters({
-      user: 'user/user',
-      loginUser: 'auth/loginUser',
-    }),
-    postUpdate() {
-      return this.$store.state.post.post
-    },
-    /* ========== ScheduleCard =========== */
 
-    /* ========== Search =========== */
-    search: {
-      get() {
-        return this.$store.state.tab.search
-      },
-      set(val) {
-        this.$store.dispatch('tab/getSearch', val)
-      },
+  /* ========== Search =========== */
+  search: {
+    get() {
+      return this.$store.state.tab.search
+    },
+    set(val) {
+      this.$store.dispatch('tab/getSearch', val)
     },
   },
   watch: {
