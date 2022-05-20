@@ -42,7 +42,7 @@
 
                   <v-card-text style="position: relative;">
                     <schedule-card-info :post="p" />
-                    <button-like :user="user" :post="p" />
+                    <button-like :user="user" :post="p" :isRoundedLike="true" />
                     <div class="grey--text title">
                       <!--                                       <p class="black--text"> index:{{ i + 1 }} </p>
             <p class="black--text"> like:{{ p.like_users.length }} </p>
@@ -116,7 +116,7 @@
             <v-card-text class="orange font-weight-bold">
               <div class="show-rate">
                 <span> <v-icon>mdi-heart</v-icon>&nbsp; </span>
-                (&nbsp;
+                &nbsp;
                 <span>
                   <counter-list
                     :users="p.like_users"
@@ -124,7 +124,7 @@
                     :title="title1"
                   />
                 </span>
-                &nbsp;) <v-icon>mdi-run</v-icon>&nbsp; (&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; <v-icon>mdi-run</v-icon>&nbsp;
                 <span>
                   <counter-list
                     :users="p.join_users"
@@ -133,7 +133,7 @@
                   />
                   &nbsp;
                 </span>
-                <span> /&nbsp;{{ p.member }}&nbsp;) </span>
+                <span> /&nbsp;{{ p.member }}</span>
               </div>
             </v-card-text>
           </v-responsive>

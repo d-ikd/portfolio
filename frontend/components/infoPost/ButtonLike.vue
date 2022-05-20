@@ -1,52 +1,53 @@
 <template>
   <div>
-    <!-- <v-btn
-      v-if="like"
-      absolute
-      color="pink lighten-1"
-      class="white--text"
-      fab
-      right
-      top
-    >
-      <v-icon>mdi-heart-off</v-icon>
-    </v-btn>
-    <v-btn
-      v-else
-      absolute
-      color="pink lighten-1"
-      class="white--text"
-      fab
-      right
-      top
-    >
-      <v-icon>mdi-heart</v-icon>
-    </v-btn> -->
-
-    <v-btn
-      v-if="join"
-      color="red white--text font-weight-bold"
-      absolute
-      fab
-      right
-      top
-      @click="joining"
-    >
-      <v-icon>mdi-heart-off</v-icon>
-      {{ fronttitle }}
-    </v-btn>
-    <v-btn
-      v-else
-      color="pink lighten-3 white--text font-weight-bold"
-      absolute
-      fab
-      right
-      top
-      @click="joining"
-    >
-      <v-icon>mdi-heart</v-icon>
-      {{ backtitle }}
-    </v-btn>
+    <template v-if="isRoundedLike">
+      <v-btn
+        v-if="isLike"
+        color="red white--text font-weight-bold"
+        absolute
+        fab
+        right
+        top
+        @click="nice"
+      >
+        <v-icon>mdi-heart-off</v-icon>
+      </v-btn>
+      <v-btn
+        v-else
+        color="pink white--text font-weight-bold"
+        absolute
+        fab
+        right
+        top
+        @click="nice"
+      >
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+    </template>
+    <template v-if="isRoundedJoin">
+      <v-btn
+        v-if="isJoin"
+        color="red white--text font-weight-bold"
+        absolute
+        fab
+        right
+        top
+        @click="joining"
+      >
+        <v-icon large>mdi-run</v-icon>
+      </v-btn>
+      <v-btn
+        v-else
+        color="pink white--text font-weight-bold"
+        absolute
+        fab
+        right
+        top
+        @click="joining"
+      >
+        <v-icon large>mdi-close-box</v-icon>
+      </v-btn>
+    </template>
   </div>
 </template>
 
@@ -71,20 +72,28 @@ export default {
       type: String,
       required: false,
     },
-    status1: {
+    isRoundedLike: {
       type: Boolean,
-      required: false,
+      default: false,
     },
-    status2: {
-      type: String,
-      required: false,
+    isRectangleLike: {
+      type: Boolean,
+      default: false,
+    },
+    isRoundedJoin: {
+      type: Boolean,
+      default: false,
+    },
+    isRectangleJoin: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
     return {
+      isLike: false,
+      isJoin: false,
       loading: false,
-      like: false,
-      join: false,
       add: false,
     }
   },
@@ -102,20 +111,20 @@ export default {
   watch: {
     loginUserLike() {
       if (this.login) {
-        this.like = false
+        this.isLike = false
         this.loginUser.postlike.forEach((f) => {
           if (this.post.id === f.id) {
-            this.like = true
+            this.isLike = true
           }
         })
       }
     },
     loginUserJoin() {
       if (this.login) {
-        this.join = false
+        this.isJoin = false
         this.loginUser.postjoin.forEach((f) => {
           if (this.post.id === f.id) {
-            this.join = true
+            this.isJoin = true
           }
         })
       }
@@ -123,18 +132,18 @@ export default {
   },
   mounted() {
     if (this.login) {
-      this.like = false
+      this.isLike = false
       this.loginUser.postlike.forEach((f) => {
         if (this.post.id === f.id) {
-          this.like = true
+          this.isLike = true
         }
       })
     }
     if (this.login) {
-      this.join = false
+      this.isJoin = false
       this.loginUser.postjoin.forEach((f) => {
         if (this.post.id === f.id) {
-          this.join = true
+          this.isJoin = true
         }
       })
     }
@@ -150,6 +159,7 @@ export default {
   //     return this.$store.state.post.post
   //   },
   // },
+
   methods: {
     ...mapActions({
       likePost: 'post/likePost',
@@ -162,18 +172,18 @@ export default {
         user: this.loginUser.id,
         post: this.post.id,
       }
-      if (this.like) {
+      if (this.isLike) {
         this.unLikePost(postData).then(() => {
           this.$axios.$get(`/api/v1/posts/${this.post.id}`).then((res) => {
             this.$store.commit('post/setPost', res, { root: true })
-            this.like = false
+            this.isLike = false
           })
         })
       } else {
         this.likePost(postData).then(() => {
           this.$axios.$get(`/api/v1/posts/${this.post.id}`).then((res) => {
             this.$store.commit('post/setPost', res, { root: true })
-            this.like = true
+            this.isLike = true
           })
         })
       }
@@ -183,18 +193,18 @@ export default {
         user: this.loginUser.id,
         post: this.post.id,
       }
-      if (this.join) {
+      if (this.isJoin) {
         this.unJoinPost(postData).then(() => {
           this.$axios.$get(`/api/v1/posts/${this.post.id}`).then((res) => {
             this.$store.commit('post/setPost', res, { root: true })
-            this.join = false
+            this.isJoin = false
           })
         })
       } else {
         this.joinPost(postData).then(() => {
           this.$axios.$get(`/api/v1/posts/${this.post.id}`).then((res) => {
             this.$store.commit('post/setPost', res, { root: true })
-            this.join = true
+            this.isJoin = true
           })
         })
       }

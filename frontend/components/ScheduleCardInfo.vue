@@ -19,8 +19,8 @@
             class="mt-n13"
             v-on="on"
           >
-            <v-icon dark right x-large>
-              mdi-run
+            <v-icon dark x-large>
+              mdi-walk
             </v-icon>
           </v-btn>
         </template>
@@ -32,27 +32,7 @@
           style="max-height: 600px"
           class="overflow-y-auto"
         >
-          <v-card-title class="transparent white--text">
-            <span class="headline"></span>
-
-            <v-spacer></v-spacer>
-
-            <v-menu bottom left>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="#BDBDBD88"
-                  fab
-                  dark
-                  x-large
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="dialog = false"
-                >
-                  <v-icon color="white"> mdi-close-circle-outline</v-icon>
-                </v-btn>
-              </template>
-            </v-menu>
-          </v-card-title>
+          <button-close @close-dialog="closeDialog" />
 
           <!--                                    <v-toolbar>
             <v-toolbar-title>Settings</v-toolbar-title>
@@ -97,7 +77,11 @@
                     </div>
                   </div>
                 </template>
-
+                <button-like
+                  :user="loginUser"
+                  :post="post"
+                  :isRoundedLike="true"
+                />
                 <v-card class="rounded-card">
                   <v-img contain :src="post.image.url"></v-img>
                 </v-card>
@@ -140,9 +124,13 @@
                 </template>
                 <div class="py-4">
                   <h2 :class="`headline font-weight-light mb-4 pink--text`">
+                    <button-like
+                      :user="loginUser"
+                      :post="post"
+                      :isRoundedJoin="true"
+                    />
                     <strong>募集メンバー: {{ post.member }}人</strong>
                     <div class="caption mb-2">予算: {{ post.price }}円/人</div>
-                    <button-like :user="user" :post="post" />
                     <user-dialog-shown
                       :users="post.join_users"
                       :title="'参加者'"
@@ -177,27 +165,7 @@
             <!-- <post-container-message :post="post" /> -->
           </div>
 
-          <v-card-title class="transparent white--text">
-            <span class="headline"></span>
-
-            <v-spacer></v-spacer>
-
-            <v-menu bottom left>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="#BDBDBD88"
-                  fab
-                  dark
-                  x-large
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="dialog = false"
-                >
-                  <v-icon color="white"> mdi-close-circle-outline</v-icon>
-                </v-btn>
-              </template>
-            </v-menu>
-          </v-card-title>
+          <button-close @close-dialog="closeDialog" />
         </v-card>
       </v-dialog>
     </v-col>
@@ -210,6 +178,7 @@ import postContainerLike from '~/components/infoPost/PostContainerLike.vue'
 import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue'
 import buttonLike from '~/components/infoPost/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
+import buttonClose from '~/components/layouts/ButtonClose.vue'
 
 export default {
   components: {
@@ -217,6 +186,7 @@ export default {
     postContainerMessage,
     buttonLike,
     userDialogShown,
+    buttonClose,
   },
   props: {
     post: {
@@ -224,7 +194,6 @@ export default {
       required: true,
     },
   },
-
   data() {
     return {
       reverse: true,
@@ -237,10 +206,14 @@ export default {
       dialog: false,
     }
   },
+  methods: {
+    closeDialog() {
+      this.dialog = false
+    },
+  },
   computed: {
     ...mapGetters({
       posts: 'post/posts',
-      user: 'auth/loginUser',
       loginUser: 'auth/loginUser',
     }),
   },

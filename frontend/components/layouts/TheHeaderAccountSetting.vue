@@ -30,27 +30,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-card-title class="transparent white--text">
-              <span class="headline"></span>
-
-              <v-spacer></v-spacer>
-
-              <v-menu bottom left>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="#BDBDBD88"
-                    fab
-                    dark
-                    x-large
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="dialog.value = false"
-                  >
-                    <v-icon color="white"> mdi-close-circle-outline</v-icon>
-                  </v-btn>
-                </template>
-              </v-menu>
-            </v-card-title>
+            <button-close @close-dialog="closeDialog" />
           </v-toolbar>
 
           <v-row justify="center">
@@ -196,6 +176,7 @@ import editAvatar from '~/components/editUser/EditAvatar.vue'
 import editEmail from '~/components/editUser/EditEmail.vue'
 import editPassword from '~/components/editUser/EditPassword.vue'
 import editProfile from '~/components/editUser/EditProfile.vue'
+import buttonClose from '~/components/layouts/ButtonClose.vue'
 
 export default {
   components: {
@@ -208,9 +189,11 @@ export default {
     editEmail,
     editPassword,
     editProfile,
+    buttonClose,
   },
   data() {
     return {
+      dialog: false,
       expand: false,
       show: false,
       defaultImage: 'http://localhost:5000/fallback/default.png',
@@ -267,6 +250,9 @@ export default {
     }),
     pagelink(link) {
       this.$router.push({ path: link })
+    },
+    closeDialog() {
+      this.dialog = false
     },
 
     mouseover() {

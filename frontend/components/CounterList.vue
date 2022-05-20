@@ -89,8 +89,19 @@ export default {
     //     console.log(res.data)
     //   })
     // }, */
-  },
 
+    // いいね数を返す
+    count() {
+      return this.likeList.length
+    },
+    // ログインユーザが既にいいねしているかを判定する
+    isLiked() {
+      if (this.likeList.length === 0) {
+        return false
+      }
+      return Boolean(this.findLikeId())
+    },
+  },
   data() {
     return {
       dialog: false,
