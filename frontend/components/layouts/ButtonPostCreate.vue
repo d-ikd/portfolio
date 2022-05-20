@@ -44,7 +44,7 @@
       </v-menu>
     </v-card-title>
 
-    <v-card width="400px" class="mx-auto">
+    <v-card width="400px" class="mx-auto pb-3 mb-10">
       <v-card-text>
         <v-form ref="form" lazy-validation class="pt-10">
           <v-file-input
@@ -114,7 +114,12 @@
               />
             </template>
 
-            <v-time-picker v-model="start_time" elevation="15">
+            <v-time-picker
+              v-model="start_time"
+              elevation="15"
+              color="green lighten-1"
+              format="24hr"
+            >
               <v-spacer></v-spacer>
               <v-flex justify-center>
                 <v-btn text color="primary" @click="starttimepicker = false">
@@ -149,7 +154,12 @@
               />
             </template>
 
-            <v-time-picker v-model="finish_time" elevation="15">
+            <v-time-picker
+              v-model="finish_time"
+              elevation="15"
+              color="green lighten-1"
+              format="24hr"
+            >
               <v-spacer></v-spacer>
               <v-flex justify-center>
                 <v-btn text color="primary" @click="finishtimepicker = false">
@@ -198,6 +208,7 @@
             v-model="category"
             :items="categoryList"
             label="カテゴリー"
+            item-text="category"
           />
           <v-divider class="ma-2" />
           <!--
@@ -247,15 +258,15 @@ export default {
       name: '',
       image: '',
       details: '',
-      start_time: '',
-      finish_time: '',
-      member: '',
+      start_time: '12:00',
+      finish_time: '18:00',
+      member: '5',
       place: '',
-      category: '',
-      price: '',
+      price: '1000',
       release: '',
-      quickword: '',
-      catchcopy: '',
+      quickword: '初めまして。よろしくお願いします！',
+      catchcopy: 'キャッチコピーを入力します',
+      category: { category: 'インドア' },
       categoryList: ['インドア', 'アウトドア'],
       menu: false,
       starttimepicker: false,

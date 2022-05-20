@@ -52,6 +52,18 @@
                       <div
                         class="font-weight-regular text-decoration-underlinemt-n3"
                       >
+                        <v-list style="background-color: white">
+                          <v-card
+                            v-for="review in p.reviews"
+                            :key="review.id"
+                            flat
+                            class="mb-2 black--text"
+                            style="background-color: white"
+                          >
+                            <post-review2 :review="review" />
+                          </v-card>
+                        </v-list>
+
                         {{ p.name }}
                       </div>
                       <div class="caption text-center mt-4 shadow-text">
@@ -106,11 +118,19 @@
                 <span> <v-icon>mdi-heart</v-icon>&nbsp; </span>
                 (&nbsp;
                 <span>
-                  <counter-list :users="p.like_users" :post="p" />
+                  <counter-list
+                    :users="p.like_users"
+                    :post="p"
+                    :title="title1"
+                  />
                 </span>
                 &nbsp;) <v-icon>mdi-run</v-icon>&nbsp; (&nbsp;
                 <span>
-                  <counter-list :users="p.join_users" :post="p" />
+                  <counter-list
+                    :users="p.join_users"
+                    :post="p"
+                    :title="title2"
+                  />
                   &nbsp;
                 </span>
                 <span> /&nbsp;{{ p.member }}&nbsp;) </span>
@@ -132,6 +152,7 @@ import counterList from '~/components/CounterList.vue'
 import userDialog from '~/components/infoUser/UserDialog.vue'
 import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
+import postReview2 from '~/components/infoPost/PostReview2.vue'
 
 export default {
   // props: {
@@ -149,6 +170,7 @@ export default {
     userDialog,
     userDialogReview,
     scheduleCardInfo,
+    postReview2,
   },
   data() {
     return {
@@ -191,7 +213,6 @@ export default {
     this.$axios.get('api/v1/posts').then((res) => {
       this.posts = res.data
     })
-
     this.$axios
       .get(`api/v1/posts/${this.post.id}`)
       .then((res) => {

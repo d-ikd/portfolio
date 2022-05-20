@@ -9,7 +9,7 @@
     <v-card class="mx-auto" max-width="500" tile>
       <v-list rounded color="white">
         <v-subheader class="black--text"
-          >{{ title }} （{{ users.length }}）</v-subheader
+          >{{ title }}（{{ users.length }}）</v-subheader
         >
         <v-list-item-group>
           <v-list-item

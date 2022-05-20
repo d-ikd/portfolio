@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <!--       <v-col cols="12">
+    <!-- <v-row justify="center">
+      <v-col cols="12">
         <v-sheet elevation="10" rounded="xl" class="green lighten-2">
           <v-sheet dark rounded="t-xl"> </v-sheet>
 
@@ -46,8 +46,8 @@
             </v-tabs>
           </div>
         </v-sheet>
-      </v-col> -->
-    </v-row>
+      </v-col>
+    </v-row> -->
   </v-container>
 </template>
 
@@ -57,12 +57,12 @@ import postReviewModal from '~/components/infoPost/PostReviewModal.vue'
 import postReviewList from '~/components/infoPost/PostReviewList.vue'
 
 export default {
-  /*       props: {
+  props: {
     post: {
       type: Object,
       required: true,
     },
-  }, */
+  },
   components: {
     postReviewModal,
     postReviewList,
