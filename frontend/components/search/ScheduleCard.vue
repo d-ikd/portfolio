@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: white">
-    <!--     <v-carousel hide-delimiters height="auto">
+    <!-- <v-carousel hide-delimiters height="auto">
       <v-carousel-item>
       </v-carousel-item>
     </v-carousel> -->

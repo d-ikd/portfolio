@@ -31,15 +31,17 @@
       class="pt-14"
       @change="setImage"
     />
-    <v-btn
-      rounded
-      color="#48A1EB"
-      class="font-weight-bold"
-      min-width="125px"
-      @click="changeUserAvatar"
-    >
-      変更
-    </v-btn>
+    <v-card-actions class="justify-center">
+      <v-btn
+        rounded
+        color="#48A1EB"
+        class="font-weight-bold"
+        min-width="125px"
+        @click="changeUserAvatar"
+      >
+        変更
+      </v-btn>
+    </v-card-actions>
   </v-form>
 </template>
 

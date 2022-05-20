@@ -1,12 +1,13 @@
 <template>
-  <v-container>
-    <button-like
+  <v-container class="white black--text">
+    {{ post.name }}
+    <!--     <button-like
       :user="user"
       :post="post"
       :fronttitle="frontTitle"
       :backtitle="backTitle"
-    />
-    <v-row>
+    /> -->
+    <!--     <v-row>
       <v-col cols="12">
         <v-sheet elevation="10" rounded="xl" class="green lighten-2">
           <v-sheet class="pl-5 primary" dark rounded="t-xl">
@@ -39,7 +40,7 @@
           <v-sheet class="green lighten-2">
             <v-row no-gutters>
               <v-col cols="6">
-                <!-- <post-container-like :post="post" /> -->
+
               </v-col>
               <v-col cols="6">
                 <post-container-timeline :post="post" />
@@ -101,7 +102,7 @@
           </v-row>
         </v-sheet>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
@@ -116,6 +117,12 @@ export default {
     // postContainerLike,
     postContainerTimeline,
     buttonLike,
+  },
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {

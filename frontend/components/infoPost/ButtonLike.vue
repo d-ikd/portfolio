@@ -1,33 +1,35 @@
 <template>
   <div>
     <!-- <v-btn
-    v-if="like"
-    absolute
-    color="pink lighten-1"
-    class="white--text"
-    fab
-    right
-    top
+      v-if="like"
+      absolute
+      color="pink lighten-1"
+      class="white--text"
+      fab
+      right
+      top
     >
-    <v-icon>mdi-heart-off</v-icon>
+      <v-icon>mdi-heart-off</v-icon>
     </v-btn>
     <v-btn
-    v-else
-    absolute
-    color="pink lighten-1"
-    class="white--text"
-    fab
-    right
-    top
+      v-else
+      absolute
+      color="pink lighten-1"
+      class="white--text"
+      fab
+      right
+      top
     >
-    <v-icon>mdi-heart</v-icon>
+      <v-icon>mdi-heart</v-icon>
     </v-btn> -->
 
     <v-btn
       v-if="like"
-      class="mx-5"
       color="red white--text font-weight-bold"
-      outlined
+      absolute
+      fab
+      right
+      top
       @click="nice"
     >
       <v-icon>mdi-heart-off</v-icon>
@@ -35,11 +37,14 @@
     </v-btn>
     <v-btn
       v-else
-      class="mx-5"
-      color="green white--text font-weight-bold"
+      color="pink lighten-3 white--text font-weight-bold"
+      absolute
+      fab
+      right
+      top
       @click="nice"
     >
-      <v-icon class="mr-1">mdi-heart</v-icon>
+      <v-icon>mdi-heart</v-icon>
       {{ backtitle }}
     </v-btn>
   </div>

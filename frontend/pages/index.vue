@@ -60,7 +60,8 @@ export default {
 </script>
 
 <style scoped>
-div {
+/* To check where parts are arranged */
+/* div {
   border: 5px solid yellow;
-}
+} */
 </style>

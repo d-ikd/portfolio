@@ -38,9 +38,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
-import { mapGetters } from 'vuex'
 
 export default {
   components: {

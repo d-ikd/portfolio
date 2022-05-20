@@ -4,19 +4,21 @@
     <span>メールアドレス</span>
     <v-text-field v-model="email" label="新しいメールアドレス" class="px-3" />
     <v-spacer></v-spacer>
-    <v-btn
-      v-if="originEmail != guest"
-      rounded
-      class="font-weight-bold"
-      min-width="125px"
-      color="#48A1EB"
-      @click="changeUserEmail"
-    >
-      変更
-    </v-btn>
-    <v-btn v-else block color="grey" class="white--text">
-      ゲストユーザーの為変更できません
-    </v-btn>
+    <v-card-actions class="justify-center">
+      <v-btn
+        v-if="originEmail != guest"
+        rounded
+        class="font-weight-bold"
+        min-width="125px"
+        color="#48A1EB"
+        @click="changeUserEmail"
+      >
+        変更
+      </v-btn>
+      <v-btn v-else block color="grey" class="white--text">
+        ゲストユーザーの為変更できません
+      </v-btn>
+    </v-card-actions>
   </v-form>
 </template>
 

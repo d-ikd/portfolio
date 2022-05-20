@@ -2,42 +2,97 @@
   <div>
     <v-dialog transition="dialog-bottom-transition" max-width="600">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" v-bind="attrs" v-on="on"
+        <v-btn transparent v-bind="attrs" v-on="on"
           ><v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
       <template v-slot:default="dialog">
         <v-card>
-          <v-toolbar color="primary" dark
-            ><h3>アカウント設定</h3>
-            <v-spacer />
-            <v-btn text @click="dialog.value = false"
-              ><v-icon>mdi-close-box-outline</v-icon></v-btn
-            >
+          <v-toolbar color="white black--text" dark extended prominent>
+            <v-toolbar-title class="d-flex"></v-toolbar-title>
+            <v-spacer></v-spacer>
+            <template>
+              <div>
+                <user-avatar :size="100" :user="currentUser" />
+              </div>
+              <div class="mx-auto ml-7 text-center">
+                <h3>{{ currentUser.name }}</h3>
+                <p class="caption mt-1">
+                  {{ currentUser.email }}
+                </p>
+              </div>
+              <div class="ml-14">
+                <p class="caption">
+                  {{ currentUser.profile }}
+                </p>
+              </div>
+            </template>
+
+            <v-spacer></v-spacer>
+            <v-btn text color="black" @click="dialog.value = false">
+              <v-icon>mdi-close-box-outline</v-icon>
+            </v-btn>
           </v-toolbar>
 
           <v-row justify="center">
-            <v-expansion-panels inset>
+            <v-expansion-panels inset color="white">
               <v-expansion-panel>
                 <v-expansion-panel-header>
-                  <user-avatar :size="100" :user="currentUser" />
+                  followings
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <user-list :users="loginUser.followings" />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
 
-                  <div class="mx-auto text-center">
-                    <h3>{{ currentUser.name }}</h3>
-                    <p class="caption mt-1">
-                      {{ currentUser.email }}
-                    </p>
-                  </div>
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  followers
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <user-list :users="user.followers" />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
 
-                  <v-btn
-                    depressed
-                    rounded
-                    text
-                    :to="{ path: `/users/${currentUser.id}` }"
-                    @click="dialog.value = false"
-                  >
-                    マイページ
-                  </v-btn>
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  postjoin
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <user-post-list :posts="user.postjoin" />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  postlike
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <user-post-list :posts="user.postlike" />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  レビューリスト
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <user-review-list :reviews="user.reviews" />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  レビューリスト２
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <user-like-review-list :reviews="user.like_reviews" />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  アバター変更
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <editAvatar />
@@ -112,6 +167,9 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import userList from '~/components/infoUser/UserList.vue'
+import userPostList from '~/components/infoUser/UserPostList.vue'
+
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 import deleteUser from '~/components/editUser/DeleteUser.vue'
@@ -122,6 +180,9 @@ import editProfile from '~/components/editUser/EditProfile.vue'
 
 export default {
   components: {
+    userList,
+    userPostList,
+
     userAvatar,
     deleteUser,
     editAvatar,
@@ -153,7 +214,7 @@ export default {
   watch: {
     postUpdate() {
       // Post再取得時にユーザーを更新
-      this.$axios.get(`api/v1/users/${this.$route.params.id}`).then((res) => {
+      this.$axios.get(`api/v1/users/${this.loginUser.id}`).then((res) => {
         this.$store.commit('user/setUser', res.data, { root: true })
         console.log(res.data)
       })
@@ -167,7 +228,7 @@ export default {
     // },
   },
   created() {
-    this.$axios.get(`api/v1/users/${this.$route.params.id}`).then((res) => {
+    this.$axios.get(`api/v1/users/${this.loginUser.id}`).then((res) => {
       this.$store.commit('user/setUser', res.data, { root: true })
       console.log(res.data)
       this.loading = true

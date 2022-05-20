@@ -11,7 +11,6 @@
               :aspect-ratio="1 / 1"
               class="white--text"
             >
-              <!-- <v-img v-else contain :src="defaultImage"> -->
               <v-card-title>
                 <v-row class="mt-n4">
                   <v-col> </v-col>
@@ -110,32 +109,12 @@
           </v-sheet>
         </template>
       </v-hover>
-
-      <v-card-text
-        align="center"
-        justify="center"
-        class="font-weight-bold mt-n5"
-      >
-        <div>
-          <br />
-          <v-icon>mdi-heart</v-icon> (
-          <user-dialog :users="post.like_users" :title="'気になるユーザー'" />
-          )&nbsp;
-          <v-icon>mdi-run</v-icon> (<user-dialog
-            :users="post.join_users"
-            :title="'気になるユーザー'"
-          />
-          / {{ post.member }} )
-        </div>
-      </v-card-text>
     </v-responsive>
   </v-card>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import userDialog from '~/components/infoUser/UserDialog.vue'
-import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
 
 export default {
@@ -150,8 +129,6 @@ export default {
     },
   },
   components: {
-    userDialog,
-    userDialogReview,
     scheduleCardInfo,
   },
   data() {
@@ -167,7 +144,6 @@ export default {
       releaseDate: '',
       start_time: '',
       finish_time: '',
-      defaultImage: require('@/assets/images/default-user.png'),
     }
   },
   computed: {
@@ -177,6 +153,7 @@ export default {
       login: 'auth/isLoggedIn',
       currentPosts: 'favOrNotCheck/posts',
     }),
+
     loginUserReview() {
       return this.$store.state.post.post
     },

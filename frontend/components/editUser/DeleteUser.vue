@@ -2,19 +2,21 @@
   <v-form ref="form" lazy-validation class="ma-16">
     <v-icon> mdi-account-remove </v-icon>
     <span>アカウント削除</span><br />
-    <v-btn
-      v-if="email != guest"
-      rounded
-      color="error white--text"
-      class="font-weight-bold mt-3"
-      min-width="125px"
-      @click="deleteUser"
-    >
-      削除
-    </v-btn>
-    <v-btn v-else color="grey" class="white--text px-10 mt-8">
-      ゲストユーザーの為削除できません
-    </v-btn>
+    <v-card-actions class="justify-center">
+      <v-btn
+        v-if="email != guest"
+        rounded
+        color="error white--text"
+        class="font-weight-bold mt-3"
+        min-width="125px"
+        @click="deleteUser"
+      >
+        削除
+      </v-btn>
+      <v-btn v-else color="grey" class="white--text px-10 mt-8">
+        ゲストユーザーの為削除できません
+      </v-btn>
+    </v-card-actions>
   </v-form>
 </template>
 

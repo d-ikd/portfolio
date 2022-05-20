@@ -18,19 +18,21 @@
       :type="show2 ? 'text' : 'password'"
       @click:append="show2 = !show2"
     />
-    <v-btn
-      v-if="email != guest"
-      rounded
-      color="#48A1EB"
-      min-width="125px"
-      class="font-weight-bold"
-      @click="changeUserPassword"
-    >
-      変更
-    </v-btn>
-    <v-btn v-else block color="grey" class="white--text">
-      ゲストユーザーの為変更できません
-    </v-btn>
+    <v-card-actions class="justify-center">
+      <v-btn
+        v-if="email != guest"
+        rounded
+        color="#48A1EB"
+        min-width="125px"
+        class="font-weight-bold"
+        @click="changeUserPassword"
+      >
+        変更
+      </v-btn>
+      <v-btn v-else color="grey" class="white--text">
+        ゲストユーザーの為変更できません
+      </v-btn>
+    </v-card-actions>
   </v-form>
 </template>
 

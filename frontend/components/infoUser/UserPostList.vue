@@ -16,6 +16,7 @@
           <v-list-item-title class="list-item" @click="pagelink(post.id)">
             {{ post.name }}
           </v-list-item-title>
+          <schedule-card-info :post="post" />
         </v-list-item>
       </v-row>
       <!-- </v-list-item-group> -->
@@ -24,8 +25,12 @@
 </template>
 
 <script>
+import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
+
 export default {
-  components: {},
+  components: {
+    scheduleCardInfo,
+  },
   props: {
     posts: {
       type: Array,

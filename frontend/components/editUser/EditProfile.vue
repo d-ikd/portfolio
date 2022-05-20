@@ -6,15 +6,17 @@
     <v-icon> mdi-account-details </v-icon>
     <span>プロフィール</span>
     <v-textarea v-model="profile" label="プロフィール" class="px-3" />
-    <v-btn
-      rounded
-      color="#48A1EB"
-      class="font-weight-bold"
-      min-width="125px"
-      @click="changeUserProfile"
-    >
-      変更
-    </v-btn>
+    <v-card-actions class="justify-center">
+      <v-btn
+        rounded
+        color="#48A1EB"
+        class="font-weight-bold"
+        min-width="125px"
+        @click="changeUserProfile"
+      >
+        変更
+      </v-btn>
+    </v-card-actions>
   </v-form>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <the-header />
-    <v-main style="background-color: black">
+    <v-main>
       <snackbar-message />
       <nuxt />
       <button-post-create />

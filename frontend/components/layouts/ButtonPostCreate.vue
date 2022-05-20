@@ -8,7 +8,7 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        color="#BDBDBD88"
+        color="#BDBDBD"
         dark
         x-large
         fixed
@@ -171,6 +171,7 @@
             placeholder="例: 5"
             label="人数 ( 人 )"
           />
+
           <v-text-field
             v-model.number="price"
             placeholder="例: 2000"
@@ -181,6 +182,18 @@
             placeholder="例: 代々木公園"
             label="場所"
           />
+
+          <v-text-field
+            v-model="quickword"
+            placeholder="例: 楽しみましょう！"
+            label="声かけメッセージ"
+          />
+          <v-text-field
+            v-model="catchcopy"
+            placeholder="例: 春が始まりましたね"
+            label="キャッチコピー"
+          />
+
           <v-select
             v-model="category"
             :items="categoryList"
@@ -223,6 +236,7 @@
       </v-card-text>
     </v-card>
   </v-dialog>
+  <!-- </template> -->
 </template>
 
 <script>
@@ -240,6 +254,8 @@ export default {
       category: '',
       price: '',
       release: '',
+      quickword: '',
+      catchcopy: '',
       categoryList: ['インドア', 'アウトドア'],
       menu: false,
       starttimepicker: false,
@@ -272,6 +288,8 @@ export default {
       formData.append('category', this.category)
       formData.append('release', this.release)
       formData.append('price', this.price)
+      formData.append('quickword', this.quickword)
+      formData.append('catchcopy', this.catchcopy)
       const config = {
         headers: {
           'content-type': 'multipart/form-data',

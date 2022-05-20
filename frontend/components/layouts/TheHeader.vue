@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar :clipped-left="clipped" app dark>
+  <v-app-bar :clipped-left="clipped" app color="#B0DFC1">
     <nuxt-link to="/" class="link">
       <v-toolbar-title class="header-title">Stuctive</v-toolbar-title>
     </nuxt-link>
@@ -10,6 +10,7 @@
       <v-btn
         text
         class="ml-4 mr-2 font-weight-bold"
+        color="white"
         @click.stop="loginDialog(true)"
       >
         ログイン
@@ -18,8 +19,8 @@
         <the-modal-login />
       </v-dialog>
       <v-btn
-        class="ml-4 mr-2"
-        color="green  white--text font-weight-bold"
+        class="ml-4 mr-2 white--text font-weight-bold"
+        color="#E2C6C7"
         @click.stop="signUpDialog(true)"
       >
         新規登録
