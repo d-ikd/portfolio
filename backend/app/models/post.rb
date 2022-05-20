@@ -1,10 +1,13 @@
 class Post < ApplicationRecord
   # before_save :write_width_height
+  mount_uploader :photoshot, PhotoshotUploader
   mount_uploader :image, ImageUploader
 
   validates :name, presence: true
   # validates :name, presence: true, uniqueness: { case_sensitive: true }
   validates :details, presence: false
+  validates :quickword, presence: false
+  validates :catchcopy, presence: false
   validates :start_time, presence: false
   validates :finish_time, presence: false
   validates :member, presence: false
@@ -21,18 +24,6 @@ class Post < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :pickups, dependent: :destroy
 
-  has_many :images, dependent: :destroy
-
-  # accepts_nested_attributes_for :images
-
-  # def write_width_height
-  #   # width, height = FastImage.size self.image.file.file
-  #   height = FastImage.size self.image.file.file
-  #   # self.width  = width
-  #   self.height = height
-  # rescue StandardError
-  #   # 編集時、画像がアップロードされていない時は画像サイズを触らない
-  # end
 
   def avg_rate
     if self.reviews.empty?
