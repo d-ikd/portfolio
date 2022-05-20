@@ -42,14 +42,17 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.text "details"
+    t.text "quickword"
+    t.text "catchcopy"
+    t.integer "member"
+    t.string "place"
+    t.string "category"
+    t.integer "price"
     t.time "start_time"
     t.time "finish_time"
-    t.integer "member"
-    t.float "place"
-    t.string "category"
-    t.string "image"
     t.date "release"
-    t.integer "price"
+    t.string "image"
+    t.string "photoshot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

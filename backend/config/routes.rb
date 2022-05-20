@@ -18,7 +18,6 @@ Rails.application.routes.draw do
         get :search, on: :collection
       end
       resources :reviews, only: %i[index create update destroy]
-      resources :menus, only: %i[index create update destroy]
       resources :pickups, only: %i[index create destroy]
       resource :relationships, only: %i[create destroy]
       resource :post_likes, only: %i[create destroy]
