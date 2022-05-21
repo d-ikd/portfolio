@@ -191,18 +191,6 @@
             item-text="category"
           />
           <v-divider class="ma-2" />
-          <!--
-            <v-card-actions>
-              <v-btn
-                color="light-green darken-1"
-                class="white--text"
-                @click="postCreate"
-                @click="dialog = false"
-              >
-                保存する
-              </v-btn>
-            </v-card-actions> -->
-
           <v-row
             class="green lighten-4"
             style="height: 50px;"
@@ -270,6 +258,10 @@ export default {
       this.today.getDate()
   },
   methods: {
+    closeDialog() {
+      this.dialog = false
+    },
+
     setImage(e) {
       this.image = e
     },
@@ -318,10 +310,6 @@ export default {
           console.log(err)
           console.log('Failure')
         })
-    },
-
-    closeDialog() {
-      this.dialog = false
     },
   },
 }

@@ -19,24 +19,20 @@
       @click:append="show2 = !show2"
     />
     <v-card-actions class="justify-center">
-      <v-btn
-        v-if="email != guest"
-        rounded
-        color="#48A1EB"
-        min-width="125px"
-        class="font-weight-bold"
-        @click="changeUserPassword"
-      >
-        変更
-      </v-btn>
-      <v-btn v-else color="grey" class="white--text">
-        ゲストユーザーの為変更できません
-      </v-btn>
+      <template v-if="email != guest">
+        <button-change @button-action="changeUserPassword" />
+      </template>
+      <template v-else>
+        <v-btn color="grey" class="white--text">
+          ゲストユーザーの為変更できません
+        </v-btn>
+      </template>
     </v-card-actions>
   </v-form>
 </template>
 
 <script>
+import buttonChange from '~/components/layouts/ButtonChange.vue'
 export default {
   data() {
     return {
@@ -50,6 +46,10 @@ export default {
       guest: 'guestuser20220106@gmail.com',
     }
   },
+  components: {
+    buttonChange,
+  },
+
   methods: {
     changeUserPassword() {
       this.$axios

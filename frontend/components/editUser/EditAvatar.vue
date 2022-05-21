@@ -32,20 +32,14 @@
       @change="setImage"
     />
     <v-card-actions class="justify-center">
-      <v-btn
-        rounded
-        color="#48A1EB"
-        class="font-weight-bold"
-        min-width="125px"
-        @click="changeUserAvatar"
-      >
-        変更
-      </v-btn>
+      <button-change @button-action="changeUserAvatar" />
     </v-card-actions>
   </v-form>
 </template>
 
 <script>
+import buttonChange from '~/components/layouts/ButtonChange.vue'
+
 export default {
   // props: {
   //   image: {
@@ -59,6 +53,9 @@ export default {
       editImage: '',
       input_image: null,
     }
+  },
+  components: {
+    buttonChange,
   },
   methods: {
     setImage(file) {

@@ -7,26 +7,23 @@
     <span>プロフィール</span>
     <v-textarea v-model="profile" label="プロフィール" class="px-3" />
     <v-card-actions class="justify-center">
-      <v-btn
-        rounded
-        color="#48A1EB"
-        class="font-weight-bold"
-        min-width="125px"
-        @click="changeUserProfile"
-      >
-        変更
-      </v-btn>
+      <button-change @button-action="changeUserProfile" />
     </v-card-actions>
   </v-form>
 </template>
 
 <script>
+import buttonChange from '~/components/layouts/ButtonChange.vue'
+
 export default {
   data() {
     return {
       name: this.$store.getters['auth/currentUser'].name,
       profile: this.$store.getters['auth/currentUser'].profile,
     }
+  },
+  components: {
+    buttonChange,
   },
   methods: {
     async changeUserProfile() {

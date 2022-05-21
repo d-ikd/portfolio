@@ -5,24 +5,21 @@
     <v-text-field v-model="email" label="新しいメールアドレス" class="px-3" />
     <v-spacer></v-spacer>
     <v-card-actions class="justify-center">
-      <v-btn
-        v-if="originEmail != guest"
-        rounded
-        class="font-weight-bold"
-        min-width="125px"
-        color="#48A1EB"
-        @click="changeUserEmail"
-      >
-        変更
-      </v-btn>
-      <v-btn v-else block color="grey" class="white--text">
-        ゲストユーザーの為変更できません
-      </v-btn>
+      <template v-if="originEmail != guest">
+        <button-change @button-action="changeUserEmail" />
+      </template>
+      <template v-else>
+        <v-btn block color="grey" class="white--text">
+          ゲストユーザーの為変更できません
+        </v-btn>
+      </template>
     </v-card-actions>
   </v-form>
 </template>
 
 <script>
+import buttonChange from '~/components/layouts/ButtonChange.vue'
+
 export default {
   data() {
     return {
@@ -30,6 +27,9 @@ export default {
       originEmail: this.$store.getters['auth/currentUser'].uid,
       guest: 'guestuser20220106@gmail.com',
     }
+  },
+  components: {
+    buttonChange,
   },
   methods: {
     async changeUserEmail() {
