@@ -9,7 +9,7 @@
         v-for="(post, i) in reversePosts"
         :key="post.id"
         class="d-flex child-flex flex-wrap"
-        cols="4"
+        cols="3"
       >
         <p class="black--text">index:{{ i + 1 }}</p>
         <p class="black--text">like:{{ post.like_users.length }}</p>
