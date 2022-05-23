@@ -45,6 +45,7 @@ export default {
   props: {
     review: {
       type: Object,
+      default: () => ({}),
       required: true,
     },
   },

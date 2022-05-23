@@ -1,6 +1,13 @@
 <template>
   <div>
     <v-sheet class="rounded-card" elevation="5">
+      <div>
+        <nuxt-link :to="{ path: `/post/${post.id}` }">
+          <v-btn>
+            参加ページへ
+          </v-btn>
+        </nuxt-link>
+      </div>
       <v-card color="transparent" class="rounded-card " elevation="5">
         <v-img
           :src="post.image.url"
@@ -140,7 +147,7 @@
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
-import dialogComponent3 from '~/components/layouts/dialogComponent3.vue'
+import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 
 export default {
   components: {

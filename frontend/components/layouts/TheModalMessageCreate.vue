@@ -6,7 +6,7 @@
         v-bind="attrs"
         v-on="on"
       >
-        メッセージをする
+        メッセージする
       </v-btn>
     </template>
 
@@ -44,7 +44,7 @@
             />
             <v-textarea
               v-model="review.content"
-              label="メッセージ本文を入れてください"
+              label="メッセージ本文をいれてください"
             />
             <v-file-input
               accept="image/png, image/jpeg, image/bmp"
@@ -83,6 +83,7 @@ export default {
   props: {
     post: {
       type: Object,
+      default: () => ({}),
       required: true,
     },
   },

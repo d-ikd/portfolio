@@ -32,7 +32,7 @@
       <v-card-text>
         <v-form ref="form">
           <v-container>
-            <div class="d-flex align-center my-2">
+            <!--             <div class="d-flex align-center my-2">
               <v-rating
                 v-model="reviewEdit.rate"
                 background-color="orange lighten-1"
@@ -46,9 +46,9 @@
               <span class="ml-5 font-weight-bold">
                 {{ reviewEdit.rate }}
               </span>
-            </div>
-            <v-text-field v-model="reviewEdit.title" label="タイトルを記入" />
-            <v-textarea v-model="reviewEdit.content" label="メッセージを記入" />
+            </div> -->
+            <v-text-field v-model="reviewEdit.title" label="タイトル記入" />
+            <v-textarea v-model="reviewEdit.content" label="メッセージ記入" />
             <v-file-input
               v-model="reviewEdit.image"
               accept="image/png, image/jpeg, image/bmp"
@@ -100,13 +100,18 @@
 
 <script>
 import { mapActions } from 'vuex'
+/* import buttonChange from '~/components/layouts/ButtonChange.vue' */
 
 export default {
   props: {
     review: {
       type: Object,
+      default: () => ({}),
       required: true,
     },
+  },
+  component: {
+    /* buttonChange, */
   },
   data() {
     return {

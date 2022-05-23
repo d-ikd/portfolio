@@ -132,14 +132,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import postReviewEdit from '~/components/infoPost/PostReviewEdit.vue'
+// import postReviewEdit from '~/components/infoPost/PostReviewEdit.vue'
 import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue'
 import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
 
 export default {
   components: {
     userAvatar,
-    postReviewEdit,
+    // postReviewEdit,
     postReviewDelete,
     userDialogLike,
   },

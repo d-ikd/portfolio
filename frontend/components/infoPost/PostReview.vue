@@ -1,10 +1,10 @@
 <template>
   <v-card class="ml-8 mr-8 mt-4 green lighten-3 rounded">
     <v-card flat class="green lighten-3">
-      <!--               <v-sheet class="green lighten-3 d-flex align-center ">
+      <!--                <v-sheet class="green lighten-3 d-flex align-center ">
                 <nuxt-link :to="{ path: `/users/${review.user_id}` }">
-                  <user-avatar :size="50" :user="review.user" />
-                </nuxt-link>
+                  <user-avatar :size="50" :user="review.user" />-->
+      <!--  </nuxt-link>
                 <v-btn
                   class="ma-1"
                   plain
@@ -13,15 +13,18 @@
                   :to="`/users/${review.user_id}`"
                 >
                   {{ review.user.name }}
-                </v-btn>
-                が {{ createDate }} に投稿 -->
+                </v-btn> -->
+      {{ $dayjs(review.created_at).format('MM/DD') }}&nbsp;{{
+        $dayjs(review.created_at).format('hh:mm')
+      }}
 
-      <!--                 <template
+      <!--         <template
                   v-if="review.user_id === $store.state.auth.loginUser.id"
-                >
-                  <post-review-edit :review="review" />
-                  <post-review-delete :review="review" />
-                </template> -->
+                > -->
+
+      <!-- <the-modal-message-edit :review="review" /> -->
+      <!-- <post-review-delete :review="review" /> -->
+      <!-- </template> -->
 
       <v-spacer />
       <div class="d-flex align-center" color="white">
@@ -84,20 +87,21 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import postReviewEdit from '~/components/infoPost/PostReviewEdit.vue'
+import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
 import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue'
 import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
 
 export default {
   components: {
     userAvatar,
-    postReviewEdit,
+    theModalMessageEdit,
     postReviewDelete,
     userDialogLike,
   },
   props: {
     review: {
       type: Object,
+      default: () => ({}),
       required: true,
     },
   },

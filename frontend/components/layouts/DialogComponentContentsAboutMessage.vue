@@ -11,15 +11,33 @@
         <v-col> </v-col>
         <v-col cols="sm" class="text-center align-self-center">
           <v-sheet elevation="4" class="rounded-pill">
-            <template v-if="isMessageList">
-              <v-chip label color="white" large outlined text-color="purple">
-                <v-icon>mdi-email-variant</v-icon>
+            <template v-if="isPostCreate">
+              <v-chip
+                label
+                color="transparent"
+                x-large
+                outlined
+                text-color="green"
+              >
+                <v-icon class="ml-2 mr-2">mdi-pencil</v-icon>
+                記事を投稿する
               </v-chip>
             </template>
-
-            <template v-else>
-              <v-chip label color="white" large outlined text-color="purple">
-                <v-icon>mdi-wrench</v-icon> 設定
+            <template v-else-if="isAccountSetting">
+              <v-chip
+                label
+                color="transparent"
+                x-large
+                outlined
+                text-color="red"
+              >
+                <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
+                アカウント
+              </v-chip>
+            </template>
+            <template v-else-if="isScheduleCardInfo">
+              <v-chip label color="white" large outlined text-color="red">
+                <v-icon>mdi-run</v-icon>
               </v-chip>
             </template>
           </v-sheet>
@@ -34,19 +52,14 @@
         color="transparent"
         class=" mx-auto pb-3 mb-10 rounded-card"
       >
-        <template v-if="isMessageList">
-          <list-component :is-message-list="true" :post="posting" />
-          <!--
-        <template v-else-if="isScheduleCardInfoInList">
-          <schedule-card-info :post="posting" />
-        </template>-->
+        <template v-if="isMessageCreate">
+          isMessageCreate
+          <!-- <message-create-component :post="posting" /> -->
         </template>
-
         <template v-else>
-          <the-account-setting />
+          aaa
         </template>
       </v-sheet>
-
       <v-sheet class="d-flex justify-center transparent">
         <v-btn
           transparent
@@ -64,14 +77,18 @@
 </template>
 
 <script>
+import messageCreateComponent from '~/components/layouts/MessageCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
-import theAccountSetting from '~/components/layouts/TheAccountSetting.vue'
+import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
+import theAccount from '~/components/layouts/TheAccount.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
 
 export default {
   components: {
     buttonClose,
-    theAccountSetting,
+    scheduleCardInfo,
+    messageCreateComponent,
+    theAccount,
     listComponent,
   },
   props: {
@@ -81,9 +98,10 @@ export default {
       default: () => ({}),
       required: false,
     },
-    isMessageList: {
+    isMessageCreate: {
       type: Boolean,
       default: false,
+      required: false,
     },
   },
   methods: {
@@ -96,6 +114,6 @@ export default {
 
 <style scoped>
 .rounded-card {
-  border-radius: 100px;
+  border-radius: 20px;
 }
 </style>

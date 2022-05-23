@@ -88,7 +88,7 @@
           コメント
           <span class="ml-1">(5)</span>
         </v-btn> -->
-        <post-review-edit :review="review" />
+        <the-modal-message-edit :review="review" />
         <post-review-delete :review="review" />
       </template>
       <v-spacer />
@@ -99,13 +99,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import postReviewEdit from '~/components/infoPost/PostReviewEdit.vue'
+import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
 import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue'
 import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
 
 export default {
   components: {
-    postReviewEdit,
+    theModalMessageEdit,
     postReviewDelete,
     userDialogLike,
   },

@@ -1,6 +1,6 @@
 <template>
   <v-card class="rounded-card">
-    <!--     <v-card color="basil">
+    <v-card color="basil">
       <v-list style="background-color: white">
         <v-card
           v-for="review in reviews"
@@ -12,7 +12,7 @@
           <post-review :review="review" />
         </v-card>
       </v-list>
-    </v-card> -->
+    </v-card>
   </v-card>
 </template>
 
