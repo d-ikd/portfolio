@@ -2,17 +2,17 @@
   <div>
     <v-sheet class="rounded-card" elevation="5">
       <v-card color="transparent" class="rounded-card " elevation="5">
-        <v-img :src="post.image.url" class="rounded-card">
-          <v-card-text class="align-bottom">
-            <v-row>
-              <v-col>
-                <h1>{{ post.name }}</h1>
-
-                <div>
-                  <h3 class="ml-2">{{ post.catchcopy }}</h3>
-                </div>
-              </v-col>
-              <v-col> </v-col>
+        <v-img
+          :src="post.image.url"
+          class="rounded-card align-center text-center"
+        >
+          <v-card-text>
+            <v-row class="ml-4">
+              <div class="orangecolor">
+                <div class="display-1 shadow-text1">{{ post.name }}</div>
+                <div class="shadow-text2">{{ post.catchcopy }}</div>
+              </div>
+              <v-col cols="2"> </v-col>
             </v-row>
           </v-card-text>
         </v-img>
@@ -24,11 +24,23 @@
           />
         </v-sheet> -->
       </v-card>
-      <v-row class="ml-3 mt-n16">
+      <v-row class="mt-6">
         <v-col>
-          <div class="ml-5  subtitle-1 mt-4 ">
-            <strong> {{ post.release }}&nbsp;</strong>
+          <div class="">
+            <div
+              class="headline
+                    ml-8 pink--text font-weight-bold no-wrap-text"
+            >
+              <v-icon large left>
+                mdi-alarm-check
+              </v-icon>
+              {{ post.release }}
+            </div>
           </div>
+
+          <!--           <div class="ml-5  subtitle-1 mt-4 ">
+            <strong> {{ post.release }}&nbsp;</strong>
+          </div> -->
         </v-col>
         <v-col> </v-col>
       </v-row>
@@ -53,10 +65,12 @@
             </v-col>
 
             <v-col cols="7">
-              <v-chip class="white--text ml-0" color="purple" label small>
-                <div class="caption mx-auto text-right">
-                  場所: {{ post.place }}
-                </div>
+              <v-chip color="orange" text-color="white">
+                <v-icon left>
+                  mdi-star
+                </v-icon>
+
+                場所: {{ post.place }}
               </v-chip>
             </v-col>
           </v-row>
@@ -73,10 +87,12 @@
               >
             </v-col>
             <v-col cols="7">
-              <v-chip class="white--text ml-0" color="purple" label small>
-                <div class="caption mx-auto text-right">
-                  予算: {{ post.price }}円/人
-                </div>
+              <v-chip color="primary" text-color="white">
+                <v-icon left>
+                  mdi-cake-variant
+                </v-icon>
+
+                予算: {{ post.price }}円/人
               </v-chip>
             </v-col>
           </v-row>
@@ -169,7 +185,7 @@ export default {
   border-radius: 20px;
 }
 .shadow-text1 {
-  text-shadow: 2px 2px 3px #f51818;
+  text-shadow: 1px 1px 2px #f51818;
 }
 .shadow-text2 {
   text-shadow: 2px 2px 3px #f51818;
@@ -222,10 +238,11 @@ strong:before {
   border-bottom: solid 2px #4967b4;
 }
 
-h1 {
-  background: #b0dcfa; /*背景色*/
+.orangecolor {
+  background: #f09b38; /*背景色*/
   padding: 0.5em; /*文字周りの余白*/
   color: white; /*文字を白に*/
+  background-color: rgba(155, 255, 255, 0.8);
   border-radius: 0.5em; /*角の丸み*/
 }
 </style>

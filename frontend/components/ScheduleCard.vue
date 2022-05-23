@@ -12,7 +12,7 @@
         class="d-flex child-flex flex-wrap"
       >
   -->
-      <v-col v-for="p in posts" :key="p.id" class="d-flex child-flex flex-wrap">
+      <v-col v-for="p in posts" :key="p.id" class="d-flex flex-wrap">
         <v-card
           :elevation="15"
           dark
