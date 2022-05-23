@@ -37,7 +37,10 @@
                   </v-img>
                   <div style="position: relative;">
                     <v-card-text style="position: relative;">
-                      <dialog-component :isScheduleCardInfo="true" :post="p" />
+                      <dialog-component
+                        :is-schedule-card-info="true"
+                        :post="p"
+                      />
                       <!-- <schedule-card-info :post="p" /> -->
                       <button-like
                         :user="user"
@@ -45,9 +48,7 @@
                         :is-rounded-like="true"
                       />
                       <div class="grey--text title">
-                        <div
-                          class="font-weight-regular text-decoration-underlinemt-n3"
-                        >
+                        <div class="font-weight-regular mt-4">
                           {{ p.name }}
                         </div>
                         <div class="caption text-center mt-4 shadow-text">
@@ -209,6 +210,7 @@ export default {
     ...mapGetters({
       post: 'post/post',
       user: 'auth/loginUser',
+      loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
       currentPosts: 'favOrNotCheck/posts',
     }),

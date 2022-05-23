@@ -14,12 +14,6 @@
         <p class="black--text">index:{{ i + 1 }}</p>
         <p class="black--text">like:{{ post.like_users.length }}</p>
         <p class="black--text">id:{{ post.id }}</p>
-        <button-like
-          :user="user"
-          :post="post"
-          :fronttitle="frontTitle"
-          :backtitle="backTitle"
-        />
         <scheduleCardContents :user="user" :post="post" />
         <!-- <user-dialog-like :users="post.like_users" /> -->
         <user-dialog-shown :users="post.like_users" :title="title" />
@@ -31,7 +25,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import scheduleCardContents from '~/components/ScheduleCardContents.vue'
-import buttonLike from '~/components/infoPost/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
 
 export default {
@@ -44,14 +37,11 @@ export default {
   components: {
     // userPostList,
     scheduleCardContents,
-    buttonLike,
     userDialogShown,
   },
   data() {
     return {
       title: 'title',
-      frontTitle: 'Hi',
-      backTitle: 'Ho',
       loading: false,
       like: false,
       join: false,

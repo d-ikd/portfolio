@@ -1,22 +1,23 @@
 <template>
   <v-list two-line>
-    <!-- <v-list-item-group> -->
     <v-row>
+      {{ lists }}
       <v-list-item
-        v-for="user in users"
-        :key="user.id"
+        v-for="list in lists"
+        :key="list.id"
         :ripple="false"
         class="list"
       >
-        <nuxt-link :to="{ path: `/users/${user.id}` }">
-          <user-avatar :size="45" :user="user" class="list-avatar mx-3" />
-        </nuxt-link>
+        <!-- <nuxt-link :to="{ path: `/users/${user.id}` }"> -->
+        <user-avatar :size="45" :user="list" class="list-avatar mx-3" />
+        <!-- </nuxt-link> -->
         <v-list-item-content>
+          {{ list.name }}
           <v-list-item-title class="list-item title" @click="pagelink(user.id)">
-            {{ user.name }}
+            {{ list.name }}
           </v-list-item-title>
         </v-list-item-content>
-        <user-follow :user="user" class="mr-3" />
+        <user-follow :user="list" class="mr-3" />
       </v-list-item>
       <v-divider />
     </v-row>
@@ -34,8 +35,9 @@ export default {
     userFollow,
   },
   props: {
-    users: {
+    lists: {
       type: Array,
+      default: () => ({}),
       required: true,
     },
   },

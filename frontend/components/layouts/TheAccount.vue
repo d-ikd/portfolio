@@ -5,7 +5,7 @@
         <h1 class="font-weight-bold display-3 basil--text">
           <template>
             <div>
-              <user-avatar :size="100" :user="currentUser" />
+              <user-avatar :size="140" :user="currentUser" />
             </div>
             <div class="mx-auto text-center">
               <h3>{{ currentUser.name }}</h3>
@@ -32,8 +32,10 @@
         <v-tab-item v-for="(item, index) in items" :key="`second-${index}`">
           <v-card color="basil" flat>
             <v-card-text>
-              {{ item.titletext
-              }}<!-- <list-component :listed="loginUser.followings" /> -->
+              <v-text>"`loginUser.${list.listitem}`"</v-text>
+              {{ item.listitem }}
+              <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
+              <!-- <list-component :listed="loginUser.followings" /> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -53,63 +55,7 @@
       <v-spacer /><v-subheader>test</v-subheader>
     </v-sheet>
 
-    <v-expansion-panels color="black">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-          アバター変更
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editAvatar />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-header>ユーザーネーム変更</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editProfile />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-header>パスワード変更</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editPassword />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <v-expansion-panel>
-        <v-expansion-panel-header>メールアドレス変更</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editEmail />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <v-expansion-panel>
-        <v-expansion-panel-header class="red--text"
-          >Danger Zone</v-expansion-panel-header
-        >
-        <v-expansion-panel-content>
-          <deleteUser />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-
-    <v-list-item-content class="justify-center">
-      <div class="mx-auto text-center">
-        <v-divider class="my-3"></v-divider>
-        <v-btn
-          v-if="currentUser.admin"
-          depressed
-          rounded
-          text
-          to="/admin"
-          @click="dialog.value = false"
-        >
-          管理者機能
-        </v-btn>
-
-        <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
-        <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
-      </div>
-    </v-list-item-content>
+    <the-account-setting />
   </v-card>
 </template>
 
@@ -121,42 +67,44 @@ import userList from '~/components/infoUser/UserList.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
 
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
+import theAccountSetting from '~/components/layouts/TheAccountSetting.vue'
 
 import deleteUser from '~/components/editUser/DeleteUser.vue'
 import editAvatar from '~/components/editUser/EditAvatar.vue'
 import editEmail from '~/components/editUser/EditEmail.vue'
 import editPassword from '~/components/editUser/EditPassword.vue'
 import editProfile from '~/components/editUser/EditProfile.vue'
-import buttonClose from '~/components/layouts/ButtonClose.vue'
 
 export default {
   components: {
     listComponent,
-
+    theAccountSetting,
     userAvatar,
     deleteUser,
     editAvatar,
     editEmail,
     editPassword,
     editProfile,
-    buttonClose,
   },
   data() {
     return {
-      listed: [
-        { name: '池田', listed: 'loginUser.followings' },
-        { name: '池田', listed: 'loginUser.followings' },
-        /* { name: "高橋", position: "シューティングガード", id: 5, height: 168 } */
+      goods: [
+        { id: '01', title: 'アバター変更' },
+        { id: '02', title: 'ユーザーネーム変更' },
+        { id: '03', title: 'メールアドレス変更' },
+        { id: '04', title: 'パスワード変更' },
+        { id: '05', title: 'Danger Zone' },
       ],
       dialog: false,
-      expand: false,
-      show: false,
       defaultImage: 'http://localhost:5000/fallback/default.png',
-
       tab: null,
       items: [
-        { title: 'followings', titletext: 'followingstext' },
-        { title: 'followers', titletext: 'followersstext' },
+        {
+          title: 'followings',
+          titletext: 'followingstext',
+          listitem: 'followings',
+        },
+        /* { title: 'followers', titletext: 'followersstext', listitem: "loginUser.followers" }, */
       ],
       text:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',

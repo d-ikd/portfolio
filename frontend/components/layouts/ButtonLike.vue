@@ -34,7 +34,7 @@
         top
         @click="joining"
       >
-        <v-icon large>mdi-run</v-icon>
+        <v-icon large>mdi-close-box</v-icon>
       </v-btn>
       <v-btn
         v-else
@@ -45,7 +45,7 @@
         top
         @click="joining"
       >
-        <v-icon large>mdi-close-box</v-icon>
+        <v-icon large>mdi-run</v-icon>
       </v-btn>
     </template>
   </div>
