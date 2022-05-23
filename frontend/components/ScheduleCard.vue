@@ -5,11 +5,14 @@
       </v-carousel-item>
     </v-carousel> -->
     <v-row>
+      <!--
       <v-col
         v-for="p in reversePosts"
         :key="p.id"
         class="d-flex child-flex flex-wrap"
       >
+  -->
+      <v-col v-for="p in posts" :key="p.id" class="d-flex child-flex flex-wrap">
         <v-card
           :elevation="15"
           dark
@@ -49,10 +52,10 @@
                       />
                       <div class="grey--text title">
                         <div class="font-weight-regular mt-4">
-                          {{ p.name }}
+                          {{ p.name }} {{ p.id }}
                         </div>
                         <div class="caption text-center mt-4 shadow-text">
-                          キャッチコピー
+                          キャッチコピー / {{ likeCount }}
                         </div>
 
                         <p
@@ -94,6 +97,7 @@
                   <counter-list
                     :users="p.like_users"
                     :post="p"
+                    :ppp="p.like_users"
                     :icon="true"
                     :title="title1"
                   /> </span
@@ -115,28 +119,9 @@
   </div>
 
   <!--
-                        {{ $dayjs(p.finish_time).format('hh:mm') }}
-                      </p>
-                    </div>
-                    の直下
-                          <v-fade-transition>
-                          <v-overlay v-if="hover" absolute color="#036358">
-                            <v-btn
-                              large
-                              :to="{ path: `/post/${post.id}` }"
-                              @click="pagelink(post.id)"
-                              >参加ページ</v-btn
-                            >
-                          </v-overlay>
-                        </v-fade-transition>
-
-
-
-                        ＝＝＝＝＝＝＝＝＝＝＝＝
-                      </v-img>
+                                               </v-img>
                       <v-img v-else contain :src="defaultImage">
                         -->
-
   <!--
     <v-list style="background-color: white">
       <v-card
@@ -152,7 +137,7 @@
   <!--                                       <p class="black--text"> index:{{ i + 1 }} </p>
             <p class="black--text"> like:{{ p.like_users.length }} </p>
             <p class="black--text"> id:{{ p.id }} </p>
-              -->
+             -->
 </template>
 
 <script>
@@ -168,12 +153,6 @@ import postReview2 from '~/components/infoPost/PostReview2.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
-  // props: {
-  //   posts: {
-  //     type: Array,
-  //     required: true,
-  //   },
-  // },
   components: {
     // userPostList,
     buttonLike,
@@ -186,6 +165,12 @@ export default {
     postReview2,
     dialogComponent,
   },
+  // props: {
+  //   posts: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
   data() {
     return {
       title1: 'いいねした人',
@@ -195,15 +180,17 @@ export default {
       join: false,
       dialog: false,
       show: false,
-      createDate: '',
-      releaseDate: '',
-      start_time: '',
-      finish_time: '',
       defaultImage: require(`@/assets/images/default.png`),
       posts: [],
     }
   },
   computed: {
+    likeCount() {
+      return this.post.like_users.length
+    },
+    joinCount() {
+      return this.post.join_users.length
+    },
     reversePosts() {
       return this.posts.slice().reverse()
     },
@@ -212,14 +199,14 @@ export default {
       user: 'auth/loginUser',
       loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
-      currentPosts: 'favOrNotCheck/posts',
+      /* currentPosts: 'favOrNotCheck/posts', */
     }),
     postUpdate() {
       return this.$store.state.post.post
     },
-    // userUpdate() {
-    //   return this.$store.state.auth.loginUser
-    // },
+    userUpdate() {
+      return this.$store.state.auth.loginUser
+    },
   },
   created() {
     this.getPosts().then(() => {
@@ -240,12 +227,6 @@ export default {
               this.like = true
             }
           })
-          this.add = false
-          this.currentPosts.forEach((f) => {
-            if (f.id === this.post.id) {
-              this.add = true
-            }
-          })
         }
       })
       .then(() => {
@@ -255,30 +236,12 @@ export default {
               this.join = true
             }
           })
-          this.add = false
-          this.currentPosts.forEach((f) => {
-            if (f.id === this.post.id) {
-              this.add = true
-            }
-          })
         }
-        this.createDate = this.$dayjs(this.post.updated_at).format(
-          'YYYY年MM月DD日'
-        )
-        this.releaseDate = this.$dayjs(this.post.release).format('YYYY/MM/DD')
-        this.releaseYear = this.$dayjs(this.post.release).format('YYYY')
-        this.releaseMonth = this.$dayjs(this.post.release).format('MM')
-        this.releaseDay = this.$dayjs(this.post.release).format('DD')
-        this.start_time = this.$dayjs(this.post.start_time).format('hh:mm')
-        this.finish_time = this.$dayjs(this.post.finish_time).format('hh:mm')
         this.loading = true
       })
   },
   methods: {
     ...mapActions({ getPosts: 'post/getPosts' }),
-    pagelink(link) {
-      this.$router.push({ path: `/post/${link}` })
-    },
   },
 }
 </script>

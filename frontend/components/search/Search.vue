@@ -44,7 +44,7 @@
         </v-dialog>
       </template>
       <template v-else>
-        <dialog-component :is-account-setting="true" />
+        <dialog-component :is-account-page="true" class="mt-5" />
       </template>
     </v-app-bar>
 

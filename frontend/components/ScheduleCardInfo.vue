@@ -1,61 +1,40 @@
 <template>
   <div>
-    <!-- <template v-slot:opposite>
-      <div class="grey--text">
-        <div
-          class="display-1 shadow-text3 font-weight-regular text-decoration-underlinemt-n3"
-        >
-          {{ post.name }}<br />
-        </div>
-
-        <div
-          class="subtitle-2 shadow-text1 font-weight-regular text-decoration-underlinemt-n3"
-        >
-          {{ post.catchcopy }}
-        </div>
-        <div class="subtitle-1 mt-4 shadow-text2">
-          {{ post.release }}
-        </div>
-      </div>
-    </template> -->
-
-    <v-card color="transparent" class="rounded-card " elevation="5">
-      <v-img :src="post.image.url" class="rounded-card">
-        <v-card-text class="align-bottom">
-          <v-row>
-            <v-col>
-              <h1>{{ post.name }}</h1>
-
-              <div>
-                <h3 class="ml-2">{{ post.catchcopy }}</h3>
-              </div>
-            </v-col>
-            <v-col> </v-col>
-          </v-row>
-        </v-card-text>
-      </v-img>
-
-      <!-- <v-sheet style="position: relative;">
-        <button-like
-          :user="loginUser"
-          :post="post"
-          :is-rounded-like="true"
-        />
-      </v-sheet> -->
-    </v-card>
-    <v-row class="ml-3 mt-n16">
-      <v-col>
-        <div class="ml-5  subtitle-1 mt-4 ">
-          <strong> {{ post.release }}&nbsp;</strong>
-        </div>
-      </v-col>
-      <v-col> </v-col>
-    </v-row>
-
-    <v-sheet color="transparent" class="mt-5"></v-sheet>
-    <v-sheet class="rounded-card"> </v-sheet>
-    <v-sheet color="transparent"></v-sheet>
     <v-sheet class="rounded-card" elevation="5">
+      <v-card color="transparent" class="rounded-card " elevation="5">
+        <v-img :src="post.image.url" class="rounded-card">
+          <v-card-text class="align-bottom">
+            <v-row>
+              <v-col>
+                <h1>{{ post.name }}</h1>
+
+                <div>
+                  <h3 class="ml-2">{{ post.catchcopy }}</h3>
+                </div>
+              </v-col>
+              <v-col> </v-col>
+            </v-row>
+          </v-card-text>
+        </v-img>
+        <!-- <v-sheet style="position: relative;">
+          <button-like
+            :user="loginUser"
+            :post="post"
+            :is-rounded-like="true"
+          />
+        </v-sheet> -->
+      </v-card>
+      <v-row class="ml-3 mt-n16">
+        <v-col>
+          <div class="ml-5  subtitle-1 mt-4 ">
+            <strong> {{ post.release }}&nbsp;</strong>
+          </div>
+        </v-col>
+        <v-col> </v-col>
+      </v-row>
+
+      <v-sheet color="transparent" class="mt-5"></v-sheet>
+
       <v-timeline dense clipped>
         <v-timeline-item
           class="mb-4"
@@ -74,7 +53,11 @@
             </v-col>
 
             <v-col cols="7">
-              This order was archived.
+              <v-chip class="white--text ml-0" color="purple" label small>
+                <div class="caption mx-auto text-right">
+                  場所: {{ post.place }}
+                </div>
+              </v-chip>
             </v-col>
           </v-row>
         </v-timeline-item>
@@ -116,20 +99,19 @@
           </v-card>
         </v-timeline-item>
       </v-timeline>
+      <v-sheet class="d-flex justify-center transparent">
+        <dialog-component
+          :is-message-list="true"
+          :post="post"
+          class="mt-5 mb-5"
+        /><br />
 
-      <v-sheet class="rounded-card" color="transparent">
-        <v-row justify="space-between">
-          <v-col cols="2"> </v-col>
-          <v-col cols="9">
-            <user-dialog-shown :users="post.join_users" :title="'参加者'" />
-            <button-like
-              :user="loginUser"
-              :post="post"
-              :is-rounded-like="true"
-            />
-          </v-col>
-          <v-col cols="1"> </v-col>
-        </v-row>
+        <button-like
+          :user="loginUser"
+          :post="post"
+          :is-rounded-join="true"
+          class="mb-10"
+        />
       </v-sheet>
     </v-sheet>
   </div>
@@ -139,11 +121,15 @@
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
+import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue'
+import dialogComponent from '~/components/layouts/dialogComponent.vue'
 
 export default {
   components: {
     buttonLike,
     userDialogShown,
+    postContainerMessage,
+    dialogComponent,
   },
   props: {
     post: {

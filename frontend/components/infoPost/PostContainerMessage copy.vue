@@ -1,15 +1,51 @@
 <template>
-  <v-card class="rounded-card">
-    <template v-if="post.reviews.length === 0">
-      <h4 class="ma-3 text-decoration-underline">
-        メッセージがありません。
-      </h4>
-      <post-review-modal v-if="login" :post="post" />
-    </template>
-    <template v-else>
-      <post-review-list :reviews="post.reviews" />
-    </template>
-  </v-card>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12">
+        <v-sheet elevation="10" rounded="xl" class="green lighten-2">
+          <v-sheet dark rounded="t-xl"> </v-sheet>
+          <div class="pa-4">
+            <v-tabs
+              v-model="tab"
+              background-color="transparent"
+              class="green lighten-2 white--text font-weight-bold"
+              grow
+              icons-and-text
+              dark
+              center-active
+            >
+              <v-tab v-for="(item, index) in items" :key="index">
+                <h3 class="pl-2 mb-2">
+                  <v-icon>{{ item.icon }}</v-icon>
+                  {{ item.title }}
+                  <span>（{{ post.reviews.length }}）</span>
+                </h3>
+              </v-tab>
+
+              <v-tabs-items v-model="tab">
+                <v-tab-item>
+                  <v-row>
+                    <v-col>
+                      <template v-if="post.reviews.length === 0">
+                        <h4 class="ma-3 text-decoration-underline">
+                          メッセージがありません。
+                        </h4>
+                        <post-review-modal v-if="login" :post="post" />
+                      </template>
+                      <template v-else>
+                        <post-review-list :reviews="post.reviews" />
+                      </template>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <v-tab-item> </v-tab-item>
+              </v-tabs-items>
+            </v-tabs>
+          </div>
+        </v-sheet>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

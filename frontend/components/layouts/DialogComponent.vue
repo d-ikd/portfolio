@@ -20,20 +20,33 @@
         <v-icon color="white">mdi-pencil</v-icon>
       </v-btn>
     </template>
-    <template v-else-if="isAccountSetting">
+    <template v-else-if="isAccountPage">
       <dialogComponentContents
         :dialog-component="dialogComponent"
-        :is-account-setting="isAccountSetting"
+        :is-account-page="isAccountPage"
         @result="response"
       />
       <v-btn color="white" plain @click.stop="dialogComponent = true"
         ><v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </template>
+    <template v-else-if="isAccountSetting">
+      <dialogComponentContents
+        :dialog-component="dialogComponent"
+        :is-account-setting="true"
+        @result="response"
+      />
+      <v-btn color="orange white--text" @click.stop="dialogComponent = true">
+        設定へ
+        <v-icon dark>
+          mdi-walk
+        </v-icon>
+      </v-btn>
+    </template>
     <template v-else-if="isScheduleCardInfo">
       <dialogComponentContents
         :dialog-component="dialogComponent"
-        :is-schedule-card-info="isScheduleCardInfo"
+        :is-schedule-card-info="true"
         :posting="post"
         @result="response"
       />
@@ -48,6 +61,34 @@
         class="mt-n13"
         @click.stop="dialogComponent = true"
       >
+        <v-icon dark>
+          mdi-walk
+        </v-icon>
+      </v-btn>
+    </template>
+    <template v-else-if="isScheduleCardInfoInList">
+      <dialogComponentContents
+        :dialog-component="dialogComponent"
+        :is-schedule-card-info="true"
+        :posting="post"
+        @result="response"
+      />
+      <v-btn color="orange white--text" @click.stop="dialogComponent = true">
+        参加ページへ
+        <v-icon dark>
+          mdi-walk
+        </v-icon>
+      </v-btn>
+    </template>
+    <template v-else-if="isMessageList">
+      <dialogComponentContents
+        :dialog-component="dialogComponent"
+        :is-message-list="true"
+        :posting="post"
+        @result="response"
+      />
+      <v-btn color="purple white--text" @click.stop="dialogComponent = true">
+        設定へ
         <v-icon dark>
           mdi-walk
         </v-icon>
@@ -76,22 +117,32 @@ export default {
     dialogComponentContents,
   },
   props: {
-    isPostCreate: {
-      type: Boolean,
-      default: false,
-    },
-
     post: {
       type: Object,
       default: () => ({}),
       required: false,
     },
-
+    isPostCreate: {
+      type: Boolean,
+      default: false,
+    },
+    isAccountPage: {
+      type: Boolean,
+      default: false,
+    },
     isAccountSetting: {
       type: Boolean,
       default: false,
     },
     isScheduleCardInfo: {
+      type: Boolean,
+      default: false,
+    },
+    isScheduleCardInfoInList: {
+      type: Boolean,
+      default: false,
+    },
+    isMessageList: {
       type: Boolean,
       default: false,
     },

@@ -1,77 +1,83 @@
 <template>
   <v-card>
-    <v-divider class="mt-10 mb-10"></v-divider>
+    <v-card>
+      <div>
+        <!--
+      <v-expansion-panels color="black">
+        <v-expansion-panel v-for="good in goods" :key="good.id">
+          <v-expansion-panel-header>
+            {{ good.title }}
+          </v-expansion-panel-header>
+          <v-expansion-panel-content> </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+        -->
 
-    <v-sheet class="mt-3">
-      <v-spacer /><v-subheader>test</v-subheader>
-    </v-sheet>
+        <v-expansion-panels color="black">
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              アバター変更
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <editAvatar />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-    <v-expansion-panels color="black">
-      <v-expansion-panel v-for="good in goods" :key="good.id">
-        <v-expansion-panel-header>
-          {{ good.title }}
-        </v-expansion-panel-header>
-        <v-expansion-panel-content> </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >ユーザーネーム変更</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <editProfile />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-    <v-expansion-panels color="black">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-          アバター変更
-        </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editAvatar />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-header>ユーザーネーム変更</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editProfile />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <v-expansion-panel>
-        <v-expansion-panel-header>パスワード変更</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editPassword />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <v-expansion-panel>
-        <v-expansion-panel-header>メールアドレス変更</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <editEmail />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <v-expansion-panel>
-        <v-expansion-panel-header class="red--text"
-          >Danger Zone</v-expansion-panel-header
-        >
-        <v-expansion-panel-content>
-          <deleteUser />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-
-    <v-list-item-content class="justify-center">
-      <div class="mx-auto text-center">
-        <v-divider class="my-3"></v-divider>
-        <v-btn
-          v-if="currentUser.admin"
-          depressed
-          rounded
-          text
-          to="/admin"
-          @click="dialog.value = false"
-        >
-          管理者機能
-        </v-btn>
-
-        <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
-        <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
+          <v-expansion-panel>
+            <v-expansion-panel-header>パスワード変更</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <editPassword />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >メールアドレス変更</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <editEmail />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header class="red--text"
+              >Danger Zone</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <deleteUser />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </div>
-    </v-list-item-content>
+      <v-list>
+        <v-list-item-content class="justify-center">
+          <div class="mx-auto text-center">
+            <v-divider class="my-3"></v-divider>
+            <v-btn
+              v-if="currentUser.admin"
+              depressed
+              rounded
+              text
+              to="/admin"
+              @click="dialog.value = false"
+            >
+              管理者機能
+            </v-btn>
+
+            <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
+            <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
+          </div>
+        </v-list-item-content>
+      </v-list>
+    </v-card>
+    <v-sheet class="mb-1"></v-sheet>
   </v-card>
 </template>
 
@@ -285,5 +291,8 @@ export default {
 }
 .container {
   padding-bottom: 0px;
+}
+.rounded-card {
+  border-radius: 20px;
 }
 </style>

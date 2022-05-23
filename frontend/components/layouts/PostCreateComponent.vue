@@ -1,6 +1,6 @@
 <template>
   <!-- <template v-if="loginUser && loginUser.id == user.id"> -->
-  <v-card width="400px" class="mx-auto pb-3 mb-10">
+  <v-card width="400px" class="mx-auto rounded-card">
     <v-card-text>
       <v-form ref="form" lazy-validation class="pt-10">
         <v-file-input
@@ -142,27 +142,17 @@
           label="カテゴリー"
           item-text="category"
         />
-        <v-divider class="ma-2" />
-        <v-row
-          class="green lighten-4"
-          style="height: 50px;"
-          justify="center"
-          align-content="center"
+        <v-btn
+          x-large
+          block
+          color="green lighten-2"
+          class="font-weight-bold align-center"
+          icon
+          @click="postCreate"
         >
-          <v-btn
-            x-large
-            block
-            color="#48A1EB"
-            class="font-weight-bold align-center"
-            min-width="125px"
-            icon
-            dark
-            @click="postCreate"
-          >
-            <v-icon>mdi-cube-send</v-icon>
-            投稿する
-          </v-btn>
-        </v-row>
+          <v-icon>mdi-cube-send</v-icon>
+          投稿する
+        </v-btn>
       </v-form>
     </v-card-text>
   </v-card>
@@ -266,4 +256,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.rounded-card {
+  border-radius: 20px;
+}
+</style>

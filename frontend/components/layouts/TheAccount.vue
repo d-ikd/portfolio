@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="rounded-card">
     <v-card color="basil">
       <v-card-title class="text-center justify-center py-6">
         <h1 class="font-weight-bold display-3 basil--text">
@@ -10,32 +10,58 @@
             <div class="mx-auto text-center">
               <h3>{{ currentUser.name }}</h3>
               <p class="caption mt-1">
-                {{ currentUser.email }}
+                <!--  {{ currentUser.email }} -->
               </p>
             </div>
             <div>
               <p class="caption">
                 {{ currentUser.profile }}
               </p>
+              <dialog-component3 class="mt-5" />
             </div>
           </template>
         </h1>
       </v-card-title>
-
+      <!--
       <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
         <v-tab v-for="(item, index) in items" :key="`first-${index}`">
           {{ item.title }}
         </v-tab>
       </v-tabs>
+      -->
+      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+        <v-tab>
+          followings
+        </v-tab>
+        <v-tab>
+          followers
+        </v-tab>
+        <v-tab>
+          Likes
+        </v-tab>
+      </v-tabs>
 
       <v-tabs-items v-model="tab">
-        <v-tab-item v-for="(item, index) in items" :key="`second-${index}`">
-          <v-card color="basil" flat>
+        <v-tab-item>
+          <!-- <v-tab-item v-for="(item, index) in items" :key="`second-${index}`"> -->
+          <v-card>
             <v-card-text>
-              <v-text>"`loginUser.${list.listitem}`"</v-text>
-              {{ item.listitem }}
+              <user-post-list :posts="loginUser.postlike" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-card-text>
+              <list-component :lists="loginUser.followers" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-card-text>
               <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <!-- <list-component :listed="loginUser.followings" /> -->
+              <list-component :lists="loginUser.followings" />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -48,14 +74,6 @@
                   <user-post-list :posts="user.postlike" />
                   <user-review-list :reviews="user.reviews" />
                   <user-like-review-list :reviews="user.like_reviews" /> -->
-
-    <v-divider class="mt-10 mb-10"></v-divider>
-
-    <v-sheet class="mt-3">
-      <v-spacer /><v-subheader>test</v-subheader>
-    </v-sheet>
-
-    <the-account-setting />
   </v-card>
 </template>
 
@@ -75,8 +93,12 @@ import editEmail from '~/components/editUser/EditEmail.vue'
 import editPassword from '~/components/editUser/EditPassword.vue'
 import editProfile from '~/components/editUser/EditProfile.vue'
 
+import dialogComponent from '~/components/layouts/DialogComponent.vue'
+import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
+
 export default {
   components: {
+    userPostList,
     listComponent,
     theAccountSetting,
     userAvatar,
@@ -85,6 +107,8 @@ export default {
     editEmail,
     editPassword,
     editProfile,
+    dialogComponent,
+    dialogComponent3,
   },
   data() {
     return {
@@ -270,5 +294,8 @@ export default {
 }
 .container {
   padding-bottom: 0px;
+}
+.rounded-card {
+  border-radius: 20px;
 }
 </style>

@@ -4,13 +4,13 @@
       <span v-bind="attrs" v-on="on">
         <p class="blue--text d-flex">
           <template v-if="icon">
-            <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.length }}
+            <v-icon>mdi-heart</v-icon>&nbsp; [旧 {{ ppp.length }}]
             <!-- <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }} -->
           </template>
           <template v-else>
             <v-icon>mdi-run</v-icon>&nbsp;{{
               post.join_users.length
-            }}&nbsp;<span class="white--text">/&nbsp;{{ post.member }}</span>
+            }}&nbsp;<span class="white--text">/&nbsp;{{ post.member }} </span>
           </template>
         </p>
       </span>
@@ -66,6 +66,11 @@ export default {
       type: Object,
       required: true,
     },
+    ppp: {
+      type: Array,
+      required: false,
+    },
+
     title: {
       type: String,
       required: true,
@@ -75,20 +80,36 @@ export default {
       required: false,
     },
   },
+  data() {
+    return {
+      dialog: false,
+      likeList: [],
+    }
+  },
   computed: {
-    ...mapGetters({
-      /*       user: 'user/user',
-      post: 'post/post',
-      loginUser: 'auth/loginUser', */
-    }),
-    /*     postUpdate() {
+    postUpdate() {
       return this.$store.state.post.post
     },
+    /*      likeCount() {
+      return this.post.like_users.length
+    }, */
+    ...mapGetters({
+      user: 'user/user',
+      loginUser: 'auth/loginUser',
+    }),
+    /*
     // userUpdate() {
     //   return this.$store.state.auth.loginUser
     // },
   },
   watch: {
+    postUpdate() {
+      // POST再取得時にユーザーを更新
+      this.$axios.get(`api/v1/posts/${this.$post.id}`).then((res) => {
+        this.$store.commit('post/setPost', res.data, { root: true })
+        console.log(res.data)
+      })
+    },
     postUpdate() {
       // POST再取得時にユーザーを更新
       this.$axios.get(`api/v1/users/${this.$post.id}`).then((res) => {
@@ -103,26 +124,27 @@ export default {
     //     console.log(res.data)
     //   })
     // }, */
-
-    // いいね数を返す
+    /*
+  watch: {
     count() {
       return this.post.like_users.length
     },
-    // ログインユーザが既にいいねしているかを判定する
-    isLiked() {
-      if (this.likeList.length === 0) {
-        return false
-      }
-      return Boolean(this.findLikeId())
+  },
+  mounted() {
+      return this.post.like_users.length
+  },
     },
-  },
-  data() {
-    return {
-      dialog: false,
-    }
-  },
-  methods: {
-    /*     pagelink(link) {
+    // ログインユーザが既にいいねしているかを判定する
+  //   isLiked() {
+  //     if (this.likeList.length === 0) {
+  //       return false
+  //     }
+  //     return Boolean(this.findLikeId())
+  //   },
+  // }, */
+    /*
+methods: {
+      pagelink(link) {
       this.$router.push({ path: `/users/${link}` })
     }, */
   },
