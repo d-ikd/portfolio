@@ -72,13 +72,13 @@
                         class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
                         style="height: 100%;"
                       >
-                        <v-avatar>
+                        <v-avatar class="ml-2">
                           <img
                             alt="user"
                             :src="require(`@/assets/images/default-user.png`)"
                           />
                         </v-avatar>
-                        <div class="caption text-center ">
+                        <div class="caption text-center mr-3 ml-1">
                           {{ p.quickword }}
                         </div>
                       </div>
