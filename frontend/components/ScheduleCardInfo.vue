@@ -19,7 +19,7 @@
       </div>
     </template> -->
 
-    <v-card color="transparent" class="rounded-card">
+    <v-card color="transparent" class="rounded-card " elevation="5">
       <v-img :src="post.image.url" class="rounded-card">
         <v-card-text class="align-bottom">
           <v-row>
@@ -35,9 +35,13 @@
         </v-card-text>
       </v-img>
 
-      <v-sheet style="position: relative;">
-        <button-like :user="loginUser" :post="post" :is-rounded-like="true" />
-      </v-sheet>
+      <!-- <v-sheet style="position: relative;">
+        <button-like
+          :user="loginUser"
+          :post="post"
+          :is-rounded-like="true"
+        />
+      </v-sheet> -->
     </v-card>
     <v-row class="ml-3 mt-n16">
       <v-col>
@@ -49,71 +53,85 @@
     </v-row>
 
     <v-sheet color="transparent" class="mt-5"></v-sheet>
-    <v-timeline dense class="ml-14">
-      <v-timeline-item v-for="n in 1" :key="n">
-        <template v-slot:opposite>
-          <span>Tus eu perfecto</span>
-        </template>
+    <v-sheet class="rounded-card"> </v-sheet>
+    <v-sheet color="transparent"></v-sheet>
+    <v-sheet class="rounded-card" elevation="5">
+      <v-timeline dense clipped>
+        <v-timeline-item
+          class="mb-4"
+          color="grey"
+          icon-color="grey lighten-2"
+          small
+        >
+          <v-row justify="space-between">
+            <v-col class="text-left" cols="5">
+              <div
+                class="headline
+                    mr-8 pink--text font-weight-bold no-wrap-text"
+              >
+                開始 {{ $dayjs(post.start_time).format('hh:mm') }}
+              </div>
+            </v-col>
 
-        <template v-slot:icon>
-          <v-avatar>
-            <img src="https://i.pravatar.cc/64" />
-          </v-avatar>
-        </template>
+            <v-col cols="7">
+              This order was archived.
+            </v-col>
+          </v-row>
+        </v-timeline-item>
 
-        <v-card class="elevation-10 mr-14" rounded-card>
-          <v-card-title class="headline">
-            Hi! {{ post.quickword }}
-          </v-card-title>
-          <v-card-text>
-            {{ post.details }}
-          </v-card-text>
-        </v-card>
-      </v-timeline-item>
+        <v-timeline-item class="mb-4" small>
+          <v-row justify="space-between">
+            <v-col class="text-left" cols="5">
+              <span
+                class="headline
+                          mr-8
+                          font-weight-bold cyan--text"
+                >終了 {{ $dayjs(post.finish_time).format('hh:mm') }}</span
+              >
+            </v-col>
+            <v-col cols="7">
+              <v-chip class="white--text ml-0" color="purple" label small>
+                <div class="caption mx-auto text-right">
+                  予算: {{ post.price }}円/人
+                </div>
+              </v-chip>
+            </v-col>
+          </v-row>
+        </v-timeline-item>
 
-      <v-timeline-item small>
-        <!-- <template v-slot:opposite> -->
-        <div class="headline pink--text font-weight-bold no-wrap-text">
-          開始 {{ $dayjs(post.start_time).format('hh:mm') }}
-        </div>
-        <!-- </template> -->
-        <div class="py-4">
-          <h2 :class="`headline font-weight-light mb-4 pink--text`">
+        <v-timeline-item fill-dot class="white--text mb-9" color="orange" large>
+          <template v-slot:icon>
+            <v-avatar>
+              <img src="https://i.pravatar.cc/64" />
+            </v-avatar>
+          </template>
+
+          <v-card class="elevation-2 mr-8" rounded-card>
+            <v-card-title class="body-1">
+              Hi! {{ post.quickword }}
+            </v-card-title>
+            <v-card-text>
+              {{ post.details }}
+            </v-card-text>
+          </v-card>
+        </v-timeline-item>
+      </v-timeline>
+
+      <v-sheet class="rounded-card" color="transparent">
+        <v-row justify="space-between">
+          <v-col cols="2"> </v-col>
+          <v-col cols="9">
+            <user-dialog-shown :users="post.join_users" :title="'参加者'" />
             <button-like
               :user="loginUser"
               :post="post"
-              :is-rounded-join="true"
+              :is-rounded-like="true"
             />
-            <strong>募集メンバー: {{ post.member }}人</strong>
-            <div class="caption mb-2">予算: {{ post.price }}円/人</div>
-            <user-dialog-shown :users="post.join_users" :title="'参加者'" />
-          </h2>
-          <div>
-            Lorem ipsum
-          </div>
-        </div>
-      </v-timeline-item>
-
-      <v-timeline-item small>
-        <!-- <template v-slot:opposite> -->
-        <span :class="`headline font-weight-bold cyan--text`"
-          >終了 {{ $dayjs(post.finish_time).format('hh:mm') }}</span
-        >
-        <!-- </template> -->
-        <div class="py-4">
-          <h2 :class="`headline font-weight-light mb-4 cyan--text`">
-            Tomatoma ipsum
-          </h2>
-          <div>
-            メッセージなどは以下のフォームでご相談ください。
-          </div>
-        </div>
-      </v-timeline-item>
-    </v-timeline>
-
-    <div>
-      <!-- <post-container-message :post="post" /> -->
-    </div>
+          </v-col>
+          <v-col cols="1"> </v-col>
+        </v-row>
+      </v-sheet>
+    </v-sheet>
   </div>
 </template>
 

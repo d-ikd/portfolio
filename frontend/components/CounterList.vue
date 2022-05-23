@@ -106,7 +106,7 @@ export default {
 
     // いいね数を返す
     count() {
-      return this.likeList.length
+      return this.post.like_users.length
     },
     // ログインユーザが既にいいねしているかを判定する
     isLiked() {
