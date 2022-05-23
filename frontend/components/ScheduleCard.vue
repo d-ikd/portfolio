@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: white" class="mb-14">
-    <!-- <v-carousel hide-delimiters height="auto">
+    <!--     <v-carousel hide-delimiters height="auto">
       <v-carousel-item>
       </v-carousel-item>
     </v-carousel> -->
@@ -21,7 +21,6 @@
                 <v-sheet dark flat color="white">
                   <v-img
                     v-if="p.image.url"
-                    contain
                     :src="p.image.url"
                     :aspect-ratio="1 / 1"
                     class="white--text align-top"
@@ -38,11 +37,12 @@
                   </v-img>
                   <div style="position: relative;">
                     <v-card-text style="position: relative;">
-                      <schedule-card-info :post="p" />
+                      <dialog-component :isScheduleCardInfo="true" :post="p" />
+                      <!-- <schedule-card-info :post="p" /> -->
                       <button-like
                         :user="user"
                         :post="p"
-                        :isRoundedLike="true"
+                        :is-rounded-like="true"
                       />
                       <div class="grey--text title">
                         <div
@@ -156,7 +156,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import buttonLike from '~/components/infoPost/ButtonLike.vue'
+import buttonLike from '~/components/layouts/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
 import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
 import counterList from '~/components/CounterList.vue'
@@ -164,6 +164,7 @@ import userDialog from '~/components/infoUser/UserDialog.vue'
 import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
 import postReview2 from '~/components/infoPost/PostReview2.vue'
+import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
   // props: {
@@ -182,6 +183,7 @@ export default {
     userDialogReview,
     scheduleCardInfo,
     postReview2,
+    dialogComponent,
   },
   data() {
     return {

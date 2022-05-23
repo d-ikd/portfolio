@@ -16,14 +16,14 @@
 import buttonChange from '~/components/layouts/ButtonChange.vue'
 
 export default {
+  components: {
+    buttonChange,
+  },
   data() {
     return {
       name: this.$store.getters['auth/currentUser'].name,
       profile: this.$store.getters['auth/currentUser'].profile,
     }
-  },
-  components: {
-    buttonChange,
   },
   methods: {
     async changeUserProfile() {

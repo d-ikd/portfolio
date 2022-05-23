@@ -21,14 +21,6 @@
                       ></v-img>
                     </v-avatar>
                     {{ user.name }} さんが投稿
-                    <button-like
-                      :user="user"
-                      :post="post"
-                      :fronttitle="frontTitle"
-                      :backtitle="backTitle"
-                      :status1="status1"
-                      :status2="status2"
-                    />
                   </h3>
                 </span>
                 <span class="pr-3">
@@ -110,13 +102,11 @@
 import { mapGetters, mapActions } from 'vuex'
 // import postContainerLike from '~/components/infoPost/PostContainerLike.vue'
 import postContainerTimeline from '~/components/infoPost/PostContainerTimeline.vue'
-import buttonLike from '~/components/infoPost/ButtonLike.vue'
 
 export default {
   components: {
     // postContainerLike,
     postContainerTimeline,
-    buttonLike,
   },
   props: {
     post: {

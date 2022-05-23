@@ -7,16 +7,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import postParallax from '~/components/infoPost/PostParallax.vue'
-import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue'
+import { mapGetters } from 'vuex'
+/* import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue' */
 import postContainerLike from '~/components/infoPost/PostContainerLike.vue'
 
 export default {
-  name: 'Stuctive',
+  name: 'MeetWithKids',
   components: {
-    postParallax,
-    postContainerMessage,
+    /* postContainerMessage, */
     postContainerLike,
   },
   data() {

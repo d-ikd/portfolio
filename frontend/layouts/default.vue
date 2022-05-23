@@ -1,27 +1,27 @@
 <template>
   <v-app>
-    <the-header />
+    <!-- <the-header /> -->
     <v-main>
       <snackbar-message />
       <nuxt />
-      <button-post-create />
+      <dialog-component :is-post-create="true" />
       <the-footer />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import theHeader from '~/components/layouts/TheHeader.vue'
+/* import theHeader from '~/components/layouts/TheHeader.vue' */
 import theFooter from '~/components/layouts/TheFooter.vue'
 import snackbarMessage from '~/components/layouts/SnackbarMessage.vue'
-import buttonPostCreate from '~/components/layouts/ButtonPostCreate.vue'
+import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
   components: {
-    theHeader,
+    /* theHeader, */
     theFooter,
     snackbarMessage,
-    buttonPostCreate,
+    dialogComponent,
   },
 }
 </script>

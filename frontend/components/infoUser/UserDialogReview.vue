@@ -62,15 +62,15 @@ export default {
       dialog: false,
     }
   },
-  methods: {
-    pagelink(link) {
-      this.$router.push({ path: `/users/${link}` })
-    },
-  },
   computed: {
     ...mapGetters({
       users: 'user/user',
     }),
+  },
+  methods: {
+    pagelink(link) {
+      this.$router.push({ path: `/users/${link}` })
+    },
   },
 }
 </script>

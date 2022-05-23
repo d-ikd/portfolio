@@ -44,7 +44,7 @@
         </v-dialog>
       </template>
       <template v-else>
-        <the-header-account-setting />
+        <dialog-component :is-account-setting="true" />
       </template>
     </v-app-bar>
 
@@ -73,20 +73,19 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 /* TheHeader */
+import _debounce from 'lodash.debounce'
 import theHeaderAccountSetting from '~/components/layouts/TheHeaderAccountSetting.vue'
 import theModalSignUp from '~/components/layouts/TheModalSignUp.vue'
 import theModalLogin from '~/components/layouts/TheModalLogin.vue'
+import dialogComponent from '~/components/layouts/DialogComponent.vue'
+
 /* TheHeader */
 
-import _debounce from 'lodash.debounce'
-import searchPost from '~/components/search/SearchPost.vue'
-import userList from '~/components/infoUser/UserList.vue'
+/* import searchPost from '~/components/search/SearchPost.vue' */
 import ScheduleCard2 from '~/components/search/ScheduleCard2.vue'
-import checkbox from '~/components/search/Checkbox.vue'
+/* import checkbox from '~/components/search/Checkbox.vue' */
 import PostList from '~/components/infoPost/PostList.vue'
 import ScheduleCard from '~/components/ScheduleCard.vue'
-
-// import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
   components: {
@@ -94,16 +93,14 @@ export default {
     theHeaderAccountSetting,
     theModalSignUp,
     theModalLogin,
+    dialogComponent,
     /* TheHeader */
 
-    searchPost,
+    /* searchPost, */
     ScheduleCard2,
-    userList,
     PostList,
-    checkbox,
+    /* checkbox, */
     ScheduleCard,
-
-    // dialogComponent,
   },
   data() {
     return {

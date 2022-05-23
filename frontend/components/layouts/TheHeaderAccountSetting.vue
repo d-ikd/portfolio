@@ -1,168 +1,122 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    ransition="dialog-bottom-transition"
-    max-width="600"
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn transparent v-bind="attrs" v-on="on"
-        ><v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </template>
-    <button-close @close-dialog="closeDialog" />
-    <v-card>
-      <v-toolbar color="white black--text" dark extended prominent>
-        <v-toolbar-title class="d-flex"></v-toolbar-title>
-        <v-spacer></v-spacer>
-        <template>
-          <div>
-            <user-avatar :size="100" :user="currentUser" />
-          </div>
-          <div class="mx-auto ml-7 text-center">
-            <h3>{{ currentUser.name }}</h3>
-            <p class="caption mt-1">
-              {{ currentUser.email }}
-            </p>
-          </div>
-          <div class="ml-14">
-            <p class="caption">
-              {{ currentUser.profile }}
-            </p>
-          </div>
-        </template>
+  <v-card>
+    <v-card color="basil">
+      <v-card-title class="text-center justify-center py-6">
+        <h1 class="font-weight-bold display-3 basil--text">
+          <template>
+            <div>
+              <user-avatar :size="100" :user="currentUser" />
+            </div>
+            <div class="mx-auto text-center">
+              <h3>{{ currentUser.name }}</h3>
+              <p class="caption mt-1">
+                {{ currentUser.email }}
+              </p>
+            </div>
+            <div>
+              <p class="caption">
+                {{ currentUser.profile }}
+              </p>
+            </div>
+          </template>
+        </h1>
+      </v-card-title>
 
-        <v-spacer></v-spacer>
-      </v-toolbar>
+      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+        <v-tab v-for="(item, index) in items" :key="`first-${index}`">
+          {{ item.title }}
+        </v-tab>
+      </v-tabs>
 
-      <v-row justify="center">
-        <v-expansion-panels inset color="white">
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              followings
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <user-list :users="loginUser.followings" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              followers
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <user-list :users="user.followers" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              postjoin
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <user-post-list :posts="user.postjoin" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              postlike
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <user-post-list :posts="user.postlike" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              レビューリスト
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <user-review-list :reviews="user.reviews" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              レビューリスト２
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <user-like-review-list :reviews="user.like_reviews" />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              アバター変更
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <editAvatar />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header
-              >ユーザーネーム変更</v-expansion-panel-header
-            >
-            <v-expansion-panel-content>
-              <editProfile />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>パスワード変更</v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <editPassword />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header
-              >メールアドレス変更</v-expansion-panel-header
-            >
-            <v-expansion-panel-content>
-              <editEmail />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header class="red--text"
-              >Danger Zone</v-expansion-panel-header
-            >
-            <v-expansion-panel-content>
-              <deleteUser />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-row>
-
-      <v-list-item-content class="justify-center">
-        <div class="mx-auto text-center">
-          <v-divider class="my-3"></v-divider>
-
-          <v-divider class="my-3"></v-divider>
-          <v-btn
-            v-if="currentUser.admin"
-            depressed
-            rounded
-            text
-            to="/admin"
-            @click="dialog.value = false"
-          >
-            管理者機能
-          </v-btn>
-
-          <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
-          <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
-        </div>
-      </v-list-item-content>
+      <v-tabs-items v-model="tab">
+        <v-tab-item v-for="(item, index) in items" :key="`second-${index}`">
+          <v-card color="basil" flat>
+            <v-card-text>
+              {{ item.titletext
+              }}<!-- <list-component :listed="loginUser.followings" /> -->
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
     </v-card>
 
-    <v-card>
-      <v-spacer></v-spacer>
-    </v-card>
-  </v-dialog>
+    <!--                   <user-list :users="loginUser.followings" />
+                  <user-list :users="user.followers" />
+                  <user-post-list :posts="user.postjoin" />
+                  <user-post-list :posts="user.postlike" />
+                  <user-review-list :reviews="user.reviews" />
+                  <user-like-review-list :reviews="user.like_reviews" /> -->
+
+    <v-divider class="mt-10 mb-10"></v-divider>
+
+    <v-sheet class="mt-3">
+      <v-spacer /><v-subheader>test</v-subheader>
+    </v-sheet>
+
+    <v-expansion-panels color="black">
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          アバター変更
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <editAvatar />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header>ユーザーネーム変更</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <editProfile />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header>パスワード変更</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <editPassword />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel>
+        <v-expansion-panel-header>メールアドレス変更</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <editEmail />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel>
+        <v-expansion-panel-header class="red--text"
+          >Danger Zone</v-expansion-panel-header
+        >
+        <v-expansion-panel-content>
+          <deleteUser />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+
+    <v-list-item-content class="justify-center">
+      <div class="mx-auto text-center">
+        <v-divider class="my-3"></v-divider>
+        <v-btn
+          v-if="currentUser.admin"
+          depressed
+          rounded
+          text
+          to="/admin"
+          @click="dialog.value = false"
+        >
+          管理者機能
+        </v-btn>
+
+        <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
+        <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
+      </div>
+    </v-list-item-content>
+  </v-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import listComponent from '~/components/layouts/ListComponent.vue'
+
 import userList from '~/components/infoUser/UserList.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
 
@@ -177,8 +131,7 @@ import buttonClose from '~/components/layouts/ButtonClose.vue'
 
 export default {
   components: {
-    userList,
-    userPostList,
+    listComponent,
 
     userAvatar,
     deleteUser,
@@ -190,10 +143,23 @@ export default {
   },
   data() {
     return {
+      listed: [
+        { name: '池田', listed: 'loginUser.followings' },
+        { name: '池田', listed: 'loginUser.followings' },
+        /* { name: "高橋", position: "シューティングガード", id: 5, height: 168 } */
+      ],
       dialog: false,
       expand: false,
       show: false,
       defaultImage: 'http://localhost:5000/fallback/default.png',
+
+      tab: null,
+      items: [
+        { title: 'followings', titletext: 'followingstext' },
+        { title: 'followers', titletext: 'followersstext' },
+      ],
+      text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
   computed: {

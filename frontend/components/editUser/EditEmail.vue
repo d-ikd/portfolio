@@ -21,15 +21,15 @@
 import buttonChange from '~/components/layouts/ButtonChange.vue'
 
 export default {
+  components: {
+    buttonChange,
+  },
   data() {
     return {
       email: this.$store.getters['auth/currentUser'].email,
       originEmail: this.$store.getters['auth/currentUser'].uid,
       guest: 'guestuser20220106@gmail.com',
     }
-  },
-  components: {
-    buttonChange,
   },
   methods: {
     async changeUserEmail() {

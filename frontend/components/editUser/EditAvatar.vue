@@ -41,6 +41,9 @@
 import buttonChange from '~/components/layouts/ButtonChange.vue'
 
 export default {
+  components: {
+    buttonChange,
+  },
   // props: {
   //   image: {
   //     type: Object,
@@ -53,9 +56,6 @@ export default {
       editImage: '',
       input_image: null,
     }
-  },
-  components: {
-    buttonChange,
   },
   methods: {
     setImage(file) {

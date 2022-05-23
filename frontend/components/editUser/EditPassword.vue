@@ -34,6 +34,9 @@
 <script>
 import buttonChange from '~/components/layouts/ButtonChange.vue'
 export default {
+  components: {
+    buttonChange,
+  },
   data() {
     return {
       show1: false,
@@ -46,10 +49,6 @@ export default {
       guest: 'guestuser20220106@gmail.com',
     }
   },
-  components: {
-    buttonChange,
-  },
-
   methods: {
     changeUserPassword() {
       this.$axios

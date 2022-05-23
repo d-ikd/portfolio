@@ -33,7 +33,6 @@ import { mapGetters, mapActions } from 'vuex'
 import scheduleCardContents from '~/components/ScheduleCardContents.vue'
 import buttonLike from '~/components/infoPost/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
-import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
 
 export default {
   // props: {
@@ -47,7 +46,6 @@ export default {
     scheduleCardContents,
     buttonLike,
     userDialogShown,
-    userDialogLike,
   },
   data() {
     return {

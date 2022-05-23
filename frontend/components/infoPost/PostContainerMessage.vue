@@ -57,17 +57,17 @@ import postReviewModal from '~/components/infoPost/PostReviewModal.vue'
 import postReviewList from '~/components/infoPost/PostReviewList.vue'
 
 export default {
+  components: {
+    postReviewModal,
+    postReviewList,
+  },
+
   props: {
     post: {
       type: Object,
       required: true,
     },
   },
-  components: {
-    postReviewModal,
-    postReviewList,
-  },
-
   data() {
     return {
       items: [
