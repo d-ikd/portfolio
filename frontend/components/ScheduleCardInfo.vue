@@ -115,19 +115,22 @@
           </v-card>
         </v-timeline-item>
       </v-timeline>
-      <v-sheet class="d-flex justify-center transparent">
-        <dialog-component
-          :is-message-list="true"
-          :post="post"
-          class="mt-5 mb-5"
-        /><br />
-
-        <button-like
-          :user="loginUser"
-          :post="post"
-          :is-rounded-join="true"
-          class="mb-10"
-        />
+      <v-sheet class="d-flex transparent align-center flex-column">
+        <div>
+          <dialog-component3
+            :is-message-list="true"
+            :post="post"
+            class="mt-5 mb-5 "
+          />
+        </div>
+        <div>
+          <button-like
+            :user="loginUser"
+            :post="post"
+            :is-rounded-join="true"
+            class="mb-10"
+          />
+        </div>
       </v-sheet>
     </v-sheet>
   </div>
@@ -137,15 +140,13 @@
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
-import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue'
-import dialogComponent from '~/components/layouts/dialogComponent.vue'
+import dialogComponent3 from '~/components/layouts/dialogComponent3.vue'
 
 export default {
   components: {
     buttonLike,
     userDialogShown,
-    postContainerMessage,
-    dialogComponent,
+    dialogComponent3,
   },
   props: {
     post: {

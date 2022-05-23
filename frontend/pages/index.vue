@@ -15,13 +15,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Search from '~/components/search/Search.vue'
-import dialogComponent from '~/components/layouts/DialogComponent.vue'
 // import searchForm from '~/components/search/SearchForm.vue'
 
 export default {
   components: {
     Search,
-    dialogComponent,
     // searchForm,
   },
   computed: {

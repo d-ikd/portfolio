@@ -61,11 +61,13 @@ export default {
     },
     fronttitle: {
       type: String,
+      default: '',
       required: false,
     },
     backtitle: {
       type: String,
-      required: false,
+      default: '',
+      required: true,
     },
     isRoundedLike: {
       type: Boolean,

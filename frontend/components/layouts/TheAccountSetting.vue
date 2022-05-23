@@ -83,29 +83,13 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import listComponent from '~/components/layouts/ListComponent.vue'
-
-import userList from '~/components/infoUser/UserList.vue'
-import userPostList from '~/components/infoUser/UserPostList.vue'
-
-import userAvatar from '~/components/infoUser/UserAvatar.vue'
-
-import deleteUser from '~/components/editUser/DeleteUser.vue'
-import editAvatar from '~/components/editUser/EditAvatar.vue'
-import editEmail from '~/components/editUser/EditEmail.vue'
-import editPassword from '~/components/editUser/EditPassword.vue'
-import editProfile from '~/components/editUser/EditProfile.vue'
+/* import listComponent from '~/components/layouts/ListComponent.vue' */
+/* import userAvatar from '~/components/infoUser/UserAvatar.vue' */
 
 export default {
   components: {
-    listComponent,
-
-    userAvatar,
-    deleteUser,
-    editAvatar,
-    editEmail,
-    editPassword,
-    editProfile,
+    /* listComponent, */
+    /* userAvatar, */
   },
   data() {
     return {

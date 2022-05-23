@@ -94,11 +94,9 @@
         </v-icon>
       </v-btn>
     </template>
-
     <template v-else>
       <dialogComponentContents
         :dialog-component="dialogComponent"
-        :dialog-items="dialogItems"
         :is-post-create="isPostCreate"
         @result="response"
       />
@@ -151,10 +149,6 @@ export default {
   data() {
     return {
       dialogComponent: false,
-      dialogItems: {
-        title: 'ダイアログタイトル',
-        text: 'テキストテキストテキストテキストテキストテキスト',
-      },
       /* message: '', */
     }
   },
@@ -162,7 +156,7 @@ export default {
     closeDialog() {
       this.dialog = false
     },
-    response(obj) {
+    response() {
       /* this.message = obj.message */
       this.dialogComponent = false
     },

@@ -9,8 +9,10 @@
           class="list"
         >
           <v-list-item-avatar tile class="tab">
-            <v-img v-if="post.image.url" contain :src="post.image.url" />
-            <v-img v-else contain :src="defaultImage" />
+            <v-avatar size="50">
+              <v-img v-if="post.image.url" :src="post.image.url" />
+              <v-img v-else contain :src="defaultImage" />
+            </v-avatar>
           </v-list-item-avatar>
 
           <v-row>
@@ -70,4 +72,14 @@ export default {
 .list {
   cursor: default;
 }
+
+.small-image {
+  border: 1px solid;
+  border-radius: 9px;
+  border-color: #bdbdbd;
+}
+/* .small-image:hover {
+  opacity: 0.7;
+}
+ */
 </style>

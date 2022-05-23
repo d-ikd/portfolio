@@ -31,13 +31,16 @@
       -->
       <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
         <v-tab>
+          Likes
+        </v-tab>
+        <v-tab>
           followings
         </v-tab>
         <v-tab>
           followers
         </v-tab>
         <v-tab>
-          Likes
+          reviews
         </v-tab>
       </v-tabs>
 
@@ -53,6 +56,14 @@
         <v-tab-item>
           <v-card>
             <v-card-text>
+              <list-component :lists="loginUser.followings" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-card-text>
+              <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
               <list-component :lists="loginUser.followers" />
             </v-card-text>
           </v-card>
@@ -61,7 +72,7 @@
           <v-card>
             <v-card-text>
               <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <list-component :lists="loginUser.followings" />
+              <user-review-list :reviews="loginUser.reviews" />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -80,34 +91,18 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import listComponent from '~/components/layouts/ListComponent.vue'
-
-import userList from '~/components/infoUser/UserList.vue'
+import userReviewList from '~/components/infoUser/UserReviewList.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
-
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import theAccountSetting from '~/components/layouts/TheAccountSetting.vue'
-
-import deleteUser from '~/components/editUser/DeleteUser.vue'
-import editAvatar from '~/components/editUser/EditAvatar.vue'
-import editEmail from '~/components/editUser/EditEmail.vue'
-import editPassword from '~/components/editUser/EditPassword.vue'
-import editProfile from '~/components/editUser/EditProfile.vue'
-
-import dialogComponent from '~/components/layouts/DialogComponent.vue'
 import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 
 export default {
   components: {
     userPostList,
+    userReviewList,
     listComponent,
-    theAccountSetting,
+
     userAvatar,
-    deleteUser,
-    editAvatar,
-    editEmail,
-    editPassword,
-    editProfile,
-    dialogComponent,
     dialogComponent3,
   },
   data() {

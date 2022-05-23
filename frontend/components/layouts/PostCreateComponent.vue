@@ -161,12 +161,8 @@
 </template>
 
 <script>
-import buttonClose from '~/components/layouts/ButtonClose.vue'
-
 export default {
-  components: {
-    buttonClose,
-  },
+  components: {},
   data() {
     return {
       dialog: false,

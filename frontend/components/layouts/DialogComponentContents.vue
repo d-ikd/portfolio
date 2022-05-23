@@ -61,15 +61,6 @@
         <template v-else-if="isScheduleCardInfo">
           <schedule-card-info :post="posting" />
         </template>
-        <template v-else-if="isMessageList">
-          aaa
-          <!-- <list-component :is-message-list="true" :post="posting" /> -->
-        </template>
-        <!--
-        <template v-else-if="isScheduleCardInfoInList">
-          <schedule-card-info :post="posting" />
-        </template>
-        -->
         <template v-else>
           elseelseelse
         </template>
@@ -95,7 +86,6 @@ import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
 import theAccount from '~/components/layouts/TheAccount.vue'
-import postContainerMessage from '~/components/infoPost/PostContainerMessage.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
 
 export default {
@@ -104,7 +94,6 @@ export default {
     scheduleCardInfo,
     postCreateComponent,
     theAccount,
-    postContainerMessage,
     listComponent,
   },
   props: {
@@ -133,10 +122,6 @@ export default {
       default: false,
     },
     isScheduleCardInfoInList: {
-      type: Boolean,
-      default: false,
-    },
-    isMessageList: {
       type: Boolean,
       default: false,
     },

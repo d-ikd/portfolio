@@ -143,12 +143,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
-import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
-import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
 import counterList from '~/components/CounterList.vue'
-import userDialog from '~/components/infoUser/UserDialog.vue'
-import userDialogReview from '~/components/infoUser/UserDialogReview.vue'
-import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
 import postReview2 from '~/components/infoPost/PostReview2.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
@@ -156,12 +151,7 @@ export default {
   components: {
     // userPostList,
     buttonLike,
-    userDialogShown,
-    userDialogLike,
     counterList,
-    userDialog,
-    userDialogReview,
-    scheduleCardInfo,
     postReview2,
     dialogComponent,
   },

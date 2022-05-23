@@ -28,7 +28,18 @@
         color="transparent"
         class=" mx-auto pb-3 mb-10 rounded-card"
       >
-        <the-account-setting />
+        <template v-if="isMessageList">
+          messagemessagemessage
+          <!-- <list-component :is-message-list="true" :post="posting" /> -->
+          <!--
+        <template v-else-if="isScheduleCardInfoInList">
+          <schedule-card-info :post="posting" />
+        </template>-->
+        </template>
+
+        <template v-else>
+          <the-account-setting />
+        </template>
       </v-sheet>
 
       <v-sheet class="d-flex justify-center transparent">
@@ -48,27 +59,24 @@
 </template>
 
 <script>
-import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
-import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
-import theAccount from '~/components/layouts/TheAccount.vue'
 import theAccountSetting from '~/components/layouts/TheAccountSetting.vue'
 
 export default {
   components: {
     buttonClose,
-    scheduleCardInfo,
-    postCreateComponent,
-    theAccount,
     theAccountSetting,
   },
   props: {
     dialogComponent: false,
-
     posting: {
       type: Object,
       default: () => {},
       required: false,
+    },
+    isMessageList: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {

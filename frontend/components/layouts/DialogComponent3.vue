@@ -1,6 +1,21 @@
 <template>
   <div>
-    <template>
+    <template v-if="isMessageList">
+      <dialogComponentContents3
+        :dialog-component="dialogComponent"
+        @result="response"
+        :is-message-list="true"
+      />
+      <v-btn
+        color="purple white--text"
+        outlined
+        @click.stop="dialogComponent = true"
+      >
+        <v-icon dark>mdi-email-variant </v-icon>
+        メッセージボックス
+      </v-btn>
+    </template>
+    <template v-else>
       <dialogComponentContents3
         :dialog-component="dialogComponent"
         @result="response"
@@ -28,15 +43,15 @@ export default {
       default: () => ({}),
       required: false,
     },
+    isMessageList: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
       dialogComponent: false,
-      dialogItems: {
-        title: 'ダイアログタイトル',
-        text: 'テキストテキストテキストテキストテキストテキスト',
-      },
       /* message: '', */
     }
   },
@@ -44,7 +59,7 @@ export default {
     closeDialog() {
       this.dialog = false
     },
-    response(obj) {
+    response() {
       /* this.message = obj.message */
       this.dialogComponent = false
     },

@@ -72,7 +72,6 @@
 import { mapGetters, mapActions } from 'vuex'
 /* TheHeader */
 import _debounce from 'lodash.debounce'
-import theAccount from '~/components/layouts/TheAccount.vue'
 import theModalSignUp from '~/components/layouts/TheModalSignUp.vue'
 import theModalLogin from '~/components/layouts/TheModalLogin.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
@@ -82,13 +81,11 @@ import dialogComponent from '~/components/layouts/DialogComponent.vue'
 /* import searchPost from '~/components/search/SearchPost.vue' */
 import ScheduleCard2 from '~/components/search/ScheduleCard2.vue'
 /* import checkbox from '~/components/search/Checkbox.vue' */
-import PostList from '~/components/infoPost/PostList.vue'
 import ScheduleCard from '~/components/ScheduleCard.vue'
 
 export default {
   components: {
     /* TheHeader */
-    theAccount,
     theModalSignUp,
     theModalLogin,
     dialogComponent,
@@ -96,7 +93,7 @@ export default {
 
     /* searchPost, */
     ScheduleCard2,
-    PostList,
+
     /* checkbox, */
     ScheduleCard,
   },

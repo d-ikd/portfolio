@@ -49,7 +49,7 @@ export default {
     closeDialog() {
       this.dialog = false
     },
-    response(obj) {
+    response() {
       /* this.message = obj.message */
       this.dialogComponent = false
     },
