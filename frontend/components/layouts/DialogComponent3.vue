@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="isMessageList">
-      <dialogComponentContents3
+      <dialog-component-contents-3
         :dialog-component="dialogComponent"
         :is-message-list="true"
         :posting="post"
@@ -17,7 +17,7 @@
       </v-btn>
     </template>
     <template v-else-if="isAccountSetting">
-      <dialogComponentContents3
+      <dialog-component-contents-3
         :dialog-component="dialogComponent"
         :is-account-setting="true"
         @result="response"
@@ -31,7 +31,7 @@
       </v-btn>
     </template>
     <template v-else>
-      <dialogComponentContents3
+      <dialog-component-contents-3
         :dialog-component="dialogComponent"
         @result="response"
       />

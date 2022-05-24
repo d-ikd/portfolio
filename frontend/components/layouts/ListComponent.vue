@@ -27,24 +27,19 @@
     <template v-if="isMessageList">
       <v-card class="rounded-card">
         <template v-if="post.reviews.length === 0">
-          <h4 class="ma-3 text-decoration-underline">
+          <h4 class="ma-3">
             メッセージがありません。
           </h4>
           <the-modal-message-create v-if="login" :post="post" />
         </template>
         <template>
-          <v-timeline dense clipped>
-            <v-timeline-item
-              v-for="review in post.reviews"
-              :key="review.id"
-              class="mb-4"
-              color="grey"
-              icon-color="grey lighten-2"
-              small
-            >
-              <post-review :review="review" />
-            </v-timeline-item>
-          </v-timeline>
+          <v-sheet
+            v-for="review in post.reviews"
+            :key="review.id"
+            class="mb-3 mt-3"
+          >
+            <message :message="review" />
+          </v-sheet>
         </template>
       </v-card>
     </template>
@@ -74,8 +69,7 @@ import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
 import postMessage from '~/components/infoPost/PostMessage.vue'
-/* import postReviewList from '~/components/infoPost/PostReviewList.vue' */
-import postReview from '~/components/infoPost/PostReview.vue'
+import message from '~/components/infoPost/Message.vue'
 import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
 
 export default {
@@ -83,8 +77,7 @@ export default {
     userAvatar,
     userFollow,
     postMessage,
-    /* postReviewList, */
-    postReview,
+    message,
     theModalMessageCreate,
   },
   props: {

@@ -124,7 +124,7 @@
       </v-timeline>
       <v-sheet class="d-flex transparent align-center flex-column">
         <div>
-          <dialog-component3
+          <dialog-component-3
             :is-message-list="true"
             :post="post"
             class="mt-5 mb-5 "

@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="isPostCreate">
-      <dialogComponentContents
+      <dialog-component-contents
         :dialog-component="dialogComponent"
         :is-post-create="true"
         @result="response"
@@ -21,7 +21,7 @@
       </v-btn>
     </template>
     <template v-else-if="isAccountPage">
-      <dialogComponentContents
+      <dialog-component-contents
         :dialog-component="dialogComponent"
         :is-account-page="true"
         @result="response"
@@ -31,7 +31,7 @@
       </v-btn>
     </template>
     <template v-else-if="isAccountSetting">
-      <dialogComponentContents
+      <dialog-component-contents
         :dialog-component="dialogComponent"
         :is-account-setting="true"
         @result="response"
@@ -44,7 +44,7 @@
       </v-btn>
     </template>
     <template v-else-if="isScheduleCardInfo">
-      <dialogComponentContents
+      <dialog-component-contents
         :dialog-component="dialogComponent"
         :is-schedule-card-info="true"
         :posting="post"
