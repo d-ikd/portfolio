@@ -64,10 +64,12 @@ export default {
     },
     post: {
       type: Object,
+      default: () => ({}),
       required: true,
     },
     ppp: {
-      type: Array,
+      type: Object,
+      default: () => ({}),
       required: false,
     },
 

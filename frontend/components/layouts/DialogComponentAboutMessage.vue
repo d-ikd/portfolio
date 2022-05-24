@@ -1,10 +1,10 @@
 <template>
   <div>
     <template v-if="isMessageCreate">
-      <dialogComponentContents
+      <dialogComponentContentsAboutMessage
         :dialog-component="dialogComponent"
-        @result="response"
         :is-message-create="true"
+        @result="response"
       />
       <v-btn
         color="#BADEC3"
@@ -13,7 +13,41 @@
         class="ma-10"
         @click.stop="dialogComponent = true"
       >
-        メッセージする
+        メッセージ
+        <v-icon color="white">mdi-pencil</v-icon>
+      </v-btn>
+    </template>
+    <template v-if="isMessageEdit">
+      <dialogComponentContentsAboutMessage
+        :dialog-component="dialogComponent"
+        :is-message-edit="true"
+        @result="response"
+      />
+      <v-btn
+        color="#BADEC3"
+        dark
+        x-large
+        class="ma-10"
+        @click.stop="dialogComponent = true"
+      >
+        編集
+        <v-icon color="white">mdi-pencil</v-icon>
+      </v-btn>
+    </template>
+    <template v-if="isMessageDelete">
+      <dialogComponentContentsAboutMessage
+        :dialog-component="dialogComponent"
+        :is-message-delete="true"
+        @result="response"
+      />
+      <v-btn
+        color="#BADEC3"
+        dark
+        x-large
+        class="ma-10"
+        @click.stop="dialogComponent = true"
+      >
+        削除
         <v-icon color="white">mdi-pencil</v-icon>
       </v-btn>
     </template>
@@ -31,12 +65,17 @@
 </template>
 
 <script>
-import dialogComponentContents from '~/components/layouts/DialogComponentContents.vue'
+import dialogComponentContentsAboutMessage from '~/components/layouts/DialogComponentContentsAboutMessage.vue'
 export default {
   components: {
-    dialogComponentContents,
+    dialogComponentContentsAboutMessage,
   },
   props: {
+    dialogComponent: {
+      type: Boolean,
+      default: false,
+    },
+
     post: {
       type: Object,
       default: () => ({}),
@@ -45,21 +84,21 @@ export default {
     isMessageCreate: {
       type: Boolean,
       default: false,
-      required: false,
+    },
+    isMessageEdit: {
+      type: Boolean,
+      default: false,
+    },
+    isMessageDelete: {
+      type: Boolean,
+      default: false,
     },
   },
 
-  data() {
-    return {
-      dialogComponent: false,
-      /* message: '', */
-    }
-  },
   methods: {
     closeDialog() {
       this.dialog = false
     },
-
     response() {
       /* this.message = obj.message */
       this.dialogComponent = false

@@ -3,9 +3,9 @@
     <template v-if="isMessageList">
       <dialogComponentContents3
         :dialog-component="dialogComponent"
-        @result="response"
         :is-message-list="true"
         :posting="post"
+        @result="response"
       />
       <v-btn
         color="purple white--text"
@@ -14,6 +14,20 @@
       >
         <v-icon dark>mdi-email-variant </v-icon>
         メッセージボックス
+      </v-btn>
+    </template>
+    <template v-else-if="isAccountSetting">
+      <dialogComponentContents3
+        :dialog-component="dialogComponent"
+        :is-account-setting="true"
+        @result="response"
+      />
+      <v-btn
+        color="purple white--text"
+        outlined
+        @click.stop="dialogComponent = true"
+      >
+        <v-icon dark> mdi-wrench </v-icon>設定
       </v-btn>
     </template>
     <template v-else>
@@ -34,6 +48,7 @@
 
 <script>
 import dialogComponentContents3 from '~/components/layouts/DialogComponentContents3.vue'
+
 export default {
   components: {
     dialogComponentContents3,
@@ -45,6 +60,10 @@ export default {
       required: false,
     },
     isMessageList: {
+      type: Boolean,
+      default: false,
+    },
+    isAccountSetting: {
       type: Boolean,
       default: false,
     },

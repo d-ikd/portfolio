@@ -144,7 +144,6 @@
 import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import counterList from '~/components/CounterList.vue'
-import postReview2 from '~/components/infoPost/PostReview2.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
@@ -152,7 +151,6 @@ export default {
     // userPostList,
     buttonLike,
     counterList,
-    postReview2,
     dialogComponent,
   },
   // props: {

@@ -85,18 +85,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
-import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue'
-import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
+import { mapGetters } from 'vuex'
+/* import userAvatar from '~/components/infoUser/UserAvatar.vue' */
 
 export default {
   components: {
-    userAvatar,
-    theModalMessageEdit,
-    postReviewDelete,
-    userDialogLike,
+    /* userAvatar, */
   },
   props: {
     review: {

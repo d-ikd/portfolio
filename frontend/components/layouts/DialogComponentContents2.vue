@@ -50,21 +50,19 @@
 </template>
 
 <script>
-import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
-import theAccount from '~/components/layouts/TheAccount.vue'
 
 export default {
   components: {
     buttonClose,
     scheduleCardInfo,
-    postCreateComponent,
-    theAccount,
   },
   props: {
-    dialogComponent: false,
-
+    dialogComponent: {
+      type: Boolean,
+      default: false,
+    },
     posting: {
       type: Object,
       default: () => {},

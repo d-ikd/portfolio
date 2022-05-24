@@ -1,25 +1,33 @@
 <template>
   <v-card class="ml-8 mr-8 mt-4 green lighten-3 rounded">
     <v-card flat class="green lighten-3">
-      <nuxt-link :to="{ path: `/users/${review.user_id}` }">
-        <user-avatar :size="50" :user="review.user" />
+      aaa
+      <dialog-component-about-message
+        :is-message-edit="true"
+        :posting="message"
+      />
+      <dialog-component-about-message
+        :is-message-delete="true"
+        :posting="message"
+      />
+
+      <nuxt-link :to="{ path: `/users/${message.user_id}` }">
+        <user-avatar :size="50" :user="message.user" />
       </nuxt-link>
       <v-btn
         class="ma-1"
         plain
         style="text-transform: none"
         nuxt
-        :to="`/users/${review.user_id}`"
+        :to="`/users/${message.user_id}`"
       >
-        {{ review.user.name }}
+        {{ message.user.name }}
       </v-btn>
-      {{ $dayjs(review.created_at).format('MM/DD') }}&nbsp;{{
-        $dayjs(review.created_at).format('hh:mm')
+      {{ $dayjs(message.created_at).format('MM/DD') }}&nbsp;{{
+        $dayjs(message.created_at).format('hh:mm')
       }}
 
-      <template v-if="review.user_id === $store.state.auth.loginUser.id">
-        <the-modal-message-edit :review="review" />
-        <post-review-delete :review="review" />
+      <template v-if="message.user_id === $store.state.auth.loginUser.id">
       </template>
 
       <v-spacer />
@@ -39,8 +47,8 @@
           </template>
           <v-avatar size="500" class="radius-image">
             <v-img
-              v-if="review.image.url"
-              :src="review.image.url"
+              v-if="message.image.url"
+              :src="message.image.url"
               alt="avatar"
             />
             <v-img v-else :src="defaultImage" contain />
@@ -48,12 +56,16 @@
         </v-menu>
       </div>
 
-      <h2 class="ma-3 font-weight-bold">{{ review.title }}</h2>
-      <h3 class="review-content body-1 ml-5 ">{{ review.content }}</h3>
+      <h2 class="ma-3 font-weight-bold">{{ message.title }}</h2>
+      <h3 class="body-1 ml-5 ">{{ message.content }}</h3>
 
-      <template v-if="review.image.url">
+      <template v-if="message.image.url">
         <v-avatar size="100" class="radius-image mt-3 mb-3">
-          <v-img v-if="review.image.url" :src="review.image.url" alt="avatar" />
+          <v-img
+            v-if="message.image.url"
+            :src="message.image.url"
+            alt="avatar"
+          />
           <v-img v-else :src="defaultImage" contain />
         </v-avatar>
       </template>
@@ -81,21 +93,17 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
-import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue'
-import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
+import dialogComponentAboutMessage from '~/components/layouts/DialogComponentAboutMessage.vue'
 
 export default {
   components: {
     userAvatar,
-    theModalMessageEdit,
-    postReviewDelete,
-    userDialogLike,
+    dialogComponentAboutMessage,
   },
   props: {
-    review: {
+    message: {
       type: Object,
       default: () => ({}),
       required: true,
@@ -104,7 +112,6 @@ export default {
   data() {
     return {
       createDate: '',
-      rating: this.review.rate,
       expand: false,
       like: false,
     }
@@ -122,7 +129,7 @@ export default {
     loginUserReview() {
       if (this.login) {
         this.like = false
-        this.review.review_likes.forEach((f) => {
+        this.message.review_likes.forEach((f) => {
           if (f.user_id === this.loginUser.id) {
             this.like = true
           }
@@ -131,10 +138,10 @@ export default {
     },
   },
   mounted() {
-    this.createDate = this.$dayjs(this.review.created_at).format('YYYY/MM/DD')
+    this.createDate = this.$dayjs(this.message.created_at).format('YYYY/MM/DD')
     if (this.login) {
       this.like = false
-      this.review.review_likes.forEach((f) => {
+      this.message.review_likes.forEach((f) => {
         if (f.user_id === this.loginUser.id) {
           this.like = true
         }
@@ -146,30 +153,6 @@ export default {
       likeReview: 'review/likeReview',
       unLikeReview: 'review/unLikeReview',
     }),
-    nice() {
-      const postData = {
-        user: this.$store.state.auth.loginUser.id,
-        review: this.review.id,
-      }
-      if (this.like) {
-        this.unLikeReview(postData).then(() => {
-          this.like = false
-          this.$axios
-            .$get(`/api/v1/posts/${this.$route.params.id}`)
-            .then((res) => {
-              this.$store.commit('post/setPost', res, { root: true })
-            })
-        })
-      } else {
-        this.likeReview(postData).then(() => {
-          this.like = true
-          this.$axios
-            .$get(`/api/v1/posts/${this.$route.params.id}`)
-            .then((res) => {
-              this.$store.commit('post/setPost', res, { root: true })
-            })
-        })
-      }
     },
   }, */
 }
@@ -185,9 +168,6 @@ export default {
   border: 1px solid rgba(0, 0, 0.8);
   border-radius: 20px;
   border-color: #bdbdbd;
-}
-.review-content {
-  margin-bottom: 0px;
 }
 .arrow_box {
   position: relative;

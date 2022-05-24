@@ -35,10 +35,8 @@
                 アカウント
               </v-chip>
             </template>
-            <template v-else-if="isScheduleCardInfo">
-              <v-chip label color="white" large outlined text-color="red">
-                <v-icon>mdi-run</v-icon>
-              </v-chip>
+            <template v-else>
+              else
             </template>
           </v-sheet>
         </v-col>
@@ -86,19 +84,19 @@ import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
 import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
 import theAccount from '~/components/layouts/TheAccount.vue'
-import listComponent from '~/components/layouts/ListComponent.vue'
 
 export default {
   components: {
     buttonClose,
-    scheduleCardInfo,
     postCreateComponent,
+    scheduleCardInfo,
     theAccount,
-    listComponent,
   },
   props: {
-    dialogComponent: false,
-
+    dialogComponent: {
+      type: Boolean,
+      default: false,
+    },
     posting: {
       type: Object,
       default: () => ({}),

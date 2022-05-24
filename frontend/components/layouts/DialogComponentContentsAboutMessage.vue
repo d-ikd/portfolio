@@ -11,7 +11,7 @@
         <v-col> </v-col>
         <v-col cols="sm" class="text-center align-self-center">
           <v-sheet elevation="4" class="rounded-pill">
-            <template v-if="isPostCreate">
+            <template v-if="isMessageCreate">
               <v-chip
                 label
                 color="transparent"
@@ -20,24 +20,7 @@
                 text-color="green"
               >
                 <v-icon class="ml-2 mr-2">mdi-pencil</v-icon>
-                記事を投稿する
-              </v-chip>
-            </template>
-            <template v-else-if="isAccountSetting">
-              <v-chip
-                label
-                color="transparent"
-                x-large
-                outlined
-                text-color="red"
-              >
-                <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
-                アカウント
-              </v-chip>
-            </template>
-            <template v-else-if="isScheduleCardInfo">
-              <v-chip label color="white" large outlined text-color="red">
-                <v-icon>mdi-run</v-icon>
+                メッセージ
               </v-chip>
             </template>
           </v-sheet>
@@ -53,8 +36,13 @@
         class=" mx-auto pb-3 mb-10 rounded-card"
       >
         <template v-if="isMessageCreate">
-          isMessageCreate
-          <!-- <message-create-component :post="posting" /> -->
+          <message-create-component :post="posting" />
+        </template>
+        <template v-if="isMessageEdit">
+          <message-edit-component :post="posting" />
+        </template>
+        <template v-if="isMessageDelete">
+          <message-delete-component :post="posting" />
         </template>
         <template v-else>
           aaa
@@ -78,21 +66,23 @@
 
 <script>
 import messageCreateComponent from '~/components/layouts/MessageCreateComponent.vue'
+import messageEditComponent from '~/components/layouts/MessageEditComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
-import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
-import theAccount from '~/components/layouts/TheAccount.vue'
-import listComponent from '~/components/layouts/ListComponent.vue'
+/* import listComponent from '~/components/layouts/ListComponent.vue' */
 
 export default {
   components: {
     buttonClose,
-    scheduleCardInfo,
     messageCreateComponent,
-    theAccount,
-    listComponent,
+    messageEditComponent,
+    /* listComponent, */
   },
   props: {
-    dialogComponent: false,
+    dialogComponent: {
+      type: Boolean,
+      default: false,
+    },
+
     posting: {
       type: Object,
       default: () => ({}),
@@ -101,7 +91,14 @@ export default {
     isMessageCreate: {
       type: Boolean,
       default: false,
-      required: false,
+    },
+    isMessageEdit: {
+      type: Boolean,
+      default: false,
+    },
+    isMessageDelete: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {

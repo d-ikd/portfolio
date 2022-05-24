@@ -19,15 +19,6 @@
       </nuxt-link>
     </div>
     <div class="d-flex align-center">
-      <v-rating
-        v-model="rating"
-        background-color="orange lighten-1"
-        color="orange darken-2"
-        readonly
-        half-increments
-        dense
-        small
-      />
       <span class="ml-2 subtitle-1 font-weight-bold">
         {{ review.title }}
       </span>
@@ -36,61 +27,14 @@
       {{ review.content }}
     </p>
     <template v-if="review.image.url">
-      <v-btn
-        text
-        small
-        color="blue"
-        class="font-weight-bold"
-        @click="expand = !expand"
-      >
-        画像を表示
-      </v-btn>
-      <v-expand-transition>
-        <v-img
-          v-show="expand"
-          :src="review.image.url"
-          contain
-          max-width="200px"
-          max-height="200px"
-        />
-      </v-expand-transition>
+      <v-img
+        :src="review.image.url"
+        contain
+        max-width="200px"
+        max-height="200px"
+      />
     </template>
     <div class="d-flex align-center my-2">
-      <template v-if="$store.state.auth.isLoggedIn">
-        <v-btn
-          v-if="like"
-          color="red lighten-3 white--text font-weight-bold"
-          class="mr-3"
-          small
-          @click="nice"
-        >
-          <v-icon small class="mr-1"> mdi-heart-plus </v-icon>
-          いいねから外す
-        </v-btn>
-        <v-btn
-          v-else
-          color="pink white--text font-weight-bold"
-          class="mr-3"
-          small
-          @click="nice"
-        >
-          <v-icon small class="mr-1"> mdi-heart-plus </v-icon>
-          いいね！
-        </v-btn>
-        <div>
-          <user-dialog-like
-            :users="review.review_likes"
-            :title="'メッセージにいいねしたユーザー'"
-          />
-        </div>
-        <!-- <v-btn color="cyan white--text font-weight-bold" class="ml-5 mr-3" small>
-          <v-icon small class="mr-1"> mdi-comment-multiple </v-icon>
-          コメント
-          <span class="ml-1">(5)</span>
-        </v-btn> -->
-        <the-modal-message-edit :review="review" />
-        <post-review-delete :review="review" />
-      </template>
       <v-spacer />
       <p class="review-content caption">投稿日: {{ createDate }}</p>
     </div>
@@ -99,15 +43,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
-import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue'
-import userDialogLike from '~/components/infoUser/UserDialogLike.vue'
+/* import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue' */
+/* import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue' */
 
 export default {
   components: {
-    theModalMessageEdit,
-    postReviewDelete,
-    userDialogLike,
+    /* theModalMessageEdit, */
+    /* postReviewDelete, */
   },
   props: {
     review: {
@@ -118,7 +60,6 @@ export default {
   data() {
     return {
       createDate: '',
-      rating: this.review.rate,
       expand: false,
       defaultImage: require('@/assets/images/default.png'),
       like: false,
@@ -135,7 +76,6 @@ export default {
   },
   watch: {
     loginUserReview() {
-      // レビューにlike済みか確認
       if (this.login) {
         this.like = false
         this.review.review_likes.forEach((f) => {

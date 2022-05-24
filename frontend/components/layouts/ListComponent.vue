@@ -1,5 +1,29 @@
 <template>
   <div>
+    <template v-if="isFollow">
+      <v-list>
+        <v-row>
+          <v-list-item
+            v-for="list in lists"
+            :key="list.id"
+            :ripple="false"
+            class="list"
+          >
+            <user-avatar :size="45" :user="list" class="list-avatar mx-3" />
+            <v-list-item-content>
+              <v-list-item-title
+                class="list-item title"
+                @click="pagelink(user.id)"
+              >
+                {{ list.name }}
+              </v-list-item-title>
+            </v-list-item-content>
+            <user-follow :user="list" class="mr-3" />
+          </v-list-item>
+          <v-divider />
+        </v-row>
+      </v-list>
+    </template>
     <template v-if="isMessageList">
       <v-card class="rounded-card">
         <template v-if="post.reviews.length === 0">
@@ -34,37 +58,13 @@
             class="mb-2"
             style="background-color: white"
           >
-            <post-review2 :review="list" />
+            <post-message :message="list" />
           </v-card>
         </v-list>
       </v-card>
     </template>
     <template v-else>
-      <v-list two-line>
-        <v-row>
-          <v-list-item
-            v-for="list in lists"
-            :key="list.id"
-            :ripple="false"
-            class="list"
-          >
-            <!-- <nuxt-link :to="{ path: `/users/${user.id}` }"> -->
-            <user-avatar :size="45" :user="list" class="list-avatar mx-3" />
-            <!-- </nuxt-link> -->
-            <v-list-item-content>
-              {{ list.name }}
-              <v-list-item-title
-                class="list-item title"
-                @click="pagelink(user.id)"
-              >
-                {{ list.name }}
-              </v-list-item-title>
-            </v-list-item-content>
-            <user-follow :user="list" class="mr-3" />
-          </v-list-item>
-          <v-divider />
-        </v-row>
-      </v-list>
+      elseelse
     </template>
   </div>
 </template>
@@ -73,19 +73,19 @@
 import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
-import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
-import postReviewList from '~/components/infoPost/PostReviewList.vue'
+import postMessage from '~/components/infoPost/PostMessage.vue'
+/* import postReviewList from '~/components/infoPost/PostReviewList.vue' */
 import postReview from '~/components/infoPost/PostReview.vue'
-import postReview2 from '~/components/infoPost/PostReview2.vue'
+import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
 
 export default {
   components: {
     userAvatar,
     userFollow,
-    theModalMessageCreate,
-    postReviewList,
+    postMessage,
+    /* postReviewList, */
     postReview,
-    postReview2,
+    theModalMessageCreate,
   },
   props: {
     lists: {
@@ -97,6 +97,10 @@ export default {
       type: Object,
       default: () => ({}),
       required: false,
+    },
+    isFollow: {
+      type: Boolean,
+      default: false,
     },
     isMessageList: {
       type: Boolean,

@@ -20,12 +20,12 @@
 
 <script>
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import userFollow from '~/components/infoUser/UserFollow.vue'
+// import userFollow from '~/components/infoUser/UserFollow.vue'
 
 export default {
   components: {
     userAvatar,
-    userFollow,
+    // userFollow,
   },
   props: {
     users: {

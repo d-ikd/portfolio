@@ -17,7 +17,7 @@
               <p class="caption">
                 {{ currentUser.profile }}
               </p>
-              <dialog-component3 class="mt-5" />
+              <dialog-component-3 :is-account-setting="true" class="mt-5" />
             </div>
           </template>
         </h1>
@@ -56,7 +56,7 @@
         <v-tab-item>
           <v-card>
             <v-card-text>
-              <list-component :lists="loginUser.followings" />
+              <list-component :is-follow="true" :lists="loginUser.followings" />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -64,7 +64,7 @@
           <v-card>
             <v-card-text>
               <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <list-component :lists="loginUser.followers" />
+              <list-component :is-follow="true" :lists="loginUser.followers" />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -79,7 +79,8 @@
       </v-tabs-items>
     </v-card>
 
-    <!--                   <user-list :users="loginUser.followings" />
+    <!--
+                  <user-list :users="loginUser.followings" />
                   <user-list :users="user.followers" />
                   <user-post-list :posts="user.postjoin" />
                   <user-post-list :posts="user.postlike" />
@@ -90,30 +91,23 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
 import userReviewList from '~/components/infoUser/UserReviewList.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 
 export default {
+  name: 'ListComponent',
   components: {
-    userPostList,
-    userReviewList,
-    listComponent,
-
-    userAvatar,
     dialogComponent3,
+    listComponent,
+    userReviewList,
+    userPostList,
+    userAvatar,
   },
   data() {
     return {
-      goods: [
-        { id: '01', title: 'アバター変更' },
-        { id: '02', title: 'ユーザーネーム変更' },
-        { id: '03', title: 'メールアドレス変更' },
-        { id: '04', title: 'パスワード変更' },
-        { id: '05', title: 'Danger Zone' },
-      ],
       dialog: false,
       defaultImage: 'http://localhost:5000/fallback/default.png',
       tab: null,

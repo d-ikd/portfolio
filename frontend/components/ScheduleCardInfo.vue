@@ -146,13 +146,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
-import userDialogShown from '~/components/infoUser/UserDialogShown.vue'
 import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 
 export default {
   components: {
     buttonLike,
-    userDialogShown,
     dialogComponent3,
   },
   props: {

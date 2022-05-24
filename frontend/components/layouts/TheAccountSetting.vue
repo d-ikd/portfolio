@@ -2,17 +2,6 @@
   <v-card>
     <v-card>
       <div>
-        <!--
-      <v-expansion-panels color="black">
-        <v-expansion-panel v-for="good in goods" :key="good.id">
-          <v-expansion-panel-header>
-            {{ good.title }}
-          </v-expansion-panel-header>
-          <v-expansion-panel-content> </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-        -->
-
         <v-expansion-panels color="black">
           <v-expansion-panel>
             <v-expansion-panel-header>
@@ -22,18 +11,19 @@
               <editAvatar />
             </v-expansion-panel-content>
           </v-expansion-panel>
-
           <v-expansion-panel>
-            <v-expansion-panel-header
-              >ユーザーネーム変更</v-expansion-panel-header
-            >
+            <v-expansion-panel-header>
+              ユーザーネーム変更
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
               <editProfile />
             </v-expansion-panel-content>
           </v-expansion-panel>
 
           <v-expansion-panel>
-            <v-expansion-panel-header>パスワード変更</v-expansion-panel-header>
+            <v-expansion-panel-header>
+              パスワード変更
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
               <editPassword />
             </v-expansion-panel-content>
@@ -47,9 +37,9 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel>
-            <v-expansion-panel-header class="red--text"
-              >Danger Zone</v-expansion-panel-header
-            >
+            <v-expansion-panel-header class="red--text">
+              Danger Zone
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
               <deleteUser />
             </v-expansion-panel-content>
@@ -70,7 +60,6 @@
             >
               管理者機能
             </v-btn>
-
             <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
             <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
           </div>
@@ -93,13 +82,6 @@ export default {
   },
   data() {
     return {
-      goods: [
-        { id: '01', title: 'アバター変更' },
-        { id: '02', title: 'ユーザーネーム変更' },
-        { id: '03', title: 'メールアドレス変更' },
-        { id: '04', title: 'パスワード変更' },
-        { id: '05', title: 'Danger Zone' },
-      ],
       dialog: false,
       defaultImage: 'http://localhost:5000/fallback/default.png',
       tab: null,
@@ -109,10 +91,7 @@ export default {
           titletext: 'followingstext',
           listitem: 'followings',
         },
-        /* { title: 'followers', titletext: 'followersstext', listitem: "loginUser.followers" }, */
       ],
-      text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
   computed: {

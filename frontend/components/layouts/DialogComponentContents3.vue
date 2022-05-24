@@ -42,8 +42,11 @@
         </template>-->
         </template>
 
-        <template v-else>
+        <template v-if="isAccountSetting">
           <the-account-setting />
+        </template>
+        <template v-else>
+          else
         </template>
       </v-sheet>
 
@@ -75,12 +78,21 @@ export default {
     listComponent,
   },
   props: {
-    dialogComponent: false,
+    dialogComponent: {
+      type: Boolean,
+      default: false,
+    },
     posting: {
       type: Object,
       default: () => ({}),
       required: false,
     },
+
+    isAccountSetting: {
+      type: Boolean,
+      default: false,
+    },
+
     isMessageList: {
       type: Boolean,
       default: false,

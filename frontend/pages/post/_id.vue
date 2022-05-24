@@ -8,12 +8,11 @@
           </h4>
           <dialog-component-about-message
             :post="post"
-            is-message-create="true"
+            :is-message-create="true"
           />
-          <the-modal-message-create v-if="login" :post="post" />
         </template>
         <template v-else>
-          <list-component :isMessageListInId="true" :lists="post.reviews" />
+          <list-component :is-message-list-in-id="true" :lists="post.reviews" />
         </template>
       </v-col>
     </v-row>
@@ -22,17 +21,17 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+// import postParallax from '~/components/infoPost/postParallax.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
 import dialogComponentAboutMessage from '~/components/layouts/DialogComponentAboutMessage.vue'
-import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
-import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
+/* import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue' */
+/* import postAlbum from '~/components/infoPost/postAlbum.vue' */
 
 export default {
   name: 'Stuctive',
   components: {
     dialogComponentAboutMessage,
-    theModalMessageEdit,
-    theModalMessageCreate,
+    /* theModalMessageEdit, */
     listComponent,
     /* postAlbum, */
   },
