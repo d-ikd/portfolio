@@ -10,7 +10,7 @@
       </v-btn>
     </template>
 
-    <v-card>
+    <v-card width="400px" class="mx-auto rounded-card">
       <v-system-bar lights-out>
         <v-spacer></v-spacer>
         <v-btn icon class="mt-5" @click="dialog = false">
@@ -114,6 +114,9 @@ export default {
 </script>
 
 <style scoped>
+.rounded-card {
+  border-radius: 20px;
+}
 .signup-link {
   color: #2196f3;
   cursor: pointer;

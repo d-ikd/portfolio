@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="600">
+  <v-dialog v-model="dialog" max-width="400">
     <template v-if="$store.state.auth.isLoggedIn" #activator="{ on, attrs }">
       <v-btn
         v-if="review.user_id === $store.state.auth.loginUser.id"
@@ -19,10 +19,10 @@
         </v-btn>
       </v-system-bar>
       <v-card-title class="headline justify-center">
-        投稿を削除しますか？
+        メッセージを削除しますか？
       </v-card-title>
-      <v-card-text class="mt-3">
-        この操作は取り消せません。投稿内容・投稿へのコメント・コメントに対する返信コメントが削除されます。
+      <v-card-text class="mt-3 text-center">
+        この操作は取り消すことができません。
       </v-card-text>
       <div class="text-center">
         <v-btn

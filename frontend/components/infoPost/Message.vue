@@ -24,10 +24,10 @@
             <v-img v-else :src="defaultImage" contain />
           </v-avatar>
         </v-menu>
-        <span class="title font-weight-light">{{ message.title }}</span>
+        <span class="headline font-weight-bold">{{ message.title }}</span>
       </v-card-title>
 
-      <v-card-text class="headline font-weight-bold">
+      <v-card-text class="title font-weight-light">
         <v-row>
           <v-col cols="9">
             {{ message.content }}
@@ -122,11 +122,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import userAvatar from '~/components/infoUser/UserAvatar.vue'
+/* import userAvatar from '~/components/infoUser/UserAvatar.vue' */
 
 export default {
   components: {
-    userAvatar,
+    /* userAvatar, */
   },
   props: {
     message: {

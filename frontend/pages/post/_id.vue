@@ -1,18 +1,32 @@
 <template>
-  <div style="background-color: white">
+  <div>
+    <v-app-bar :clipped-left="clipped" app color="#B0DFC1">
+      <nuxt-link to="/" class="link">
+        <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
+      </nuxt-link>
+
+      <v-spacer />
+    </v-app-bar>
+
+    <v-row no-gutters class="mt-10 mb-10">
+      <v-col> </v-col>
+      <v-col cols="sm" class="text-center align-self-center">
+        <v-sheet elevation="4" class="rounded-pill">
+          <template>
+            <v-chip label color="white" large outlined text-color="red">
+              <v-icon>mdi-run</v-icon> {{ post.name }}
+            </v-chip>
+          </template>
+        </v-sheet>
+      </v-col>
+      <v-col> </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <template v-if="post.reviews.length === 0">
           <h4 class="ma-3 text-decoration-underline">
             メッセージがありません。
           </h4>
-
-          <the-modal-message-create :post="post" />
-
-          <!-- <dialog-component-about-message
-            :post="post"
-            :is-message-create="true"
-          /> -->
         </template>
         <template v-else>
           <post-review-list :reviews="post.reviews" />
@@ -20,7 +34,7 @@
         </template>
       </v-col>
     </v-row>
-
+    <the-modal-message-create :post="post" />
     <nuxt-link to="/" class="link">
       <v-toolbar-title class="header-title">TOPに戻る</v-toolbar-title>
     </nuxt-link>
@@ -30,8 +44,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import PostReviewList from '~/components/infoPost/PostReviewList.vue'
-import listComponent from '~/components/layouts/ListComponent.vue'
-/* import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue' */
+/* import listComponent from '~/components/layouts/ListComponent.vue' */
 /* import postAlbum from '~/components/infoPost/postAlbum.vue' */
 import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
 
@@ -40,8 +53,7 @@ export default {
   components: {
     PostReviewList,
     theModalMessageCreate,
-    /* theModalMessageEdit, */
-    listComponent,
+    /* listComponent, */
     /* postAlbum, */
   },
   data() {
@@ -132,4 +144,14 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.headertitle {
+  color: white;
+  font-size: 40px;
+  font-family: 'Fraunces', sans-serif;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
+}
+.link {
+  text-decoration: none;
+}
+</style>

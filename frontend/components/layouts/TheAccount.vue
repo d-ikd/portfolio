@@ -31,13 +31,13 @@
       -->
       <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
         <v-tab>
-          Likes
+          likes
         </v-tab>
         <v-tab>
-          followings
+          follow
         </v-tab>
         <v-tab>
-          followers
+          follower
         </v-tab>
         <v-tab>
           Message

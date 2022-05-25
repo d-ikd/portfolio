@@ -125,11 +125,14 @@
       </v-timeline>
       <v-sheet class="d-flex transparent align-center flex-column">
         <div>
-          <nuxt-link :to="{ path: `/post/${post.id}` }">
-            <v-btn>
-              参加ページへ
-            </v-btn>
-          </nuxt-link>
+          <v-btn
+            color="purple white--text"
+            outlined
+            nuxt
+            :to="{ path: `/post/${post.id}` }"
+          >
+            <v-icon dark>mdi-email-variant </v-icon>メッセージボックス
+          </v-btn>
         </div>
 
         <div>
