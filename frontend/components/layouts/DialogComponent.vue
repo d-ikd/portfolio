@@ -7,7 +7,7 @@
         @result="response"
       />
       <v-btn
-        color="#BADEC3"
+        color="#7a99cf"
         dark
         x-large
         fixed

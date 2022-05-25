@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar :clipped-left="clipped" app color="#B0DFC1">
+    <v-app-bar :clipped-left="clipped" app color="#7a99cf">
       <nuxt-link to="/" class="link">
         <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
       </nuxt-link>
