@@ -9,7 +9,7 @@
           class="mb-2"
           style="background-color: white"
         >
-          <post-review :review="review" />
+          <post-message :message="review" />
         </v-card>
       </v-list>
     </v-card>
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import postReview from '~/components/infoPost/PostReview.vue'
+import postMessage from '~/components/infoPost/PostMessage.vue'
 
 export default {
   components: {
-    postReview,
+    postMessage,
   },
   props: {
     reviews: {

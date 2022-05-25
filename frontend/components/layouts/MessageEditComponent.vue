@@ -7,26 +7,11 @@
       </v-btn>
     </v-system-bar>
     <v-card-title class="headline justify-center">
-      {{ review.post.name }}
+      <!-- {{ post.name }} -->aa
     </v-card-title>
     <v-card-text>
       <v-form ref="form">
-        <v-container>
-          <!--             <div class="d-flex align-center my-2">
-              <v-rating
-                v-model="reviewEdit.rate"
-                background-color="orange lighten-1"
-                color="orange darken-2"
-                half-increments
-                class="ml-5"
-                dense
-                large
-                hover
-              />
-              <span class="ml-5 font-weight-bold">
-                {{ reviewEdit.rate }}
-              </span>
-            </div> -->
+        <!--         <v-container>
           <v-text-field v-model="reviewEdit.title" label="タイトル記入" />
           <v-textarea v-model="reviewEdit.content" label="メッセージ記入" />
           <v-file-input
@@ -61,8 +46,8 @@
               max-height="300"
             />
           </template>
-        </v-container>
-        <v-card-actions>
+        </v-container> -->
+        <!--  <v-card-actions>
           <v-btn
             color="light-green darken-1"
             class="white--text font-weight-bold pa-5 mt-3"
@@ -71,7 +56,7 @@
           >
             更新
           </v-btn>
-        </v-card-actions>
+        </v-card-actions> -->
       </v-form>
     </v-card-text>
   </v-card>
@@ -83,7 +68,7 @@ import { mapActions } from 'vuex'
 
 export default {
   props: {
-    review: {
+    post: {
       type: Object,
       default: () => ({}),
       required: true,
@@ -96,13 +81,13 @@ export default {
     return {
       editDialog: false,
       reviewEdit: {
-        title: this.review.title,
-        content: this.review.content,
-        rate: this.review.rate,
-        image: this.review.image,
-        user_id: this.review.user_id,
-        post_id: this.review.post_id,
-        reviewId: this.review.id,
+        title: this.post.title,
+        content: this.post.content,
+        rate: this.post.rate,
+        image: this.post.image,
+        user_id: this.post.user_id,
+        post_id: this.post.post_id,
+        reviewId: this.post.id,
       },
       input_image: null,
     }

@@ -1,22 +1,22 @@
 <template>
   <v-card flat style="background-color: white">
     <v-list>
-      <v-card v-for="review in reviews" :key="review.id" flat class="pb-2">
-        <user-review :review="review" />
+      <v-card v-for="message in messages" :key="message.id" flat class="pb-2">
+        <user-message :message="message" />
       </v-card>
     </v-list>
   </v-card>
 </template>
 
 <script>
-import userReview from '~/components/infoUser/UserReview.vue'
+import userMessage from '~/components/infoUser/UserMessage.vue'
 
 export default {
   components: {
-    userReview,
+    userMessage,
   },
   props: {
-    reviews: {
+    messages: {
       type: Array,
       required: true,
     },

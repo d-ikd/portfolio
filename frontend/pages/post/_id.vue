@@ -6,31 +6,40 @@
           <h4 class="ma-3 text-decoration-underline">
             メッセージがありません。
           </h4>
-          <dialog-component-about-message
+
+          <the-modal-message-create :post="post" />
+
+          <!-- <dialog-component-about-message
             :post="post"
             :is-message-create="true"
-          />
+          /> -->
         </template>
         <template v-else>
-          <list-component :is-message-list-in-id="true" :lists="post.reviews" />
+          <post-review-list :reviews="post.reviews" />
+          <!-- <list-component :is-message-list-in-id="true" :lists="post.reviews" /> -->
         </template>
       </v-col>
     </v-row>
+
+    <nuxt-link to="/" class="link">
+      <v-toolbar-title class="header-title">TOPに戻る</v-toolbar-title>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-// import postParallax from '~/components/infoPost/postParallax.vue'
+import PostReviewList from '~/components/infoPost/PostReviewList.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
-import dialogComponentAboutMessage from '~/components/layouts/DialogComponentAboutMessage.vue'
 /* import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue' */
 /* import postAlbum from '~/components/infoPost/postAlbum.vue' */
+import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
 
 export default {
   name: 'Stuctive',
   components: {
-    dialogComponentAboutMessage,
+    PostReviewList,
+    theModalMessageCreate,
     /* theModalMessageEdit, */
     listComponent,
     /* postAlbum, */

@@ -23,21 +23,6 @@
       <v-card-text>
         <v-form ref="form">
           <v-container>
-            <div class="d-flex align-center my-2">
-              <v-rating
-                v-model="review.rate"
-                background-color="orange lighten-1"
-                color="orange darken-2"
-                half-increments
-                class="ml-5"
-                dense
-                large
-                hover
-              />
-              <span class="ml-5 font-weight-bold">
-                {{ review.rate }}
-              </span>
-            </div>
             <v-text-field
               v-model="review.title"
               label="タイトルを入れてください"

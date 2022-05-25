@@ -1,37 +1,7 @@
 <template>
-  <v-card class="ml-8 mr-8 mt-4 green lighten-3 rounded">
-    <v-card flat class="green lighten-3">
-      aaa
-      <dialog-component-about-message
-        :is-message-edit="true"
-        :posting="message"
-      />
-      <dialog-component-about-message
-        :is-message-delete="true"
-        :posting="message"
-      />
-
-      <nuxt-link :to="{ path: `/users/${message.user_id}` }">
-        <user-avatar :size="50" :user="message.user" />
-      </nuxt-link>
-      <v-btn
-        class="ma-1"
-        plain
-        style="text-transform: none"
-        nuxt
-        :to="`/users/${message.user_id}`"
-      >
-        {{ message.user.name }}
-      </v-btn>
-      {{ $dayjs(message.created_at).format('MM/DD') }}&nbsp;{{
-        $dayjs(message.created_at).format('hh:mm')
-      }}
-
-      <template v-if="message.user_id === $store.state.auth.loginUser.id">
-      </template>
-
-      <v-spacer />
-      <div class="d-flex align-center" color="white">
+  <v-card class="ml-8 mr-8 mt-4 rounded">
+    <v-card class="mx-auto green lighten-3" dark max-width="400">
+      <v-card-title>
         <v-menu transition="scroll-x-transition">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -54,53 +24,78 @@
             <v-img v-else :src="defaultImage" contain />
           </v-avatar>
         </v-menu>
-      </div>
+        <span class="title font-weight-light">{{ message.title }}</span>
+      </v-card-title>
 
-      <h2 class="ma-3 font-weight-bold">{{ message.title }}</h2>
-      <h3 class="body-1 ml-5 ">{{ message.content }}</h3>
+      <v-card-text class="headline font-weight-bold">
+        <v-row>
+          <v-col cols="9">
+            {{ message.content }}
+          </v-col>
+          <v-col cols="3">
+            <template v-if="message.image.url">
+              <v-avatar size="80" class="radius-image mt-3 mb-3">
+                <v-img
+                  v-if="message.image.url"
+                  :src="message.image.url"
+                  alt="avatar"
+                />
+                <v-img v-else :src="defaultImage" contain />
+              </v-avatar>
+            </template>
+          </v-col>
+        </v-row>
+      </v-card-text>
 
-      <template v-if="message.image.url">
-        <v-avatar size="100" class="radius-image mt-3 mb-3">
-          <v-img
-            v-if="message.image.url"
-            :src="message.image.url"
-            alt="avatar"
-          />
-          <v-img v-else :src="defaultImage" contain />
-        </v-avatar>
+      <v-card-actions>
+        <v-list-item class="grow">
+          <v-list-item-avatar color="grey darken-3">
+            <nuxt-link :to="{ path: `/users/${message.user_id}` }">
+              <user-avatar
+                :size="50"
+                :user="message.user"
+                class="elevation-6"
+              />
+            </nuxt-link>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            {{ message.user.name }}
+          </v-list-item-content>
+          <the-modal-message-edit :review="message" />
+          <the-modal-message-delete :review="message" />
+
+          <v-row align="center" justify="end">
+            <v-icon class="mr-1">
+              mdi-timelapse
+            </v-icon>
+            <span class="subheading">
+              {{ $dayjs(message.created_at).format('MM/DD') }}&nbsp;{{
+                $dayjs(message.created_at).format('hh:mm')
+              }}</span
+            >
+          </v-row>
+        </v-list-item>
+      </v-card-actions>
+      <template v-if="message.user_id === $store.state.auth.loginUser.id">
       </template>
-
-      <!--                     <template v-if="login">
-                  </template> -->
-      <!-- ========Message's Image======= -->
     </v-card>
-
-    <!-- ======== Rating & Title ========= -->
-    <!--     <div class="ml-4 d-flex align-center">
-      <v-rating
-        v-model="rating"
-        empty-icon="mdi-heart-outline"
-        full-icon="mdi-heart"
-        background-color="orange lighten-1"
-        color="orange darken-2"
-        readonly
-        dense
-        small
-      />
-    </div> -->
-    <!-- ======== Rating & Title ========= -->
   </v-card>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import dialogComponentAboutMessage from '~/components/layouts/DialogComponentAboutMessage.vue'
+// import dialogComponentAboutMessage from '~/components/layouts/DialogComponentAboutMessage.vue'
+import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue'
+import theModalMessageDelete from '~/components/layouts/TheModalMessageDelete.vue'
 
 export default {
   components: {
     userAvatar,
-    dialogComponentAboutMessage,
+    // dialogComponentAboutMessage,
+    theModalMessageEdit,
+    theModalMessageDelete,
   },
   props: {
     message: {
@@ -125,80 +120,17 @@ export default {
       return this.$store.state.post.post
     },
   },
-  /*   watch: {
-    loginUserReview() {
-      if (this.login) {
-        this.like = false
-        this.message.review_likes.forEach((f) => {
-          if (f.user_id === this.loginUser.id) {
-            this.like = true
-          }
-        })
-      }
-    },
-  },
-  mounted() {
-    this.createDate = this.$dayjs(this.message.created_at).format('YYYY/MM/DD')
-    if (this.login) {
-      this.like = false
-      this.message.review_likes.forEach((f) => {
-        if (f.user_id === this.loginUser.id) {
-          this.like = true
-        }
-      })
-    }
-  }, */
-  /*  methods: {
-    ...mapActions({
-      likeReview: 'review/likeReview',
-      unLikeReview: 'review/unLikeReview',
-    }),
-    },
-  }, */
 }
 </script>
 
 <style scoped>
 .radius-image {
-  border: 1px solid;
+  border: 0px solid;
   border-radius: 20px;
-  border-color: #bdbdbd;
 }
 .radius-big-image {
   border: 1px solid rgba(0, 0, 0.8);
   border-radius: 20px;
   border-color: #bdbdbd;
-}
-.arrow_box {
-  position: relative;
-  border: 1px solid black;
-  padding: 5px 7px;
-  color: #39c !important;
-  text-decoration: underline !important;
-  border-radius: 3px;
-}
-.arrow_box:after,
-.arrow_box:before {
-  right: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.arrow_box:after {
-  border-color: rgba(136, 183, 213, 0);
-  border-right-color: white;
-  border-width: 6px;
-  margin-top: -6px;
-}
-.arrow_box:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-right-color: black;
-  border-width: 7px;
-  margin-top: -7px;
 }
 </style>

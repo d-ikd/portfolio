@@ -1,40 +1,10 @@
 <template>
-  <v-card>
-    <v-system-bar lights-out>
-      <v-spacer></v-spacer>
-      <v-btn icon class="mt-5" @click="dialog = false">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </v-system-bar>
-    <v-card-title class="headline justify-center">
-      {{ post.name }}
-    </v-card-title>
+  <v-sheet class="rounded-card" elevation="5">
     <v-card-text>
       <v-form ref="form">
         <v-container>
-          <div class="d-flex align-center my-2">
-            <v-rating
-              v-model="review.rate"
-              background-color="orange lighten-1"
-              color="orange darken-2"
-              half-increments
-              class="ml-5"
-              dense
-              large
-              hover
-            />
-            <span class="ml-5 font-weight-bold">
-              {{ review.rate }}
-            </span>
-          </div>
-          <v-text-field
-            v-model="review.title"
-            label="タイトルを入れてください"
-          />
-          <v-textarea
-            v-model="review.content"
-            label="メッセージ本文をいれてください"
-          />
+          <v-text-field v-model="review.title" label="タイトル" />
+          <v-textarea v-model="review.content" label="メッセージ" />
           <v-file-input
             accept="image/png, image/jpeg, image/bmp"
             label="画像"
@@ -51,7 +21,7 @@
         </v-container>
         <v-card-actions>
           <v-btn
-            color="light-green darken-1"
+            color="#67AC5B"
             class="white--text font-weight-bold pa-5 mt-3"
             block
             @click="postReview"
@@ -61,7 +31,7 @@
         </v-card-actions>
       </v-form>
     </v-card-text>
-  </v-card>
+  </v-sheet>
 </template>
 
 <script>
@@ -117,6 +87,9 @@ export default {
 </script>
 
 <style scoped>
+.rounded-card {
+  border-radius: 20px;
+}
 .signup-link {
   color: #2196f3;
   cursor: pointer;

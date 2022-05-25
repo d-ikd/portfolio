@@ -94,7 +94,7 @@
               <user-post-list :posts="user.postlike" />
             </v-tab-item>
             <v-tab-item>
-              <user-review-list :reviews="user.reviews" />
+              <user-message-list :messages="user.reviews" />
             </v-tab-item>
             <v-tab-item>
               <user-like-review-list :reviews="user.like_reviews" />
@@ -118,7 +118,7 @@ import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
 import userList from '~/components/infoUser/UserList.vue'
-import userReviewList from '~/components/infoUser/UserReviewList.vue'
+import userMessageList from '~/components/infoUser/UserMessageList.vue'
 import userLikeReviewList from '~/components/infoUser/UserLikeReviewList.vue'
 
 export default {
@@ -127,7 +127,7 @@ export default {
     userAvatar,
     userPostList,
     userList,
-    userReviewList,
+    userMessageList,
     userLikeReviewList,
   },
   data() {

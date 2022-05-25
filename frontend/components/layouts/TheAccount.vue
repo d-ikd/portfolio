@@ -40,7 +40,7 @@
           followers
         </v-tab>
         <v-tab>
-          reviews
+          Message
         </v-tab>
       </v-tabs>
 
@@ -72,7 +72,7 @@
           <v-card>
             <v-card-text>
               <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <user-review-list :reviews="loginUser.reviews" />
+              <user-message-list :messages="loginUser.reviews" />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -93,7 +93,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
-import userReviewList from '~/components/infoUser/UserReviewList.vue'
+import userMessageList from '~/components/infoUser/UserMessageList.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
@@ -102,7 +102,7 @@ export default {
   components: {
     dialogComponent3,
     listComponent,
-    userReviewList,
+    userMessageList,
     userPostList,
     userAvatar,
   },
