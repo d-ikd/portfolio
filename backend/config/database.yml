@@ -15,7 +15,7 @@ default: &default
   charset: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  # ↓↓CiecleCI に通すときはコメントアウト
+  # ↓↓CircleCI に通すときはコメントアウト
   # password: <%= ENV['MYSQL_ROOT_PASSWORD'] || '' %>
   host: db
 
@@ -29,7 +29,7 @@ development:
 test:
   <<: *default
   database: app_test
-  # ↓↓CiecleCI に通すときはコメントイン
+  # ↓↓CircleCI に通すときはコメントイン
   host: 127.0.0.1
   # username: root
   # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>

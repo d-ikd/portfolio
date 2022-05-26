@@ -1,10 +1,9 @@
 <template>
   <div>
-    <v-app-bar :clipped-left="clipped" app color="#B0DFC1">
+    <v-app-bar color="#B0DFC1">
       <nuxt-link to="/" class="link">
         <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
       </nuxt-link>
-
       <v-spacer />
     </v-app-bar>
 
@@ -21,6 +20,16 @@
       </v-col>
       <v-col> </v-col>
     </v-row>
+    <div>
+      <button-like :is-rounded-join="true" :post="post" :user="user" />
+    </div>
+
+    <div>
+      <post-member :users="post.join_users" :title="title" />
+    </div>
+    <div>
+      <button-like :is-rounded-like="true" :post="post" :user="user" />
+    </div>
     <v-row>
       <v-col>
         <template v-if="post.reviews.length === 0">
@@ -43,21 +52,25 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import PostReviewList from '~/components/infoPost/PostReviewList.vue'
+import postReviewList from '~/components/infoPost/PostReviewList.vue'
+import buttonLike from '~/components/layouts/ButtonLike.vue'
+import postMember from '~/components/infoPost/PostMember.vue'
 /* import listComponent from '~/components/layouts/ListComponent.vue' */
 /* import postAlbum from '~/components/infoPost/postAlbum.vue' */
 import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
 
 export default {
-  name: 'Stuctive',
   components: {
-    PostReviewList,
+    postReviewList,
+    buttonLike,
+    postMember,
     theModalMessageCreate,
     /* listComponent, */
     /* postAlbum, */
   },
   data() {
     return {
+      title: '参加者',
       loading: false,
       review: true,
       createDate: '',

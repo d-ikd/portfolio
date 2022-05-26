@@ -3,11 +3,10 @@
     <template #activator="{ on, attrs }">
       <span v-bind="attrs" v-on="on">
         <p class="blue--text d-flex">
-          <template v-if="icon">
-            <v-icon>mdi-heart</v-icon>&nbsp; [旧 {{ ppp.length }}]
-            <!-- <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }} -->
-          </template>
-          <template v-else>
+          <!-- <template v-if="icon">
+            <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }}
+          </template> -->
+          <template>
             <v-icon>mdi-run</v-icon>&nbsp;{{
               post.join_users.length
             }}&nbsp;<span class="white--text">/&nbsp;{{ post.member }} </span>
@@ -153,52 +152,4 @@ methods: {
 }
 </script>
 
-<style scoped>
-.signup-link {
-  color: #2196f3;
-  cursor: pointer;
-}
-.signup-link:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-.list-item {
-  cursor: pointer;
-  color: #2196f3;
-}
-.list-avatar {
-  cursor: pointer;
-}
-.list:hover {
-  transition: 0.3s;
-  background-color: #f5f5f5;
-}
-.list {
-  cursor: default;
-}
-.arrow_box:after,
-.arrow_box:before {
-  right: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.arrow_box:after {
-  border-color: rgba(136, 183, 213, 0);
-  border-right-color: white;
-  border-width: 6px;
-  margin-top: -6px;
-  text-decoration: underline !important;
-}
-.arrow_box:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-right-color: black;
-  border-width: 7px;
-  margin-top: -7px;
-}
-</style>
+<style scoped></style>

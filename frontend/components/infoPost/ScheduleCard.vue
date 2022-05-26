@@ -1,24 +1,22 @@
 <template>
   <div style="background-color: white" class="mb-14">
-    <!--     <v-carousel hide-delimiters height="auto">
+    <!-- <v-carousel hide-delimiters height="auto">
       <v-carousel-item>
       </v-carousel-item>
     </v-carousel> -->
     <v-row>
-      <!--
-      <v-col
+      <!-- <v-col
         v-for="p in reversePosts"
         :key="p.id"
         class="d-flex child-flex flex-wrap"
-      >
-  -->
+      > -->
       <v-col v-for="p in posts" :key="p.id" class="d-flex flex-wrap">
         <v-card
           :elevation="15"
           dark
           class="mx-auto green secondary ma-3 rounded-card"
         >
-          <v-responsive :aspect-ratio="10 / 16">
+          <v-responsive :aspect-ratio="12 / 16">
             <v-hover>
               <template v-slot:default="{ hover }">
                 <v-sheet dark flat color="white">
@@ -94,7 +92,13 @@
             <v-card-text class="orange">
               <div class="d-flex font-weight-thin subtitle-1 justify-center ">
                 <span>
-                  <counter-list
+                  <like-counter
+                    :users="p.join_users"
+                    :post="p"
+                    :icon="false"
+                    :title="title2"
+                  />
+                  <!-- <counter-list
                     :users="p.like_users"
                     :post="p"
                     :ppp="p.like_users"
@@ -108,7 +112,7 @@
                     :post="p"
                     :icon="false"
                     :title="title2"
-                  />
+                  /> -->
                 </span>
               </div>
             </v-card-text>
@@ -119,7 +123,7 @@
   </div>
 
   <!--
-                                               </v-img>
+                      </v-img>
                       <v-img v-else contain :src="defaultImage">
                         -->
   <!--
@@ -134,23 +138,23 @@
       <post-review2 :review="review" />
       </v-card>
     </v-list> -->
-  <!--                                       <p class="black--text"> index:{{ i + 1 }} </p>
+  <!--      <p class="black--text"> index:{{ i + 1 }} </p>
             <p class="black--text"> like:{{ p.like_users.length }} </p>
             <p class="black--text"> id:{{ p.id }} </p>
-             -->
+              -->
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
-import counterList from '~/components/CounterList.vue'
+import likeCounter from '~/components/infoPost/LikeCounter.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
   components: {
     // userPostList,
     buttonLike,
-    counterList,
+    likeCounter,
     dialogComponent,
   },
   // props: {

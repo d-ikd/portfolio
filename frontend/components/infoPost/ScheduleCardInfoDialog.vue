@@ -11,15 +11,9 @@
         <v-col> </v-col>
         <v-col cols="sm" class="text-center align-self-center">
           <v-sheet elevation="4" class="rounded-pill">
-            <template v-if="isMessageList">
-              <v-chip label color="white" large outlined text-color="purple">
-                <v-icon>mdi-email-variant</v-icon>
-              </v-chip>
-            </template>
-
-            <template v-else>
-              <v-chip label color="white" large outlined text-color="purple">
-                <v-icon>mdi-wrench</v-icon> 設定
+            <template>
+              <v-chip label color="white" large outlined text-color="red">
+                <v-icon>mdi-run</v-icon>
               </v-chip>
             </template>
           </v-sheet>
@@ -34,19 +28,8 @@
         color="transparent"
         class=" mx-auto pb-3 mb-10 rounded-card"
       >
-        <template v-if="isMessageList">
-          <list-component :is-message-list="true" :post="posting" />
-          <!--
-        <template v-else-if="isScheduleCardInfoInList">
+        <template>
           <schedule-card-info :post="posting" />
-        </template>-->
-        </template>
-
-        <template v-if="isAccountSetting">
-          <the-account-setting />
-        </template>
-        <template v-else>
-          else
         </template>
       </v-sheet>
 
@@ -68,14 +51,12 @@
 
 <script>
 import buttonClose from '~/components/layouts/ButtonClose.vue'
-import theAccountSetting from '~/components/layouts/TheAccountSetting.vue'
-import listComponent from '~/components/layouts/ListComponent.vue'
+import scheduleCardInfo from '~/components/infoPost/ScheduleCardInfo.vue'
 
 export default {
   components: {
     buttonClose,
-    theAccountSetting,
-    listComponent,
+    scheduleCardInfo,
   },
   props: {
     dialogComponent: {
@@ -84,18 +65,8 @@ export default {
     },
     posting: {
       type: Object,
-      default: () => ({}),
+      default: () => {},
       required: false,
-    },
-
-    isAccountSetting: {
-      type: Boolean,
-      default: false,
-    },
-
-    isMessageList: {
-      type: Boolean,
-      default: false,
     },
   },
   methods: {

@@ -1,15 +1,22 @@
 <template>
-  <div style="background-color: skyblue">
+  <div>
+    <v-app-bar color="#B0DFC1">
+      <nuxt-link to="/" class="link">
+        <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
+      </nuxt-link>
+      <v-spacer />
+    </v-app-bar>
+
     <!-- ========== Profile ========== -->
     <template v-if="loading">
-      <v-parallax
-        height="300"
+      <!--       <v-parallax
         :src="require(`@/assets/images/aomori.jpg`)"
-      ></v-parallax>
+      ></v-parallax> -->
+      <v-card> </v-card>
       <v-card>
         <v-row class="mx-1 pb-10" no-gutters>
           <v-col cols="2" class="text-center">
-            <user-avatar :size="150" :user="user" class="ma-n16" />
+            <user-avatar :size="100" :user="user" class="mx-auto" />
           </v-col>
           <v-col cols="10">
             <v-sheet>
@@ -19,7 +26,23 @@
                 </h2>
                 <template v-if="loginUser && loginUser.id == user.id">
                   <div class="pr-10">
-                    <user-id-setting />
+                    <v-dialog v-model="dialog" max-width="600">
+                      <template #activator="{ on, attrs }">
+                        <v-btn color="purple" v-bind="attrs" v-on="on" outlined>
+                          <v-icon color="purple">mdi-wrench</v-icon>
+                          設定
+                        </v-btn>
+                      </template>
+                      <v-card width="400px" class="mx-auto rounded-card">
+                        <v-system-bar lights-out>
+                          <v-spacer></v-spacer>
+                          <v-btn icon class="mt-5" @click="dialog = false">
+                            <v-icon>mdi-close</v-icon>
+                          </v-btn>
+                        </v-system-bar>
+                        <the-account-setting />
+                      </v-card>
+                    </v-dialog>
                   </div>
                 </template>
 
@@ -97,9 +120,6 @@
               <user-message-list :messages="user.reviews" />
             </v-tab-item>
             <v-tab-item>
-              <user-like-review-list :reviews="user.like_reviews" />
-            </v-tab-item>
-            <v-tab-item>
               <user-list :users="user.followings" />
             </v-tab-item>
             <v-tab-item>
@@ -120,19 +140,22 @@ import userPostList from '~/components/infoUser/UserPostList.vue'
 import userList from '~/components/infoUser/UserList.vue'
 import userMessageList from '~/components/infoUser/UserMessageList.vue'
 import userLikeReviewList from '~/components/infoUser/UserLikeReviewList.vue'
+import theAccountSetting from '~/components/editUser/TheAccountSetting.vue'
 
 export default {
-  name: 'Stuctive',
+  name: 'RR',
   components: {
     userAvatar,
     userPostList,
     userList,
     userMessageList,
     userLikeReviewList,
+    theAccountSetting,
   },
   data() {
     return {
       // user: {},
+      dialog: false,
       loading: false,
       tab: null,
       follow: false,
@@ -140,9 +163,8 @@ export default {
       color: 'blue white--text',
       items: [
         { title: '参加する' },
-        { title: '気になる' },
+        { title: 'いいね' },
         { title: 'レビュー' },
-        { title: '気になるレビュー' },
         { title: 'フォロー' },
         { title: 'フォロワー' },
       ],
@@ -296,5 +318,14 @@ export default {
 }
 .container {
   padding-bottom: 0px;
+}
+.headertitle {
+  color: white;
+  font-size: 40px;
+  font-family: 'Fraunces', sans-serif;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
+}
+.link {
+  text-decoration: none;
 }
 </style>

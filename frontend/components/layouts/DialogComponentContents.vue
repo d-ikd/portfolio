@@ -82,8 +82,8 @@
 <script>
 import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
-import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
-import theAccount from '~/components/layouts/TheAccount.vue'
+import scheduleCardInfo from '~/components/infoPost/ScheduleCardInfo.vue'
+import theAccount from '~/components/editUser/TheAccount.vue'
 
 export default {
   components: {

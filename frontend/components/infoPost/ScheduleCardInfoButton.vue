@@ -1,7 +1,7 @@
 <template>
   <div>
     <template>
-      <dialogComponentContents2
+      <schedule-card-info-button
         :dialog-component="dialogComponent"
         :posting="post"
         @result="response"
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import dialogComponentContents2 from '~/components/layouts/DialogComponentContents2.vue'
+import scheduleCardInfoDialog from '~/components/infoPost/ScheduleCardInfoDialog.vue'
 export default {
   components: {
-    dialogComponentContents2,
+    scheduleCardInfoDialog,
   },
   props: {
     isPostCreate: {

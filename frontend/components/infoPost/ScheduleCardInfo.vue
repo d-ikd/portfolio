@@ -136,13 +136,6 @@
         </div>
 
         <div>
-          <dialog-component-3
-            :is-message-list="true"
-            :post="post"
-            class="mt-5 mb-5 "
-          />
-        </div>
-        <div>
           <button-like
             :user="loginUser"
             :post="post"
@@ -158,12 +151,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
-import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
 
 export default {
   components: {
     buttonLike,
-    dialogComponent3,
   },
   props: {
     post: {

@@ -81,7 +81,7 @@ import dialogComponent from '~/components/layouts/DialogComponent.vue'
 /* import searchPost from '~/components/search/SearchPost.vue' */
 import ScheduleCard2 from '~/components/search/ScheduleCard2.vue'
 /* import checkbox from '~/components/search/Checkbox.vue' */
-import ScheduleCard from '~/components/ScheduleCard.vue'
+import ScheduleCard from '~/components/infoPost/ScheduleCard.vue'
 
 export default {
   components: {

@@ -1,109 +1,91 @@
 <template>
-  <v-card class="rounded-card">
-    <v-card color="basil">
-      <v-card-title class="text-center justify-center py-6">
-        <h1 class="font-weight-bold display-3 basil--text">
-          <template>
-            <div>
-              <user-avatar :size="140" :user="currentUser" />
-            </div>
-            <div class="mx-auto text-center">
-              <h3>{{ currentUser.name }}</h3>
-              <p class="caption mt-1">
-                <!--  {{ currentUser.email }} -->
-              </p>
-            </div>
-            <div>
-              <p class="caption">
-                {{ currentUser.profile }}
-              </p>
-              <dialog-component-3 :is-account-setting="true" class="mt-5" />
-            </div>
-          </template>
-        </h1>
-      </v-card-title>
-      <!--
-      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-        <v-tab v-for="(item, index) in items" :key="`first-${index}`">
-          {{ item.title }}
-        </v-tab>
-      </v-tabs>
-      -->
-      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-        <v-tab>
-          likes
-        </v-tab>
-        <v-tab>
-          follow
-        </v-tab>
-        <v-tab>
-          follower
-        </v-tab>
-        <v-tab>
-          Message
-        </v-tab>
-      </v-tabs>
+  <v-card>
+    <v-card>
+      <div>
+        <v-expansion-panels color="black">
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              アバター変更
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <edit-avatar />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              ユーザーネーム変更
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <edit-profile />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-      <v-tabs-items v-model="tab">
-        <v-tab-item>
-          <!-- <v-tab-item v-for="(item, index) in items" :key="`second-${index}`"> -->
-          <v-card>
-            <v-card-text>
-              <user-post-list :posts="loginUser.postlike" />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card>
-            <v-card-text>
-              <list-component :is-follow="true" :lists="loginUser.followings" />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card>
-            <v-card-text>
-              <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <list-component :is-follow="true" :lists="loginUser.followers" />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card>
-            <v-card-text>
-              <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <user-message-list :messages="loginUser.reviews" />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs-items>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              パスワード変更
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <edit-password />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >メールアドレス変更</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <edit-email />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header class="red--text">
+              Danger Zone
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <deleteUser />
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </div>
+      <v-list>
+        <v-list-item-content class="justify-center">
+          <div class="mx-auto text-center">
+            <v-divider class="my-3"></v-divider>
+            <v-btn
+              v-if="currentUser.admin"
+              depressed
+              rounded
+              text
+              to="/admin"
+              @click="dialog.value = false"
+            >
+              管理者機能
+            </v-btn>
+            <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
+            <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
+          </div>
+        </v-list-item-content>
+      </v-list>
     </v-card>
-
-    <!--
-                  <user-list :users="loginUser.followings" />
-                  <user-list :users="user.followers" />
-                  <user-post-list :posts="user.postjoin" />
-                  <user-post-list :posts="user.postlike" />
-                  <user-review-list :reviews="user.reviews" />
-                  <user-like-review-list :reviews="user.like_reviews" /> -->
+    <v-sheet class="mb-1"></v-sheet>
   </v-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import dialogComponent3 from '~/components/layouts/DialogComponent3.vue'
-import listComponent from '~/components/layouts/ListComponent.vue'
-import userMessageList from '~/components/infoUser/UserMessageList.vue'
-import userPostList from '~/components/infoUser/UserPostList.vue'
+import deleteUser from '~/components/editUser/DeleteUser.vue'
+import editAvatar from '~/components/editUser/EditAvatar.vue'
+import editEmail from '~/components/editUser/EditEmail.vue'
+import editPassword from '~/components/editUser/EditPassword.vue'
+import editProfile from '~/components/editUser/EditProfile.vue'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
-  name: 'ListComponent',
   components: {
-    dialogComponent3,
-    listComponent,
-    userMessageList,
-    userPostList,
+    deleteUser,
+    editAvatar,
+    editEmail,
+    editPassword,
+    editProfile,
     userAvatar,
   },
   data() {
@@ -117,10 +99,7 @@ export default {
           titletext: 'followingstext',
           listitem: 'followings',
         },
-        /* { title: 'followers', titletext: 'followersstext', listitem: "loginUser.followers" }, */
       ],
-      text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
   computed: {

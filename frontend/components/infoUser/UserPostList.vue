@@ -20,11 +20,16 @@
               {{ post.name }}
             </v-col>
             <v-col align-self="end">
-              <dialog-component2 :post="post" class="mb-n1" />
+              <button-like
+                :user="loginUser"
+                :post="post"
+                :is-rounded-join="true"
+                class="mb-10"
+              />
             </v-col>
           </v-row>
 
-          <!--           <v-list-item-title class="list-item" @click="pagelink(post.id)">
+          <!-- <v-list-item-title class="list-item" @click="pagelink(post.id)">
             {{ post.name }}
           </v-list-item-title>
           <schedule-card-info :post="post" /> -->
@@ -35,13 +40,12 @@
 </template>
 
 <script>
-// import scheduleCardInfo from '~/components/ScheduleCardInfo.vue'
-import dialogComponent2 from '~/components/layouts/DialogComponent2.vue'
+import { mapGetters } from 'vuex'
+import buttonLike from '~/components/layouts/ButtonLike.vue'
 
 export default {
   components: {
-    // scheduleCardInfo,
-    dialogComponent2,
+    buttonLike,
   },
   props: {
     posts: {
@@ -53,6 +57,11 @@ export default {
     return {
       defaultImage: require('@/assets/images/default.png'),
     }
+  },
+  computed: {
+    ...mapGetters({
+      loginUser: 'auth/loginUser',
+    }),
   },
 }
 </script>

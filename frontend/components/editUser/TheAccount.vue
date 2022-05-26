@@ -1,84 +1,127 @@
 <template>
-  <v-card>
-    <v-card>
-      <div>
-        <v-expansion-panels color="black">
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              アバター変更
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <editAvatar />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              ユーザーネーム変更
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <editProfile />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
+  <v-card class="rounded-card">
+    <v-card color="basil">
+      <v-card-title class="text-center justify-center py-6">
+        <h1 class="font-weight-bold display-3 basil--text">
+          <template>
+            <div>
+              <user-avatar :size="140" :user="currentUser" />
+            </div>
+            <div class="mx-auto text-center">
+              <h3>{{ currentUser.name }}</h3>
+              <p class="caption mt-1">
+                <!--  {{ currentUser.email }} -->
+              </p>
+            </div>
+            <v-dialog v-model="dialog" max-width="600">
+              <template #activator="{ on, attrs }">
+                <v-btn color="purple" v-bind="attrs" v-on="on" outlined>
+                  <v-icon color="purple">mdi-wrench</v-icon>
+                  設定
+                </v-btn>
+              </template>
+              <v-card width="400px" class="mx-auto rounded-card">
+                <v-system-bar lights-out>
+                  <v-spacer></v-spacer>
+                  <v-btn icon class="mt-5" @click="dialog = false">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </v-system-bar>
 
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              パスワード変更
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <editPassword />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header
-              >メールアドレス変更</v-expansion-panel-header
-            >
-            <v-expansion-panel-content>
-              <editEmail />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header class="red--text">
-              Danger Zone
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <deleteUser />
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </div>
-      <v-list>
-        <v-list-item-content class="justify-center">
-          <div class="mx-auto text-center">
-            <v-divider class="my-3"></v-divider>
-            <v-btn
-              v-if="currentUser.admin"
-              depressed
-              rounded
-              text
-              to="/admin"
-              @click="dialog.value = false"
-            >
-              管理者機能
-            </v-btn>
-            <v-divider v-if="currentUser.admin" class="my-3"></v-divider>
-            <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
-          </div>
-        </v-list-item-content>
-      </v-list>
+                <the-account-setting />
+              </v-card>
+            </v-dialog>
+            <div>
+              <p class="caption">
+                {{ currentUser.profile }}
+              </p>
+            </div>
+          </template>
+        </h1>
+      </v-card-title>
+      <!--
+      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+        <v-tab v-for="(item, index) in items" :key="`first-${index}`">
+          {{ item.title }}
+        </v-tab>
+      </v-tabs>
+      -->
+      <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+        <v-tab>
+          likes
+        </v-tab>
+        <v-tab>
+          follow
+        </v-tab>
+        <v-tab>
+          follower
+        </v-tab>
+        <v-tab>
+          Message
+        </v-tab>
+      </v-tabs>
+
+      <v-tabs-items v-model="tab">
+        <v-tab-item>
+          <!-- <v-tab-item v-for="(item, index) in items" :key="`second-${index}`"> -->
+          <v-card>
+            <v-card-text>
+              <user-post-list :posts="loginUser.postlike" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-card-text>
+              <list-component :is-follow="true" :lists="loginUser.followings" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-card-text>
+              <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
+              <list-component :is-follow="true" :lists="loginUser.followers" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-card-text>
+              <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
+              <user-message-list :messages="loginUser.reviews" />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
     </v-card>
-    <v-sheet class="mb-1"></v-sheet>
+
+    <!--
+    <user-list :users="loginUser.followings" />
+    <user-list :users="user.followers" />
+    <user-post-list :posts="user.postjoin" />
+    <user-post-list :posts="user.postlike" />
+    <user-review-list :reviews="user.reviews" />
+    <user-like-review-list :reviews="user.like_reviews" /> -->
   </v-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-/* import listComponent from '~/components/layouts/ListComponent.vue' */
-/* import userAvatar from '~/components/infoUser/UserAvatar.vue' */
+import theAccountSetting from '~/components/editUser/TheAccountSetting.vue'
+import listComponent from '~/components/layouts/ListComponent.vue'
+import userMessageList from '~/components/infoUser/UserMessageList.vue'
+import userPostList from '~/components/infoUser/UserPostList.vue'
+import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
+  name: 'ListComponent',
   components: {
-    /* listComponent, */
-    /* userAvatar, */
+    theAccountSetting,
+    listComponent,
+    userMessageList,
+    userPostList,
+    userAvatar,
   },
   data() {
     return {
@@ -91,7 +134,10 @@ export default {
           titletext: 'followingstext',
           listitem: 'followings',
         },
+        /* { title: 'followers', titletext: 'followersstext', listitem: "loginUser.followers" }, */
       ],
+      text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
   computed: {
