@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto green lighten-3 mb-8" dark max-width="400">
+    <v-card class="mx-auto green lighten-3 mt-8" dark max-width="400">
       <v-row>
         <v-col cols="9">
           <v-card-title>
@@ -63,27 +63,27 @@
           </v-card-actions>
         </v-col>
       </v-row>
+      <div class="text-center align-self-center">
+        <v-chip
+          pill
+          nuxt
+          :to="`/post/${message.post.id}`"
+          color="white"
+          outlined
+          class="white--text font-weight-bold mb-2"
+        >
+          <v-avatar left>
+            <v-img
+              v-if="message.post.image.url"
+              :src="message.post.image.url"
+              alt="avatar"
+            />
+            <v-img v-else :src="defaultImage" />
+          </v-avatar>
+          {{ message.post.name }}&nbsp;メンバーズページへ
+        </v-chip>
+      </div>
     </v-card>
-    <div class="text-center align-self-center">
-      <v-chip
-        pill
-        nuxt
-        :to="`/post/${message.post.id}`"
-        color="orange"
-        class="white--text font-weight-bold"
-        v-on="on"
-      >
-        <v-avatar left>
-          <v-img
-            v-if="message.post.image.url"
-            :src="message.post.image.url"
-            alt="avatar"
-          />
-          <v-img v-else :src="defaultImage" />
-        </v-avatar>
-        {{ message.post.name }}&nbsp;メンバーズページへ
-      </v-chip>
-    </div>
   </div>
 </template>
 

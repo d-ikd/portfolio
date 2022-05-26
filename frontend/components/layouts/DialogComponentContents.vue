@@ -35,6 +35,17 @@
                 アカウント
               </v-chip>
             </template>
+            <template v-else-if="isScheduleCardInfo">
+              <v-chip
+                label
+                color="transparent"
+                x-large
+                outlined
+                text-color="green"
+              >
+                <v-icon class="ml-2 mr-2">mdi-book-open-page-variant</v-icon>
+              </v-chip>
+            </template>
             <template v-else>
               else
             </template>

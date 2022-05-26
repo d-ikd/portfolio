@@ -5,6 +5,9 @@
         <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
       </nuxt-link>
       <v-spacer />
+      <template v-if="loggedIn">
+        <dialog-component :is-account-page="true" class="mt-5" />
+      </template>
     </v-app-bar>
 
     <!-- ========== Profile ========== -->
@@ -16,7 +19,7 @@
       <v-card>
         <v-row class="mx-1 pb-10" no-gutters>
           <v-col cols="2" class="text-center">
-            <user-avatar :size="100" :user="user" class="mx-auto" />
+            <user-avatar :size="100" :user="user" class="mx-auto mt-3" />
           </v-col>
           <v-col cols="10">
             <v-sheet>
@@ -27,12 +30,6 @@
                 <template v-if="loginUser && loginUser.id == user.id">
                   <div class="pr-10">
                     <v-dialog v-model="dialog" max-width="600">
-                      <template #activator="{ on, attrs }">
-                        <v-btn color="purple" v-bind="attrs" v-on="on" outlined>
-                          <v-icon color="purple">mdi-wrench</v-icon>
-                          設定
-                        </v-btn>
-                      </template>
                       <v-card width="400px" class="mx-auto rounded-card">
                         <v-system-bar lights-out>
                           <v-spacer></v-spacer>
@@ -40,7 +37,6 @@
                             <v-icon>mdi-close</v-icon>
                           </v-btn>
                         </v-system-bar>
-                        <the-account-setting />
                       </v-card>
                     </v-dialog>
                   </div>
@@ -139,8 +135,7 @@ import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
 import userList from '~/components/infoUser/UserList.vue'
 import userMessageList from '~/components/infoUser/UserMessageList.vue'
-import userLikeReviewList from '~/components/infoUser/UserLikeReviewList.vue'
-import theAccountSetting from '~/components/editUser/TheAccountSetting.vue'
+import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
   name: 'Stuctive',
@@ -149,8 +144,7 @@ export default {
     userPostList,
     userList,
     userMessageList,
-    userLikeReviewList,
-    theAccountSetting,
+    dialogComponent,
   },
   data() {
     return {
@@ -164,7 +158,7 @@ export default {
       items: [
         { title: '参加する' },
         { title: 'いいね' },
-        { title: 'レビュー' },
+        { title: 'メッセージ' },
         { title: 'フォロー' },
         { title: 'フォロワー' },
       ],
@@ -173,6 +167,7 @@ export default {
   computed: {
     ...mapGetters({
       user: 'user/user',
+      loggedIn: 'auth/isLoggedIn',
       loginUser: 'auth/loginUser',
     }),
     postUpdate() {

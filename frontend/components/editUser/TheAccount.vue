@@ -13,28 +13,12 @@
                 <!--  {{ currentUser.email }} -->
               </p>
             </div>
-            <v-dialog v-model="dialog" max-width="600">
-              <template #activator="{ on, attrs }">
-                <v-btn color="purple" v-bind="attrs" v-on="on" outlined>
-                  <v-icon color="purple">mdi-wrench</v-icon>
-                  設定
-                </v-btn>
-              </template>
-              <v-card width="400px" class="mx-auto rounded-card">
-                <v-system-bar lights-out>
-                  <v-spacer></v-spacer>
-                  <v-btn icon class="mt-5" @click="dialog = false">
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                </v-system-bar>
-                <the-account-setting />
-              </v-card>
-            </v-dialog>
             <div>
               <p class="caption">
                 {{ currentUser.profile }}
               </p>
             </div>
+            <the-account-setting-dialog />
           </template>
         </h1>
       </v-card-title>
@@ -107,7 +91,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import theAccountSetting from '~/components/editUser/TheAccountSetting.vue'
+import theAccountSettingDialog from '~/components/editUser/TheAccountSettingDialog.vue'
 import listComponent from '~/components/layouts/ListComponent.vue'
 import userMessageList from '~/components/infoUser/UserMessageList.vue'
 import userPostList from '~/components/infoUser/UserPostList.vue'
@@ -116,7 +100,7 @@ import userAvatar from '~/components/infoUser/UserAvatar.vue'
 export default {
   name: 'ListComponent',
   components: {
-    theAccountSetting,
+    theAccountSettingDialog,
     listComponent,
     userMessageList,
     userPostList,
@@ -127,16 +111,6 @@ export default {
       dialog: false,
       defaultImage: 'http://localhost:5000/fallback/default.png',
       tab: null,
-      items: [
-        {
-          title: 'followings',
-          titletext: 'followingstext',
-          listitem: 'followings',
-        },
-        /* { title: 'followers', titletext: 'followersstext', listitem: "loginUser.followers" }, */
-      ],
-      text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
   computed: {
@@ -188,6 +162,7 @@ export default {
     ...mapActions({
       logout: 'auth/logout',
     }),
+
     pagelink(link) {
       this.$router.push({ path: link })
     },
