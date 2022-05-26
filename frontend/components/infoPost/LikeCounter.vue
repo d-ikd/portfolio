@@ -1,5 +1,11 @@
 <template>
-  <v-dialog v-model="dialog" max-width="600">
+  <v-dialog
+    v-model="dialogComponent"
+    hide-overlay
+    transition="dialog-bottom-transition"
+    max-width="600"
+    persistent
+  >
     <template #activator="{ on, attrs }">
       <span v-bind="attrs" v-on="on">
         <p class="blue--text d-flex">
@@ -15,13 +21,55 @@
       </span>
     </template>
 
-    <v-card width="400px" class="mx-auto rounded-card">
-      <v-system-bar lights-out>
-        <v-spacer></v-spacer>
-        <v-btn icon class="mt-5" @click="dialog = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-system-bar>
+    <v-row no-gutters>
+      <v-col> </v-col>
+      <v-col cols="sm" class="text-center align-self-center">
+        <v-sheet elevation="4" class="rounded-pill">
+          <template>
+            <v-chip
+              label
+              color="transparent"
+              x-large
+              outlined
+              text-color="purple"
+            >
+              <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
+              アカウント
+            </v-chip>
+          </template>
+        </v-sheet>
+      </v-col>
+      <v-col>
+        <template>
+          <v-card-title class="transparent white--text">
+            <span class="headline"></span>
+
+            <v-spacer></v-spacer>
+
+            <v-menu bottom left>
+              <template v-slot:activator="{ attrs }">
+                <v-btn
+                  color="#BDBDBD88"
+                  fab
+                  dark
+                  x-large
+                  v-bind="attrs"
+                  @click="closeDialog"
+                >
+                  <v-icon color="white"> mdi-close-circle-outline</v-icon>
+                </v-btn>
+              </template>
+            </v-menu>
+          </v-card-title>
+        </template>
+      </v-col>
+    </v-row>
+
+    <v-sheet
+      width="500px"
+      color="transparent"
+      class=" mx-auto pb-3 mb-10 rounded-card"
+    >
       <v-list rounded color="white">
         <v-subheader class="black--text"
           >{{ title }}（{{ users.length }}）</v-subheader
@@ -48,7 +96,7 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-card>
+    </v-sheet>
   </v-dialog>
 </template>
 
@@ -56,11 +104,13 @@
 import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
+import buttonClose from '~/components/layouts/ButtonClose.vue'
 
 export default {
   components: {
     userAvatar,
     userFollow,
+    buttonClose,
   },
   props: {
     users: {
@@ -92,6 +142,11 @@ export default {
       dialog: false,
       likeList: [],
     }
+  },
+  methods: {
+    closeDialog() {
+      this.dialog = false
+    },
   },
   computed: {
     postUpdate() {

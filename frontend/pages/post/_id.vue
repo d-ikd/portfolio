@@ -51,9 +51,11 @@
         </template>
       </v-col>
     </v-row>
-    <nuxt-link to="/" class="link">
-      <v-toolbar-title class="header-title">TOPに戻る</v-toolbar-title>
-    </nuxt-link>
+    <div class="text-center align-self-center">
+      <v-btn color="purple white--text" outlined nuxt to="/" class="link">
+        <v-icon dark>mdi-email-variant </v-icon>TOPに戻る
+      </v-btn>
+    </div>
   </div>
 </template>
 
