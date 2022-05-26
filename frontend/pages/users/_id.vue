@@ -143,7 +143,7 @@ import userLikeReviewList from '~/components/infoUser/UserLikeReviewList.vue'
 import theAccountSetting from '~/components/editUser/TheAccountSetting.vue'
 
 export default {
-  name: 'RR',
+  name: 'Stuctive',
   components: {
     userAvatar,
     userPostList,

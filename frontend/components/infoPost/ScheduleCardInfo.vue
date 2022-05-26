@@ -6,7 +6,7 @@
           :src="post.image.url"
           class="rounded-card align-center text-center"
         >
-          <v-card-text>
+          <!-- <v-card-text>
             <v-row class="ml-4">
               <div class="orangecolor">
                 <div
@@ -22,7 +22,7 @@
               </div>
               <v-col cols="2"> </v-col>
             </v-row>
-          </v-card-text>
+          </v-card-text> -->
         </v-img>
         <!-- <v-sheet style="position: relative;">
           <button-like
@@ -32,7 +32,19 @@
           />
         </v-sheet> -->
       </v-card>
-      <v-row class="mt-6">
+      <v-card-text class="text-center align-self-center">
+        <div class="orangecolor">
+          <div
+            class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text"
+          >
+            {{ post.name }}
+          </div>
+          <div class="shadow-text2 pink--text font-weight-bold no-wrap-text">
+            {{ post.catchcopy }}
+          </div>
+        </div>
+      </v-card-text>
+      <v-row class="mt-2">
         <v-col>
           <div class="">
             <div

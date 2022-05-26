@@ -18,9 +18,7 @@
             </template>
           </v-sheet>
         </v-col>
-        <v-col>
-          <button-close @close-dialog="closeDialog" />
-        </v-col>
+        <v-col> </v-col>
       </v-row>
 
       <v-sheet

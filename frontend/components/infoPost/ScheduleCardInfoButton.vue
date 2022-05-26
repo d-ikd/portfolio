@@ -38,11 +38,6 @@ export default {
   data() {
     return {
       dialogComponent: false,
-      dialogItems: {
-        title: 'ダイアログタイトル',
-        text: 'テキストテキストテキストテキストテキストテキスト',
-      },
-      /* message: '', */
     }
   },
   methods: {
