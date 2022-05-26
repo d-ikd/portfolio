@@ -23,18 +23,6 @@
                 記事を投稿する
               </v-chip>
             </template>
-            <template v-else-if="isAccountSetting">
-              <v-chip
-                label
-                color="transparent"
-                x-large
-                outlined
-                text-color="red"
-              >
-                <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
-                アカウント
-              </v-chip>
-            </template>
             <template v-else-if="isScheduleCardInfo">
               <v-chip
                 label
@@ -47,7 +35,16 @@
               </v-chip>
             </template>
             <template v-else>
-              else
+              <v-chip
+                label
+                color="transparent"
+                x-large
+                outlined
+                text-color="purple"
+              >
+                <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
+                アカウント
+              </v-chip>
             </template>
           </v-sheet>
         </v-col>

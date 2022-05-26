@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="#B0DFC1">
+    <v-app-bar color="#7a99cf">
       <nuxt-link to="/" class="link">
         <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
       </nuxt-link>
@@ -9,6 +9,8 @@
         <dialog-component :is-account-page="true" class="mt-5" />
       </template>
     </v-app-bar>
+
+    <button-like :user="loginUser" :post="post" :is-rounded-like="true" />
 
     <v-row no-gutters class="mt-10 mb-10">
       <v-col> </v-col>
@@ -41,6 +43,7 @@
           <h4 class="ma-3 text-decoration-underline">
             メッセージがありません。
           </h4>
+          <the-modal-message-create :post="post" />
         </template>
         <template v-else>
           <post-review-list :reviews="post.reviews" />
@@ -48,7 +51,6 @@
         </template>
       </v-col>
     </v-row>
-    <the-modal-message-create :post="post" />
     <nuxt-link to="/" class="link">
       <v-toolbar-title class="header-title">TOPに戻る</v-toolbar-title>
     </nuxt-link>
@@ -133,6 +135,11 @@ export default {
             }
           })
         }
+      })
+    this.$axios
+      .get(`api/v1/posts/${this.$route.params.id}`)
+      .then((res) => {
+        this.$store.commit('post/setPost', res.data, { root: true })
       })
       .then(() => {
         if (this.login) {

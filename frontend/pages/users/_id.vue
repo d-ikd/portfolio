@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="#B0DFC1">
+    <v-app-bar color="#7a99cf">
       <nuxt-link to="/" class="link">
         <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
       </nuxt-link>
@@ -67,7 +67,7 @@
                       @click="followUser"
                     >
                       <v-icon class="mr-2"> mdi-account-plus </v-icon>
-                      Follow
+                      フォロー
                     </v-btn>
                   </div>
                 </template>

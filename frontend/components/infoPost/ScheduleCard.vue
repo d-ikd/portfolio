@@ -10,13 +10,19 @@
         :key="p.id"
         class="d-flex child-flex flex-wrap"
       > -->
-      <v-col v-for="p in posts" :key="p.id" class="d-flex flex-wrap">
+      <v-col
+        v-for="p in posts"
+        :key="p.id"
+        class="d-flex align-stretch flex-wrap"
+      >
         <v-card
           :elevation="15"
           dark
-          class="mx-auto green secondary ma-3 rounded-card"
+          class="mx-auto orange ma-3 rounded-card"
+          color="white"
+          width="250"
         >
-          <v-responsive :aspect-ratio="12 / 16">
+          <v-responsive :aspect-ratio="12 / 16" style="background-color: white">
             <v-hover>
               <template v-slot:default="{ hover }">
                 <v-sheet dark flat color="white">
@@ -49,10 +55,12 @@
                         :is-rounded-like="true"
                       />
                       <div class="grey--text title">
-                        <div class="font-weight-regular mt-4">
+                        <div class="font-weight-regular mt-4 text-truncate">
                           {{ p.name }} {{ p.id }}
                         </div>
-                        <div class="caption text-center mt-4 shadow-text">
+                        <div
+                          class="caption text-center mt-4 shadow-text text-truncate"
+                        >
                           キャッチコピー / {{ likeCount }}
                         </div>
 

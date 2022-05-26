@@ -2,7 +2,7 @@
   <div>
     <v-card class="mx-auto green lighten-3 mt-8" dark max-width="400">
       <v-row>
-        <v-col cols="9">
+        <v-col cols="8">
           <v-card-title>
             <!-- <v-menu transition="scroll-x-transition">
               <template v-slot:activator="{ on, attrs }">
@@ -32,28 +32,28 @@
             {{ message.content }}
           </v-card-text>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <template v-if="message.image.url">
-            <v-avatar size="80" class="radius-image mt-4">
-              <v-img
-                v-if="message.image.url"
-                :src="message.image.url"
-                alt="avatar"
-              />
-              <v-img v-else :src="defaultImage" contain />
-            </v-avatar>
+            <v-img
+              v-if="message.image.url"
+              :src="message.image.url"
+              alt="avatar"
+              :aspect-ratio="1 / 1"
+              class="rounded-card mr-4 mt-4"
+            />
+            <v-img v-else :src="defaultImage" contain />
           </template>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" class="mt-n5">
           <v-card-actions>
             <v-list-item class="grow">
               <v-row align="center" justify="end">
                 <v-icon class="mr-1">
                   mdi-timelapse
                 </v-icon>
-                <span class="subheading">
+                <span class="subheading mr-2">
                   {{ $dayjs(message.created_at).format('MM/DD') }}&nbsp;{{
                     $dayjs(message.created_at).format('hh:mm')
                   }}</span
@@ -153,6 +153,9 @@ export default {
 </script>
 
 <style scoped>
+.rounded-card {
+  border-radius: 20px;
+}
 .small-image {
   border: 1px solid;
   border-radius: 9px;

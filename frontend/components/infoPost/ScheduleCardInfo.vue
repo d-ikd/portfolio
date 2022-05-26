@@ -148,12 +148,12 @@
         </div>
 
         <div>
-          <button-like
+          <!-- <button-like
             :user="loginUser"
             :post="post"
             :is-rounded-join="true"
             class="mb-10"
-          />
+          /> -->
         </div>
       </v-sheet>
     </v-sheet>
@@ -186,6 +186,22 @@ export default {
       ],
       dialog: false,
     }
+  },
+  created() {
+    this.$axios
+      .get(`api/v1/posts/${this.$route.params.id}`)
+      .then((res) => {
+        this.$store.commit('post/setPost', res.data, { root: true })
+      })
+      .then(() => {
+        if (this.login) {
+          this.post.join_users.forEach((f) => {
+            if (f.id === this.user.id) {
+              this.join = true
+            }
+          })
+        }
+      })
   },
   computed: {
     ...mapGetters({

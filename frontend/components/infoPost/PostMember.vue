@@ -2,19 +2,19 @@
   <v-card>
     <v-sheet class="d-flex transparent align-center flex-column">
       <div class="headline mr-8 pink--text font-weight-bold no-wrap-text">
-        {{ title }} [ {{ users.length }} / {{ post.member }} ] 人
+        <v-chip>
+          {{ title }} [ {{ users.length }} / {{ post.member }} ] 人
+        </v-chip>
+
+        <v-card class="d-flex flex-row mb-6 rounded-card" flat tile>
+          <v-sheet v-for="user in users" :key="`first-${user}`">
+            <nuxt-link :to="{ path: `/users/${user.id}` }">
+              <user-avatar :size="100" :user="user" class="list-avatar mx-3" />
+            </nuxt-link>
+          </v-sheet>
+        </v-card>
       </div>
     </v-sheet>
-
-    <div
-      v-for="user in users"
-      :key="user.id"
-      class="d-flex flex-wrap align-content-start"
-    >
-      <nuxt-link :to="{ path: `/users/${user.id}` }">
-        <user-avatar :size="100" :user="user" class="list-avatar mx-3" />
-      </nuxt-link>
-    </div>
   </v-card>
 </template>
 
@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+.rounded-card {
+  border-radius: 20px;
+}
 .signup-link {
   color: #2196f3;
   cursor: pointer;

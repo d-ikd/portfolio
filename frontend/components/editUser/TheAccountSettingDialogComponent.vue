@@ -17,10 +17,10 @@
                 color="transparent"
                 x-large
                 outlined
-                text-color="red"
+                text-color="purple"
               >
                 <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
-                アカウント
+                設定
               </v-chip>
             </template>
           </v-sheet>

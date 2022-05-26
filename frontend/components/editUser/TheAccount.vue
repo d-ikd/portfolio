@@ -18,7 +18,7 @@
                 {{ currentUser.profile }}
               </p>
             </div>
-            <the-account-setting-dialog />
+            <the-account-setting-dialog class="mt-5" />
           </template>
         </h1>
       </v-card-title>
