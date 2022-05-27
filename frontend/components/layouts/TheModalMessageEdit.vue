@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row>
     <v-dialog
       v-model="editDialog"
       hide-overlay
@@ -39,7 +39,7 @@
                 text-color="green"
               >
                 <v-icon class="ml-2 mr-2">mdi-pencil</v-icon>
-                記事を投稿する
+                ページを編集する
               </v-chip>
             </template>
           </v-sheet>

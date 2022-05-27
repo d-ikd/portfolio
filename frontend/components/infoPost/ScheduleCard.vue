@@ -56,7 +56,7 @@
                       />
                       <div class="grey--text title">
                         <div class="font-weight-regular mt-4 text-truncate">
-                          {{ p.name }} {{ p.id }}
+                          {{ p.name }} {{ p.id }} {{ p.user_id }}
                         </div>
                         <div
                           class="caption text-center mt-4 shadow-text text-truncate"
@@ -100,7 +100,7 @@
             <v-card-text class="orange">
               <div class="d-flex font-weight-thin subtitle-1 justify-center ">
                 <span>
-                  {{ p.avatar }}
+                  {{ p.user }}
                   <like-counter
                     :users="p.join_users"
                     :post="p"
@@ -158,6 +158,7 @@ import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import likeCounter from '~/components/infoPost/LikeCounter.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
+import userAvatar from '~/components/infoUser/userAvatar.vue'
 
 export default {
   components: {
@@ -165,6 +166,7 @@ export default {
     buttonLike,
     likeCounter,
     dialogComponent,
+    userAvatar,
   },
   // props: {
   //   posts: {

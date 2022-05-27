@@ -136,12 +136,12 @@
           label="キャッチコピー"
         />
 
-        <v-select
+        <!-- <v-select
           v-model="category"
           :items="categoryList"
           label="カテゴリー"
           item-text="category"
-        />
+        /> -->
         <v-btn
           x-large
           block

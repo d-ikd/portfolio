@@ -6,11 +6,14 @@
       </nuxt-link>
       <v-spacer />
       <template v-if="loggedIn">
+        <the-modal-post-edit :post="post" />
+        <the-modal-post-delete :post="post" />
+
         <dialog-component :is-account-page="true" class="mt-5" />
       </template>
     </v-app-bar>
 
-    <button-like :user="loginUser" :post="post" :is-rounded-like="true" />
+    <button-like :user="user" :post="post" :is-rounded-like="true" />
 
     <v-row no-gutters class="mt-10 mb-10">
       <v-col> </v-col>
@@ -68,6 +71,8 @@ import postMember from '~/components/infoPost/PostMember.vue'
 /* import postAlbum from '~/components/infoPost/postAlbum.vue' */
 import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
+import theModalPostDelete from '~/components/layouts/TheModalPostDelete.vue'
+import theModalPostEdit from '~/components/layouts/TheModalPostEdit.vue'
 
 export default {
   components: {
@@ -78,6 +83,8 @@ export default {
     /* listComponent, */
     /* postAlbum, */
     dialogComponent,
+    theModalPostDelete,
+    theModalPostEdit,
   },
   data() {
     return {

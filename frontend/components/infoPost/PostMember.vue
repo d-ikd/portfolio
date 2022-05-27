@@ -1,31 +1,21 @@
 <template>
   <v-card>
     <v-sheet class="d-flex transparent align-center flex-column">
-      <div class="headline mr-8 pink--text font-weight-bold no-wrap-text">
-        <v-chip>
-          {{ title }} [ {{ users.length }} / {{ post.member }} ] 人
-        </v-chip>
+      <div
+        class="headline
+                    mr-8 pink--text font-weight-bold no-wrap-text"
+      >
         <v-row no-gutters>
           <v-col> </v-col>
           <v-col cols="sm" class="text-center align-self-center">
-            <v-sheet elevation="4" class="rounded-pill">
-              <template>
-                <v-chip
-                  label
-                  color="transparent"
-                  x-large
-                  outlined
-                  text-color="purple"
-                >
-                  <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
-                  メンバー
-                </v-chip>
-              </template>
+            <v-sheet elevation="4" class="rounded-pill mt-3 mb-3">
+              <v-chip label color="transparent" x-large text-color="purple">
+                <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
+                {{ title }} [ {{ users.length }} / {{ post.member }} ] 人
+              </v-chip>
             </v-sheet>
           </v-col>
-          <v-col>
-            <button-close @close-dialog="closeDialog" />
-          </v-col>
+          <v-col> </v-col>
         </v-row>
 
         <v-card class="d-flex flex-row mb-6 rounded-card" flat tile>
@@ -33,6 +23,7 @@
             v-for="user in users"
             :key="`first-${user}`"
             class="text-center align-self-center"
+            color="white"
           >
             <nuxt-link :to="{ path: `/users/${user.id}` }">
               <user-avatar :size="100" :user="user" class="list-avatar mx-3" />
