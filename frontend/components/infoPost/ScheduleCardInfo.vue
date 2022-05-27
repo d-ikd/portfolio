@@ -3,34 +3,15 @@
     <v-sheet class="rounded-card" elevation="5">
       <v-card color="transparent" class="rounded-card " elevation="5">
         <v-img
+          v-if="post.image.url"
           :src="post.image.url"
           class="rounded-card align-center text-center"
         >
-          <!-- <v-card-text>
-            <v-row class="ml-4">
-              <div class="orangecolor">
-                <div
-                  class="headline shadow-text1 pink--text font-weight-bold no-wrap-text"
-                >
-                  {{ post.name }}
-                </div>
-                <div
-                  class="shadow-text2 pink--text font-weight-bold no-wrap-text"
-                >
-                  {{ post.catchcopy }}
-                </div>
-              </div>
-              <v-col cols="2"> </v-col>
-            </v-row>
-          </v-card-text> -->
         </v-img>
-        <!-- <v-sheet style="position: relative;">
-          <button-like
-            :user="loginUser"
-            :post="post"
-            :is-rounded-like="true"
-          />
-        </v-sheet> -->
+        <v-img v-else contain :src="defaultImage"> </v-img>
+        <v-sheet style="position: relative;">
+          <button-like :user="loginUser" :post="post" :is-rounded-like="true" />
+        </v-sheet>
       </v-card>
       <v-card-text class="text-center align-self-center">
         <div class="orangecolor">
@@ -183,6 +164,7 @@ export default {
   },
   data() {
     return {
+      defaultImage: require(`@/assets/images/default.png`),
       reverse: true,
       years: [
         {
