@@ -161,6 +161,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {},
   data() {
@@ -185,6 +187,11 @@ export default {
       today: '',
     }
   },
+  computed: {
+    ...mapGetters({
+      loginUser: 'auth/loginUser',
+    }),
+  },
   created() {
     this.today = new Date()
     this.release =
@@ -204,6 +211,7 @@ export default {
     },
     postCreate() {
       const formData = new FormData()
+      formData.append('user_id', this.loginUser.user_id)
       formData.append('name', this.name)
       formData.append('image', this.image)
       formData.append('details', this.details)

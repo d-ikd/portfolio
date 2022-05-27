@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name"
     t.text "details"
     t.text "quickword"
@@ -52,9 +53,9 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
     t.time "finish_time"
     t.date "release"
     t.string "image"
-    t.string "photoshot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   add_foreign_key "post_joins", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
   add_foreign_key "review_likes", "reviews"

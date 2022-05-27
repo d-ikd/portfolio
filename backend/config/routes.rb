@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :posts, only: %i[index show create update destroy] do
         get :search, on: :collection
       end
-      resources :users, only: %i[index show destroy] do
+      resources :users, only: %i[index show create destroy] do
         get :search, on: :collection
       end
       resources :reviews, only: %i[index create update destroy]
