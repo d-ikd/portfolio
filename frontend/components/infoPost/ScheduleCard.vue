@@ -61,7 +61,7 @@
                         <div
                           class="caption text-center mt-4 shadow-text text-truncate"
                         >
-                          キャッチコピー / {{ likeCount }}
+                          キャッチコピー
                         </div>
 
                         <p
@@ -72,7 +72,6 @@
                           {{ $dayjs(p.release).format('MM/DD') }}&nbsp;&nbsp;{{
                             $dayjs(p.start_time).format('hh:mm')
                           }}~{{ $dayjs(p.finish_time).format('hh:mm') }}
-                          {{ p.user }}
                         </p>
                       </div>
                     </v-card-text>
@@ -101,6 +100,7 @@
             <v-card-text class="orange">
               <div class="d-flex font-weight-thin subtitle-1 justify-center ">
                 <span>
+                  {{ p.avatar }}
                   <like-counter
                     :users="p.join_users"
                     :post="p"
@@ -186,12 +186,12 @@ export default {
     }
   },
   computed: {
-    likeCount() {
-      return this.post.like_users.length
-    },
-    joinCount() {
-      return this.post.join_users.length
-    },
+    // likeCount() {
+    //   return this.post.like_users.length
+    // },
+    // joinCount() {
+    //   return this.post.join_users.length
+    // },
     reversePosts() {
       return this.posts.slice().reverse()
     },

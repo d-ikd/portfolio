@@ -39,32 +39,8 @@
           </template>
         </v-sheet>
       </v-col>
-      <v-col>
-        <template>
-          <v-card-title class="transparent white--text">
-            <span class="headline"></span>
-
-            <v-spacer></v-spacer>
-
-            <v-menu bottom left>
-              <template v-slot:activator="{ attrs }">
-                <v-btn
-                  color="#BDBDBD88"
-                  fab
-                  dark
-                  x-large
-                  v-bind="attrs"
-                  @click="closeDialog"
-                >
-                  <v-icon color="white"> mdi-close-circle-outline</v-icon>
-                </v-btn>
-              </template>
-            </v-menu>
-          </v-card-title>
-        </template>
-      </v-col>
+      <v-col> </v-col>
     </v-row>
-
     <v-sheet
       width="500px"
       color="transparent"
@@ -81,9 +57,6 @@
             :ripple="false"
             class="list"
           >
-            <nuxt-link :to="{ path: `/users/${user.id}` }">
-              <user-avatar :size="45" :user="user" class="list-avatar mx-3" />
-            </nuxt-link>
             <v-list-item-content>
               <v-list-item-title
                 class="black--text list-item"
@@ -122,12 +95,6 @@ export default {
       default: () => ({}),
       required: true,
     },
-    ppp: {
-      type: Object,
-      default: () => ({}),
-      required: false,
-    },
-
     title: {
       type: String,
       required: true,
@@ -139,6 +106,7 @@ export default {
   },
   data() {
     return {
+      dialogComponent: false,
       dialog: false,
       likeList: [],
     }
@@ -149,16 +117,16 @@ export default {
     },
   },
   computed: {
+    ...mapGetters({
+      user: 'user/user',
+      loginUser: 'auth/loginUser',
+    }),
     postUpdate() {
       return this.$store.state.post.post
     },
     /*      likeCount() {
       return this.post.like_users.length
     }, */
-    ...mapGetters({
-      user: 'user/user',
-      loginUser: 'auth/loginUser',
-    }),
     /*
     // userUpdate() {
     //   return this.$store.state.auth.loginUser

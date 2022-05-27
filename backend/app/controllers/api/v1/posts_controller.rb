@@ -33,9 +33,9 @@ module Api
       def show
         @post = Post.includes(
           # ========== add ==========
-          {
-            user: %i[name image]
-          },
+          # {
+          #   user: %i[id name image]
+          # },
           # ========== end of add ==========
           :like_users,
           :join_users,
@@ -46,9 +46,9 @@ module Api
         render json: @post.as_json(
           include: [
             # ========== add ==========
-            {
-              user: { only: %w[id name image] }
-            },
+            # {
+            #   user: { only: %w[id name image] }
+            # },
             # ========== end of add ==========
             :like_users,
             :join_users,
