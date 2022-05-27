@@ -321,7 +321,7 @@ export default {
     },
 
     setImage(file) {
-      this.reviewEdit.image = file
+      this.image = file
       if (file !== undefined && file !== null) {
         if (file.name.lastIndexOf('.') <= 0) {
           return

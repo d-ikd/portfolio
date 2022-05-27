@@ -140,7 +140,7 @@
         </v-timeline-item>
       </v-timeline>
       <v-sheet class="d-flex transparent align-center flex-column">
-        <div>
+        <div class="mb-4">
           <v-btn
             color="purple white--text"
             outlined
@@ -152,12 +152,12 @@
         </div>
 
         <div>
-          <!-- <button-like
+          <button-like
             :user="loginUser"
             :post="post"
             :is-rounded-join="true"
             class="mb-10"
-          /> -->
+          />
         </div>
       </v-sheet>
     </v-sheet>
