@@ -5,10 +5,11 @@
         <v-toolbar-title class="headertitle">Stuctive</v-toolbar-title>
       </nuxt-link>
       <v-spacer />
-      <template v-if="loggedIn">
+      <template v-if="user.id == post.user_id">
         <the-modal-post-edit :post="post" />
         <the-modal-post-delete :post="post" />
-
+      </template>
+      <template v-if="loggedIn">
         <dialog-component :is-account-page="true" class="mt-5" />
       </template>
     </v-app-bar>

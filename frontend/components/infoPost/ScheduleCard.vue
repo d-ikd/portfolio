@@ -81,12 +81,17 @@
                         class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
                         style="height: 100%;"
                       >
-                        <v-avatar class="ml-2">
-                          <img
+                        <nuxt-link :to="{ path: `/users/${p.user.id}` }">
+                          <user-avatar
+                            :size="50"
+                            :user="p.user"
+                            class="list-avatar mx-3"
+                          />
+                        </nuxt-link>
+                        <!-- <img
                             alt="user"
                             :src="require(`@/assets/images/default-user.png`)"
-                          />
-                        </v-avatar>
+                          /> -->
                         <div class="caption text-center mr-3 ml-1">
                           {{ p.quickword }}
                         </div>
@@ -100,7 +105,6 @@
             <v-card-text class="orange">
               <div class="d-flex font-weight-thin subtitle-1 justify-center ">
                 <span>
-                  {{ p.user }}
                   <like-counter
                     :users="p.join_users"
                     :post="p"
@@ -158,7 +162,7 @@ import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import likeCounter from '~/components/infoPost/LikeCounter.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
-import userAvatar from '~/components/infoUser/userAvatar.vue'
+import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
   components: {

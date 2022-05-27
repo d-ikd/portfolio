@@ -120,9 +120,13 @@
 
         <v-timeline-item fill-dot class="white--text mb-9" color="orange" large>
           <template v-slot:icon>
-            <v-avatar>
-              <img src="https://i.pravatar.cc/64" />
-            </v-avatar>
+            <nuxt-link :to="{ path: `/users/${post.user.id}` }">
+              <user-avatar
+                :size="50"
+                :user="post.user"
+                class="list-avatar mx-3"
+              />
+            </nuxt-link>
           </template>
 
           <v-card class="elevation-2 mr-8" rounded-card>
@@ -163,10 +167,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
+import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
   components: {
     buttonLike,
+    userAvatar,
   },
   props: {
     post: {
