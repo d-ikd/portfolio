@@ -1,28 +1,28 @@
 <template>
   <div>
-    <v-card v-for="review in reviews" :key="review.id" class="mx-2 my-3">
+    <v-card v-for="message in messages" :key="message.id" class="mx-2 my-3">
       <div class="d-flex">
         <v-avatar size="30" class="ml-1" tile>
-          <v-img :src="review.post.image.url" contain></v-img>
+          <v-img :src="message.post.image.url" contain></v-img>
         </v-avatar>
-        <nuxt-link :to="{ path: `/review/${review.post.id}` }">
-          {{ review.post.name }}
+        <nuxt-link :to="{ path: `/message/${message.post.id}` }">
+          {{ message.post.name }}
         </nuxt-link>
       </div>
       <div classf="d-flex">
         <v-avatar size="30" class="ml-1">
-          <v-img :src="review.user.image.url" conitain></v-img>
+          <v-img :src="message.user.image.url" conitain></v-img>
         </v-avatar>
-        <nuxt-link :to="{ path: `/review/${review.user.id}` }">
-          {{ review.user.name }}
+        <nuxt-link :to="{ path: `/message/${message.user.id}` }">
+          {{ message.user.name }}
         </nuxt-link>
       </div>
       <div classf="d-flex">
-        {{ review.content }}
+        {{ message.content }}
         <v-btn
           small
           color="red darken-3 white--text"
-          @click="deleteReview(review.id)"
+          @click="deleteReview(message.id)"
         >
           削除
         </v-btn>
@@ -34,7 +34,7 @@
 <script>
 export default {
   props: {
-    reviews: {
+    messages: {
       type: Array,
       required: true,
     },
@@ -45,7 +45,7 @@ export default {
   methods: {
     deleteReview(id) {
       this.$axios
-        .delete(`api/v1/reviews/${id}`)
+        .delete(`api/v1/messages/${id}`)
         .then((res) => {
           console.log(res.data)
           console.log('Successfully deleted')

@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" max-width="400">
     <template v-if="$store.state.auth.isLoggedIn" #activator="{ on, attrs }">
       <v-btn
-        v-if="review.user_id === $store.state.auth.loginUser.id"
+        v-if="message.user_id === $store.state.auth.loginUser.id"
         v-bind="attrs"
         icon
         v-on="on"
@@ -29,7 +29,7 @@
           color="red"
           class="font-weight-bold justify-center mb-2"
           text
-          @click="deleteReview"
+          @click="deleteMessage"
         >
           削除
         </v-btn>
@@ -43,7 +43,7 @@
 
 export default {
   props: {
-    review: {
+    message: {
       type: Object,
       default: () => ({}),
       required: true,
@@ -56,9 +56,9 @@ export default {
   },
   methods: {
     // ...mapActions({ deleteReview: "post/deleteReview" }),
-    deleteReview() {
+    deleteMessage() {
       this.$axios
-        .delete(`api/v1/reviews/${this.review.id}`)
+        .delete(`api/v1/reviews/${this.message.id}`)
         .then(() => {
           this.$store.commit(
             'snackbarMessage/setMessage',

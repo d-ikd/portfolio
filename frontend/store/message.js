@@ -1,6 +1,6 @@
 /* eslint-disable */
 export const actions = {
-  async likeReview({ commit, rootState }, authData) {
+  async likeMessage({ commit, rootState }, authData) {
     await this.$axios
       .$post('/api/v1/review_likes', {
         user_id: authData.user,
@@ -39,7 +39,7 @@ export const actions = {
         }, 1000)
       })
   },
-  async unLikeReview({ rootState, commit }, authData) {
+  async unLikeMessage({ rootState, commit }, authData) {
     await this.$axios
       .$delete('/api/v1/review_likes', {
         params: {

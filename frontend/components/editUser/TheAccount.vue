@@ -78,14 +78,6 @@
         </v-tab-item>
       </v-tabs-items>
     </v-card>
-
-    <!--
-    <user-list :users="loginUser.followings" />
-    <user-list :users="user.followers" />
-    <user-post-list :posts="user.postjoin" />
-    <user-post-list :posts="user.postlike" />
-    <user-review-list :reviews="user.reviews" />
-    <user-like-review-list :reviews="user.like_reviews" /> -->
   </v-card>
 </template>
 

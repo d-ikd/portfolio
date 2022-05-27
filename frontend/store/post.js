@@ -235,7 +235,7 @@ export const actions = {
         }, 1000)
       })
   },
-  async editReview({ commit }, authData) {
+  async editMessage({ commit }, authData) {
     const form = new FormData()
     form.append('title', authData.title)
     form.append('content', authData.content)
@@ -247,12 +247,12 @@ export const actions = {
     }
     console.log(authData.image)
     await this.$axios
-      .$put(`/api/v1/reviews/${authData.reviewId}`, form, {
+      .$put(`/api/v1/reviews/${authData.messageId}`, form, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
         params: {
-          review_id: authData.reviewId,
+          review_id: authData.messageId,
         },
       })
       .then(() => {

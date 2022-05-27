@@ -3,13 +3,13 @@
     <v-card color="basil">
       <v-list style="background-color: white">
         <v-card
-          v-for="review in reviews"
-          :key="review.id"
+          v-for="message in messages"
+          :key="message.id"
           flat
           class="mb-2"
           style="background-color: white"
         >
-          <post-message :message="review" />
+          <post-message :message="message" />
         </v-card>
       </v-list>
     </v-card>
@@ -24,7 +24,7 @@ export default {
     postMessage,
   },
   props: {
-    reviews: {
+    messages: {
       type: Array,
       required: true,
     },

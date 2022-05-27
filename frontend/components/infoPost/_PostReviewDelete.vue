@@ -19,17 +19,17 @@
         </v-btn>
       </v-system-bar>
       <v-card-title class="headline justify-center">
-        投稿を削除しますか？
+        メッセージを削除しますか？
       </v-card-title>
       <v-card-text class="mt-3">
-        この操作は取り消せません。投稿内容・投稿へのコメント・コメントに対する返信コメントが削除されます。
+        この操作は取り消せません。
       </v-card-text>
       <div class="text-center">
         <v-btn
           color="red"
           class="font-weight-bold justify-center mb-2"
           text
-          @click="deleteReview"
+          @click="deleteMessage"
         >
           削除
         </v-btn>
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     // ...mapActions({ deleteReview: 'post/deleteReview' }),
-    deleteReview() {
+    deleteMessage() {
       this.$axios
         .delete(`api/v1/reviews/${this.review.id}`)
         .then(() => {

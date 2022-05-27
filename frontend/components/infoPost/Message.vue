@@ -90,14 +90,6 @@
                   {{ message.user.name }}
                 </v-btn> -->
 
-      <!--         <template
-                  v-if="message.user_id === $store.state.auth.loginUser.id"
-                > -->
-
-      <!-- <the-modal-message-edit :review="message" /> -->
-      <!-- <post-review-delete :review="message" /> -->
-      <!-- </template> -->
-
       <!--                     <template v-if="login">
                   </template> -->
       <!-- ========Message's Image======= -->
@@ -177,8 +169,8 @@ export default {
   }, */
   /*  methods: {
     ...mapActions({
-      likeReview: 'review/likeReview',
-      unLikeReview: 'review/unLikeReview',
+      likeMessage: 'review/likeMessage',
+      unLikeMessage: 'review/unLikeMessage',
     }),
     nice() {
       const postData = {
@@ -186,7 +178,7 @@ export default {
         review: this.review.id,
       }
       if (this.like) {
-        this.unLikeReview(postData).then(() => {
+        this.unLikeMessage(postData).then(() => {
           this.like = false
           this.$axios
             .$get(`/api/v1/posts/${this.$route.params.id}`)
@@ -195,7 +187,7 @@ export default {
             })
         })
       } else {
-        this.likeReview(postData).then(() => {
+        this.likeMessage(postData).then(() => {
           this.like = true
           this.$axios
             .$get(`/api/v1/posts/${this.$route.params.id}`)

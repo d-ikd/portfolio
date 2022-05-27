@@ -14,7 +14,7 @@
             #activator="{ on: tooltip }"
           >
             <v-btn
-              v-if="review.user_id === $store.state.auth.loginUser.id"
+              v-if="message.user_id === $store.state.auth.loginUser.id"
               v-bind="attrs"
               icon
               v-on="{ ...dialog, ...tooltip }"
@@ -59,39 +59,27 @@
       >
         <v-card width="400px" class="mx-auto rounded-card">
           <v-card-title class="headline justify-center">
-            {{ review.post.name }}
+            {{ message.post.name }}
           </v-card-title>
           <v-card-text>
             <v-form ref="form">
               <v-container>
-                <!--             <div class="d-flex align-center my-2">
-              <v-rating
-                v-model="reviewEdit.rate"
-                background-color="orange lighten-1"
-                color="orange darken-2"
-                half-increments
-                class="ml-5"
-                dense
-                large
-                hover
-              />
-              <span class="ml-5 font-weight-bold">
-                {{ reviewEdit.rate }}
-              </span>
-            </div> -->
-                <v-text-field v-model="reviewEdit.title" label="タイトル記入" />
+                <v-text-field
+                  v-model="messageEdit.title"
+                  label="タイトル記入"
+                />
                 <v-textarea
-                  v-model="reviewEdit.content"
+                  v-model="messageEdit.content"
                   label="メッセージ記入"
                 />
                 <v-file-input
-                  v-model="reviewEdit.image"
+                  v-model="messageEdit.image"
                   accept="image/png, image/jpeg, image/bmp"
                   label="画像"
                   show-size
                   @change="setImage"
                 />
-                <template v-if="review.image.url">
+                <template v-if="message.image.url">
                   <v-img
                     v-if="input_image !== null"
                     :src="input_image"
@@ -101,7 +89,7 @@
                   />
                   <v-img
                     v-else
-                    :src="review.image.url"
+                    :src="message.image.url"
                     contain
                     max-width="600"
                     max-height="300"
@@ -122,7 +110,7 @@
                   color="light-green darken-1"
                   class="white--text font-weight-bold pa-5 mt-3"
                   block
-                  @click="postReviewEdit"
+                  @click="postMessageEdit"
                 >
                   更新
                 </v-btn>
@@ -153,7 +141,7 @@ import { mapActions } from 'vuex'
 
 export default {
   props: {
-    review: {
+    message: {
       type: Object,
       default: () => ({}),
       required: true,
@@ -165,27 +153,27 @@ export default {
   data() {
     return {
       editDialog: false,
-      reviewEdit: {
-        title: this.review.title,
-        content: this.review.content,
-        rate: this.review.rate,
-        image: this.review.image,
-        user_id: this.review.user_id,
-        post_id: this.review.post_id,
-        reviewId: this.review.id,
+      messageEdit: {
+        title: this.message.title,
+        content: this.message.content,
+        rate: this.message.rate,
+        image: this.message.image,
+        user_id: this.message.user_id,
+        post_id: this.message.post_id,
+        messageId: this.message.id,
       },
       input_image: null,
     }
   },
   computed: {},
   methods: {
-    ...mapActions({ editReview: 'post/editReview' }),
-    postReviewEdit() {
-      this.editReview(this.reviewEdit)
+    ...mapActions({ editMessage: 'post/editMessage' }),
+    postMessageEdit() {
+      this.editMessage(this.messageEdit)
       this.editDialog = false
     },
     setImage(file) {
-      this.reviewEdit.image = file
+      this.messageEdit.image = file
       if (file !== undefined && file !== null) {
         if (file.name.lastIndexOf('.') <= 0) {
           return
