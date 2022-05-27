@@ -211,7 +211,7 @@ export default {
     },
     postCreate() {
       const formData = new FormData()
-      formData.append('user_id', this.loginUser.user_id)
+      formData.append('user_id', this.loginUser.id)
       formData.append('name', this.name)
       formData.append('image', this.image)
       formData.append('details', this.details)

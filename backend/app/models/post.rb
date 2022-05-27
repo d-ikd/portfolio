@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   # before_save :write_width_height
-  mount_uploader :photoshot, PhotoshotUploader
+  # mount_uploader :photoshot, PhotoshotUploader
   mount_uploader :image, ImageUploader
 
   validates :user, presence: true

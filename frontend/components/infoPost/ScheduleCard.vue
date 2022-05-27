@@ -72,6 +72,7 @@
                           {{ $dayjs(p.release).format('MM/DD') }}&nbsp;&nbsp;{{
                             $dayjs(p.start_time).format('hh:mm')
                           }}~{{ $dayjs(p.finish_time).format('hh:mm') }}
+                          {{ p.user }}
                         </p>
                       </div>
                     </v-card-text>
