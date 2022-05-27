@@ -1,12 +1,12 @@
 <template>
   <v-row justify="center">
-  <v-dialog
-    v-model="dialogComponent"
-    hide-overlay
-    transition="dialog-bottom-transition"
-    max-width="600"
-    persistent
-  >
+    <v-dialog
+      v-model="dialogComponent"
+      hide-overlay
+      transition="dialog-bottom-transition"
+      max-width="600"
+      persistent
+    >
       <v-row no-gutters>
         <v-col> </v-col>
         <v-col cols="sm" class="text-center align-self-center">
@@ -30,43 +30,35 @@
         </v-col>
       </v-row>
 
-
       <v-card
         color="basil"
         width="500px"
         class=" mx-auto pb-3 mb-13 rounded-card"
       >
-      <v-list rounded color="white">
-        <v-subheader class="black--text"
-          >参加メンバー（{{ users.length }}）</v-subheader
-        >
-        <v-list-item-group>
-          <v-list-item
-            v-for="user in users"
-            :key="user.id"
-            :ripple="false"
+        <v-list rounded color="white">
+          <v-subheader class="black--text"
+            >参加メンバー（{{ users.length }}）</v-subheader
           >
-                <nuxt-link :to="{ path: `/users/${user.id}` }">
-      <user-avatar
-        :size="40"
-        :user="user"
-        class="list-avatar mx-3" />
-      </nuxt-link>
+          <v-list-item-group>
+            <v-list-item v-for="user in users" :key="user.id" :ripple="false">
+              <nuxt-link :to="{ path: `/users/${user.id}` }">
+                <user-avatar :size="40" :user="user" class="list-avatar mx-3" />
+              </nuxt-link>
 
-            <v-list-item-content>
-              <v-list-item-title
-                class="black--text list-item"
-                @click="pagelink(user.id)"
-              >
-                {{ user.name }}
-              </v-list-item-title>
-            </v-list-item-content>
-            <user-follow :user="user" />
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-card>
-  </v-dialog>
+              <v-list-item-content>
+                <v-list-item-title
+                  class="black--text list-item"
+                  @click="pagelink(user.id)"
+                >
+                  {{ user.name }}
+                </v-list-item-title>
+              </v-list-item-content>
+              <user-follow :user="user" />
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-card>
+    </v-dialog>
   </v-row>
 </template>
 
@@ -170,11 +162,10 @@ methods: {
     }, */
 
     methods: {
-    closeDialog() {
-      this.$emit('result', { res: true, message: '' })
+      closeDialog() {
+        this.$emit('result', { res: true, message: '' })
+      },
     },
-    },
-
   },
 }
 </script>

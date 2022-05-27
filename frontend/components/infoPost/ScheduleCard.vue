@@ -42,6 +42,17 @@
                       </v-chip>
                     </span>
                   </v-img>
+                  <v-img v-else contain :src="defaultImage">
+                    <span class="my-span">
+                      <v-chip
+                        class="mr-4 mt-4"
+                        color="indigo"
+                        text-color="white"
+                      >
+                        @{{ p.place }}
+                      </v-chip>
+                    </span>
+                  </v-img>
                   <div style="position: relative;">
                     <v-card-text style="position: relative;">
                       <dialog-component
