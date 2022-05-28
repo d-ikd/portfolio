@@ -162,17 +162,6 @@ export default {
       like: false,
     }
   },
-  computed: {
-    child: {
-      get() {
-        return this.posts
-      },
-      /*       set(newVal) {
-        this.$emit('input', newVal);
-      }
- */
-    },
-  },
   methods: {},
 }
 </script>

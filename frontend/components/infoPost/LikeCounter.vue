@@ -4,7 +4,6 @@
     hide-overlay
     transition="dialog-bottom-transition"
     max-width="600"
-    persistent
   >
     <template #activator="{ on, attrs }">
       <span v-bind="attrs" v-on="on">
@@ -24,14 +23,14 @@
     <v-row no-gutters>
       <v-col> </v-col>
       <v-col cols="sm" class="text-center align-self-center">
-        <v-sheet elevation="4" class="rounded-pill">
+        <v-sheet elevation="4" class="rounded-pill mt-4 mb-4">
           <template>
             <v-chip
               label
               color="transparent"
               x-large
               outlined
-              text-color="purple"
+              text-color="blue"
             >
               <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
               アカウント
@@ -41,12 +40,9 @@
       </v-col>
       <v-col> </v-col>
     </v-row>
-    <v-sheet
-      width="500px"
-      color="transparent"
-      class=" mx-auto pb-3 mb-10 rounded-card"
-    >
-      <v-list rounded color="white">
+
+    <v-card width="500px" class=" mx-auto pb-3 mb-13 rounded-card">
+      <v-list color="white">
         <v-subheader class="black--text"
           >{{ title }}（{{ users.length }}）</v-subheader
         >
@@ -57,6 +53,9 @@
             :ripple="false"
             class="list"
           >
+            <nuxt-link :to="{ path: `/users/${user.id}` }">
+              <user-avatar :size="45" :user="user" class="list-avatar mx-3" />
+            </nuxt-link>
             <v-list-item-content>
               <v-list-item-title
                 class="black--text list-item"
@@ -69,7 +68,7 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-sheet>
+    </v-card>
   </v-dialog>
 </template>
 

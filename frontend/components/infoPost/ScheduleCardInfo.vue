@@ -175,6 +175,12 @@ export default {
       dialog: false,
     }
   },
+  computed: {
+    ...mapGetters({
+      posts: 'post/posts',
+      loginUser: 'auth/loginUser',
+    }),
+  },
   created() {
     this.$axios
       .get(`api/v1/posts/${this.$route.params.id}`)
@@ -190,12 +196,6 @@ export default {
           })
         }
       })
-  },
-  computed: {
-    ...mapGetters({
-      posts: 'post/posts',
-      loginUser: 'auth/loginUser',
-    }),
   },
   methods: {
     closeDialog() {

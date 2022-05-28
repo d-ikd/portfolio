@@ -12,6 +12,7 @@
           v-if="$store.state.auth.isLoggedIn"
           #activator="{ on: tooltip }"
         >
+          <!-- v-if="review.user_id === $store.state.auth.loginUser.id" -->
           <v-btn v-bind="attrs" icon v-on="{ ...dialog, ...tooltip }">
             <v-icon> mdi-comment-edit </v-icon>
           </v-btn>
@@ -251,7 +252,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 /* import buttonChange from '~/components/layouts/ButtonChange.vue' */
 
 export default {

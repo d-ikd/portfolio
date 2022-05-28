@@ -5,8 +5,8 @@
       <snackbar-message />
       <nuxt />
       <dialog-component :is-post-create="true" />
+      <the-footer />
     </v-main>
-    <the-footer />
   </v-app>
 </template>
 

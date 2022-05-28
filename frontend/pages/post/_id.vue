@@ -40,14 +40,14 @@
       </v-row>
 
       <div>
-        <post-member :users="post.join_users" :title="title" :post="post" />
+        <v-card>
+          <post-member :users="post.join_users" :title="title" :post="post" />
+        </v-card>
       </div>
       <v-row>
         <v-col class="text-center">
           <template v-if="post.reviews.length === 0">
-            <h4 class="ma-3">
-              メッセージがありません
-            </h4>
+            <h4 class="ma-3">メッセージがありません</h4>
             <the-modal-message-create v-if="login" :post="post" />
           </template>
           <template v-else>

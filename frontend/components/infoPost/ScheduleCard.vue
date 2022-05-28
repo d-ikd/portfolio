@@ -1,15 +1,6 @@
 <template>
   <div style="background-color: white" class="mb-14">
-    <!-- <v-carousel hide-delimiters height="auto">
-      <v-carousel-item>
-      </v-carousel-item>
-    </v-carousel> -->
     <v-row>
-      <!-- <v-col
-        v-for="p in reversePosts"
-        :key="p.id"
-        class="d-flex child-flex flex-wrap"
-      > -->
       <v-col
         v-for="p in posts"
         :key="p.id"
@@ -32,7 +23,7 @@
                     :aspect-ratio="1 / 1"
                     class="white--text align-top"
                   >
-                    <span class="my-span">
+                    <span class="atmark-right">
                       <v-chip
                         class="mr-4 mt-4"
                         color="indigo"
@@ -43,7 +34,7 @@
                     </span>
                   </v-img>
                   <v-img v-else contain :src="defaultImage">
-                    <span class="my-span">
+                    <span class="atmark-right">
                       <v-chip
                         class="mr-4 mt-4"
                         color="indigo"
@@ -99,10 +90,6 @@
                             class="list-avatar mx-3"
                           />
                         </nuxt-link>
-                        <!-- <img
-                            alt="user"
-                            :src="require(`@/assets/images/default-user.png`)"
-                          /> -->
                         <div class="caption text-center mr-3 ml-1">
                           {{ p.quickword }}
                         </div>
@@ -120,23 +107,8 @@
                     :users="p.join_users"
                     :post="p"
                     :icon="false"
-                    :title="title2"
+                    :title="title"
                   />
-                  <!-- <counter-list
-                    :users="p.like_users"
-                    :post="p"
-                    :ppp="p.like_users"
-                    :icon="true"
-                    :title="title1"
-                  /> </span
-                >&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>
-                  <counter-list
-                    :users="p.join_users"
-                    :post="p"
-                    :icon="false"
-                    :title="title2"
-                  /> -->
                 </span>
               </div>
             </v-card-text>
@@ -156,7 +128,6 @@ import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
   components: {
-    // userPostList,
     buttonLike,
     likeCounter,
     dialogComponent,
@@ -170,8 +141,7 @@ export default {
   // },
   data() {
     return {
-      title1: 'いいねした人',
-      title2: '参加する人',
+      title: '参加メンバー',
       loading: false,
       like: false,
       join: false,
@@ -182,12 +152,6 @@ export default {
     }
   },
   computed: {
-    // likeCount() {
-    //   return this.post.like_users.length
-    // },
-    // joinCount() {
-    //   return this.post.join_users.length
-    // },
     reversePosts() {
       return this.posts.slice().reverse()
     },
@@ -196,7 +160,6 @@ export default {
       user: 'auth/loginUser',
       loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
-      /* currentPosts: 'favOrNotCheck/posts', */
     }),
     postUpdate() {
       return this.$store.state.post.post
@@ -259,7 +222,7 @@ export default {
   text-shadow: 2px 5px 10px;
   border-bottom: double;
 }
-.my-span {
+.atmark-right {
   color: white;
   font-weight: bold;
   float: right;
