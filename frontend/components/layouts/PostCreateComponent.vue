@@ -57,7 +57,7 @@
           <v-time-picker
             v-model="start_time"
             elevation="15"
-            color="green lighten-1"
+            color="blue lighten-1"
             format="24hr"
           >
             <v-spacer></v-spacer>
@@ -89,7 +89,7 @@
           <v-time-picker
             v-model="finish_time"
             elevation="15"
-            color="green lighten-1"
+            color="blue lighten-1"
             format="24hr"
           >
             <v-spacer></v-spacer>
@@ -145,7 +145,7 @@
         <v-btn
           x-large
           block
-          color="green lighten-2"
+          color="blue lighten-2"
           class="font-weight-bold align-center"
           icon
           @click="postCreate"

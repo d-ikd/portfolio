@@ -43,10 +43,10 @@
         <post-member :users="post.join_users" :title="title" :post="post" />
       </div>
       <v-row>
-        <v-col>
+        <v-col class="text-center">
           <template v-if="post.reviews.length === 0">
-            <h4 class="ma-3 text-decoration-underline">
-              メッセージがありません。
+            <h4 class="ma-3">
+              メッセージがありません
             </h4>
             <the-modal-message-create v-if="login" :post="post" />
           </template>
@@ -56,7 +56,7 @@
           </template>
         </v-col>
       </v-row>
-      <div class="text-center align-self-center">
+      <div class="text-center align-self-center mt-4">
         <v-btn color="purple white--text" outlined nuxt to="/" class="link">
           <v-icon dark>mdi-email-variant </v-icon>TOPに戻る
         </v-btn>

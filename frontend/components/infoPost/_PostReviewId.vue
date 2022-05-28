@@ -1,6 +1,6 @@
 <template>
-  <v-card class="ml-8 mr-8 mt-4 green lighten-3 rounded">
-    <v-card flat class="green lighten-3">
+  <v-card class="ml-8 mr-8 mt-4 blue lighten-3 rounded">
+    <v-card flat class="blue lighten-3">
       <nuxt-link :to="{ path: `/users/${review.user_id}` }">
         <user-avatar :size="50" :user="review.user" />
       </nuxt-link>

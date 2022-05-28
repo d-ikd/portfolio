@@ -2,10 +2,11 @@
   <v-dialog v-model="dialog" max-width="600">
     <template #activator="{ on, attrs }">
       <v-btn
-        color="orange white--text font-weight-bold"
+        color="blue lighten-2 white--text font-weight-bold"
         v-bind="attrs"
         v-on="on"
       >
+        <v-icon>mdi-message-text-outline</v-icon>
         メッセージする
       </v-btn>
     </template>
