@@ -89,14 +89,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-/* import theModalMessageEdit from '~/components/layouts/TheModalMessageEdit.vue' */
-/* import postReviewDelete from '~/components/infoPost/PostReviewDelete.vue' */
 
 export default {
-  components: {
-    /* theModalMessageEdit, */
-    /* postReviewDelete, */
-  },
+  components: {},
   props: {
     message: {
       type: Object,
@@ -116,22 +111,22 @@ export default {
       loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
     }),
-    loginUserReview() {
-      return this.$store.state.user.user
-    },
+    // loginUserMessage() {
+    //   return this.$store.state.user.user
+    // },
   },
-  watch: {
-    loginUserReview() {
-      if (this.login) {
-        this.like = false
-        this.message.review_likes.forEach((f) => {
-          if (f.user_id === this.loginUser.id) {
-            this.like = true
-          }
-        })
-      }
-    },
-  },
+  // watch: {
+  //   loginUserMessage() {
+  //     if (this.login) {
+  //       this.like = false
+  //       this.message.review_likes.forEach((f) => {
+  //         if (f.user_id === this.loginUser.id) {
+  //           this.like = true
+  //         }
+  //       })
+  //     }
+  //   },
+  // },
   mounted() {
     this.createDate = this.$dayjs(this.message.created_at).format('YYYY/MM/DD')
     if (this.login) {
@@ -145,8 +140,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      likeReview: 'review/likeReview',
-      unLikeReview: 'review/unLikeReview',
+      // likeMessage: 'review/likeMessage',
+      // unLikeMessage: 'review/unLikeMessage',
     }),
   },
 }
@@ -155,13 +150,5 @@ export default {
 <style scoped>
 .rounded-card {
   border-radius: 20px;
-}
-.small-image {
-  border: 1px solid;
-  border-radius: 9px;
-  border-color: #bdbdbd;
-}
-.small-image:hover {
-  opacity: 0.7;
 }
 </style>

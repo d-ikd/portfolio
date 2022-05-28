@@ -156,7 +156,7 @@ export default {
       message: 'フォロー中',
       color: 'blue white--text',
       items: [
-        { title: '参加する' },
+        { title: '参加済み' },
         { title: 'いいね' },
         { title: 'メッセージ' },
         { title: 'フォロー' },
