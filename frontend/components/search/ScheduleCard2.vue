@@ -1,173 +1,203 @@
 <template>
   <!-- <user-post-list :posts="posts" /> -->
-
-  <div style="background-color: white">
+  <div style="background-color: white" class="mb-14">
     <v-row>
-      <v-col cols="12" sm="6"> </v-col>
+      <v-col
+        v-for="p in posts"
+        :key="p.id"
+        class="d-flex align-stretch flex-wrap"
+      >
+        <v-card
+          :elevation="15"
+          dark
+          class="mx-auto orange ma-3 rounded-card"
+          color="white"
+          width="250"
+        >
+          <v-responsive :aspect-ratio="12 / 16" style="background-color: white">
+            <v-hover>
+              <template v-slot:default="{ hover }">
+                <v-sheet dark flat color="white">
+                  <v-img
+                    v-if="p.image.url"
+                    :src="p.image.url"
+                    :aspect-ratio="1 / 1"
+                    class="white--text align-top"
+                  >
+                    <v-fade-transition>
+                      <v-overlay v-if="hover" absolute color="#036358">
+                        <v-btn
+                          large
+                          :to="{ path: `/post/${post.id}` }"
+                          @click="pagelink(post.id)"
+                          >参加ページ</v-btn
+                        >
+                      </v-overlay>
+                    </v-fade-transition>
 
-      <v-col cols="12" sm="6"> </v-col>
-    </v-row>
-
-    <v-carousel hide-delimiters height="auto">
-      <v-carousel-item>
-        <v-row>
-          <v-col
-            v-for="post in posts"
-            :key="post.id"
-            class="d-flex child-flex flex-wrap"
-            cols="4"
-          >
-            <v-card :elevation="10" class="secondary ma-3 rounded-card">
-              <v-responsive :aspect-ratio="9 / 16">
-                <v-hover>
-                  <template v-slot:default="{ hover }">
-                    <v-sheet dark flat>
-                      <v-img
-                        v-if="post.image.url"
-                        contain
-                        :src="post.image.url"
-                        :aspect-ratio="1 / 1"
-                        class="white--text align-end"
-                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                    <span class="atmark-right">
+                      <v-chip
+                        class="mr-4 mt-4"
+                        color="indigo"
+                        text-color="white"
                       >
-                        <!--!!!!!!!!!!!! :aspect-ratio="16/9" !!!!!!!!!!!!-->
-                        <!-- <v-img v-else contain :src="defaultImage"> -->
+                        @{{ p.place }}
+                      </v-chip>
+                    </span>
+                  </v-img>
+                  <v-img v-else contain :src="defaultImage">
+                    <span class="atmark-right">
+                      <v-chip
+                        class="mr-4 mt-4"
+                        color="indigo"
+                        text-color="white"
+                      >
+                        @{{ p.place }}
+                      </v-chip>
+                    </span>
+                  </v-img>
 
-                        <v-card-title>
-                          <strong class="display-2 font-weight-regular">{{
-                            post.name
-                          }}</strong>
-                        </v-card-title>
-
-                        <v-fade-transition>
-                          <v-overlay v-if="hover" absolute color="#036358">
-                            <v-btn
-                              large
-                              :to="{ path: `/post/${post.id}` }"
-                              @click="pagelink(post.id)"
-                              >参加ページ</v-btn
-                            >
-                          </v-overlay>
-                        </v-fade-transition>
-                      </v-img>
-
-                      <v-card-text class="pt-6" style="position: relative;">
-                        <v-btn
-                          v-if="like"
-                          absolute
-                          color="pink lighten-1"
-                          class="white--text"
-                          fab
-                          right
-                          top
-                        >
-                          <v-icon>mdi-heart-off</v-icon>
-                        </v-btn>
-                        <v-btn
-                          v-else
-                          absolute
-                          color="pink lighten-1"
-                          class="white--text"
-                          fab
-                          right
-                          top
-                        >
-                          <v-icon>mdi-heart</v-icon>
-                        </v-btn>
-                        <div>
-                          <span class="font-weight-light grey--text title mb-2">
-                            {{ post.release }} [表示させたい場所] 〜
-                          </span>
-                        </div>
-                        <!--           <h3 class="display-1 font-weight-light orange--text mb-2">
-            {{ post.name }}
-          </h3>
-          <div class="font-weight-light title mb-2">
-            Our Vintage kitchen utensils delight.<br>
-          </div> -->
-                      </v-card-text>
-                      <!--
-    <div>
-      メッセージ :
-      <user-dialog-review :users="post.reviews" :title="'メッセージしたユーザー'" />
-      <br />
-      気になる :
-      <user-dialog :users="post.like_users" :title="'気になるユーザー'" />
-    </div>
-  -->
-                    </v-sheet>
-                  </template>
-                </v-hover>
-
-                <v-card>
-                  <v-card-text>
-                    <div class="font-weight-bold ml-8 mb-2">
-                      Today
-                    </div>
-                  </v-card-text>
-
-                  <v-card-actions>
-                    <v-avatar size="56" class="mt-1">
-                      <img
-                        alt="user"
-                        :src="require(`@/assets/images/default-user.png`)"
+                  <div style="position: relative;">
+                    <v-card-text style="position: relative;">
+                      <!-- <dialog-component
+                        :is-schedule-card-info="true"
+                        :post="p"
+                      /> -->
+                      <button-like
+                        :user="user"
+                        :post="p"
+                        :is-rounded-like="true"
                       />
-                    </v-avatar>
-
-                    <v-spacer></v-spacer>
-
-                    <v-menu transition="slide-y-reverse-transition">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          color="secondary"
-                          class="ma-2"
-                          v-bind="attrs"
-                          v-on="on"
+                      <div class="grey--text title">
+                        <div class="font-weight-regular mt-4 text-truncate">
+                          {{ p.name }} {{ p.id }} {{ p.user_id }}
+                        </div>
+                        <div
+                          class="caption text-center mt-4 shadow-text text-truncate"
                         >
-                          <v-icon>{{ 'mdi-information-outline' }}</v-icon>
-                        </v-btn>
-                      </template>
-                      <v-list>
-                        <v-list-item v-for="n in 5" :key="n" link>
-                          <v-list-item-title
-                            v-text="'Item ' + n"
-                          ></v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </v-card-actions>
-                </v-card>
-              </v-responsive>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-carousel-item>
-    </v-carousel>
+                          キャッチコピー
+                        </div>
+
+                        <p
+                          class="font-weight-thin overline no-wrap-text mt-4 mb-n1"
+                          align="center"
+                          justify="center"
+                        >
+                          {{ $dayjs(p.release).format('MM/DD') }}&nbsp;&nbsp;{{
+                            $dayjs(p.start_time).format('hh:mm')
+                          }}~{{ $dayjs(p.finish_time).format('hh:mm') }}
+                        </p>
+                      </div>
+                    </v-card-text>
+                    <!-- <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                        style="height: 100%;"
+                      >
+                      ======error=======
+                        <nuxt-link :to="{ path: `/users/${p.user.id}` }">
+                          <user-avatar
+                            :size="50"
+                            :user="p.user"
+                            class="list-avatar mx-3"
+                          />
+                        </nuxt-link>
+                      ======error=======
+                        <div class="caption text-center mr-3 ml-1">
+                          {{ p.quickword }}
+                        </div>
+                      </div>
+                    </v-expand-transition> -->
+                  </div>
+                </v-sheet>
+              </template>
+            </v-hover>
+
+            <!-- <v-card-text class="orange">
+              <div class="d-flex font-weight-thin subtitle-1 justify-center ">
+                <span>
+                  <like-counter
+                    :users="p.join_users"
+                    :post="p"
+                    :icon="false"
+                    :title="title"
+                  />
+                </span>
+              </div>
+            </v-card-text> -->
+          </v-responsive>
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
-// import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import buttonLike from '~/components/layouts/ButtonLike.vue'
+import likeCounter from '~/components/infoPost/LikeCounter.vue'
+import dialogComponent from '~/components/layouts/DialogComponent.vue'
+import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
+  components: {
+    buttonLike,
+    likeCounter,
+    dialogComponent,
+    userAvatar,
+  },
   props: {
     posts: {
       type: Array,
+      default: () => ({}),
       required: true,
     },
   },
   data() {
     return {
-      show: false,
+      title: '参加メンバー',
+      loading: false,
       like: false,
+      join: false,
+      dialog: false,
+      show: false,
+      defaultImage: require(`@/assets/images/default.png`),
     }
   },
-  methods: {},
+  computed: {
+    ...mapGetters({
+      post: 'post/post',
+      user: 'auth/loginUser',
+      loginUser: 'auth/loginUser',
+      login: 'auth/isLoggedIn',
+    }),
+  },
+  methods: {
+    ...mapActions({ getPosts: 'post/getPosts' }),
+  },
 }
 </script>
 
 <style scoped>
 .rounded-card {
   border-radius: 20px;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.9;
+  position: absolute;
+  width: 100%;
+}
+.shadow-text {
+  text-shadow: 2px 5px 10px;
+  border-bottom: double;
+}
+.atmark-right {
+  color: white;
+  font-weight: bold;
+  float: right;
 }
 </style>

@@ -20,7 +20,7 @@
         prepend-inner-icon="mdi-magnify"
       />
 
-      <template v-if="!loggedIn">
+      <template v-if="!isLogin">
         <v-btn
           text
           class="ml-4 mr-2 font-weight-bold"
@@ -63,7 +63,7 @@
       <schedule-card2 :posts="resPosts" />
     </template>
     <template v-else>
-      <Schedule-card class="mr-4 ml-4" />
+      <schedule-card class="mr-4 ml-4" />
     </template>
   </div>
 </template>
@@ -112,7 +112,7 @@ export default {
     /* ========== ScheduleCard =========== */
     ...mapGetters({
       /* TheHeader */
-      loggedIn: 'auth/isLoggedIn',
+      isLogin: 'auth/isLoggedIn',
       loginModal: 'modal/loginModal',
       signUpModal: 'modal/signUpModal',
       /* TheHeader */

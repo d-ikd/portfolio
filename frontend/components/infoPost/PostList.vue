@@ -34,6 +34,7 @@ export default {
   props: {
     posts: {
       type: Array,
+      default: () => ({}),
       required: true,
     },
   },
