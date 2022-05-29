@@ -26,7 +26,7 @@ User.create!(
   email: ENV['RAILS_GUEST_ADDRESS'],
   password: ENV['RAILS_GUEST_KEY'],
   password_confirmation: ENV['RAILS_GUEST_KEY'],
-  admin: false
+  admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
 
@@ -67,7 +67,7 @@ Post.create(
   user_id: 4,
   name: 'Nuxt.js',
   quickword: 'Welcom to Nuxt.js!',
-  catchcopy: 'Let\'s study Nxut',
+  catchcopy: 'Let\'s study Nuxt',
   member: 5,
   place: 'Test',
   category: '',
@@ -83,7 +83,7 @@ User.create!(
   email: 'test-5@gmail.com',
   password: 'password',
   password_confirmation: 'password',
-  admin: false,
+  admin: false
   # image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
 
@@ -98,7 +98,7 @@ Post.create(
   price: '3000',
   start_time: '2022-01-01T03:00:00.000Z',
   finish_time: '2022-01-01T09:00:00.000Z',
-  release: '2022-5-10',
+  release: '2022-5-10'
   # image: Rails.root.join('app/assets/images/1_begin/image.jpg').open
 )
 
@@ -131,7 +131,7 @@ User.create!(
   email: 'test-7@gmail.com',
   password: 'password',
   password_confirmation: 'password',
-  admin: false
+  admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
 
@@ -146,7 +146,7 @@ Post.create(
   price: '3000',
   start_time: '2022-01-01T03:00:00.000Z',
   finish_time: '2022-01-01T09:00:00.000Z',
-  release: '2021-5-10'
+  release: '2021-5-10',
   image: Rails.root.join('app/assets/images/1_begin/image.jpg').open
 )
 
