@@ -80,7 +80,7 @@
         </v-icon>
       </v-btn>
     </template>
-    <template v-else-if="isMessageList">
+    <!-- <template v-else-if="isMessageList">
       <dialogComponentContents
         :dialog-component="dialogComponent"
         :is-message-list="true"
@@ -93,7 +93,7 @@
           mdi-walk
         </v-icon>
       </v-btn>
-    </template>
+    </template> -->
     <template v-else>
       <dialogComponentContents
         :dialog-component="dialogComponent"

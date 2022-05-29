@@ -67,6 +67,10 @@
         <template v-else-if="isScheduleCardInfo">
           <schedule-card-info :post="posting" />
         </template>
+        <template v-else-if="isMessageList">
+          isMessageList
+          <!-- <post-message-list :messages="posting.reviews" /> -->
+        </template>
         <template v-else>
           elseelseelse
         </template>
@@ -92,6 +96,7 @@ import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
 import scheduleCardInfo from '~/components/infoPost/ScheduleCardInfo.vue'
 import theAccount from '~/components/editUser/TheAccount.vue'
+import postMessageList from '~/components/infoPost/PostMessageList.vue'
 
 export default {
   components: {
@@ -99,6 +104,7 @@ export default {
     postCreateComponent,
     scheduleCardInfo,
     theAccount,
+    postMessageList,
   },
   props: {
     dialogComponent: {
@@ -128,6 +134,10 @@ export default {
       default: false,
     },
     isScheduleCardInfoInList: {
+      type: Boolean,
+      default: false,
+    },
+    isMessageList: {
       type: Boolean,
       default: false,
     },

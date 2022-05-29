@@ -29,11 +29,11 @@
             <v-btn
               nuxt
               :to="`/users/${loginUser.id}`"
-              color="green"
+              color="purple"
               outlined
               @click.stop="dialogComponent = true"
             >
-              <v-icon>mdi-emoticon</v-icon>
+              <!-- <v-icon>mdi-emoticon</v-icon> -->
               マイページ
             </v-btn>
           </template>
