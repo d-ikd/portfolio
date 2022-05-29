@@ -136,16 +136,16 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
-import likeCounter from '~/components/infoPost/LikeCounter.vue'
-import dialogComponent from '~/components/layouts/DialogComponent.vue'
-import userAvatar from '~/components/infoUser/UserAvatar.vue'
+// import likeCounter from '~/components/infoPost/LikeCounter.vue'
+// import dialogComponent from '~/components/layouts/DialogComponent.vue'
+// import userAvatar from '~/components/infoUser/UserAvatar.vue'
 
 export default {
   components: {
     buttonLike,
-    likeCounter,
-    dialogComponent,
-    userAvatar,
+    // likeCounter,
+    // dialogComponent,
+    // userAvatar,
   },
   props: {
     posts: {

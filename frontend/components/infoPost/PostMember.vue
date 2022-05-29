@@ -1,9 +1,6 @@
 <template>
   <v-sheet class="d-flex transparent align-center flex-column">
-    <div
-      class="headline
-                    mr-8 pink--text font-weight-bold no-wrap-text"
-    >
+    <div class="headline mr-8 pink--text font-weight-bold no-wrap-text">
       <v-row no-gutters>
         <v-col> </v-col>
         <v-col cols="sm" class="text-center align-self-center">

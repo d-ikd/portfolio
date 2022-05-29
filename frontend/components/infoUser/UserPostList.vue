@@ -1,42 +1,35 @@
 <template>
-  <v-card flat>
-    <v-list>
-      <v-row>
-        <v-list-item
-          v-for="post in posts"
-          :key="post.id"
-          :ripple="false"
-          class="list"
-        >
-          <v-list-item-avatar tile class="tab">
-            <v-avatar size="50">
-              <v-img v-if="post.image.url" :src="post.image.url" />
-              <v-img v-else contain :src="defaultImage" />
-            </v-avatar>
-          </v-list-item-avatar>
+  <v-list>
+    <v-row>
+      <v-list-item
+        v-for="post in posts"
+        :key="post.id"
+        :ripple="false"
+        class="list"
+      >
+        <v-list-item-avatar tile class="tab">
+          <v-avatar size="50">
+            <v-img v-if="post.image.url" :src="post.image.url" />
+            <v-img v-else contain :src="defaultImage" />
+          </v-avatar>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title class="list-item title" @click="pagelink(user.id)">
+            {{ post.name }}
+          </v-list-item-title>
+        </v-list-item-content>
 
-          <v-row>
-            <v-col>
-              {{ post.name }}
-            </v-col>
-            <v-col align-self="end">
-              <button-like
-                :user="loginUser"
-                :post="post"
-                :is-rounded-join="true"
-                class="mb-10"
-              />
-            </v-col>
-          </v-row>
+        <div align-self="center">
+          <button-like :user="loginUser" :post="post" :is-rounded-join="true" />
+        </div>
 
-          <!-- <v-list-item-title class="list-item" @click="pagelink(post.id)">
+        <!-- <v-list-item-title class="list-item" @click="pagelink(post.id)">
             {{ post.name }}
           </v-list-item-title>
           <schedule-card-info :post="post" /> -->
-        </v-list-item>
-      </v-row>
-    </v-list>
-  </v-card>
+      </v-list-item>
+    </v-row>
+  </v-list>
 </template>
 
 <script>

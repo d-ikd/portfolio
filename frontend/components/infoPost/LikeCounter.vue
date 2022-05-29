@@ -19,7 +19,6 @@
         </p>
       </span>
     </template>
-
     <v-row no-gutters>
       <v-col> </v-col>
       <v-col cols="sm" class="text-center align-self-center">
@@ -76,13 +75,13 @@
 import { mapGetters } from 'vuex'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 import userFollow from '~/components/infoUser/UserFollow.vue'
-import buttonClose from '~/components/layouts/ButtonClose.vue'
+// import buttonClose from '~/components/layouts/ButtonClose.vue'
 
 export default {
   components: {
     userAvatar,
     userFollow,
-    buttonClose,
+    // buttonClose,
   },
   props: {
     users: {
@@ -109,11 +108,6 @@ export default {
       dialog: false,
       likeList: [],
     }
-  },
-  methods: {
-    closeDialog() {
-      this.dialog = false
-    },
   },
   computed: {
     ...mapGetters({
@@ -176,6 +170,11 @@ methods: {
       pagelink(link) {
       this.$router.push({ path: `/users/${link}` })
     }, */
+  },
+  methods: {
+    closeDialog() {
+      this.dialog = false
+    },
   },
 }
 </script>

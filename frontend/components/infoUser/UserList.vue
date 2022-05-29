@@ -1,6 +1,5 @@
 <template>
   <v-list two-line>
-    <!-- <v-list-item-group> -->
     <v-row>
       <v-list-item
         v-for="user in users"

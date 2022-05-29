@@ -4,9 +4,16 @@
       <v-card-title class="text-center justify-center py-6">
         <h1 class="font-weight-bold display-3 basil--text">
           <template>
-            <div>
-              <user-avatar :size="140" :user="currentUser" />
-            </div>
+            <v-row>
+              <v-col cols="1"> </v-col>
+              <v-col cols="10">
+                <user-avatar :size="140" :user="currentUser" />
+              </v-col>
+              <v-col cols="1">
+                <the-account-setting-dialog />
+              </v-col>
+            </v-row>
+
             <div class="mx-auto text-center">
               <h3>{{ currentUser.name }}</h3>
               <p class="caption mt-1">
@@ -18,7 +25,17 @@
                 {{ currentUser.profile }}
               </p>
             </div>
-            <the-account-setting-dialog class="mt-5" />
+
+            <v-btn
+              nuxt
+              :to="`/users/${loginUser.id}`"
+              color="green"
+              outlined
+              @click.stop="dialogComponent = true"
+            >
+              <v-icon>mdi-emoticon</v-icon>
+              マイページ
+            </v-btn>
           </template>
         </h1>
       </v-card-title>
@@ -31,16 +48,16 @@
       -->
       <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
         <v-tab>
-          likes
+          いいね
         </v-tab>
         <v-tab>
-          follow
+          フォロー
         </v-tab>
         <v-tab>
-          follower
+          フォロワー
         </v-tab>
         <v-tab>
-          Message
+          メッセージ
         </v-tab>
       </v-tabs>
 
@@ -269,5 +286,10 @@ export default {
 }
 .rounded-card {
   border-radius: 20px;
+}
+.atmark-right {
+  color: white;
+  font-weight: bold;
+  float: right;
 }
 </style>

@@ -6,7 +6,7 @@
         @result="response"
       />
       <!-- :is-the-account-setting="true" -->
-      <v-btn color="purple" outlined @click.stop="dialogComponent = true">
+      <v-btn color="purple" plain @click.stop="dialogComponent = true">
         <v-icon color="purple">mdi-wrench</v-icon>
         設定
       </v-btn>
