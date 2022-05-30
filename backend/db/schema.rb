@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_020810) do
+ActiveRecord::Schema.define(version: 2022_05_30_012043) do
+
+  create_table "message_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "message_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_message_likes_on_message_id"
+    t.index ["user_id", "message_id"], name: "index_message_likes_on_user_id_and_message_id", unique: true
+    t.index ["user_id"], name: "index_message_likes_on_user_id"
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.string "title"
+    t.text "content"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_messages_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_messages_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "pickups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "post_id", null: false
@@ -68,30 +91,6 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
-  create_table "review_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "review_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["review_id"], name: "index_review_likes_on_review_id"
-    t.index ["user_id", "review_id"], name: "index_review_likes_on_user_id_and_review_id", unique: true
-    t.index ["user_id"], name: "index_review_likes_on_user_id"
-  end
-
-  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
-    t.string "title"
-    t.text "content"
-    t.float "rate"
-    t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_reviews_on_post_id"
-    t.index ["user_id", "post_id"], name: "index_reviews_on_user_id_and_post_id", unique: true
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -123,6 +122,10 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "message_likes", "messages"
+  add_foreign_key "message_likes", "users"
+  add_foreign_key "messages", "posts"
+  add_foreign_key "messages", "users"
   add_foreign_key "pickups", "posts"
   add_foreign_key "post_joins", "posts"
   add_foreign_key "post_joins", "users"
@@ -131,8 +134,4 @@ ActiveRecord::Schema.define(version: 2022_04_14_020810) do
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
-  add_foreign_key "review_likes", "reviews"
-  add_foreign_key "review_likes", "users"
-  add_foreign_key "reviews", "posts"
-  add_foreign_key "reviews", "users"
 end

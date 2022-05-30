@@ -5,9 +5,9 @@ module Api
       # https://qiita.com/dl10yr/items/533cecd1d6f9abcfd13c
 
       def index
-        @post = Post.all.includes(:user, :like_users, :join_users, :reviews)
-        render json: @post.as_json(include: %i[user like_users join_users reviews])
-        # render json: @post.as_json(include: [{ user: { only: %w[id image name] } }, %i[like_users join_users reviews], methods: :avg_rate)
+        @post = Post.all.includes(:user, :like_users, :join_users, :messages)
+        render json: @post.as_json(include: %i[user like_users join_users messages])
+        # render json: @post.as_json(include: [{ user: { only: %w[id image name] } }, %i[like_users join_users messages], methods: :avg_rate)
         # render json: @post.as_json(only: [:id, :name,:image],include: {like_users: {only: ['id']}})
       end
 
@@ -40,7 +40,7 @@ module Api
           :like_users,
           :join_users,
           {
-            reviews: [:post, :user, { review_likes: :user }]
+            messages: [:post, :user, { message_likes: :user }]
           }
         ).find(params[:id])
         render json: @post.as_json(
@@ -53,14 +53,14 @@ module Api
             :like_users,
             :join_users,
             {
-              reviews: { include: [
+              messages: { include: [
                 { user:
                   { only: %w[id image name] } },
                 {
                   post: { only: [:name] }
                 },
                 {
-                  review_likes: { include: [{ user: { only: %w[id image name] } }] }
+                  message_likes: { include: [{ user: { only: %w[id image name] } }] }
                 }
               ] }
             }
@@ -98,8 +98,8 @@ module Api
 
       def search
         if params[:search]
-          @post = Post.search(params[:search]).includes(:like_users, :reviews).order(release: :desc)
-          render json: @post.as_json(include: %i[like_users reviews], methods: :avg_rate)
+          @post = Post.search(params[:search]).includes(:like_users, :messages).order(release: :desc)
+          render json: @post.as_json(include: %i[like_users messages])
         end
       end
 

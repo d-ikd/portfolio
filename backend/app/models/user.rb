@@ -15,10 +15,10 @@ class User < ApplicationRecord
   has_many :post_joins, dependent: :destroy
   has_many :postjoin, through: :post_joins, source: :post
 
-  has_many :reviews, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
-  has_many :review_likes, dependent: :destroy
-  has_many :like_reviews, through: :review_likes, source: :review
+  has_many :message_likes, dependent: :destroy
+  has_many :like_messages, through: :message_likes, source: :message
 
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
@@ -35,8 +35,8 @@ class User < ApplicationRecord
     like&.destroy if like
   end
 
-  def un_like_review(other_review)
-    like = self.review_likes.find_by(review_id: other_review.id)
+  def un_like_message(other_message)
+    like = self.message_likes.find_by(message_id: other_message.id)
     like&.destroy if like
   end
 

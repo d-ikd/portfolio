@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-  # before_save :write_width_height
   # mount_uploader :photoshot, PhotoshotUploader
   mount_uploader :image, ImageUploader
 
@@ -25,17 +24,17 @@ class Post < ApplicationRecord
   has_many :post_joins, dependent: :destroy
   has_many :join_users, through: :post_joins, source: :user
 
-  has_many :reviews, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :pickups, dependent: :destroy
 
 
   def avg_rate
-    if self.reviews.empty?
+    if self.messages.empty?
       0.0
     else
-      # self.reviews.average(:rate).round(1)
-      total_point = self.reviews.inject(0) { |sum, add| sum + add.rate }
-      number_of_people = self.reviews.inject(0) { |sum| sum + 1 }.to_f
+      # self.messages.average(:rate).round(1)
+      total_point = self.messages.inject(0) { |sum, add| sum + add.rate }
+      number_of_people = self.messages.inject(0) { |sum| sum + 1 }.to_f
       total_point / number_of_people
     end
   end

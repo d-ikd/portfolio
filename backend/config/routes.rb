@@ -17,12 +17,12 @@ Rails.application.routes.draw do
       resources :users, only: %i[index show create destroy] do
         get :search, on: :collection
       end
-      resources :reviews, only: %i[index create update destroy]
+      resources :messages, only: %i[index create update destroy]
       resources :pickups, only: %i[index create destroy]
       resource :relationships, only: %i[create destroy]
       resource :post_likes, only: %i[create destroy]
       resource :post_joins, only: %i[create destroy]
-      resource :review_likes, only: %i[create destroy]
+      resource :message_likes, only: %i[create destroy]
 
       get 'health_check', to: 'health_check#index'
     end

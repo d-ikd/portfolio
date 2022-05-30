@@ -10,8 +10,8 @@ module Api
         @user = User.includes(
           { postlike: :like_users },
           { postjoin: :join_users },
-          { reviews: [:post, :user, { review_likes: :user }] },
-          { like_reviews: [:post, :user, { review_likes: :user }] },
+          { messages: [:post, :user, { message_likes: :user }] },
+          { like_messages: [:post, :user, { message_likes: :user }] },
           :followings, :followers
         )
                     .find(params[:id])
@@ -25,9 +25,9 @@ module Api
               {
                 join_users: { only: [:id] }
               } } },
-            { reviews: { include: [
+            { messages: { include: [
               {
-                review_likes: { include: [{ user: { only: %w[id image name] } }] }
+                message_likes: { include: [{ user: { only: %w[id image name] } }] }
               },
               {
                 post: { only: %i[id name image] }
@@ -36,9 +36,9 @@ module Api
                 user: { only: %i[id name image] }
               }
             ] } },
-            { like_reviews: { include: [
+            { like_messages: { include: [
               {
-                review_likes: { include: [{ user: { only: %w[id image name] } }] }
+                message_likes: { include: [{ user: { only: %w[id image name] } }] }
               },
               {
                 post: { only: %i[id name image] }
