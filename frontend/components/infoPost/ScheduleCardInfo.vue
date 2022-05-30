@@ -14,11 +14,24 @@
           </v-img>
           <v-img v-else contain :src="defaultImage"> </v-img>
           <v-sheet style="position: relative;">
-            <button-like
-              :user="loginUser"
-              :post="post"
-              :is-rounded-like="true"
-            />
+            <template v-if="!login">
+              <v-btn
+                color="red white--text font-weight-bold"
+                absolute
+                fab
+                right
+                top
+              >
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+            </template>
+            <template v-else>
+              <button-like
+                :user="loginUser"
+                :post="post"
+                :is-rounded-like="true"
+              />
+            </template>
             <!-- <button-like :user="loginUser" :post="post" :is-rounded-join="true" /> -->
           </v-sheet>
         </v-card>
@@ -185,27 +198,42 @@
               </v-chip> -->
           </v-timeline-item>
 
-          <div>
+          <template v-if="!login">
+            <v-btn color="pink white--text font-weight-bold ml-4 mb-10">
+              <v-icon large>mdi-run</v-icon>
+              参加する
+            </v-btn>
+          </template>
+          <template v-else>
             <button-like
               :user="loginUser"
               :post="post"
               :is-rounded-join="true"
               class="ml-3 mb-10"
             />
-          </div>
-
-          <div class="mb-5">
-            <v-btn
-              color="orange"
-              nuxt
-              x-large
-              :to="{ path: `/post/${post.id}` }"
-              class="ml-3 white--text"
-            >
-              <v-icon color="white">mdi-email-variant </v-icon
-              >&nbsp;参加したい気持ちをメッセージで伝えましょう！&nbsp;&nbsp;
-            </v-btn>
-          </div>
+          </template>
+          <template v-if="!login">
+            <div class="mb-5">
+              <v-btn color="orange" nuxt x-large class="ml-3 white--text">
+                <v-icon color="white">mdi-email-variant </v-icon
+                >&nbsp;参加したい気持ちをメッセージで伝えましょう！&nbsp;&nbsp;
+              </v-btn>
+            </div>
+          </template>
+          <template v-else>
+            <div class="mb-5">
+              <v-btn
+                color="orange"
+                nuxt
+                x-large
+                :to="{ path: `/post/${post.id}` }"
+                class="ml-3 white--text"
+              >
+                <v-icon color="white">mdi-email-variant </v-icon
+                >&nbsp;参加したい気持ちをメッセージで伝えましょう！&nbsp;&nbsp;
+              </v-btn>
+            </div>
+          </template>
         </v-timeline>
 
         <v-sheet class="d-flex transparent align-center flex-column"> </v-sheet>
@@ -263,6 +291,7 @@ export default {
     ...mapGetters({
       posts: 'post/posts',
       loginUser: 'auth/loginUser',
+      login: 'auth/isLoggedIn',
     }),
   },
   created() {
