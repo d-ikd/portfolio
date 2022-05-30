@@ -43,7 +43,7 @@ jobs:
           command: bundle exec rails db:create
           working_directory: ~/repo/backend
       - run:
-          command: bundle exec rails db:migrate:reset
+          command: bundle exec rails db:migrate
           working_directory: ~/repo/backend
       - run:
           command: bundle exec rails db:seed --trace
