@@ -107,7 +107,7 @@ export default {
       loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
     }),
-    loginUserReview() {
+    loginUserMessage() {
       return this.$store.state.post.post
     },
   },

@@ -76,7 +76,7 @@ export default {
       console.log(res.data)
       this.posts = res.data
     })
-    this.$axios.get('api/v1/reviews').then((res) => {
+    this.$axios.get('api/v1/messages').then((res) => {
       console.log(res.data)
       this.messages = res.data
     })

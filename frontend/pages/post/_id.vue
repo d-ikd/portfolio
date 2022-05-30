@@ -42,13 +42,13 @@
 
       <v-row>
         <v-col class="text-center">
-          <template v-if="post.reviews.length === 0">
+          <template v-if="post.messages.length === 0">
             <h4 class="ma-3">メッセージがありません</h4>
             <the-modal-message-create v-if="login" :post="post" />
           </template>
           <template v-else>
             <the-modal-message-create v-if="message" :post="post" />
-            <post-message-list :messages="post.reviews" />
+            <post-message-list :messages="post.messages" />
           </template>
         </v-col>
       </v-row>
@@ -122,16 +122,16 @@ export default {
       user: 'auth/loginUser',
       login: 'auth/isLoggedIn',
     }),
-    loginUserReview() {
+    loginUserMessage() {
       return this.$store.state.post.post
     },
   },
   watch: {
-    loginUserReview() {
+    loginUserMessage() {
       // ユーザーがすでにレビューを投稿してたら非表示にする
       if (this.login) {
         this.message = true
-        this.post.reviews.forEach((f) => {
+        this.post.messages.forEach((f) => {
           if (f.user_id === this.user.id) {
             this.message = false
           }

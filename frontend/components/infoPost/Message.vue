@@ -140,15 +140,15 @@ export default {
       loginUser: 'auth/loginUser',
       login: 'auth/isLoggedIn',
     }),
-    loginUserReview() {
+    loginUserMessage() {
       return this.$store.state.post.post
     },
   },
   /*   watch: {
-    loginUserReview() {
+    loginUserMessage() {
       if (this.login) {
         this.like = false
-        this.message.review_likes.forEach((f) => {
+        this.message.message_likes.forEach((f) => {
           if (f.user_id === this.loginUser.id) {
             this.like = true
           }
@@ -160,7 +160,7 @@ export default {
     this.createDate = this.$dayjs(this.message.created_at).format('YYYY/MM/DD')
     if (this.login) {
       this.like = false
-      this.message.review_likes.forEach((f) => {
+      this.message.message_likes.forEach((f) => {
         if (f.user_id === this.loginUser.id) {
           this.like = true
         }
@@ -169,13 +169,13 @@ export default {
   }, */
   /*  methods: {
     ...mapActions({
-      likeMessage: 'review/likeMessage',
-      unLikeMessage: 'review/unLikeMessage',
+      likeMessage: 'message/likeMessage',
+      unLikeMessage: 'message/unLikeMessage',
     }),
     nice() {
       const postData = {
         user: this.$store.state.auth.loginUser.id,
-        review: this.review.id,
+        message: this.message.id,
       }
       if (this.like) {
         this.unLikeMessage(postData).then(() => {

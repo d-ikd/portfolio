@@ -89,7 +89,7 @@
           <v-card>
             <v-card-text>
               <!-- <list-component :lists="`loginUser.${listitem}`" /> -->
-              <user-message-list :messages="loginUser.reviews" />
+              <user-message-list :messages="loginUser.messages" />
             </v-card-text>
           </v-card>
         </v-tab-item>

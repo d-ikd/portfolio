@@ -113,7 +113,7 @@
               <user-post-list :posts="user.postlike" />
             </v-tab-item>
             <v-tab-item>
-              <user-message-list :messages="user.reviews" />
+              <user-message-list :messages="user.messages" />
             </v-tab-item>
             <v-tab-item>
               <user-list :users="user.followings" />

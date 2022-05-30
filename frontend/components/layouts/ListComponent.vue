@@ -26,7 +26,7 @@
     </template>
     <template v-if="isMessageList">
       <v-card class="rounded-card">
-        <template v-if="post.reviews.length === 0">
+        <template v-if="post.messages.length === 0">
           <h4 class="ma-3">
             メッセージがありません。
           </h4>
@@ -34,11 +34,11 @@
         </template>
         <template>
           <v-sheet
-            v-for="review in post.reviews"
-            :key="review.id"
+            v-for="message in post.messages"
+            :key="message.id"
             class="mb-3 mt-3"
           >
-            <message :message="review" />
+            <message :message="message" />
           </v-sheet>
         </template>
       </v-card>

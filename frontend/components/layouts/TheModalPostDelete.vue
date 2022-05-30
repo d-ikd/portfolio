@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" max-width="400">
     <template v-if="$store.state.auth.isLoggedIn" #activator="{ on, attrs }">
-      <!-- v-if="review.user_id === $store.state.auth.loginUser.id" -->
+      <!-- v-if="message.user_id === $store.state.auth.loginUser.id" -->
       <v-btn v-bind="attrs" icon v-on="on">
         <v-icon> mdi-delete </v-icon>
       </v-btn>
@@ -51,7 +51,7 @@ export default {
     }
   },
   methods: {
-    // ...mapActions({ deleteReview: "post/deleteReview" }),
+    // ...mapActions({ deleteMessage: "post/deleteMessage" }),
     deletePost(id) {
       this.$axios
         .delete(`api/v1/posts/${id}`)
@@ -76,9 +76,9 @@ export default {
         })
     },
 
-    deleteReview() {
+    deleteMessage() {
       this.$axios
-        .delete(`api/v1/reviews/${this.review.id}`)
+        .delete(`api/v1/messages/${this.message.id}`)
         .then(() => {
           this.$store.commit(
             'snackbarMessage/setMessage',

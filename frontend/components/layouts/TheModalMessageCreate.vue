@@ -25,11 +25,11 @@
         <v-form ref="form">
           <v-container>
             <v-text-field
-              v-model="review.title"
+              v-model="message.title"
               label="タイトルを入れてください"
             />
             <v-textarea
-              v-model="review.content"
+              v-model="message.content"
               label="メッセージ本文をいれてください"
             />
             <v-file-input
@@ -39,7 +39,7 @@
               @change="setImage"
             />
             <v-img
-              v-if="review.image"
+              v-if="message.image"
               :src="input_image"
               contain
               max-width="600"
@@ -51,7 +51,7 @@
               color="light-green darken-1"
               class="white--text font-weight-bold pa-5 mt-3"
               block
-              @click="postReview"
+              @click="postMessage"
             >
               新規投稿
             </v-btn>
@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       dialog: false,
-      review: {
+      message: {
         title: '',
         content: '',
         rate: 0,
@@ -89,14 +89,14 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions({ reviewPost: 'post/review' }),
-    postReview() {
-      this.reviewPost(this.review)
+    ...mapActions({ messagePost: 'post/message' }),
+    postMessage() {
+      this.messagePost(this.message)
       this.dialog = false
     },
     setImage(file) {
-      this.review.image = file
-      console.log(this.review.image)
+      this.message.image = file
+      console.log(this.message.image)
       if (file !== undefined && file !== null) {
         if (file.name.lastIndexOf('.') <= 0) {
           return

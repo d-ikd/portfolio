@@ -69,7 +69,7 @@
         </template>
         <template v-else-if="isMessageList">
           isMessageList
-          <!-- <post-message-list :messages="posting.reviews" /> -->
+          <!-- <post-message-list :messages="posting.messages" /> -->
         </template>
         <template v-else>
           elseelseelse

@@ -119,7 +119,7 @@ export default {
   //   loginUserMessage() {
   //     if (this.login) {
   //       this.like = false
-  //       this.message.review_likes.forEach((f) => {
+  //       this.message.message_likes.forEach((f) => {
   //         if (f.user_id === this.loginUser.id) {
   //           this.like = true
   //         }
@@ -127,21 +127,21 @@ export default {
   //     }
   //   },
   // },
-  mounted() {
-    this.createDate = this.$dayjs(this.message.created_at).format('YYYY/MM/DD')
-    if (this.login) {
-      this.like = false
-      this.message.review_likes.forEach((f) => {
-        if (f.user_id === this.loginUser.id) {
-          this.like = true
-        }
-      })
-    }
-  },
+  // mounted() {
+  //   this.createDate = this.$dayjs(this.message.created_at).format('YYYY/MM/DD')
+  //   if (this.login) {
+  //     this.like = false
+  //     this.message.message_likes.forEach((f) => {
+  //       if (f.user_id === this.loginUser.id) {
+  //         this.like = true
+  //       }
+  //     })
+  //   }
+  // },
   methods: {
     ...mapActions({
-      // likeMessage: 'review/likeMessage',
-      // unLikeMessage: 'review/unLikeMessage',
+      // likeMessage: 'message/likeMessage',
+      // unLikeMessage: 'message/unLikeMessage',
     }),
   },
 }

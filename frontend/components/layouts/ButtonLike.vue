@@ -153,7 +153,7 @@ export default {
   //     login: 'auth/isLoggedIn',
   //     currentPosts: 'favOrNotCheck/posts',
   //   }),
-  //   loginUserReview() {
+  //   loginUserMessage() {
   //     return this.$store.state.post.post
   //   },
   // },

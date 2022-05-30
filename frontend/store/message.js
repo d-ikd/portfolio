@@ -2,9 +2,9 @@
 export const actions = {
   async likeMessage({ commit, rootState }, authData) {
     await this.$axios
-      .$post('/api/v1/review_likes', {
+      .$post('/api/v1/message_likes', {
         user_id: authData.user,
-        review_id: authData.review,
+        message_id: authData.message,
       })
       .then(() => {
         commit('snackbarMessage/setMessage', 'メッセージにいいね！しました', {
@@ -41,10 +41,10 @@ export const actions = {
   },
   async unLikeMessage({ rootState, commit }, authData) {
     await this.$axios
-      .$delete('/api/v1/review_likes', {
+      .$delete('/api/v1/message_likes', {
         params: {
           user_id: authData.user,
-          review_id: authData.review,
+          message_id: authData.message,
         },
       })
       .then(() => {

@@ -55,10 +55,10 @@ export default {
     }
   },
   methods: {
-    // ...mapActions({ deleteReview: "post/deleteReview" }),
+    // ...mapActions({ deleteMessage: "post/deleteMessage" }),
     deleteMessage() {
       this.$axios
-        .delete(`api/v1/reviews/${this.message.id}`)
+        .delete(`api/v1/messages/${this.message.id}`)
         .then(() => {
           this.$store.commit(
             'snackbarMessage/setMessage',
