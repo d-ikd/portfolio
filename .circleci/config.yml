@@ -154,7 +154,8 @@ workflows:
             branches:
               only: main
       - aws-ecs/update-task-definition:
-          family: cs-db-migrate
+          # family: cs-db-migrate
+          family: cs-db-seed
           # family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
           container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
           aws-region: AWS_REGION
@@ -167,7 +168,8 @@ workflows:
       - aws-ecs/run-task:
           cluster: cs-ecs-cluster
           # cluster: ${CLUSTER_NAME}
-          task-definition: cs-db-migrate
+          # task-definition: cs-db-migrate
+          task-definition: cs-db-seed
           # task-definition: ${TASK_MIGRATE}
           subnet-ids: subnet-08b6ac4c13e91968a, subnet-0aeb42c881f83a989
           assign-public-ip: ENABLED
