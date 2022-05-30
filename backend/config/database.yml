@@ -57,4 +57,4 @@ production:
   <<: *default
   database: production
   url: <%= ENV['DATABASE_URL'] %>
-  # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
+  password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
