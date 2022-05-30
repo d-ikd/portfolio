@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       email: this.$store.getters['auth/currentUser'].uid,
-      guest: process.env.RAILS_GUEST_ADDRESS,
+      guest: 'guestuser20220106@gmail.com',
     }
   },
   methods: {

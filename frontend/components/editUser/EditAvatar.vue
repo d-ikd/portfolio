@@ -44,8 +44,8 @@ export default {
   data() {
     return {
       image: this.$store.getters['auth/currentUser'].image,
-      editImage: '',
-      input_image: null,
+      editImage: {},
+      input_image: {},
     }
   },
   methods: {

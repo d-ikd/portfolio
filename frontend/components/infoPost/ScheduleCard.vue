@@ -1,5 +1,6 @@
 <template>
   <div style="background-color: white" class="mb-14">
+    <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
     <v-row>
       <v-col
         v-for="p in posts"
@@ -72,8 +73,8 @@
                           justify="center"
                         >
                           {{ $dayjs(p.release).format('MM/DD') }}&nbsp;&nbsp;{{
-                            $dayjs(p.start_time).format('hh:mm')
-                          }}~{{ $dayjs(p.finish_time).format('hh:mm') }}
+                            $dayjs(p.start_time).format('Ahh:mm')
+                          }}~{{ $dayjs(p.finish_time).format('Ahh:mm') }}
                         </p>
                       </div>
                     </v-card-text>
@@ -201,7 +202,10 @@ export default {
       })
   },
   methods: {
-    ...mapActions({ getPosts: 'post/getPosts' }),
+    ...mapActions({
+      getPosts: 'post/getPosts',
+      logout: 'auth/logout',
+    }),
   },
 }
 </script>

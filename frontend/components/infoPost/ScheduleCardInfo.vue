@@ -57,37 +57,44 @@
           small
         >
           <v-row justify="space-between">
-            <v-col class="text-left" cols="5">
+            <v-col class="text-left" cols="6">
               <div
                 class="headline
                     mr-8 pink--text font-weight-bold no-wrap-text"
               >
-                開始 {{ $dayjs(post.start_time).format('hh:mm') }}
+                {{ $dayjs(post.start_time).format('A hh:mm') }}から
               </div>
             </v-col>
 
-            <v-col cols="7"> </v-col>
+            <v-col cols="6">
+              <v-chip color="#D73964" text-color="white">
+                <v-icon left>
+                  mdi-star
+                </v-icon>
+
+                場所: {{ post.place }}
+              </v-chip>
+            </v-col>
           </v-row>
         </v-timeline-item>
-
         <v-timeline-item class="mb-4" small>
           <v-row justify="space-between">
-            <v-col class="text-left" cols="5">
+            <v-col class="text-left" cols="6">
               <span
                 class="headline
                           mr-8
-                          font-weight-bold cyan--text"
-                >終了 {{ $dayjs(post.finish_time).format('hh:mm') }}</span
+                          font-weight-bold primary--text"
+                >{{ $dayjs(post.finish_time).format('A hh:mm') }}まで</span
               >
             </v-col>
-            <v-col cols="7">
-              <!-- <v-chip color="primary" text-color="white">
+            <v-col cols="6">
+              <v-chip color="primary" text-color="white">
                 <v-icon left>
                   mdi-wallet-travel
                 </v-icon>
 
                 予算: {{ post.price }}円/人
-              </v-chip> -->
+              </v-chip>
             </v-col>
           </v-row>
         </v-timeline-item>
@@ -130,7 +137,7 @@
             <strong><span>参加</span></strong>
           </template>
 
-          <v-card class="d-flex flex-row mb-6 rounded-card" flat tile>
+          <v-card class="d-flex flex-wrap mb-6 rounded-card" flat tile>
             <v-sheet
               v-for="user in post.join_users"
               :key="user.id"
@@ -161,6 +168,15 @@
           </v-chip> -->
         </v-timeline-item>
 
+        <div>
+          <button-like
+            :user="loginUser"
+            :post="post"
+            :is-rounded-join="true"
+            class="ml-3 mb-10"
+          />
+        </div>
+
         <div class="mb-5">
           <v-btn
             color="orange"
@@ -175,16 +191,7 @@
         </div>
       </v-timeline>
 
-      <v-sheet class="d-flex transparent align-center flex-column">
-        <div>
-          <!-- <button-like
-            :user="loginUser"
-            :post="post"
-            :is-rounded-join="true"
-            class="mb-10"
-          /> -->
-        </div>
-      </v-sheet>
+      <v-sheet class="d-flex transparent align-center flex-column"> </v-sheet>
     </v-sheet>
   </div>
 </template>
@@ -193,14 +200,12 @@
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
-import dialogComponent from '~/components/layouts/dialogComponent.vue'
 import postMessage from '~/components/infoPost/PostMessage.vue'
 
 export default {
   components: {
     buttonLike,
     userAvatar,
-    dialogComponent,
     postMessage,
   },
   props: {
@@ -216,7 +221,7 @@ export default {
       reverse: true,
       years: [
         {
-          color: 'cyan',
+          color: 'primary',
           year: '1960',
         },
       ],

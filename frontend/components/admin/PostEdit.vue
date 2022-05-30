@@ -44,7 +44,7 @@
           <v-file-input
             accept="image/png, image/jpeg, image/bmp"
             outlined
-            label="サムネイル"
+            label="画像を選択して下さい"
             @change="setImage"
           />
           <v-text-field
@@ -205,7 +205,7 @@ export default {
     return {
       editDialog: false,
       id: this.post.id,
-      input_image: null,
+      input_image: this.post.image,
       name: this.post.name,
       image: this.post.image,
       details: this.post.details,

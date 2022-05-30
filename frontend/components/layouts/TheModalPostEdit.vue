@@ -57,6 +57,18 @@
           {{ post.name }}
         </v-card-title>
         <v-card-text>
+          <v-row justify="center" class="pt-6">
+            <v-avatar size="100">
+              <template v-if="post.image.url !== null">
+                <v-img v-if="input_image !== null" :src="input_image" />
+                <v-img v-else :src="post.image.url" />
+              </template>
+              <template v-else>
+                <v-img v-if="input_image" :src="input_image" />
+              </template>
+            </v-avatar>
+          </v-row>
+
           <v-form ref="form">
             <template v-if="post.image.url">
               <v-img
@@ -84,9 +96,10 @@
               />
             </template>
             <v-file-input
+              v-model="image"
               accept="image/png, image/jpeg, image/bmp"
               outlined
-              label="サムネイル"
+              label="画像を選択して下さい"
               @change="setImage"
             />
 
@@ -311,11 +324,39 @@ export default {
         .then((res) => {
           console.log(res)
           console.log('投稿を更新しました')
+          this.$store.commit('auth/setCurrentUser', res.data.data)
+          this.$store.dispatch(
+            'snackbarMessage/showMessage',
+            {
+              message: 'ページを更新しました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
+          this.$store.commit('flashMessage/setType', 'success', { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
+          setTimeout(() => {
+            this.$store.commit('flashMessage/setStatus', false, { root: true })
+          }, 1000)
           this.editDialog = false
         })
         .catch((err) => {
+          this.$store.dispatch(
+            'snackbarMessage/showMessage',
+            {
+              message: 'ページの更新に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
+          setTimeout(() => {
+            this.$store.commit('flashMessage/setStatus', false, { root: true })
+          }, 1000)
+          /*
           console.log(err)
-          console.log('投稿失敗')
+          console.log('投稿失敗') */
         })
     },
 
