@@ -105,6 +105,17 @@ resource "aws_ecs_task_definition" "db-migrate" {
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
+/* Task for Seeds */
+resource "aws_ecs_task_definition" "db-seed" {
+  family                   = "cs-db-seed"
+  container_definitions    = file("./tasks/cs_db_seed_definition.json")
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = "256"
+  memory                   = "512"
+  execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
+}
+
 /* data */
 data "aws_ecs_task_definition" "cs-frontend-task" {
   depends_on      = [aws_ecs_task_definition.cs-frontend-task]

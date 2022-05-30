@@ -1,0 +1,89 @@
+[
+  {
+    "name": "backend-container",
+    "image": "811331963814.dkr.ecr.ap-northeast-1.amazonaws.com/cs-backend",
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "db-seed",
+        "awslogs-group": "/ecs/db-seed"
+      }
+    },
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": 3000,
+        "hostPort": 3000
+      }
+    ],
+    "entryPoint": ["bundle", "exec", "rails", "db:seed", "a=b"],
+    "workingDirectory": "/app",
+    "environment": [
+      {
+        "name": "API_DOMAIN",
+        "value": "https://realshinkitv.com"
+      },
+      {
+        "name": "WORKDIR",
+        "value": "app"
+      },
+      {
+        "name": "CONTAINER_PORT",
+        "value": "3000"
+      },
+      {
+        "name": "RAILS_ENV",
+        "value": "production"
+      }
+    ],
+    "secrets": [
+      {
+        "name": "AWS_ACCESS_KEY_ID",
+        "valueFrom": "access_key_id"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "valueFrom": "secret_access_key"
+      },
+      {
+        "name": "DATABASE_URL",
+        "valueFrom": "portfolio_database_url"
+      },
+      {
+        "name": "RAILS_MASTER_KEY",
+        "valueFrom": "portfolio_rails_master_key"
+      },
+      {
+        "name": "RAILS_ADMIN_USER",
+        "valueFrom": "rails_admin_user"
+      },
+      {
+        "name": "RAILS_ADMIN_ADDRESS",
+        "valueFrom": "rails_admin_address"
+      },
+      {
+        "name": "RAILS_ADMIN_KEY",
+        "valueFrom": "rails_admin_key"
+      },
+      {
+        "name": "RAILS_GUEST_USER",
+        "valueFrom": "rails_guest_user"
+      },
+      {
+        "name": "RAILS_GUEST_ADDRESS",
+        "valueFrom": "rails_guest_address"
+      },
+      {
+        "name": "RAILS_GUEST_KEY",
+        "valueFrom": "rails_guest_key"
+      },
+      {
+        "name": "RAILS_FOLLOWUSER_KEY",
+        "valueFrom": "rails_followuser_key"
+      }
+    ]
+
+    }
+  ]
