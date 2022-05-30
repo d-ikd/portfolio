@@ -52,7 +52,6 @@
       />
       <v-btn
         color="orange"
-        dark
         small
         absolute
         fab
@@ -61,9 +60,16 @@
         class="mt-n13"
         @click.stop="dialogComponent = true"
       >
-        <v-icon dark>
-          mdi-walk
-        </v-icon>
+        <template v-if="post.id == 1">
+          <v-icon large dark color="white">
+            mdi-information
+          </v-icon>
+        </template>
+        <template v-else>
+          <v-icon dark>
+            mdi-walk
+          </v-icon>
+        </template>
       </v-btn>
     </template>
     <template v-else-if="isScheduleCardInfoInList">

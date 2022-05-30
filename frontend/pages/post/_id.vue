@@ -15,8 +15,6 @@
         </template>
       </v-app-bar>
 
-      <button-like :user="user" :post="post" :is-rounded-like="true" />
-
       <v-card color="transparent" class="rounded-card" elevation="5">
         <v-img
           v-if="post.image.url"
@@ -39,7 +37,10 @@
         </v-img>
         <v-img v-else contain :src="defaultImage"> </v-img>
       </v-card>
-
+      <post-member :users="post.join_users" :title="title" :post="post" />
+      <v-sheet style="position: relative;">
+        <button-like :user="loginUser" :post="post" :is-rounded-like="true" />
+      </v-sheet>
       <v-row>
         <v-col class="text-center">
           <template v-if="post.messages.length === 0">
@@ -55,7 +56,6 @@
 
       <div>
         <v-card>
-          <post-member :users="post.join_users" :title="title" :post="post" />
           <div>
             <button-like
               :is-rounded-join="true"
@@ -87,7 +87,7 @@ import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vu
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 import theModalPostDelete from '~/components/layouts/TheModalPostDelete.vue'
 import theModalPostEdit from '~/components/layouts/TheModalPostEdit.vue'
-import postMessage from '~/components/infoPost/PostMessage.vue'
+// import postMessage from '~/components/infoPost/PostMessage.vue'
 
 export default {
   components: {
@@ -100,7 +100,7 @@ export default {
     dialogComponent,
     theModalPostDelete,
     theModalPostEdit,
-    postMessage,
+    // postMessage,
   },
   data() {
     return {

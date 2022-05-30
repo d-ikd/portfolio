@@ -14,14 +14,24 @@
           </v-avatar>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title class="list-item title" @click="pagelink(user.id)">
+          <v-list-item-title class="list-item title">
             {{ post.name }}
           </v-list-item-title>
         </v-list-item-content>
 
-        <div align-self="center">
-          <button-like :user="loginUser" :post="post" :is-rounded-join="true" />
+        <div class="d-flex align-center">
+          <div class="ml-5 mt-6 mr-5">
+            <info-dialog-component :post="post" />
+          </div>
+          <div>
+            <button-like
+              :user="loginUser"
+              :post="post"
+              :is-small-rounded-like="true"
+            />
+          </div>
         </div>
+        <div></div>
 
         <!-- <v-list-item-title class="list-item" @click="pagelink(post.id)">
             {{ post.name }}
@@ -35,14 +45,17 @@
 <script>
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
+import infoDialogComponent from '~/components/infoUser/infoDialogComponent.vue'
 
 export default {
   components: {
     buttonLike,
+    infoDialogComponent,
   },
   props: {
     posts: {
       type: Array,
+      default: () => ({}),
       required: true,
     },
   },
@@ -60,9 +73,6 @@ export default {
 </script>
 
 <style scoped>
-.tab {
-  cursor: pointer;
-}
 /* .list-item {
   width: 100px;
   cursor: pointer;

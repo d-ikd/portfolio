@@ -10,7 +10,7 @@
     変更
   </v-btn>
   <v-btn v-else block color="grey" class="white--text">
-    ゲストユーザーのため変更できません
+    ゲストユーザーの為変更できません
   </v-btn>
 </template>
 

@@ -341,6 +341,7 @@ export default {
           }, 1000)
           this.editDialog = false
         })
+        /* eslint-disable */
         .catch((err) => {
           this.$store.dispatch(
             'snackbarMessage/showMessage',
@@ -359,7 +360,7 @@ export default {
           console.log('投稿失敗') */
         })
     },
-
+/* eslint-disable */
     setImage(file) {
       this.image = file
       if (file !== undefined && file !== null) {

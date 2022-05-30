@@ -11,30 +11,7 @@
         <v-col> </v-col>
         <v-col cols="sm" class="text-center align-self-center">
           <v-sheet elevation="4" class="rounded-pill">
-            <template v-if="isPostCreate">
-              <v-chip
-                label
-                color="transparent"
-                x-large
-                outlined
-                text-color="green"
-              >
-                <v-icon class="ml-2 mr-2">mdi-pencil</v-icon>
-                記事を投稿する
-              </v-chip>
-            </template>
-            <template v-else-if="isScheduleCardInfo">
-              <v-chip
-                label
-                color="transparent"
-                x-large
-                outlined
-                text-color="green"
-              >
-                <v-icon class="ml-2 mr-2">mdi-book-open-page-variant</v-icon>
-              </v-chip>
-            </template>
-            <template v-else>
+            <template>
               <v-chip
                 label
                 color="transparent"
@@ -58,21 +35,8 @@
         color="transparent"
         class=" mx-auto pb-3 mb-10 rounded-card"
       >
-        <template v-if="isPostCreate">
-          <post-create-component />
-        </template>
-        <template v-else-if="isAccountPage">
-          <the-account />
-        </template>
-        <template v-else-if="isScheduleCardInfo">
+        <template>
           <schedule-card-info :post="posting" />
-        </template>
-        <template v-else-if="isMessageList">
-          isMessageList
-          <!-- <post-message-list :messages="posting.messages" /> -->
-        </template>
-        <template v-else>
-          elseelseelse
         </template>
       </v-sheet>
       <v-sheet class="d-flex justify-center transparent">
@@ -92,19 +56,12 @@
 </template>
 
 <script>
-import postCreateComponent from './PostCreateComponent.vue'
 import buttonClose from '~/components/layouts/ButtonClose.vue'
-import scheduleCardInfo from '~/components/infoPost/ScheduleCardInfo.vue'
-import theAccount from '~/components/editUser/TheAccount.vue'
-// import postMessageList from '~/components/infoPost/PostMessageList.vue'
-
+import scheduleCardInfo from '~/components/infoUser/ScheduleCardInfo.vue'
 export default {
   components: {
     buttonClose,
-    postCreateComponent,
     scheduleCardInfo,
-    theAccount,
-    // postMessageList,
   },
   props: {
     dialogComponent: {
@@ -116,28 +73,7 @@ export default {
       default: () => ({}),
       required: false,
     },
-
-    isPostCreate: {
-      type: Boolean,
-      default: false,
-    },
-    isAccountPage: {
-      type: Boolean,
-      default: false,
-    },
-    isAccountSetting: {
-      type: Boolean,
-      default: false,
-    },
     isScheduleCardInfo: {
-      type: Boolean,
-      default: false,
-    },
-    isScheduleCardInfoInList: {
-      type: Boolean,
-      default: false,
-    },
-    isMessageList: {
       type: Boolean,
       default: false,
     },

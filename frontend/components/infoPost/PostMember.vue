@@ -18,7 +18,7 @@
         <v-sheet
           v-for="user in users"
           :key="user.id"
-          class="text-center align-self-center"
+          class="text-center align-self-center  d-flex flex-row mb-6 rounded-card flex-wrap"
           color="white"
         >
           <nuxt-link :to="{ path: `/users/${user.id}` }">
@@ -53,6 +53,7 @@ export default {
     },
     title: {
       type: String,
+      default: '',
       required: false,
     },
   },

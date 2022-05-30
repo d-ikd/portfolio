@@ -43,6 +43,27 @@
         参加する
       </v-btn>
     </template>
+    <template v-if="isSmallRoundedLike">
+      <v-btn
+        v-if="isLike"
+        color="red white--text font-weight-bold"
+        rounded
+        small
+        icon
+        @click="nice"
+      >
+        <v-icon>mdi-heart-off</v-icon>
+      </v-btn>
+      <v-btn
+        v-else
+        color="pink white--text font-weight-bold"
+        rounded
+        icon
+        @click="nice"
+      >
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+    </template>
   </div>
 </template>
 
@@ -79,6 +100,10 @@ export default {
       default: false,
     },
     isRoundedJoin: {
+      type: Boolean,
+      default: false,
+    },
+    isSmallRoundedLike: {
       type: Boolean,
       default: false,
     },

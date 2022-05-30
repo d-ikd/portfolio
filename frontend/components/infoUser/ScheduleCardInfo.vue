@@ -1,9 +1,6 @@
 <template>
   <div>
-    <template v-if="post.id === 1">
-      <schedule-card-info-init />
-    </template>
-    <template v-else>
+    <template>
       <v-sheet class="rounded-card" elevation="5">
         <v-card color="transparent" class="rounded-card " elevation="5">
           <v-img
@@ -19,9 +16,9 @@
               :post="post"
               :is-rounded-like="true"
             />
-            <!-- <button-like :user="loginUser" :post="post" :is-rounded-join="true" /> -->
           </v-sheet>
         </v-card>
+
         <v-card-text class="text-center align-self-center">
           <div class="orangecolor">
             <div
@@ -47,16 +44,10 @@
                 {{ post.release }}
               </div>
             </div>
-
-            <!-- <div class="ml-5  subtitle-1 mt-4 ">
-            <strong> {{ post.release }}&nbsp;</strong>
-          </div> -->
           </v-col>
           <v-col> </v-col>
         </v-row>
-
         <v-sheet color="transparent" class="mt-5"></v-sheet>
-
         <v-timeline dense clipped>
           <v-timeline-item
             class="mb-4"
@@ -107,83 +98,56 @@
             </v-row>
           </v-timeline-item>
 
-          <v-timeline-item
-            fill-dot
-            class="white--text mb-9"
-            color="orange"
-            large
-          >
-            <template v-slot:icon>
-              <nuxt-link :to="{ path: `/users/${post.user.id}` }">
-                <user-avatar
-                  :size="50"
-                  :user="post.user"
-                  class="list-avatar mx-3"
-                />
-              </nuxt-link>
-            </template>
+          <!-- <v-timeline-item hide-dot class="white--text mb-9" color="orange" large> -->
+          <!--           <template v-slot:icon>
+            <nuxt-link :to="{ path: `/users/${post.user.id}` }">
+              <user-avatar
+                :size="50"
+                :user="post.user"
+                class="list-avatar mx-3"
+              />
+            </nuxt-link>
+          </template> -->
 
-            <v-card class="elevation-2 mr-8" rounded-card>
-              <v-card-title class="body-2">
-                {{ post.quickword }}
-              </v-card-title>
-              <v-card-text>
-                {{ post.details }}
-              </v-card-text>
-            </v-card>
-          </v-timeline-item>
-          <v-timeline-item
-            dense
-            hide-dot
-            class="mt-n3 mb-n4"
-            color="orange"
-            large
-          >
-            <v-chip color="white" text-color="purple">
+          <v-card class="elevation-2 ml-4 mr-4 mb-12" rounded-card>
+            <v-card-title class="body-2">
+              {{ post.quickword }}
+            </v-card-title>
+            <v-card-text>
+              {{ post.details }}
+            </v-card-text>
+          </v-card>
+          <!-- </v-timeline-item> -->
+          <!--         <v-timeline-item dense hide-dot class="mt-n3 mb-n4" color="orange" large>
+
+            <v-chip  color="white" text-color="purple">
               <v-icon class="ml-n2 mr-2">mdi-account-circle</v-icon>
               [ {{ post.join_users.length }} / {{ post.member }} ] 人
             </v-chip>
-          </v-timeline-item>
+        </v-timeline-item>         -->
 
-          <v-timeline-item hide-dot class="white--text" color="orange" large>
-            <template v-slot:icon>
-              <strong><span>参加</span></strong>
-            </template>
+          <!--
+        <v-timeline-item hide-dot class="white--text" color="orange" large>
+
+                    <template v-slot:icon>
+            <strong><span>参加</span></strong>
+          </template>
 
             <v-card class="d-flex flex-wrap mb-6 rounded-card" flat tile>
-              <v-sheet
-                v-for="user in post.join_users"
-                :key="user.id"
-                class="text-center align-self-center"
-                color="white"
-              >
-                <nuxt-link :to="{ path: `/users/${user.id}` }">
-                  <user-avatar
-                    :size="50"
-                    :user="user"
-                    class="list-avatar mx-3"
-                  />
-                </nuxt-link>
-              </v-sheet>
-            </v-card>
-          </v-timeline-item>
-
-          <v-timeline-item hide-dot class="mt-n8">
-            <!-- <v-chip color="primary" outlined text-color="orange">
-                <v-icon left>
-                  mdi-wallet-travel
-                </v-icon>
-
-                予算: {{ post.price }}円/人
-              </v-chip>
-              <v-chip color="orange" text-color="white">
-                <v-icon left>
-                  mdi-star
-                </v-icon>
-
-                場所: {{ post.place }}
-              </v-chip> -->
-          </v-timeline-item>
+        <v-sheet
+          v-for="user in post.join_users"
+          :key="user.id"
+          class="text-center align-self-center"
+          color="white"
+        >
+                  <nuxt-link :to="{ path: `/users/${user.id}` }">
+          <user-avatar :size="50" :user="user" class="list-avatar mx-3" />
+                    </nuxt-link>
+        </v-sheet>
+      </v-card>
+        </v-timeline-item>
+ -->
+          <v-timeline-item hide-dot class="mt-n8"> </v-timeline-item>
 
           <div>
             <button-like
@@ -207,7 +171,6 @@
             </v-btn>
           </div>
         </v-timeline>
-
         <v-sheet class="d-flex transparent align-center flex-column"> </v-sheet>
       </v-sheet>
     </template>
@@ -217,16 +180,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
-import userAvatar from '~/components/infoUser/UserAvatar.vue'
+// import userAvatar from '~/components/infoUser/UserAvatar.vue'
 // import postMessage from '~/components/infoPost/PostMessage.vue'
-import scheduleCardInfoInit from '~/components/infoPost/ScheduleCardInfoInit.vue'
 
 export default {
   components: {
     buttonLike,
-    userAvatar,
+    // userAvatar,
     // postMessage,
-    scheduleCardInfoInit,
   },
   props: {
     post: {
@@ -264,22 +225,6 @@ export default {
       posts: 'post/posts',
       loginUser: 'auth/loginUser',
     }),
-  },
-  created() {
-    this.$axios
-      .get(`api/v1/posts/${this.$route.params.id}`)
-      .then((res) => {
-        this.$store.commit('post/setPost', res.data, { root: true })
-      })
-      .then(() => {
-        if (this.login) {
-          this.post.join_users.forEach((f) => {
-            if (f.id === this.user.id) {
-              this.join = true
-            }
-          })
-        }
-      })
   },
   methods: {
     closeDialog() {

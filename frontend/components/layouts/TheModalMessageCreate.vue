@@ -11,54 +11,63 @@
       </v-btn>
     </template>
 
-    <v-card width="400px" class="mx-auto rounded-card">
-      <v-system-bar lights-out>
-        <v-spacer></v-spacer>
-        <v-btn icon class="mt-5" @click="dialog = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-system-bar>
-      <v-card-title class="headline justify-center">
-        {{ post.name }}
-      </v-card-title>
-      <v-card-text>
-        <v-form ref="form">
-          <v-container>
-            <v-text-field
-              v-model="message.title"
-              label="タイトルを入れてください"
-            />
-            <v-textarea
-              v-model="message.content"
-              label="メッセージ本文をいれてください"
-            />
-            <v-file-input
-              accept="image/png, image/jpeg, image/bmp"
-              label="画像"
-              show-size
-              @change="setImage"
-            />
-            <v-img
-              v-if="message.image"
-              :src="input_image"
-              contain
-              max-width="600"
-              max-height="300"
-            />
-          </v-container>
-          <v-card-actions>
-            <v-btn
-              color="light-green darken-1"
-              class="white--text font-weight-bold pa-5 mt-3"
-              block
-              @click="postMessage"
-            >
-              新規投稿
-            </v-btn>
-          </v-card-actions>
-        </v-form>
-      </v-card-text>
-    </v-card>
+    <v-sheet
+      width="500px"
+      color="transparent"
+      class=" mx-auto pb-3 mb-10 rounded-card"
+    >
+      <v-card width="400px" class="mx-auto rounded-card">
+        <v-system-bar lights-out>
+          <v-spacer></v-spacer>
+          <v-btn icon class="mt-5" @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-system-bar>
+        <v-card-title class="headline justify-center">
+          {{ post.name }}
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="form">
+            <v-container>
+              <v-text-field
+                v-model="message.title"
+                label="メッセージタイトルを入れてください"
+              />
+              <v-textarea
+                v-model="message.content"
+                label="メッセージ本文をいれてください"
+              />
+              <v-file-input
+                accept="image/png, image/jpeg, image/bmp"
+                label="画像"
+                show-size
+                @change="setImage"
+              />
+              <v-img
+                v-if="message.image"
+                :src="input_image"
+                contain
+                max-width="600"
+                max-height="300"
+              />
+            </v-container>
+            <v-card-actions>
+              <v-btn
+                x-large
+                block
+                color="green lighten-2"
+                class="font-weight-bold align-center"
+                icon
+                @click="postMessage"
+              >
+                <v-icon>mdi-cube-send</v-icon>
+                メッセージ投稿
+              </v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-sheet>
   </v-dialog>
 </template>
 

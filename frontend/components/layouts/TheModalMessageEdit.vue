@@ -107,12 +107,15 @@
               </v-container>
               <v-card-actions>
                 <v-btn
-                  color="light-green darken-1"
-                  class="white--text font-weight-bold pa-5 mt-3"
+                  x-large
                   block
+                  color="blue lighten-2"
+                  class="font-weight-bold align-center"
+                  icon
                   @click="postMessageEdit"
                 >
-                  更新
+                  <v-icon>mdi-cube-send</v-icon>
+                  更新する
                 </v-btn>
               </v-card-actions>
             </v-form>
