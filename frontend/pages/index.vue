@@ -8,6 +8,7 @@
 
     <!-- <v-btn depressed rounded text @click="initData"> initData </v-btn> -->
     <!-- <search-form /> -->
+    <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
     <search />
   </div>
 </template>
@@ -21,6 +22,11 @@ export default {
   components: {
     Search,
     // searchForm,
+  },
+  data() {
+    return {
+      tasks: [],
+    }
   },
   computed: {
     /* ========== ScheduleCard =========== */
@@ -38,7 +44,13 @@ export default {
     ...mapActions({
       /* user: 'user/user', */
       /* initData: 'tab/initData', */
+      logout: 'auth/logout',
     }),
+    async getSomething() {
+      // タスク一覧を取得するための API を叩く
+      const response = await this.$axios.$get('api/v1/users')
+      this.users = JSON.parse(response.users)
+    },
   },
   /*
     async asyncData({ $axios }) {
