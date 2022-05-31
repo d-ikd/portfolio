@@ -10,6 +10,16 @@
     <!-- <search-form /> -->
     <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
     <search />
+
+    <v-footer
+      class="elevation-10 footertitle flex justify-center mt-5"
+      color="#7a99cf"
+      absolute
+    >
+      <div class="white--text">
+        &copy; {{ new Date().getFullYear() }}<span class="ml-2">Stuctive</span>
+      </div>
+    </v-footer>
   </div>
 </template>
 
@@ -78,4 +88,10 @@ export default {
 /* div {
   border: 5px solid yellow;
 } */
+.footertitle {
+  color: white;
+  font-size: 16px;
+  font-family: 'Fraunces', sans-serif;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
+}
 </style>

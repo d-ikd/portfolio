@@ -4,8 +4,13 @@
       <v-col> </v-col>
       <v-col cols="sm" class="text-center align-self-center">
         <v-sheet elevation="4" class="rounded-pill mt-3 mb-n2">
-          <v-chip label color="transparent" x-large text-color="purple">
-            <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
+          <v-chip
+            label
+            color="transparent"
+            x-large
+            text-color="green lighten-2"
+          >
+            <v-icon class="ml-2 mr-2">mdi-email-variant</v-icon>
             メッセージ
           </v-chip>
         </v-sheet>
