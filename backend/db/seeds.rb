@@ -321,8 +321,8 @@ Post.create(
 User.create!(
   name: 'Tester15',
   email: 'test-15@gmail.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: ENV['RAILS_FOLLOWUSER_KEY'],
+  password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
@@ -345,8 +345,8 @@ Post.create(
 User.create!(
   name: 'Tester16',
   email: 'test-16@gmail.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: ENV['RAILS_FOLLOWUSER_KEY'],
+  password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
@@ -369,8 +369,8 @@ Post.create(
 User.create!(
   name: 'Tester17',
   email: 'test-17@gmail.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: ENV['RAILS_FOLLOWUSER_KEY'],
+  password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
@@ -393,8 +393,8 @@ Post.create(
 User.create!(
   name: 'Tester18',
   email: 'test-18@gmail.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: ENV['RAILS_FOLLOWUSER_KEY'],
+  password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
@@ -417,8 +417,8 @@ Post.create(
 User.create!(
   name: 'Tester19',
   email: 'test-19@gmail.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: ENV['RAILS_FOLLOWUSER_KEY'],
+  password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
@@ -441,8 +441,8 @@ Post.create(
 User.create!(
   name: 'Tester20',
   email: 'test-20@gmail.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: ENV['RAILS_FOLLOWUSER_KEY'],
+  password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
   image: Rails.root.join('app/assets/images/1_begin/user.jpg').open
 )
