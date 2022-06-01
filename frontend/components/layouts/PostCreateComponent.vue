@@ -261,7 +261,7 @@ export default {
           console.log(res)
           console.log('Success')
           this.dialog = false
-          // this.$router.go({ path: '/', force: true })
+          this.$router.go({ path: '/', force: true })
           /*
           this.$store.commit('snackbarMessage/setMessage', ' 投稿しました', {
             root: true,
