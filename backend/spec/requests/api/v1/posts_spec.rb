@@ -36,9 +36,9 @@ RSpec.describe Post, type: :request do
     #     place: '集合場所',
     #     category: '',
     #     price: '1000',
-    #     start_time: '2000-01-01T09:00:00.000Z',
-    #     finish_time: '2000-01-01T03:00:00.000Z',
-    #     release: '2021-5-10',
+    #     start_time: '2022-06-01T03:00:00.000Z',
+    #     finish_time: '2022-06-01T09:00:00.000Z',
+    #     release: '2022-5-31',
     #   }
 
     #   # データが作成されている事を確認。
