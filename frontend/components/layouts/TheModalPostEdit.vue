@@ -13,7 +13,12 @@
           #activator="{ on: tooltip }"
         >
           <!-- v-if="message.user_id === $store.state.auth.loginUser.id" -->
-          <v-btn v-bind="attrs" icon v-on="{ ...dialog, ...tooltip }">
+          <v-btn
+            class="ml-4 mr-2 yellow--text font-weight-bold"
+            color="orange"
+            v-bind="attrs"
+            v-on="{ ...dialog, ...tooltip }"
+          >
             <v-icon> mdi-comment-edit </v-icon>
           </v-btn>
         </template>
@@ -57,44 +62,21 @@
           {{ post.name }}
         </v-card-title>
         <v-card-text>
-          <v-row justify="center" class="pt-6">
-            <v-avatar size="100">
-              <template v-if="post.image.url !== null">
-                <v-img v-if="input_image !== null" :src="input_image" />
-                <v-img v-else :src="post.image.url" />
-              </template>
-              <template v-else>
-                <v-img v-if="input_image" :src="input_image" />
-              </template>
-            </v-avatar>
+          <v-row justify="center" class="mt-3 mb-10">
+            <template v-if="post.image.url !== null">
+              <v-img
+                v-if="input_image !== null"
+                max-width="400"
+                :src="input_image"
+              />
+              <v-img v-else :src="post.image.url" />
+            </template>
+            <template v-else>
+              <v-img v-if="input_image" :src="input_image" />
+            </template>
           </v-row>
 
           <v-form ref="form">
-            <template v-if="post.image.url">
-              <v-img
-                v-if="input_image !== null"
-                :src="input_image"
-                contain
-                max-width="200"
-                max-height="100"
-              />
-              <v-img
-                v-else
-                :src="post.image.url"
-                contain
-                max-width="200"
-                max-height="100"
-              />
-            </template>
-            <template v-else>
-              <v-img
-                v-if="input_image"
-                :src="input_image"
-                contain
-                max-width="200"
-                max-height="100"
-              />
-            </template>
             <v-file-input
               v-model="image"
               accept="image/png, image/jpeg, image/bmp"
