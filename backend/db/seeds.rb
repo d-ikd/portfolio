@@ -8,7 +8,7 @@ User.create!(
 
 Post.create(
   user_id: 1,
-  name: 'はじめまして！',
+  name: 'はじめまして',
   quickword: '右下のボタンで募集ページを作成しましょう！',
   catchcopy: '閲覧ありがとうございます！',
   member: 3,
