@@ -103,7 +103,7 @@ jobs:
 
   build_and_push_image_backend:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202201-02
     steps:
       - checkout
       - aws-ecr/build-and-push-image:
@@ -116,7 +116,7 @@ jobs:
 
   build_and_push_image_frontend:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202201-02
     steps:
       - checkout
       - aws-ecr/build-and-push-image:
@@ -180,17 +180,17 @@ workflows:
             branches:
               only: main
 
-      # - aws-ecs/run-task:
-      #     cluster: cs-ecs-cluster
-      #     task-definition: cs-db-seed
-      #     subnet-ids: subnet-0509946825d2ff004, subnet-04be76a9e0278621b
-      #     assign-public-ip: ENABLED
-      #     security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
-      #     requires:
-      #       - aws-ecs/update-task-definition
-      #     filters:
-      #       branches:
-      #         only: main
+      - aws-ecs/run-task:
+          cluster: cs-ecs-cluster
+          task-definition: cs-db-seed
+          subnet-ids: subnet-0509946825d2ff004, subnet-04be76a9e0278621b
+          assign-public-ip: ENABLED
+          security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
+          requires:
+            - aws-ecs/update-task-definition
+          filters:
+            branches:
+              only: main
 
       - aws-ecs/deploy-service-update:
           family: cs-frontend-task
