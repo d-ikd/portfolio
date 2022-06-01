@@ -32,8 +32,8 @@
           <v-col cols="9">
             {{ message.content }}
           </v-col>
-          <v-col cols="3">
-            <template v-if="message.image.url">
+          <v-col cols="3" v-if="message.image.url">
+            <template>
               <v-avatar size="80" class="radius-image mt-3 mb-3">
                 <v-img
                   v-if="message.image.url"

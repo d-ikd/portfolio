@@ -61,9 +61,9 @@
                       v-else
                       rounded
                       min-width="125px"
-                      color="blue"
+                      color="blue lighten-3"
                       style="text-transform: none"
-                      class="font-weight-bold"
+                      class="font-weight-bold white--text"
                       @click="followUser"
                     >
                       <v-icon class="mr-2"> mdi-account-plus </v-icon>
@@ -92,9 +92,16 @@
         </v-row>
         <v-divider />
 
-        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+        <v-tabs
+          v-model="tab"
+          background-color="transparent"
+          color="basil"
+          grow
+          icons-and-text
+        >
           <v-tab v-for="item in items" :key="item.title">
             {{ item.title }}
+            <v-icon color="pink">{{ item.icon }}</v-icon>
           </v-tab>
         </v-tabs>
       </v-card>
@@ -163,13 +170,13 @@ export default {
       tab: null,
       follow: false,
       message: 'フォロー中',
-      color: 'blue white--text',
+      color: 'blue lighten-2 white--text',
       items: [
-        { title: '参加済み' },
-        { title: 'いいね' },
-        { title: 'メッセージ' },
-        { title: 'フォロー' },
-        { title: 'フォロワー' },
+        { title: '参加済み', icon: 'mdi-run' },
+        { title: 'いいね', icon: 'mdi-heart' },
+        { title: 'メッセージ', icon: 'mdi-email-variant' },
+        { title: 'フォロー', icon: 'mdi-account' },
+        { title: 'フォロワー', icon: 'mdi-account-multiple' },
       ],
     }
   },
@@ -220,11 +227,11 @@ export default {
   methods: {
     mouseover() {
       this.color = 'red white--text'
-      this.message = 'Unfollow'
+      this.message = 'フォロー解除'
     },
     mouseleave() {
       this.color = 'blue white--text'
-      this.message = 'Following'
+      this.message = 'フォロー中'
     },
     followUser() {
       this.$axios

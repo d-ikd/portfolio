@@ -8,7 +8,7 @@
 
     <!-- <v-btn depressed rounded text @click="initData"> initData </v-btn> -->
     <!-- <search-form /> -->
-    <v-btn depressed rounded text @click="logout"> ログアウト </v-btn>
+    <!-- <v-btn depressed rounded text @click="logout"> ログアウト </v-btn> -->
     <search />
 
     <v-footer

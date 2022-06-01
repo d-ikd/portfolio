@@ -2,6 +2,8 @@
   <div>
     <template v-if="post.id === 1">
       <schedule-card-info-init />
+      <v-sheet class="d-flex transparent align-center flex-column mt-3">
+      </v-sheet>
     </template>
     <template v-else>
       <v-sheet class="rounded-card" elevation="5">
@@ -266,24 +268,7 @@ export default {
   data() {
     return {
       defaultImage: require(`@/assets/images/default.png`),
-      reverse: true,
-      years: [
-        {
-          color: 'primary',
-          year: '1960',
-        },
-      ],
-      tags: [
-        'Work',
-        'Home Improvement',
-        'Vacation',
-        'Food',
-        'Drawers',
-        'Shopping',
-        'Art',
-        'Tech',
-        'Creative Writing',
-      ],
+      /* reverse: true, */
       dialog: false,
     }
   },
