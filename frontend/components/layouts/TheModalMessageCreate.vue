@@ -55,7 +55,7 @@
               <v-btn
                 x-large
                 block
-                color="green lighten-2"
+                color="blue lighten-2"
                 class="font-weight-bold align-center"
                 icon
                 @click="postMessage"
