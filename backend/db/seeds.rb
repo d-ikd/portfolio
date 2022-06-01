@@ -8,16 +8,16 @@ User.create!(
 
 Post.create(
   user_id: 1,
-  name: 'はじめまして！',
-  quickword: '右下のボタンで募集ページを作成しましょう！',
-  catchcopy: '閲覧ありがとうございます！',
+  name: 'はじめまして',
+  quickword: '早速、右下のボタンで募集ページをつくりましょう！',
+  catchcopy: 'ご閲覧ありがとうございます',
   member: 3,
   place: '集合場所',
   category: '',
   price: '1000',
-  start_time: '2022-06-01T03:00:00.000Z',
-  finish_time: '2022-06-01T09:00:00.000Z',
-  release: '2022-5-31',
+  start_time: '2000-01-01T09:00:00.000Z',
+  finish_time: '2000-01-01T03:00:00.000Z',
+  release: '2021-5-10',
   image: Rails.root.join('app/assets/images/1_begin/image.jpg').open
 )
 
