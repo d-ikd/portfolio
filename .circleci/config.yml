@@ -10,6 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           DB_HOST: "127.0.0.1"
+          TZ: Asia/Tokyo
       - image: circleci/mysql:5.7.32
     working_directory: ~/repo
 
