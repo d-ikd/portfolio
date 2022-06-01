@@ -1,7 +1,23 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe "Api::V1::Users", type: :request do
-#   describe "GET /index" do
-#     pending "add some examples (or delete) #{__FILE__}"
-#   end
-# end
+RSpec.describe User, type: :request do
+  describe 'User' do
+    before(:each) do
+      @user = create(:user)
+    end
+
+    it 'ユーザー一覧取得' do
+      get '/api/v1/users/'
+      JSON.parse(response.body)
+      # responseの可否判定
+      expect(response.status).to eq(200)
+    end
+
+    it '特定ユーザー取得' do
+      get "/api/v1/users/#{@user.id}"
+      json = JSON.parse(response.body)
+      # responseの可否判定
+      expect(json['email']).to eq(@user.email)
+    end
+  end
+end
