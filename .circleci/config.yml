@@ -171,7 +171,7 @@ workflows:
           task-definition: cs-db-migrate
           # task-definition: cs-db-seed
           # task-definition: ${TASK_MIGRATE}
-          subnet-ids: subnet-008a93ba35ef32170, subnet-01a6ceab4181b8596
+          subnet-ids: subnet-0509946825d2ff004, subnet-04be76a9e0278621b
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
           requires:
@@ -183,7 +183,7 @@ workflows:
       - aws-ecs/run-task:
           cluster: cs-ecs-cluster
           task-definition: cs-db-seed
-          subnet-ids: subnet-008a93ba35ef32170, subnet-01a6ceab4181b8596
+          subnet-ids: subnet-0509946825d2ff004, subnet-04be76a9e0278621b
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
           requires:
