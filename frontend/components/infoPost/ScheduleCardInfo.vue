@@ -17,15 +17,17 @@
           <v-img v-else contain :src="defaultImage"> </v-img>
           <v-sheet style="position: relative;">
             <template v-if="!login">
+              <!--
               <v-btn
-                color="red white--text font-weight-bold"
+                color="white--text font-weight-bold"
                 absolute
                 fab
                 right
                 top
+                disabled
               >
                 <v-icon>mdi-heart</v-icon>
-              </v-btn>
+              </v-btn> -->
             </template>
             <template v-else>
               <button-like
@@ -199,12 +201,19 @@
                 場所: {{ post.place }}
               </v-chip> -->
           </v-timeline-item>
-
           <template v-if="!login">
-            <v-btn color="pink white--text font-weight-bold ml-4 mb-10">
+            <v-btn
+              color="pink white--text"
+              class="font-weight-bold ml-4 mb-10"
+              @click.stop="loginDialog(true)"
+              disabled
+            >
               <v-icon large>mdi-run</v-icon>
               参加する
             </v-btn>
+            <v-dialog v-model="loginModal" max-width="600px" persistent>
+              <the-modal-login />
+            </v-dialog>
           </template>
           <template v-else>
             <button-like
@@ -215,12 +224,19 @@
             />
           </template>
           <template v-if="!login">
-            <div class="mb-5">
-              <v-btn color="orange" nuxt x-large class="ml-3 white--text">
+            <!-- <div class="mb-5">
+              <v-btn
+                color="orange"
+                nuxt
+                x-large
+                class="ml-3 white--text"
+                @click.stop="loginDialog(true)"
+                disabled
+              >
                 <v-icon color="white">mdi-email-variant </v-icon
                 >&nbsp;参加したい気持ちをメッセージで伝えましょう！&nbsp;&nbsp;
               </v-btn>
-            </div>
+            </div> -->
           </template>
           <template v-else>
             <div class="mb-5">
@@ -245,11 +261,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import buttonLike from '~/components/layouts/ButtonLike.vue'
 import userAvatar from '~/components/infoUser/UserAvatar.vue'
 // import postMessage from '~/components/infoPost/PostMessage.vue'
 import scheduleCardInfoInit from '~/components/infoPost/ScheduleCardInfoInit.vue'
+import theModalLogin from '~/components/layouts/TheModalLogin.vue'
 
 export default {
   components: {
@@ -257,6 +274,7 @@ export default {
     userAvatar,
     // postMessage,
     scheduleCardInfoInit,
+    theModalLogin,
   },
   props: {
     post: {
@@ -276,6 +294,7 @@ export default {
     ...mapGetters({
       posts: 'post/posts',
       loginUser: 'auth/loginUser',
+      loginModal: 'modal/loginModal',
       login: 'auth/isLoggedIn',
     }),
   },
@@ -299,6 +318,12 @@ export default {
     closeDialog() {
       this.dialog = false
     },
+    ...mapActions({
+      getPosts: 'post/getPosts',
+      logout: 'auth/logout',
+      login: 'auth/login',
+      loginDialog: 'modal/loginUser',
+    }),
   },
 }
 </script>

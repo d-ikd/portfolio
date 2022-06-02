@@ -6,15 +6,15 @@
     max-width="600"
   >
     <template #activator="{ on, attrs }">
-      <span v-bind="attrs" v-on="on">
+      <span v-bind="attrs" v-on="on" class="font-weight-medium">
         <p class="blue--text d-flex">
           <!-- <template v-if="icon">
             <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }}
           </template> -->
           <template>
-            <v-icon>mdi-run</v-icon>&nbsp;{{
-              post.join_users.length
-            }}&nbsp;<span class="white--text">/&nbsp;{{ post.member }} </span>
+            <v-icon>mdi-run</v-icon>&nbsp;
+            {{ post.join_users.length }}
+            &nbsp;<span class="white--text">/&nbsp;{{ post.member }} </span>
           </template>
         </p>
       </span>
