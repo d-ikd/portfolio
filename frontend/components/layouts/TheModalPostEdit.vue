@@ -13,7 +13,7 @@
         >
           <!-- v-if="message.user_id === $store.state.auth.loginUser.id" -->
           <v-btn
-            class="ml-4 mr-2 orange--text font-weight-bold"
+            class="ml-4 mr-2 yellow--text font-weight-bold"
             color="indigo"
             v-bind="attrs"
             v-on="{ ...dialog, ...tooltip }"

@@ -13,7 +13,7 @@
         icon
         @click.stop="dialogComponent = true"
       >
-        <v-icon color="orange">
+        <v-icon color="blue">
           mdi-walk
         </v-icon>
       </v-btn>

@@ -160,7 +160,7 @@
 
           <div class="mb-5">
             <v-btn
-              color="orange"
+              color="blue"
               nuxt
               x-large
               :to="{ path: `/post/${post.id}` }"

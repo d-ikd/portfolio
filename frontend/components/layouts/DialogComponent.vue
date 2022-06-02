@@ -51,7 +51,7 @@
         @result="response"
       />
       <v-btn
-        color="orange"
+        color="cyan"
         small
         absolute
         fab

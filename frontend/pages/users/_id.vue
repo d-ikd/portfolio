@@ -114,10 +114,10 @@
         <v-col cols="12">
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <user-post-list :posts="user.postjoin" />
+              <user-post-list :posts="user.postlike" />
             </v-tab-item>
             <v-tab-item>
-              <user-post-list :posts="user.postlike" />
+              <user-post-list :posts="user.postjoin" />
             </v-tab-item>
             <v-tab-item>
               <user-message-list :messages="user.messages" />
@@ -172,8 +172,8 @@ export default {
       message: 'フォロー中',
       color: 'blue lighten-2 white--text',
       items: [
-        { title: '参加済み', icon: 'mdi-run' },
         { title: 'いいね', icon: 'mdi-heart' },
+        { title: '参加済み', icon: 'mdi-run' },
         { title: 'メッセージ', icon: 'mdi-email-variant' },
         { title: 'フォロー', icon: 'mdi-account' },
         { title: 'フォロワー', icon: 'mdi-account-multiple' },

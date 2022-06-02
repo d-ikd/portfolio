@@ -7,7 +7,7 @@
   >
     <template #activator="{ on, attrs }">
       <span v-bind="attrs" v-on="on" class="font-weight-medium">
-        <p class="blue--text d-flex">
+        <p class="yellow--text d-flex">
           <!-- <template v-if="icon">
             <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }}
           </template> -->

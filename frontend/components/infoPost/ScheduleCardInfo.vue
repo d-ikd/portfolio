@@ -119,12 +119,7 @@
             </v-row>
           </v-timeline-item>
 
-          <v-timeline-item
-            fill-dot
-            class="white--text mb-9"
-            color="orange"
-            large
-          >
+          <v-timeline-item fill-dot class="white--text mb-9" color="blue" large>
             <template v-slot:icon>
               <nuxt-link :to="{ path: `/users/${post.user.id}` }">
                 <user-avatar
@@ -236,7 +231,7 @@
           <template v-else>
             <div class="mb-5">
               <v-btn
-                color="orange"
+                color="blue"
                 nuxt
                 x-large
                 :to="{ path: `/post/${post.id}` }"

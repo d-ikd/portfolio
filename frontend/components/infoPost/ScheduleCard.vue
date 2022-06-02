@@ -107,7 +107,7 @@
                       <v-expand-transition>
                         <div
                           v-if="hover"
-                          class="d-flex transition-fast-in-fast-out orange v-card--reveal display-3 white--text"
+                          class="d-flex transition-fast-in-fast-out indigo v-card--reveal display-3 white--text"
                           style="height: 100%;"
                         >
                           <nuxt-link :to="{ path: `/users/${p.user.id}` }">
@@ -126,7 +126,7 @@
                   </v-sheet>
                 </template>
               </v-hover>
-              <v-card-text class="orange">
+              <v-card-text class="indigo">
                 <div
                   class="d-flex font-weight-thin subtitle-1 justify-center mt-n1 mb-n4"
                 >
