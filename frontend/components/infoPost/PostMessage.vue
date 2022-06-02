@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto blue lighten-3 mt-8" dark max-width="400">
+    <v-card class="mx-auto blue lighten-3 mt-8" dark max-width="500">
       <v-row>
         <v-col cols="8">
           <v-card-title>

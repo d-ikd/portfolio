@@ -12,7 +12,7 @@
         <v-col cols="sm" class="text-center align-self-center">
           <v-sheet elevation="4" class="rounded-pill">
             <template>
-              <v-chip
+              <!-- <v-chip
                 label
                 color="transparent"
                 x-large
@@ -21,7 +21,7 @@
               >
                 <v-icon class="ml-2 mr-2">mdi-account-circle</v-icon>
                 アカウント
-              </v-chip>
+              </v-chip> -->
             </template>
           </v-sheet>
         </v-col>
