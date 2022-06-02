@@ -19,14 +19,37 @@
         label="キーワード検索"
         prepend-inner-icon="mdi-magnify"
       />
-      <v-btn
-        text
-        class="ml-4 mr-2 font-weight-bold"
-        color="white"
-        @click.stop="loginDialog(true)"
-      >
-        ヘルプ
-      </v-btn>
+
+      <v-row justify="space-around">
+        <v-col cols="auto">
+          <v-dialog transition="dialog-bottom-transition" max-width="600">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                text
+                v-bind="attrs"
+                v-on="on"
+                class="ml-4 mr-2 font-weight-bold"
+                color="white"
+              >
+                ヘルプ
+              </v-btn>
+            </template>
+            <template v-slot:default="dialog">
+              <v-card>
+                <v-card-text>
+                  <div class="text-h2 pa-12">
+                    <schedule-card-info-init />
+                  </div>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn text @click="dialog.value = false">Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-col>
+      </v-row>
+
       <template v-if="!isLogin">
         <v-btn
           text
@@ -81,6 +104,7 @@ import theModalSignUp from '~/components/layouts/TheModalSignUp.vue'
 import theModalLogin from '~/components/layouts/TheModalLogin.vue'
 import buttonGuestLogin from '~/components/layouts/ButtonGuestLogin.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
+import scheduleCardInfoInit from '~/components/infoPost/ScheduleCardInfoInit.vue'
 
 /* import searchPost from '~/components/search/SearchPost.vue' */
 import ScheduleCard2 from '~/components/search/ScheduleCard2.vue'
@@ -92,8 +116,9 @@ export default {
     /* TheHeader */
     theModalSignUp,
     theModalLogin,
-    buttonGuestLogin,
     dialogComponent,
+    buttonGuestLogin,
+    scheduleCardInfoInit,
 
     /* searchPost, */
     ScheduleCard2,

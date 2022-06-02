@@ -176,7 +176,7 @@
           </v-menu>
           <v-card-actions>
             <v-btn
-              color="light-green darken-1"
+              color="blue lighten-1"
               class="white--text"
               block
               x-large
