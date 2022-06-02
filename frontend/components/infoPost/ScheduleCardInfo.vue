@@ -1,11 +1,6 @@
 <template>
   <div>
-    <template v-if="post.id === 1">
-      <schedule-card-info-init />
-      <v-sheet class="d-flex transparent align-center flex-column mt-3">
-      </v-sheet>
-    </template>
-    <template v-else>
+    <template>
       <v-sheet class="rounded-card" elevation="5">
         <v-card color="transparent" class="rounded-card " elevation="5">
           <v-img

@@ -20,35 +20,33 @@
         prepend-inner-icon="mdi-magnify"
       />
 
-      <v-row justify="space-around">
-        <v-col cols="auto">
-          <v-dialog transition="dialog-bottom-transition" max-width="600">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                text
-                v-bind="attrs"
-                v-on="on"
-                class="ml-4 mr-2 font-weight-bold"
-                color="white"
-              >
-                ヘルプ
-              </v-btn>
-            </template>
-            <template v-slot:default="dialog">
-              <v-card>
-                <v-card-text>
-                  <div class="text-h2 pa-12">
-                    <schedule-card-info-init />
-                  </div>
-                </v-card-text>
-                <v-card-actions class="justify-end">
-                  <v-btn text @click="dialog.value = false">Close</v-btn>
-                </v-card-actions>
-              </v-card>
-            </template>
-          </v-dialog>
-        </v-col>
-      </v-row>
+      <v-col cols="auto">
+        <v-dialog transition="dialog-bottom-transition" max-width="600">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              text
+              v-bind="attrs"
+              v-on="on"
+              class="ml-4 mr-2 font-weight-bold"
+              color="white"
+            >
+              ヘルプ
+            </v-btn>
+          </template>
+          <template v-slot:default="dialog">
+            <v-card>
+              <v-card-text>
+                <div class="text-h2 pa-12">
+                  <schedule-card-info-init />
+                </div>
+              </v-card-text>
+              <v-card-actions class="justify-end">
+                <v-btn text @click="dialog.value = false">Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+      </v-col>
 
       <template v-if="!isLogin">
         <v-btn

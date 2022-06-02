@@ -60,12 +60,7 @@
         class="mt-n13"
         @click.stop="dialogComponent = true"
       >
-        <template v-if="post.id == 1">
-          <v-icon large dark color="white">
-            mdi-information
-          </v-icon>
-        </template>
-        <template v-else>
+        <template>
           <v-icon dark>
             mdi-walk
           </v-icon>
