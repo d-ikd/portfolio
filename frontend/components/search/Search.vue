@@ -19,7 +19,14 @@
         label="キーワード検索"
         prepend-inner-icon="mdi-magnify"
       />
-
+      <v-btn
+        text
+        class="ml-4 mr-2 font-weight-bold"
+        color="white"
+        @click.stop="loginDialog(true)"
+      >
+        ヘルプ
+      </v-btn>
       <template v-if="!isLogin">
         <v-btn
           text
