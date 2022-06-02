@@ -138,7 +138,7 @@ export default {
       releaseDate: '',
       start_time: '',
       finish_time: '',
-      defaultImage: require('@/assets/images/default-user.png'),
+      defaultImage: require('@/assets/images/default.png'),
     }
   },
   computed: {

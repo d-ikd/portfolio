@@ -36,9 +36,7 @@
           <template v-slot:default="dialog">
             <v-card>
               <v-card-text>
-                <div class="text-h2 pa-12">
-                  <schedule-card-info-init />
-                </div>
+                <schedule-card-info-init />
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog.value = false">Close</v-btn>
