@@ -3,7 +3,7 @@
     <template v-if="isRoundedLike">
       <v-btn
         v-if="isLike"
-        color="red white--text font-weight-bold"
+        color="red lighten-3 white--text font-weight-bold"
         absolute
         fab
         right
@@ -14,7 +14,7 @@
       </v-btn>
       <v-btn
         v-else
-        color="pink white--text font-weight-bold"
+        color="pink lighten-1 white--text font-weight-bold"
         absolute
         fab
         right

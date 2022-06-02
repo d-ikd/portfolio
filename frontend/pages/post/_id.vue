@@ -77,7 +77,7 @@
         />
       </div>
 
-      <div class="text-center align-self-center mt-10 mb-15">
+      <div class="text-center align-self-center mt-10 mb-16">
         <v-btn
           color="purple x-large white--text"
           outlined

@@ -3,7 +3,7 @@
     v-model="dialogComponent"
     hide-overlay
     transition="dialog-bottom-transition"
-    max-width="600"
+    max-width="500"
   >
     <template #activator="{ on, attrs }">
       <span v-bind="attrs" v-on="on" class="font-weight-medium">
@@ -19,7 +19,7 @@
         </p>
       </span>
     </template>
-    <v-row no-gutters>
+    <!-- <v-row no-gutters>
       <v-col> </v-col>
       <v-col cols="sm" class="text-center align-self-center">
         <v-sheet elevation="4" class="rounded-pill mt-4 mb-4">
@@ -38,12 +38,14 @@
         </v-sheet>
       </v-col>
       <v-col> </v-col>
-    </v-row>
+    </v-row> -->
 
-    <v-card width="500px" class=" mx-auto pb-3 mb-13 rounded-card">
+    <v-card width="500px" class="rounded-card">
       <v-list color="white">
         <v-subheader class="black--text"
-          >{{ title }}（{{ users.length }}）</v-subheader
+          >【&nbsp;{{ post.name }}&nbsp;】{{ title }}&nbsp;&nbsp;{{
+            users.length
+          }}&nbsp;/&nbsp;{{ post.member }}&nbsp;人</v-subheader
         >
         <v-list-item-group>
           <v-list-item
