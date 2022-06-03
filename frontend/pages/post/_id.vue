@@ -38,7 +38,7 @@
               v-if="post.image.url"
               :src="post.image.url"
               class="rounded-card text-center rounded-card mt-10 elevation-10"
-              width="600"
+              width="700px"
             >
             </v-img>
             <v-img v-else contain :src="defaultImage"> </v-img>

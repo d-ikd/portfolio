@@ -195,8 +195,8 @@
             <v-btn
               color="pink white--text"
               class="font-weight-bold ml-4 mb-10"
-              @click.stop="loginDialog(true)"
               disabled
+              @click.stop="loginDialog(true)"
             >
               <v-icon large>mdi-run</v-icon>
               参加する
@@ -311,7 +311,7 @@ export default {
     ...mapActions({
       getPosts: 'post/getPosts',
       logout: 'auth/logout',
-      login: 'auth/login',
+      // login: 'auth/login',
       loginDialog: 'modal/loginUser',
     }),
   },

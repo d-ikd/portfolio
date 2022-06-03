@@ -58,6 +58,7 @@
 <script>
 import buttonClose from '~/components/layouts/ButtonClose.vue'
 import scheduleCardInfo from '~/components/infoUser/ScheduleCardInfo.vue'
+
 export default {
   components: {
     buttonClose,

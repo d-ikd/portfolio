@@ -1,12 +1,11 @@
 <template>
   <v-dialog
     v-model="dialogComponent"
-    hide-overlay
     transition="dialog-bottom-transition"
     max-width="500"
   >
     <template #activator="{ on, attrs }">
-      <span v-bind="attrs" v-on="on" class="font-weight-medium">
+      <span v-bind="attrs" class="font-weight-medium" v-on="on">
         <p class="yellow--text d-flex">
           <!-- <template v-if="icon">
             <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }}

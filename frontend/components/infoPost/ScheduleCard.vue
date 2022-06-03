@@ -31,7 +31,7 @@
                       <span class="atmark-right">
                         <v-chip
                           class="mr-4 mt-4"
-                          color="indigo"
+                          color="blue darken-1"
                           text-color="white"
                           tile
                         >
