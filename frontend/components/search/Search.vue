@@ -60,13 +60,13 @@
         </v-dialog>
         <v-btn
           class="ml-4 mr-2 white--text font-weight-bold"
-          color="#ffb6c1"
+          color="red darken-1"
           @click.stop="signUpDialog(true)"
         >
           新規登録
         </v-btn>
         <v-btn
-          class="ml-4 mr-2 yellow--text font-weight-bold"
+          class="ml-4 mr-2 white--text font-weight-bold"
           color="indigo"
           @click="guestLogin"
         >

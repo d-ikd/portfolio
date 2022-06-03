@@ -37,7 +37,7 @@
         @result="response"
       />
       <v-btn color="orange white--text" @click.stop="dialogComponent = true">
-        メッセージ
+        設定へ
         <v-icon dark>
           mdi-walk
         </v-icon>
@@ -89,7 +89,7 @@
         @result="response"
       />
       <v-btn color="purple white--text" @click.stop="dialogComponent = true">
-        設定へ
+        メッセージ
         <v-icon dark>
           mdi-walk
         </v-icon>
@@ -98,7 +98,7 @@
     <template v-else>
       <dialogComponentContents
         :dialog-component="dialogComponent"
-        :is-post-create="isPostCreate"
+        :is-post-create="true"
         @result="response"
       />
       <v-btn color="primary" dark @click.stop="dialogComponent = true">
@@ -157,6 +157,7 @@ export default {
     closeDialog() {
       this.dialog = false
     },
+
     response() {
       /* this.message = obj.message */
       this.dialogComponent = false

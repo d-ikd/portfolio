@@ -11,11 +11,7 @@
       </v-btn>
     </template>
 
-    <v-sheet
-      width="500px"
-      color="transparent"
-      class=" mx-auto pb-3 mb-10 rounded-card"
-    >
+    <v-sheet width="500px" class="rounded-card">
       <v-card width="500px" class="mx-auto rounded-card">
         <v-system-bar lights-out>
           <v-spacer></v-spacer>
@@ -127,6 +123,7 @@ export default {
 .rounded-card {
   border-radius: 20px;
 }
+
 .signup-link {
   color: #2196f3;
   cursor: pointer;

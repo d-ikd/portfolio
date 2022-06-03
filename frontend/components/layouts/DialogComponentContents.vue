@@ -2,7 +2,6 @@
   <v-row justify="center">
     <v-dialog
       v-model="dialogComponent"
-      hide-overlay
       transition="dialog-bottom-transition"
       max-width="600"
       persistent
