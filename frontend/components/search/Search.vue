@@ -26,12 +26,11 @@
             <v-btn
               text
               v-bind="attrs"
-              v-on="on"
               class="ml-4 mr-2 font-weight-bold"
               color="white"
+              v-on="on"
+              >ヘルプ</v-btn
             >
-              ヘルプ
-            </v-btn>
           </template>
           <template v-slot:default="dialog">
             <v-card>
@@ -77,9 +76,9 @@
         </v-dialog>
       </template>
       <template v-else>
-        <v-btn depressed rounded @click="logout" icon>
-          <v-icon color="#E5F2E8">mdi-logout</v-icon>
-        </v-btn>
+        <v-btn depressed rounded icon @click="logout"
+          ><v-icon color="#E5F2E8">mdi-logout</v-icon></v-btn
+        >
         <dialog-component :is-account-page="true" class="mt-5" />
       </template>
     </v-app-bar>

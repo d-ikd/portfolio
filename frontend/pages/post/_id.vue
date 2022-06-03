@@ -77,7 +77,7 @@
         />
       </div>
 
-      <div class="text-center align-self-center mt-10 mb-16">
+      <div class="text-center align-self-center mt-10 mb-10">
         <v-btn
           color="purple x-large white--text"
           outlined
@@ -92,9 +92,8 @@
     <v-footer
       class="elevation-10 footertitle flex justify-center mt-5"
       color="#7a99cf"
-      absolute
     >
-      <div class="white--text">
+      <div>
         &copy; {{ new Date().getFullYear() }}<span class="ml-2">Stuctive</span>
       </div>
     </v-footer>
@@ -112,7 +111,6 @@ import theModalMessageCreate from '~/components/layouts/TheModalMessageCreate.vu
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 import theModalPostDelete from '~/components/layouts/TheModalPostDelete.vue'
 import theModalPostEdit from '~/components/layouts/TheModalPostEdit.vue'
-// import postMessage from '~/components/infoPost/PostMessage.vue'
 
 export default {
   components: {
@@ -125,7 +123,6 @@ export default {
     dialogComponent,
     theModalPostDelete,
     theModalPostEdit,
-    // postMessage,
   },
   data() {
     return {

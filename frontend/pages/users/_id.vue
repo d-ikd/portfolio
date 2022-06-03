@@ -138,7 +138,7 @@
       color="#7a99cf"
       absolute
     >
-      <div class="white--text">
+      <div>
         &copy; {{ new Date().getFullYear() }}<span class="ml-2">Stuctive</span>
       </div>
     </v-footer>
