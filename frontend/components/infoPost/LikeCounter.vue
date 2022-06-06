@@ -11,7 +11,7 @@
             <v-icon>mdi-heart</v-icon>&nbsp;{{ post.like_users.name }}
           </template> -->
           <template>
-            <v-icon>mdi-run</v-icon>&nbsp;
+            <v-icon>mdi-account-group</v-icon>&nbsp;
             {{ post.join_users.length }}
             &nbsp;<span class="white--text">/&nbsp;{{ post.member }} </span>
           </template>
