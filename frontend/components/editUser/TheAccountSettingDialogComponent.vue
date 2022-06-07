@@ -93,7 +93,7 @@
             </v-expansion-panel>
             <v-expansion-panel>
               <v-expansion-panel-header class="red--text">
-                Danger Zone
+                退会
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <deleteUser />

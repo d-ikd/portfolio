@@ -79,13 +79,13 @@
 
       <div class="text-center align-self-center mt-10 mb-10">
         <v-btn
-          color="purple x-large white--text"
+          color="blue x-large white--text"
           outlined
           nuxt
           to="/"
           class="link"
         >
-          <v-icon dark>mdi-email-variant </v-icon>TOPに戻る
+          TOPに戻る
         </v-btn>
       </div>
     </template>
