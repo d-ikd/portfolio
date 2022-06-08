@@ -75,8 +75,7 @@
 
       <div class="orangecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
-          ②２クリック目（<v-icon color="green">mdi-dots-vertical</v-icon
-          >ボタン）
+          ②２クリック目（<v-icon color="blue">mdi-dots-vertical</v-icon>ボタン）
         </div>
       </div>
 
@@ -93,7 +92,7 @@
 
       <div class="orangecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
-          ③３クリック目（<v-icon color="orange">mdi-walk</v-icon>ボタン）
+          ③３クリック目（<v-icon color="cyan">mdi-walk</v-icon>ボタン）
         </div>
       </div>
 
@@ -108,7 +107,7 @@
       <div class="caption">[ gif解説 ]<br /><br /></div>
 
       <div class="mb-10">
-        次に、<v-icon color="orange">mdi-walk</v-icon
+        次に、<v-icon color="cyan">mdi-walk</v-icon
         >を押して詳細を見てみましょう。<br /><br /><br />
       </div>
 
@@ -149,7 +148,7 @@
       <div class="caption">[ gif解説 ]<br /><br /></div>
       <div class="caption">
         時間がある時には、
-        <v-icon color="orange">mdi-email-variant</v-icon>
+        <v-icon color="blue">mdi-email-variant</v-icon>
         を押してメッセージを送りにいきましょう。<br /><br />
       </div>
     </v-card-text>
@@ -199,7 +198,7 @@
       :src="require('@/assets/images/default.png')"
     ></v-img>
     <v-card-text class="text-center align-self-center">
-      ページ右下の <v-icon color="red">mdi-pencil</v-icon> をクリック。<br />
+      ページ右下の <v-icon color="indigo">mdi-pencil</v-icon> をクリック。<br />
       どこからでもポストすることができます。
     </v-card-text>
     <v-card-text class="text-center align-self-center">
@@ -219,7 +218,7 @@
     <v-img contain :src="require('@/assets/images/default.png')"></v-img>
     <v-card-text class="text-center align-self-center">
       <b>メッセージページ</b>右上の<br />
-      <v-icon color="orange">mdi-pencil</v-icon>で編集、<v-icon color="green"
+      <v-icon color="indigo">mdi-pencil</v-icon>で編集、<v-icon color="blue"
         >mdi-delete</v-icon
       >で削除することができます。<br />
     </v-card-text>
