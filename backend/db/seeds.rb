@@ -518,7 +518,7 @@ Post.create(
   name: 'Help me!!',
   quickword: 'Stay Home is stressfull, isn\'t it!?',
   catchcopy: 'Unfortunately, this exam is ...',
-  details:'
+  details: '
   This is Mary.
   I\'m planning my next examination.
   But, It\'s going to be out of my way.
