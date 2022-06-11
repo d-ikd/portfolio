@@ -10,7 +10,7 @@
         <v-card
           :elevation="15"
           dark
-          class="mx-auto orange ma-3 rounded-card"
+          class="mx-auto blue ma-3 rounded-card"
           color="white"
           width="250"
         >

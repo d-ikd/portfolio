@@ -11,13 +11,13 @@
         />
         <v-text-field
           v-model="name"
-          placeholder="例: みんな集まれ憩いの川"
+          placeholder="例: アウトドア大好き！"
           label="タイトル"
           :rules="[required]"
         />
         <v-textarea
           v-model="details"
-          placeholder="例: これから川遊びにいきましょう。"
+          placeholder="例: キャンプへ行きませんか？"
           label="詳細"
           :rules="[required]"
         />
@@ -157,7 +157,7 @@
         />
         <v-text-field
           v-model="catchcopy"
-          placeholder="例: 春が始まりましたね"
+          placeholder="例: 夏が始まりましたね"
           label="キャッチコピー"
         />
 

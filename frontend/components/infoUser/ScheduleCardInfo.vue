@@ -20,7 +20,7 @@
         </v-card>
 
         <v-card-text class="text-center align-self-center">
-          <div class="orangecolor">
+          <div class="bluecolor">
             <div
               class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text"
             >
@@ -146,7 +146,7 @@
         </v-sheet>
       </v-card>
         </v-timeline-item>
- -->
+  -->
           <v-timeline-item hide-dot class="mt-n8"> </v-timeline-item>
 
           <div>
@@ -261,7 +261,7 @@ text {
   stroke-linejoin: round;
 }
 
-.orangecolor {
+.bluecolor {
   background: #ffffff; /*背景色*/
   padding: 0.5em; /*文字周りの余白*/
   color: white; /*文字を白に*/

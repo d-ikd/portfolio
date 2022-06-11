@@ -35,7 +35,7 @@
           </v-sheet>
         </v-card>
         <v-card-text class="text-center align-self-center">
-          <div class="orangecolor">
+          <div class="bluecolor">
             <div
               class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text"
             >
@@ -143,7 +143,7 @@
             dense
             hide-dot
             class="mt-n3 mb-n4"
-            color="orange"
+            color="blue"
             large
           >
             <v-chip color="white" text-color="purple">
@@ -152,7 +152,7 @@
             </v-chip>
           </v-timeline-item>
 
-          <v-timeline-item hide-dot class="white--text" color="orange" large>
+          <v-timeline-item hide-dot class="white--text" color="blue" large>
             <template v-slot:icon>
               <strong><span>参加</span></strong>
             </template>
@@ -176,14 +176,14 @@
           </v-timeline-item>
 
           <v-timeline-item hide-dot class="mt-n8">
-            <!-- <v-chip color="primary" outlined text-color="orange">
+            <!-- <v-chip color="primary" outlined text-color="blue">
                 <v-icon left>
                   mdi-wallet
                 </v-icon>
 
                 予算: {{ post.price }}円/人
               </v-chip>
-              <v-chip color="orange" text-color="white">
+              <v-chip color="blue" text-color="white">
                 <v-icon left>
                   mdi-marker
                 </v-icon>
@@ -216,7 +216,7 @@
           <template v-if="!login">
             <!-- <div class="mb-5">
               <v-btn
-                color="orange"
+                color="blue"
                 nuxt
                 x-large
                 class="ml-3 white--text"
@@ -345,7 +345,7 @@ text {
   stroke-linejoin: round;
 }
 
-.orangecolor {
+.bluecolor {
   background: #ffffff; /*背景色*/
   padding: 0.5em; /*文字周りの余白*/
   color: white; /*文字を白に*/

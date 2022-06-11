@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- <WeatherCard /> -->
-    <!-- おそらくECSフェーズでAPI key登録が必要になる -->
-    <!-- https://qiita.com/ririson_jp/items/2fa5b60adc8e5f3edbbd#%E3%83%AA%E3%83%B3%E3%82%AF%E5%85%88%E9%83%BD%E9%81%93%E5%BA%9C%E7%9C%8C%E3%81%AE%E8%A9%B3%E7%B4%B0%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B -->
-    <!-- <p>今日のmain.humidityは{{ weather }}です。</p> -->
-    <!-- <p>今日の天気は{{ weather2 }}です。</p> -->
-
-    <!-- <v-btn depressed rounded text @click="initData"> initData </v-btn> -->
-    <!-- <search-form /> -->
-    <!-- <v-btn depressed rounded text @click="logout"> ログアウト </v-btn> -->
     <search />
 
     <v-footer

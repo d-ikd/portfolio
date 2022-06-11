@@ -157,7 +157,7 @@ export default {
   // }, */
     /*
 methods: {
-         pagelink(link) {
+        pagelink(link) {
       this.$router.push({ path: `/users/${link}` })
     }, */
 

@@ -12,9 +12,6 @@
 
     <!-- ========== Profile ========== -->
     <template v-if="loading">
-      <!--       <v-parallax
-        :src="require(`@/assets/images/aomori.jpg`)"
-      ></v-parallax> -->
       <v-card> </v-card>
       <v-card>
         <v-row class="mx-1 pb-10" no-gutters>

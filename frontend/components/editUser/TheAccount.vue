@@ -53,12 +53,6 @@
         <v-tab>
           <v-icon color="pink">mdi-run</v-icon>
         </v-tab>
-        <!-- <v-tab>
-          フォロー
-        </v-tab>
-        <v-tab>
-          フォロワー
-        </v-tab> -->
         <v-tab>
           <v-icon color="pink">mdi-email-variant</v-icon>
         </v-tab>

@@ -36,7 +36,7 @@
         :is-account-setting="true"
         @result="response"
       />
-      <v-btn color="orange white--text" @click.stop="dialogComponent = true">
+      <v-btn color="blue white--text" @click.stop="dialogComponent = true">
         設定へ
         <v-icon dark>
           mdi-walk
@@ -74,7 +74,7 @@
         :posting="post"
         @result="response"
       />
-      <v-btn color="orange white--text" @click.stop="dialogComponent = true">
+      <v-btn color="blue white--text" @click.stop="dialogComponent = true">
         参加ページへ
         <v-icon dark>
           mdi-walk

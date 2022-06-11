@@ -1,7 +1,7 @@
 <template>
   <v-sheet>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-2 shadow-text1 pink--text font-weight-bold no-wrap-text"
         >
@@ -15,14 +15,14 @@
       </v-card-text>
     </v-card>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
           最初の手順
         </div>
       </div>
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="shadow-text2 pink--text font-weight-bold no-wrap-text"
         ></div>
@@ -33,21 +33,21 @@
       クリックしてください。
     </v-card-text>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
           参加までの４クリック
         </div>
       </div>
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div class="shadow-text2 pink--text font-weight-bold no-wrap-text">
           ページ遷移がないスムーズな参加手続
         </div>
       </div>
     </v-card-text>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
           ①１クリック目（<v-icon color="pink">mdi-heart-outline</v-icon>ボタン）
         </div>
@@ -73,7 +73,7 @@
         たくさん押しても大丈夫。あとで見返すことができます。<br /><br /><br />
       </div>
 
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
           ②２クリック目（<v-icon color="blue">mdi-dots-vertical</v-icon>ボタン）
         </div>
@@ -90,7 +90,7 @@
         このストックはいつでも見返すことができます。<br /><br /><br />
       </div>
 
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
           ③３クリック目（<v-icon color="cyan">mdi-walk</v-icon>ボタン）
         </div>
@@ -111,7 +111,7 @@
         >を押して詳細を見てみましょう。<br /><br /><br />
       </div>
 
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
           ④４クリック目（<v-icon color="red">mdi-run</v-icon>ボタン）
         </div>
@@ -128,14 +128,14 @@
 
       <br /><br />
 
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
           メッセージページ
         </div>
       </div>
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="shadow-text2 pink--text font-weight-bold no-wrap-text"
         ></div>
@@ -161,14 +161,14 @@
       </div>
     </v-card-text>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
           メンバーリスト
         </div>
       </div>
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="shadow-text2 pink--text font-weight-bold no-wrap-text"
         ></div>
@@ -179,14 +179,14 @@
       カード下部の <v-icon>mdi-run</v-icon> をクリック。フォローもできます。
     </v-card-text>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
           ポスト作成
         </div>
       </div>
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="shadow-text2 pink--text font-weight-bold no-wrap-text"
         ></div>
@@ -202,14 +202,14 @@
       どこからでもポストすることができます。
     </v-card-text>
     <v-card-text class="text-center align-self-center">
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
           ポスト編集/削除
         </div>
       </div>
-      <div class="orangecolor">
+      <div class="bluecolor">
         <div
           class="shadow-text2 pink--text font-weight-bold no-wrap-text"
         ></div>
@@ -296,7 +296,7 @@ export default {
   text-shadow: 2px 5px 50px;
 }
 
-.orangecolor {
+.bluecolor {
   background: #ffffff; /*背景色*/
   padding: 0.5em; /*文字周りの余白*/
   color: white; /*文字を白に*/

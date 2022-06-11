@@ -1,6 +1,5 @@
 <template>
   <div style="background-color: white" class="mb-14">
-    <!-- <v-btn depressed rounded text @click="logout"> ログアウト </v-btn> -->
     <v-row>
       <v-col
         v-for="p in posts"
@@ -11,7 +10,7 @@
           <v-card
             :elevation="15"
             dark
-            class="mx-auto orange ma-3 rounded-card"
+            class="mx-auto blue ma-3 rounded-card"
             color="white"
             width="250"
           >

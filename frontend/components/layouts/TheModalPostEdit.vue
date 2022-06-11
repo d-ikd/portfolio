@@ -180,7 +180,7 @@
             />
             <v-text-field
               v-model.number="place"
-              placeholder="例: 代々木公園"
+              placeholder="例: 名城公園"
               label="場所"
             />
             <!--           <v-select

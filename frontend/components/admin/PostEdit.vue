@@ -49,12 +49,12 @@
           />
           <v-text-field
             v-model="name"
-            placeholder="例: ピクニック"
+            placeholder="例: サッカー"
             label="タイトル"
           />
           <v-textarea
             v-model="details"
-            placeholder="例: 隅田川で石投げ"
+            placeholder="例: 公園でサッカー"
             label="詳細"
           />
           <v-text-field
@@ -140,7 +140,7 @@
           />
           <v-text-field
             v-model.number="place"
-            placeholder="例: 代々木公園"
+            placeholder="例: 名城公園"
             label="場所"
           />
           <v-select
