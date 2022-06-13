@@ -68,7 +68,7 @@
               <v-col cols="6">
                 <v-chip color="#D73964" text-color="white">
                   <v-icon left>
-                    mdi-star
+                    mdi-map-marker
                   </v-icon>
 
                   場所: {{ post.place }}
@@ -89,7 +89,7 @@
               <v-col cols="6">
                 <v-chip color="primary" text-color="white">
                   <v-icon left>
-                    mdi-wallet-travel
+                    mdi-wallet
                   </v-icon>
 
                   予算: {{ post.price }}円/人

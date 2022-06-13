@@ -5,13 +5,17 @@
         <div
           class="display-2 shadow-text1 pink--text font-weight-bold no-wrap-text"
         >
-          Stuctiveとは
+          Stuctiveとは？
         </div>
       </div>
     </v-card-text>
     <v-card class="ml-2 mr-2" tile rounded-card>
       <v-card-text>
-        ここにアプリの説明を書く
+        <b>「学び」も「遊び」も積極的に。</b><br />
+        まだまだコロナと共に生活する昨今ですが、ひとまず一段落ということで。<br /><br />
+        ステイホーム続きで不足であった出会いや<br />
+        一緒に切磋琢磨できる勉強仲間がほしい方の為の<br />
+        マッチングアプリです。
       </v-card-text>
     </v-card>
     <v-card-text class="text-center align-self-center">
@@ -28,7 +32,7 @@
         ></div>
       </div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help1.gif')"></v-img>
       ページ右上の「ゲストログイン」を<br />
       クリックしてください。
     </v-card-text>
@@ -55,13 +59,13 @@
 
       <v-img
         contain
-        :src="require('@/assets/images/default.png')"
+        :src="require('@/assets/images/help2.png')"
         class="mr-5 ml-5"
       ></v-img>
       <div class="caption">[ 図 ]<br /><br /><br /></div>
       <v-img
         contain
-        :src="require('@/assets/images/default.png')"
+        :src="require('@/assets/images/help2.gif')"
         class="mr-5 ml-5"
       ></v-img>
 
@@ -70,7 +74,7 @@
       <div class="mb-5">
         気になる募集があったら、<v-icon color="pink">mdi-heart-outline</v-icon
         >を押していきましょう。<br />
-        たくさん押しても大丈夫。あとで見返すことができます。<br /><br /><br />
+        こちらはあとで見返すことができます。<br /><br /><br />
       </div>
 
       <div class="bluecolor">
@@ -79,10 +83,10 @@
         </div>
       </div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help3.png')"></v-img>
       <div class="caption">[ 図 ]<br /><br /><br /></div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help3.gif')"></v-img>
       <div class="caption">[ gif解説 ]<br /><br /></div>
 
       <div class="mb-10">
@@ -92,22 +96,22 @@
 
       <div class="bluecolor">
         <div class="pink--text font-weight-bold no-wrap-text">
-          ③３クリック目（<v-icon color="cyan">mdi-walk</v-icon>ボタン）
+          ③３クリック目（<v-icon color="blue">mdi-walk</v-icon>ボタン）
         </div>
       </div>
 
       <v-img
         contain
-        :src="require('@/assets/images/default.png')"
+        :src="require('@/assets/images/help4.png')"
         class="mr-5 ml-5"
       ></v-img>
       <div class="caption">[ 図 ]<br /><br /><br /></div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help4.gif')"></v-img>
       <div class="caption">[ gif解説 ]<br /><br /></div>
 
       <div class="mb-10">
-        次に、<v-icon color="cyan">mdi-walk</v-icon
+        次に、<v-icon color="blue">mdi-walk</v-icon
         >を押して詳細を見てみましょう。<br /><br /><br />
       </div>
 
@@ -117,10 +121,10 @@
         </div>
       </div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help5.png')"></v-img>
       <div class="caption">[ 図 ]<br /><br /><br /></div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help5.gif')"></v-img>
       <div class="caption">[ gif解説 ]<br /><br /></div>
 
       詳細ページです。<v-icon color="red">mdi-run</v-icon>
@@ -141,20 +145,20 @@
         ></div>
       </div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help6.png')"></v-img>
       <div class="caption">[ 図 ]<br /><br /><br /></div>
 
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help6.gif')"></v-img>
       <div class="caption">[ gif解説 ]<br /><br /></div>
       <div class="caption">
-        時間がある時には、
+        参加したい時には、
         <v-icon color="blue">mdi-email-variant</v-icon>
         を押してメッセージを送りにいきましょう。<br /><br />
       </div>
     </v-card-text>
 
     <v-card-text class="text-center align-self-center">
-      <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+      <v-img contain :src="require('@/assets/images/help7.gif')"></v-img>
       <div class="caption">[ gif解説（補足）]<br /><br /></div>
       <div class="caption">
         「参加」は、メッセージを送るページからでも可能です<br /><br />
@@ -174,16 +178,17 @@
         ></div>
       </div>
     </v-card-text>
-    <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+    <v-img contain :src="require('@/assets/images/help8.gif')"></v-img>
     <v-card-text class="text-center align-self-center">
-      カード下部の <v-icon>mdi-run</v-icon> をクリック。フォローもできます。
+      カード下部の
+      <v-icon>mdi-account-group</v-icon> をクリック。フォローもできます。
     </v-card-text>
     <v-card-text class="text-center align-self-center">
       <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
-          ポスト作成
+          新規投稿
         </div>
       </div>
       <div class="bluecolor">
@@ -195,18 +200,18 @@
     <v-img
       contain
       class="mr-7"
-      :src="require('@/assets/images/default.png')"
+      :src="require('@/assets/images/help7.jpg')"
     ></v-img>
     <v-card-text class="text-center align-self-center">
       ページ右下の <v-icon color="indigo">mdi-pencil</v-icon> をクリック。<br />
-      どこからでもポストすることができます。
+      どこからでも投稿することができます。
     </v-card-text>
     <v-card-text class="text-center align-self-center">
       <div class="bluecolor">
         <div
           class="display-1 shadow-text1 pink--text font-weight-bold no-wrap-text mt-10"
         >
-          ポスト編集/削除
+          投稿の編集/削除
         </div>
       </div>
       <div class="bluecolor">
@@ -215,12 +220,13 @@
         ></div>
       </div>
     </v-card-text>
-    <v-img contain :src="require('@/assets/images/default.png')"></v-img>
+    <v-img contain :src="require('@/assets/images/help8.jpg')"></v-img>
     <v-card-text class="text-center align-self-center">
       <b>メッセージページ</b>右上の<br />
-      <v-icon color="indigo">mdi-pencil</v-icon>で編集、<v-icon color="blue"
-        >mdi-delete</v-icon
-      >で削除することができます。<br />
+      <v-icon color="indigo">mdi-pencil</v-icon>で編集、<v-icon>
+        mdi-delete</v-icon
+      >
+      で削除することができます。<br />
     </v-card-text>
   </v-sheet>
 </template>
