@@ -17,9 +17,9 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      message: 'snackbarMessage/message',
-      type: 'snackbarMessage/type',
-      status: 'snackbarMessage/status',
+      message: 'flashMessage/message',
+      type: 'flashMessage/type',
+      status: 'flashMessage/status',
     }),
   },
 }

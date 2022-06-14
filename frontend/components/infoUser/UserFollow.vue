@@ -98,19 +98,15 @@ export default {
           follow_id: this.user.id,
         })
         .then(() => {
-          this.$store.commit(
-            'snackbarMessage/setMessage',
-            ' フォローしました。',
-            {
-              root: true,
-            }
-          )
-          this.$store.commit('snackbarMessage/setType', 'success', {
+          this.$store.commit('flashMessage/setMessage', ' フォローしました。', {
             root: true,
           })
-          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
+          this.$store.commit('flashMessage/setType', 'success', {
+            root: true,
+          })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('snackbarMessage/setStatus', false, {
+            this.$store.commit('flashMessage/setStatus', false, {
               root: true,
             })
           }, 1000)
@@ -138,14 +134,14 @@ export default {
         })
         .then(() => {
           this.$store.commit(
-            'snackbarMessage/setMessage',
+            'flashMessage/setMessage',
             ' フォロー解除しました。',
             { root: true }
           )
-          this.$store.commit('snackbarMessage/setType', 'info', { root: true })
-          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
+          this.$store.commit('flashMessage/setType', 'info', { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('snackbarMessage/setStatus', false, {
+            this.$store.commit('flashMessage/setStatus', false, {
               root: true,
             })
           }, 1000)

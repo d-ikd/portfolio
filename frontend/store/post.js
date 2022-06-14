@@ -40,13 +40,13 @@ export const actions = {
         post_id: authData.post,
       })
       .then(() => {
-        commit('snackbarMessage/setMessage', '気になるに追加しました。', {
+        commit('flashMessage/setMessage', '気になるに追加しました。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'success', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'success', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         console.log(rootState.auth.currentUser.id)
         this.$axios
@@ -58,13 +58,13 @@ export const actions = {
           })
       })
       .catch((err) => {
-        commit('snackbarMessage/setMessage', '追加に失敗しました。', {
+        commit('flashMessage/setMessage', '追加に失敗しました。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -78,13 +78,13 @@ export const actions = {
       })
       .then(() => {
         console.log('Successfully unfollow')
-        commit('snackbarMessage/setMessage', '「気になる」から外しました。', {
+        commit('flashMessage/setMessage', '「気になる」から外しました。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'info', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'info', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         this.$axios
           .$get(`/api/v1/users/${rootState.auth.currentUser.id}`)
@@ -96,16 +96,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           '「気になる」から外せませんでした。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -116,13 +116,13 @@ export const actions = {
         post_id: authData.post,
       })
       .then(() => {
-        commit('snackbarMessage/setMessage', '「参加します」に追加しました。', {
+        commit('flashMessage/setMessage', '「参加します」に追加しました。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'success', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'success', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         console.log(rootState.auth.currentUser.id)
         this.$axios
@@ -135,16 +135,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           '「参加します」の追加に失敗しました。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -158,13 +158,13 @@ export const actions = {
       })
       .then(() => {
         console.log('Successfully unjoin')
-        commit('snackbarMessage/setMessage', '「参加します」から外しました。', {
+        commit('flashMessage/setMessage', '「参加します」から外しました。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'info', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'info', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         this.$axios
           .$get(`/api/v1/users/${rootState.auth.currentUser.id}`)
@@ -176,16 +176,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           '「参加します」から外せませんでした。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -207,13 +207,13 @@ export const actions = {
         },
       })
       .then(() => {
-        commit('snackbarMessage/setMessage', 'メッセージを投稿しました', {
+        commit('flashMessage/setMessage', 'メッセージを投稿しました', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'success', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'success', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         this.$axios.$get(`/api/v1/posts/${authData.post_id}`).then((res) => {
           commit('setPost', res)
@@ -222,16 +222,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           'メッセージの投稿に失敗しました。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -256,13 +256,13 @@ export const actions = {
         },
       })
       .then(() => {
-        commit('snackbarMessage/setMessage', 'メッセージを更新しました', {
+        commit('flashMessage/setMessage', 'メッセージを更新しました', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'info', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'info', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         this.$axios.$get(`/api/v1/posts/${authData.post_id}`).then((res) => {
           commit('setPost', res)
@@ -271,16 +271,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           'メッセージの更新に失敗しました。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -299,13 +299,13 @@ export const actions = {
         },
       })
       .then(() => {
-        commit('snackbarMessage/setMessage', 'メッセージを投稿しました', {
+        commit('flashMessage/setMessage', 'メッセージを投稿しました', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'success', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'success', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         this.$axios.$get(`/api/v1/posts/${authData.post_id}`).then((res) => {
           commit('setPost', res)
@@ -314,16 +314,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           'メッセージの投稿に失敗しました。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },

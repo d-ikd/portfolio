@@ -2,7 +2,7 @@
   <v-app>
     <!-- <the-header /> -->
     <v-main>
-      <snackbar-message />
+      <flash-message />
       <nuxt />
       <dialog-component :is-post-create="true" />
       <!-- <the-footer /> -->
@@ -13,14 +13,14 @@
 <script>
 /* import theHeader from '~/components/layouts/TheHeader.vue' */
 /* import theFooter from '~/components/layouts/TheFooter.vue' */
-import snackbarMessage from '~/components/layouts/SnackbarMessage.vue'
+import flashMessage from '~/components/layouts/flashMessage.vue'
 import dialogComponent from '~/components/layouts/DialogComponent.vue'
 
 export default {
   components: {
     /* theHeader, */
     /* theFooter, */
-    snackbarMessage,
+    flashMessage,
     dialogComponent,
   },
 }

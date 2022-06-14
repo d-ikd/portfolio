@@ -310,7 +310,7 @@ export default {
           console.log('投稿を更新しました')
           this.$store.commit('auth/setCurrentUser', res.data.data)
           this.$store.dispatch(
-            'snackbarMessage/showMessage',
+            'flashMessage/showMessage',
             {
               message: 'ページを更新しました。',
               type: 'success',
@@ -328,7 +328,7 @@ export default {
         /* eslint-disable */
         .catch((err) => {
           this.$store.dispatch(
-            'snackbarMessage/showMessage',
+            'flashMessage/showMessage',
             {
               message: 'ページの更新に失敗しました。',
               type: 'error',

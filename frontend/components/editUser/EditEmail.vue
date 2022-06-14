@@ -45,7 +45,7 @@ export default {
           console.log(res)
           this.$store.commit('auth/setCurrentUser', res.data.data)
           this.$store.dispatch(
-            'snackbarMessage/showMessage',
+            'flashMessage/showMessage',
             {
               message: 'メールアドレスを更新しました。',
               type: 'success',
@@ -56,7 +56,7 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            'snackbarMessage/showMessage',
+            'flashMessage/showMessage',
             {
               message: 'メールアドレスの更新に失敗しました。',
               type: 'error',

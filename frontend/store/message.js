@@ -7,13 +7,13 @@ export const actions = {
         message_id: authData.message,
       })
       .then(() => {
-        commit('snackbarMessage/setMessage', 'メッセージにいいね！しました', {
+        commit('flashMessage/setMessage', 'メッセージにいいね！しました', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'success', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'success', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         console.log(rootState.auth.currentUser.id)
         this.$axios
@@ -26,16 +26,16 @@ export const actions = {
       })
       .catch((err) => {
         commit(
-          'snackbarMessage/setMessage',
+          'flashMessage/setMessage',
           'メッセージのいいね！に失敗しました。',
           {
             root: true,
           }
         )
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },
@@ -49,13 +49,13 @@ export const actions = {
       })
       .then(() => {
         console.log('Successfully unlike')
-        commit('snackbarMessage/setMessage', 'いいね！から外しました。', {
+        commit('flashMessage/setMessage', 'いいね！から外しました。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'info', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'info', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
         this.$axios
           .$get(`/api/v1/users/${rootState.auth.currentUser.id}`)
@@ -66,13 +66,13 @@ export const actions = {
           })
       })
       .catch((err) => {
-        commit('snackbarMessage/setMessage', 'いいね！から外せませんでした。', {
+        commit('flashMessage/setMessage', 'いいね！から外せませんでした。', {
           root: true,
         })
-        commit('snackbarMessage/setType', 'error', { root: true })
-        commit('snackbarMessage/setStatus', true, { root: true })
+        commit('flashMessage/setType', 'error', { root: true })
+        commit('flashMessage/setStatus', true, { root: true })
         setTimeout(() => {
-          commit('snackbarMessage/setStatus', false, { root: true })
+          commit('flashMessage/setStatus', false, { root: true })
         }, 1000)
       })
   },

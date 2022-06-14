@@ -263,16 +263,16 @@ export default {
           this.dialog = false
           this.$router.go({ path: '/', force: true })
           /*
-          this.$store.commit('snackbarMessage/setMessage', ' 投稿しました', {
+          this.$store.commit('flashMessage/setMessage', ' 投稿しました', {
             root: true,
           })
-          this.$store.commit('snackbarMessage/setType', 'success', {
+          this.$store.commit('flashMessage/setType', 'success', {
             root: true,
           })
-          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           */
           setTimeout(() => {
-            this.$store.commit('snackbarMessage/setStatus', false, {
+            this.$store.commit('flashMessage/setStatus', false, {
               root: true,
             })
           }, 1000)

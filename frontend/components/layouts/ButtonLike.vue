@@ -230,7 +230,7 @@ export default {
             this.isJoin = true
           }) /*
           setTimeout(() => {
-            this.$store.commit('snackbarMessage/setStatus', false, {
+            this.$store.commit('flashMessage/setStatus', false, {
               root: true,
             })
           }, 1000)

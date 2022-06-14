@@ -4,12 +4,12 @@
 const Vuex = require('vuex')
 const { createLocalVue } = require('@vue/test-utils')
 const cloneDeep = require('lodash.clonedeep')
-const messages = require('../../store/snackbarMessage')
+const messages = require('../../store/flashMessage')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('Snackbar', () => {
+describe('フラッシュメッセージ', () => {
   let store
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('Snackbar', () => {
   })
 
   describe('actions', () => {
-    test('Does the Snackbar show?', async () => {
+    test('フラッシュメッセージが表示されるか', async () => {
       const payload = { message: 'testmessage', type: 'info', status: 'true' }
       await store.dispatch('showMessage', payload)
       expect(store.getters.message).toEqual(payload.message)

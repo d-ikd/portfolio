@@ -44,7 +44,7 @@ export default {
           this.$store.commit('auth/setLoginUser', {})
           this.$store.commit('auth/setIsLoggedIn', false)
           this.$store.dispatch(
-            'snackbarMessage/showMessage',
+            'flashMessage/showMessage',
             {
               message: 'ユーザーを削除しました',
               type: 'info',
@@ -58,7 +58,7 @@ export default {
         })
         .catch(() => {
           this.$store.dispatch(
-            'snackbarMessage/showMessage',
+            'flashMessage/showMessage',
             {
               message: 'ユーザーの削除に失敗しました。',
               type: 'error',

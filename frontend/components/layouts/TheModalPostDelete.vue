@@ -59,14 +59,14 @@ export default {
           console.log(res.data)
           console.log('Success')
           this.$store.commit(
-            'snackbarMessage/setMessage',
+            'flashMessage/setMessage',
             'メッセージを削除しました。',
             { root: true }
           )
-          this.$store.commit('snackbarMessage/setType', 'info', { root: true })
-          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
+          this.$store.commit('flashMessage/setType', 'info', { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('snackbarMessage/setStatus', false, {
+            this.$store.commit('flashMessage/setStatus', false, {
               root: true,
             })
           }, 1000)
@@ -81,14 +81,14 @@ export default {
         .delete(`api/v1/messages/${this.message.id}`)
         .then(() => {
           this.$store.commit(
-            'snackbarMessage/setMessage',
+            'flashMessage/setMessage',
             'メッセージを削除しました。',
             { root: true }
           )
-          this.$store.commit('snackbarMessage/setType', 'info', { root: true })
-          this.$store.commit('snackbarMessage/setStatus', true, { root: true })
+          this.$store.commit('flashMessage/setType', 'info', { root: true })
+          this.$store.commit('flashMessage/setStatus', true, { root: true })
           setTimeout(() => {
-            this.$store.commit('snackbarMessage/setStatus', false, {
+            this.$store.commit('flashMessage/setStatus', false, {
               root: true,
             })
           }, 1000)
