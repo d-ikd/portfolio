@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       email: this.$store.getters['auth/currentUser'].uid,
-      guest: 'guestuser20220106@gmail.com',
+      guest: 'guestuser0106@gmail.com',
     }
   },
   methods: {

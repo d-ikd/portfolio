@@ -131,7 +131,7 @@ export default {
       resPosts: [],
       resUsers: [],
       guest: {
-        email: 'guestuser20220106@gmail.com',
+        email: 'guestuser0106@gmail.com',
         password: 'guestuser',
       },
     }

@@ -72,7 +72,7 @@ export default {
         password: '',
       },
       guest: {
-        email: 'guestuser20220106@gmail.com',
+        email: 'guestuser0106@gmail.com',
         password: 'guestuser',
       },
       emailRules: [(v) => !!v || '', (v) => /.+@.+\..+/.test(v) || ''],
