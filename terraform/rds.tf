@@ -2,8 +2,8 @@
 variable "aws_db_user" {}
 variable "aws_db_password" {}
 
-resource "aws_db_parameter_group" "cs-db-parameter" {
-  name   = "cs-db-parameter"
+resource "aws_db_parameter_group" "realshinkitv-db-parameter" {
+  name   = "realshinkitv-db-parameter"
   family = "mysql5.7"
 
   parameter {
@@ -33,7 +33,7 @@ resource "aws_db_parameter_group" "cs-db-parameter" {
 }
 
 /* Database Instance */
-resource "aws_db_instance" "cs-db" {
+resource "aws_db_instance" "realshinkitv-db" {
   # identifier              = Endpoint of Database"
   allocated_storage       = 20
   instance_class          = "db.t2.micro"
@@ -48,9 +48,9 @@ resource "aws_db_instance" "cs-db" {
   max_allocated_storage   = 200
   skip_final_snapshot     = true
   port                    = 3306
-  vpc_security_group_ids  = [aws_security_group.cs-rds-sg.id]
-  parameter_group_name    = aws_db_parameter_group.cs-db-parameter.name
-  db_subnet_group_name    = aws_db_subnet_group.cs-rds-subnet-group.name
+  vpc_security_group_ids  = [aws_security_group.realshinkitv-rds-sg.id]
+  parameter_group_name    = aws_db_parameter_group.realshinkitv-db-parameter.name
+  db_subnet_group_name    = aws_db_subnet_group.realshinkitv-rds-subnet-group.name
   enabled_cloudwatch_logs_exports = [
     "audit",
     "error",
@@ -66,8 +66,8 @@ resource "aws_db_instance" "cs-db" {
 
 
 /* Subnet */
-resource "aws_db_subnet_group" "cs-rds-subnet-group" {
-  name        = "cs-rds-subnet-group"
-  description = "RDS subnet for cs"
-  subnet_ids  = [aws_subnet.cs-back-1a.id, aws_subnet.cs-back-1c.id]
+resource "aws_db_subnet_group" "realshinkitv-rds-subnet-group" {
+  name        = "realshinkitv-rds-subnet-group"
+  description = "RDS subnet for realshinkitv"
+  subnet_ids  = [aws_subnet.realshinkitv-back-1a.id, aws_subnet.realshinkitv-back-1c.id]
 }
