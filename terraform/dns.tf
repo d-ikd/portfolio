@@ -33,8 +33,8 @@ resource "aws_route53_record" "cs-host-zone-record" {
   type    = "A"
 
   alias {
-    name                   = aws_lb.cd-backend-alb.dns_name
-    zone_id                = aws_lb.cd-backend-alb.zone_id
+    name                   = aws_lb.cs-backend-alb.dns_name
+    zone_id                = aws_lb.cs-backend-alb.zone_id
     evaluate_target_health = true
   }
 }
@@ -59,7 +59,7 @@ resource "aws_acm_certificate" "cs-frontend-acm" {
 }
 
 /* Backend: Definition of SSL証明書 */
-resource "aws_acm_certificate" "cd-backend-acm" {
+resource "aws_acm_certificate" "cs-backend-acm" {
   domain_name               = aws_route53_record.cs-host-zone-record.name
   subject_alternative_names = []
   validation_method         = "DNS"
@@ -74,16 +74,16 @@ resource "aws_acm_certificate" "cd-backend-acm" {
 
 /* Definition of Record for ValidationOfSSL証明書 */
 resource "aws_route53_record" "cs-certificate" {
-  name    = tolist(aws_acm_certificate.cd-backend-acm.domain_validation_options)[0].resource_record_name
-  type    = tolist(aws_acm_certificate.cd-backend-acm.domain_validation_options)[0].resource_record_type
-  records = [tolist(aws_acm_certificate.cd-backend-acm.domain_validation_options)[0].resource_record_value]
+  name    = tolist(aws_acm_certificate.cs-backend-acm.domain_validation_options)[0].resource_record_name
+  type    = tolist(aws_acm_certificate.cs-backend-acm.domain_validation_options)[0].resource_record_type
+  records = [tolist(aws_acm_certificate.cs-backend-acm.domain_validation_options)[0].resource_record_value]
   zone_id = aws_route53_zone.cs-host-zone.id
   ttl     = 60
 }
 
 /* Waiting for FinishOfValidation */
-resource "aws_acm_certificate_validation" "cd-backend-acm" {
-  certificate_arn         = aws_acm_certificate.cd-backend-acm.arn
+resource "aws_acm_certificate_validation" "cs-backend-acm" {
+  certificate_arn         = aws_acm_certificate.cs-backend-acm.arn
   validation_record_fqdns = [aws_route53_record.cs-certificate.fqdn]
 }
 
@@ -91,7 +91,7 @@ resource "aws_acm_certificate_validation" "cd-backend-acm" {
 
 # #for_eachを使用、Route53を使用したDNS検証
 # # Backend
-# resource "aws_acm_certificate" "cd-backend-acm" {
+# resource "aws_acm_certificate" "cs-backend-acm" {
 #   domain_name       = "realchinkitv.com"
 #   validation_method = "DNS"
 #   lifecycle {
@@ -108,9 +108,9 @@ resource "aws_acm_certificate_validation" "cd-backend-acm" {
 #   }
 # }
 
-# resource "aws_route53_record" "cd-backend-certificate" {
+# resource "aws_route53_record" "cs-backend-certificate" {
 #   for_each = {
-#     for dvo in aws_acm_certificate.cd-backend-acm.domain_validation_options : dvo.domain_name => {
+#     for dvo in aws_acm_certificate.cs-backend-acm.domain_validation_options : dvo.domain_name => {
 #       name   = dvo.resource_record_name
 #       record = dvo.resource_record_value
 #       type   = dvo.resource_record_type
@@ -125,9 +125,9 @@ resource "aws_acm_certificate_validation" "cd-backend-acm" {
 #   zone_id         = aws_route53_zone.cs-host-zone.zone_id
 # }
 
-# resource "aws_acm_certificate_validation" "cd-backend-acm" {
-#   certificate_arn         = aws_acm_certificate.cd-backend-acm.arn
-#   validation_record_fqdns = [for record in aws_route53_record.cd-backend-certificate : record.fqdn]
+# resource "aws_acm_certificate_validation" "cs-backend-acm" {
+#   certificate_arn         = aws_acm_certificate.cs-backend-acm.arn
+#   validation_record_fqdns = [for record in aws_route53_record.cs-backend-certificate : record.fqdn]
 # }
 
 
