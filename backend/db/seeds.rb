@@ -32,7 +32,7 @@ User.create!(
 
 User.create!(
   name: 'だいすけ',
-  email: 'tester3@gmail.com',
+  email: 'test-3@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -68,7 +68,7 @@ Post.create(
 
 User.create!(
   name: '沙織',
-  email: 'tester4@gmail.com',
+  email: 'test-4@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -103,7 +103,7 @@ Post.create(
 
 User.create!(
   name: '早川',
-  email: 'tester5@gmail.com',
+  email: 'test-5@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -140,7 +140,7 @@ Post.create(
 
 User.create!(
   name: 'Ars',
-  email: 'tester6@gmail.com',
+  email: 'test-6@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -174,7 +174,7 @@ Post.create(
 
 User.create!(
   name: '小池',
-  email: 'tester7@gmail.com',
+  email: 'test-7@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -203,7 +203,7 @@ Post.create(
 
 User.create!(
   name: '綾菜',
-  email: 'tester8@gmail.com',
+  email: 'test-8@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -227,7 +227,7 @@ Post.create(
 
 User.create!(
   name: 'あかり',
-  email: 'tester9@gmail.com',
+  email: 'test-9@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -262,7 +262,7 @@ Post.create(
 
 User.create!(
   name: 'Mako',
-  email: 'tester10@gmail.com',
+  email: 'test-10@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -296,7 +296,7 @@ Post.create(
 
 User.create!(
   name: 'なおき',
-  email: 'tester11@gmail.com',
+  email: 'test-11@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -337,7 +337,7 @@ Post.create(
 
 User.create!(
   name: 'きい',
-  email: 'tester12@gmail.com',
+  email: 'test-12@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -373,7 +373,7 @@ Post.create(
 
 User.create!(
   name: 'かなえ',
-  email: 'tester13@gmail.com',
+  email: 'test-13@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -403,7 +403,7 @@ Post.create(
 
 User.create!(
   name: '吉田',
-  email: 'tester14@gmail.com',
+  email: 'test-14@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -434,7 +434,7 @@ Post.create(
 
 User.create!(
   name: 'かえで',
-  email: 'tester15@gmail.com',
+  email: 'test-15@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -469,7 +469,7 @@ Post.create(
 
 User.create!(
   name: '綾美',
-  email: 'tester16@gmail.com',
+  email: 'test-16@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -506,7 +506,7 @@ Post.create(
 
 User.create!(
   name: 'Mary',
-  email: 'tester17@gmail.com',
+  email: 'test-17@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -542,7 +542,7 @@ Post.create(
 User.create!(
   name: 'けい',
   profile: 'エンジニア志望です。',
-  email: 'tester18@gmail.com',
+  email: 'test-18@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -577,7 +577,7 @@ User.create!(
 
 User.create!(
   name: 'Sherry',
-  email: 'tester19@gmail.com',
+  email: 'test-19@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -610,7 +610,7 @@ User.create!(
 
 User.create!(
   name: 'ありす',
-  email: 'tester20@gmail.com',
+  email: 'test-20@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false,
@@ -643,7 +643,7 @@ Post.create(
 
 User.create!(
   name: 'ゆうか',
-  email: 'tester21@gmail.com',
+  email: 'test-21@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -653,7 +653,7 @@ User.create!(
 
 User.create!(
   name: 'あきな',
-  email: 'tester22@gmail.com',
+  email: 'test-22@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -663,7 +663,7 @@ User.create!(
 
 User.create!(
   name: 'けいこ',
-  email: 'tester23@gmail.com',
+  email: 'test-23@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -673,7 +673,7 @@ User.create!(
 
 User.create!(
   name: 'Lisa',
-  email: 'tester24@gmail.com',
+  email: 'test-24@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -683,7 +683,7 @@ User.create!(
 
 User.create!(
   name: 'れん',
-  email: 'tester25@gmail.com',
+  email: 'test-25@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -693,7 +693,7 @@ User.create!(
 
 User.create!(
   name: 'しゅり',
-  email: 'tester26@gmail.com',
+  email: 'test-26@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -703,7 +703,7 @@ User.create!(
 
 User.create!(
   name: 'Emma',
-  email: 'tester27@gmail.com',
+  email: 'test-27@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -713,7 +713,7 @@ User.create!(
 
 User.create!(
   name: 'ことみ',
-  email: 'tester28@gmail.com',
+  email: 'test-28@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -723,7 +723,7 @@ User.create!(
 
 User.create!(
   name: 'ゆい',
-  email: 'tester29@gmail.com',
+  email: 'test-29@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -732,7 +732,7 @@ User.create!(
 
 User.create!(
   name: 'ひろみ',
-  email: 'tester30@gmail.com',
+  email: 'test-30@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -741,7 +741,7 @@ User.create!(
 
 User.create!(
   name: 'りょうた',
-  email: 'tester31@gmail.com',
+  email: 'test-31@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -750,7 +750,7 @@ User.create!(
 
 User.create!(
   name: 'Lucas',
-  email: 'tester32@gmail.com',
+  email: 'test-32@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -759,7 +759,7 @@ User.create!(
 
 User.create!(
   name: 'あきら',
-  email: 'tester33@gmail.com',
+  email: 'test-33@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -768,7 +768,7 @@ User.create!(
 
 User.create!(
   name: 'ゆうり',
-  email: 'tester34@gmail.com',
+  email: 'test-34@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -777,7 +777,7 @@ User.create!(
 
 User.create!(
   name: 'Jas-m',
-  email: 'tester35@gmail.com',
+  email: 'test-35@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -786,7 +786,7 @@ User.create!(
 
 User.create!(
   name: 'Sophia',
-  email: 'tester36@gmail.com',
+  email: 'test-36@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -795,7 +795,7 @@ User.create!(
 
 User.create!(
   name: 'まこと',
-  email: 'tester37@gmail.com',
+  email: 'test-37@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -804,7 +804,7 @@ User.create!(
 
 User.create!(
   name: 'けいた',
-  email: 'tester38@gmail.com',
+  email: 'test-38@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -813,7 +813,7 @@ User.create!(
 
 User.create!(
   name: 'みお',
-  email: 'tester39@gmail.com',
+  email: 'test-39@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -822,7 +822,7 @@ User.create!(
 
 User.create!(
   name: 'Noah',
-  email: 'tester40@gmail.com',
+  email: 'test-40@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -831,7 +831,7 @@ User.create!(
 
 User.create!(
   name: 'しゅん',
-  email: 'tester41@gmail.com',
+  email: 'test-41@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -840,7 +840,7 @@ User.create!(
 
 User.create!(
   name: 'えりな',
-  email: 'tester42@gmail.com',
+  email: 'test-42@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -849,7 +849,7 @@ User.create!(
 
 User.create!(
   name: 'Luna',
-  email: 'tester43@gmail.com',
+  email: 'test-43@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -858,7 +858,7 @@ User.create!(
 
 User.create!(
   name: 'Noctis',
-  email: 'tester44@gmail.com',
+  email: 'test-44@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -867,7 +867,7 @@ User.create!(
 
 User.create!(
   name: 'あお',
-  email: 'tester45@gmail.com',
+  email: 'test-45@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -876,7 +876,7 @@ User.create!(
 
 User.create!(
   name: 'みなこ',
-  email: 'tester46@gmail.com',
+  email: 'test-46@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -885,7 +885,7 @@ User.create!(
 
 User.create!(
   name: 'ありさ',
-  email: 'tester47@gmail.com',
+  email: 'test-47@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -895,7 +895,7 @@ User.create!(
 
 User.create!(
   name: 'さやか',
-  email: 'tester48@gmail.com',
+  email: 'test-48@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -905,7 +905,7 @@ User.create!(
 
 User.create!(
   name: 'りく',
-  email: 'tester49@gmail.com',
+  email: 'test-49@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -915,7 +915,7 @@ User.create!(
 
 User.create!(
   name: 'まいか',
-  email: 'tester50@gmail.com',
+  email: 'test-50@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -925,7 +925,7 @@ User.create!(
 
 User.create!(
   name: 'こうせい',
-  email: 'tester51@gmail.com',
+  email: 'test-51@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -934,7 +934,7 @@ User.create!(
 
 User.create!(
   name: 'まりな',
-  email: 'tester52@gmail.com',
+  email: 'test-52@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -944,7 +944,7 @@ User.create!(
 
 User.create!(
   name: 'てつや',
-  email: 'tester53@gmail.com',
+  email: 'test-53@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,
@@ -954,7 +954,7 @@ User.create!(
 
 User.create!(
   name: 'りょう',
-  email: 'tester54@gmail.com',
+  email: 'test-54@gmail.com',
   password: ENV['RAILS_FOLLOWUSER_KEY'],
   password_confirmation: ENV['RAILS_FOLLOWUSER_KEY'],
   admin: false,

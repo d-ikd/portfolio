@@ -46,7 +46,7 @@ export default {
         password_confirmation: '',
       },
       email: this.$store.getters['auth/currentUser'].uid,
-      guest: 'guestuser0106@gmail.com',
+      guest: 'guestuser20220106@gmail.com',
     }
   },
   methods: {

@@ -109,7 +109,7 @@ jobs:
       - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
-          repo: "realshinkitv-backend"
+          repo: "cs-backend"
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
           path: "./backend"
@@ -122,7 +122,7 @@ jobs:
       - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
-          repo: "realshinkitv-frontend"
+          repo: "cs-frontend"
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
           path: "./frontend/"
@@ -155,8 +155,8 @@ workflows:
             branches:
               only: main
       - aws-ecs/update-task-definition:
-          family: realshinkitv-db-migrate
-          # family: realshinkitv-db-seed
+          family: cs-db-migrate
+          # family: cs-db-seed
           # family: ${FAMILY_NAME_MIGRATE} # rails db:migrate用タスク定義名
           container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
           aws-region: AWS_REGION
@@ -167,10 +167,10 @@ workflows:
               only: main
 
       - aws-ecs/run-task:
-          cluster: realshinkitv-ecs-cluster
+          cluster: cs-ecs-cluster
           # cluster: ${CLUSTER_NAME}
-          task-definition: realshinkitv-db-migrate
-          # task-definition: realshinkitv-db-seed
+          task-definition: cs-db-migrate
+          # task-definition: cs-db-seed
           # task-definition: ${TASK_MIGRATE}
           subnet-ids: subnet-088951795a9444c9c, subnet-0d25dc2744e2b484f
           assign-public-ip: ENABLED
@@ -182,8 +182,8 @@ workflows:
               only: main
 
       - aws-ecs/run-task:
-          cluster: realshinkitv-ecs-cluster
-          task-definition: realshinkitv-db-seed
+          cluster: cs-ecs-cluster
+          task-definition: cs-db-seed
           subnet-ids: subnet-088951795a9444c9c, subnet-0d25dc2744e2b484f
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
@@ -194,9 +194,9 @@ workflows:
               only: main
 
       - aws-ecs/deploy-service-update:
-          family: realshinkitv-frontend-task
-          service-name: realshinkitv-frontend-ecs-service
-          cluster-name: realshinkitv-ecs-cluster
+          family: cs-frontend-task
+          service-name: cs-frontend-ecs-service
+          cluster-name: cs-ecs-cluster
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
             - build_and_push_image_frontend
@@ -207,9 +207,9 @@ workflows:
           requires:
             - build_and_push_image_frontend
             - build_and_push_image_backend
-          family: realshinkitv-backend-task
-          service-name: realshinkitv-backend-ecs-service
-          cluster-name: realshinkitv-ecs-cluster
+          family: cs-backend-task
+          service-name: cs-backend-ecs-service
+          cluster-name: cs-ecs-cluster
           container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
           filters:
             branches:
