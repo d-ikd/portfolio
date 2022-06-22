@@ -1,37 +1,37 @@
 /* Defenition of Cluster */
-resource "aws_ecs_cluster" "cs-ecs-cluster" {
-  name = "cs-ecs-cluster"
+resource "aws_ecs_cluster" "portfolio-ecs-cluster" {
+  name = "portfolio-ecs-cluster"
 }
 
 /* Frontend: TaskDefinition */
-resource "aws_ecs_task_definition" "cs-frontend-task" {
-  family                   = "cs-frontend-task"
+resource "aws_ecs_task_definition" "portfolio-frontend-task" {
+  family                   = "portfolio-frontend-task"
   cpu                      = "512"
   memory                   = "1024"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/cs_frontend_definition.json")
+  container_definitions    = file("./tasks/portfolio_frontend_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 /* Backend: TaskDefinition */
-resource "aws_ecs_task_definition" "cs-backend-task" {
-  family                   = "cs-backend-task"
+resource "aws_ecs_task_definition" "portfolio-backend-task" {
+  family                   = "portfolio-backend-task"
   cpu                      = "256"
   memory                   = "512"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  container_definitions    = file("./tasks/cs_backend_definition.json")
+  container_definitions    = file("./tasks/portfolio_backend_definition.json")
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
 /* Backend: ServiceDefenition */
-resource "aws_ecs_service" "cs-backend-ecs-service" {
-  name            = "cs-backend-ecs-service"
-  cluster         = aws_ecs_cluster.cs-ecs-cluster.arn
-  task_definition = "${aws_ecs_task_definition.cs-backend-task.family}:${max(aws_ecs_task_definition.cs-backend-task.revision, data.aws_ecs_task_definition.cs-backend-task.revision)}"
+resource "aws_ecs_service" "portfolio-backend-ecs-service" {
+  name            = "portfolio-backend-ecs-service"
+  cluster         = aws_ecs_cluster.portfolio-ecs-cluster.arn
+  task_definition = "${aws_ecs_task_definition.portfolio-backend-task.family}:${max(aws_ecs_task_definition.portfolio-backend-task.revision, data.aws_ecs_task_definition.portfolio-backend-task.revision)}"
   #  this & that
   #  task_definition = "${aws_ecs_task_definition.this[each.key].family}:${max(aws_ecs_task_definition.this[each.key].revision, data.aws_ecs_task_definition.this[each.key].revision)}"
-  #  task_definition                   = "${aws_ecs_task_definition.cs-backend-task.family}:${max("${aws_ecs_task_definition.cs-backend-task.revision}", "${data.aws_ecs_task_definition.cs-backend-task.revision}")}"
+  #  task_definition                   = "${aws_ecs_task_definition.portfolio-backend-task.family}:${max("${aws_ecs_task_definition.portfolio-backend-task.revision}", "${data.aws_ecs_task_definition.portfolio-backend-task.revision}")}"
   #  https://hashicorp6.rssing.com/chan-74714669/all_p54.html
   desired_count                     = 1
   launch_type                       = "FARGATE"
@@ -41,25 +41,25 @@ resource "aws_ecs_service" "cs-backend-ecs-service" {
   network_configuration {
     assign_public_ip = true
     security_groups = [
-      aws_security_group.cs-ecs-sg.id
+      aws_security_group.portfolio-ecs-sg.id
     ]
     subnets = [
-      aws_subnet.cs-back-1a.id,
-      aws_subnet.cs-back-1c.id
+      aws_subnet.portfolio-back-1a.id,
+      aws_subnet.portfolio-back-1c.id
     ]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.cs-alb-backend-tg.arn
+    target_group_arn = aws_lb_target_group.portfolio-alb-backend-tg.arn
     container_name   = "backend-container"
     container_port   = "3000"
   }
 }
 /* Frondend: ServiceDefenition */
-resource "aws_ecs_service" "cs-frontend-ecs-service" {
-  name                              = "cs-frontend-ecs-service"
-  cluster                           = aws_ecs_cluster.cs-ecs-cluster.arn
-  task_definition                   = "${aws_ecs_task_definition.cs-frontend-task.family}:${max(aws_ecs_task_definition.cs-frontend-task.revision, data.aws_ecs_task_definition.cs-frontend-task.revision)}"
+resource "aws_ecs_service" "portfolio-frontend-ecs-service" {
+  name                              = "portfolio-frontend-ecs-service"
+  cluster                           = aws_ecs_cluster.portfolio-ecs-cluster.arn
+  task_definition                   = "${aws_ecs_task_definition.portfolio-frontend-task.family}:${max(aws_ecs_task_definition.portfolio-frontend-task.revision, data.aws_ecs_task_definition.portfolio-frontend-task.revision)}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
   platform_version                  = "1.3.0"
@@ -68,16 +68,16 @@ resource "aws_ecs_service" "cs-frontend-ecs-service" {
   network_configuration {
     assign_public_ip = true
     security_groups = [
-      aws_security_group.cs-ecs-sg.id
+      aws_security_group.portfolio-ecs-sg.id
     ]
     subnets = [
-      aws_subnet.cs-front-1a.id,
-      aws_subnet.cs-front-1c.id
+      aws_subnet.portfolio-front-1a.id,
+      aws_subnet.portfolio-front-1c.id
     ]
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.cs-frontend-alb-tg.arn
+    target_group_arn = aws_lb_target_group.portfolio-frontend-alb-tg.arn
     container_name   = "frontend-container"
     container_port   = "80"
   }
@@ -85,8 +85,8 @@ resource "aws_ecs_service" "cs-frontend-ecs-service" {
 
 /* Tasks for Create */
 resource "aws_ecs_task_definition" "db-create" {
-  family                   = "cs-db-create"
-  container_definitions    = file("./tasks/cs_db_create_definition.json")
+  family                   = "portfolio-db-create"
+  container_definitions    = file("./tasks/portfolio_db_create_definition.json")
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -96,8 +96,8 @@ resource "aws_ecs_task_definition" "db-create" {
 
 /* Tasks for Migration */
 resource "aws_ecs_task_definition" "db-migrate" {
-  family                   = "cs-db-migrate"
-  container_definitions    = file("./tasks/cs_db_migrate_definition.json")
+  family                   = "portfolio-db-migrate"
+  container_definitions    = file("./tasks/portfolio_db_migrate_definition.json")
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -107,8 +107,8 @@ resource "aws_ecs_task_definition" "db-migrate" {
 
 /* Task for Seeds */
 resource "aws_ecs_task_definition" "db-seed" {
-  family                   = "cs-db-seed"
-  container_definitions    = file("./tasks/cs_db_seed_definition.json")
+  family                   = "portfolio-db-seed"
+  container_definitions    = file("./tasks/portfolio_db_seed_definition.json")
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -117,14 +117,14 @@ resource "aws_ecs_task_definition" "db-seed" {
 }
 
 /* data */
-data "aws_ecs_task_definition" "cs-frontend-task" {
-  depends_on      = [aws_ecs_task_definition.cs-frontend-task]
-  task_definition = aws_ecs_task_definition.cs-frontend-task.family
+data "aws_ecs_task_definition" "portfolio-frontend-task" {
+  depends_on      = [aws_ecs_task_definition.portfolio-frontend-task]
+  task_definition = aws_ecs_task_definition.portfolio-frontend-task.family
 }
 
-data "aws_ecs_task_definition" "cs-backend-task" {
-  depends_on      = [aws_ecs_task_definition.cs-backend-task]
-  task_definition = aws_ecs_task_definition.cs-backend-task.family
+data "aws_ecs_task_definition" "portfolio-backend-task" {
+  depends_on      = [aws_ecs_task_definition.portfolio-backend-task]
+  task_definition = aws_ecs_task_definition.portfolio-backend-task.family
 }
 
 data "aws_iam_policy" "ecs_task_execution_role_policy" {

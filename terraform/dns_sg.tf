@@ -1,6 +1,6 @@
 /* SecurityGroup for ALB */
-resource "aws_security_group" "cs-alb-sg" {
-  description = "ALB security group for cs"
-  name        = "cs-alb-sg"
-  vpc_id      = aws_vpc.cs-vpc.id
+resource "aws_security_group" "portfolio-alb-sg" {
+  description = "ALB security group for portfolio"
+  name        = "portfolio-alb-sg"
+  vpc_id      = aws_vpc.portfolio-vpc.id
 }
