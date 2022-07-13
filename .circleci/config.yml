@@ -172,7 +172,7 @@ workflows:
           task-definition: portfolio-db-migrate
           # task-definition: portfolio-db-seed
           # task-definition: ${TASK_MIGRATE}
-          subnet-ids: subnet-0302432587a8aeebc, subnet-06d5f2361794264e5
+          subnet-ids: subnet-04acd07d57a5ef6f6, subnet-019635e784325ab3d
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
           requires:
@@ -184,7 +184,7 @@ workflows:
       - aws-ecs/run-task:
           cluster: portfolio-ecs-cluster
           task-definition: portfolio-db-seed
-          subnet-ids: subnet-0302432587a8aeebc, subnet-06d5f2361794264e5
+          subnet-ids: subnet-04acd07d57a5ef6f6, subnet-019635e784325ab3d
           assign-public-ip: ENABLED
           security-group-ids: "${MIGRATION_SECURITY_GROUP_ID}"
           requires:
