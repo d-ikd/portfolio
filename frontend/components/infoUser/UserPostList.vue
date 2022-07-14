@@ -8,7 +8,7 @@
         class="list"
       >
         <v-list-item-avatar tile class="tab">
-          <v-avatar size="55">
+          <v-avatar size="50">
             <v-img v-if="post.image.url" :src="post.image.url" />
             <v-img v-else contain :src="defaultImage" />
           </v-avatar>
