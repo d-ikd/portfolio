@@ -58,7 +58,7 @@
 
 <br>
 
-![ER](https://user-images.githubusercontent.com/62534064/173286764-90e9487e-5fc4-4886-922a-92a5ebec98df.png "ER図")
+![ER](https://user-images.githubusercontent.com/62534064/183581200-8fe83693-e04a-4dca-b696-1ab86252e148.png "ER図")
 <br>
 
 ## AWS 構成図
