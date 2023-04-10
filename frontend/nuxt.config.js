@@ -97,7 +97,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === 'production'
-        ? 'https://realchinkitv.com'
+        ? 'https://shinki.link'
         : 'http://localhost:5000',
   },
   /*

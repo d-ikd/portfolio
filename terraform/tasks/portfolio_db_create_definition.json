@@ -23,7 +23,7 @@
     "environment": [
       {
         "name": "API_DOMAIN",
-        "value": "https://realshinkitv.com"
+        "value": "https://stuctive.link"
       },
       {
         "name": "WORKDIR",

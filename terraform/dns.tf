@@ -1,16 +1,16 @@
 /* ===============route53================ */
 /* Frontend: DetasourceDefinition of HostZone */
 resource "aws_route53_zone" "portfolio-zone" {
-  name = "realshinkitv.com"
+  name = "stuctive.link"
   tags = {
-    "portfolio" = "realshinkitv.com"
+    "portfolio" = "stuctive.link"
   }
 }
 
 /* Backend: DetasourceDefinition of HostZone */
 resource "aws_route53_zone" "portfolio-host-zone" {
-  name    = "realchinkitv.com"
-  comment = "realchinkitv.com host zone"
+  name    = "shinki.link"
+  comment = "shinki.link host zone"
 }
 
 /* Frontend: Definition of DNS Record of ALB */
@@ -48,13 +48,13 @@ resource "aws_route53_record" "portfolio-host-zone-record" {
 /* Frontend: Definition of SSL証明書 */
 resource "aws_acm_certificate" "portfolio-frontend-acm" {
   domain_name               = aws_route53_record.portfolio-zone-record.name
-  subject_alternative_names = ["*.realshinkitv.com", ]
+  subject_alternative_names = ["*.stuctive.link", ]
   validation_method         = "DNS"
   lifecycle {
     create_before_destroy = true
   }
   tags = {
-    "Name" = "Frontend: realshinkitv.com"
+    "Name" = "Frontend: stuctive.link"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_acm_certificate" "portfolio-backend-acm" {
     create_before_destroy = true
   }
   tags = {
-    "Name" = "Backend: realchinkitv.com"
+    "Name" = "Backend: shinki.link"
   }
 }
 
@@ -92,7 +92,7 @@ resource "aws_acm_certificate_validation" "portfolio-backend-acm" {
 # #for_eachを使用、Route53を使用したDNS検証
 # # Backend
 # resource "aws_acm_certificate" "portfolio-backend-acm" {
-#   domain_name       = "realchinkitv.com"
+#   domain_name       = "shinki.link"
 #   validation_method = "DNS"
 #   lifecycle {
 #     create_before_destroy = true
@@ -101,7 +101,7 @@ resource "aws_acm_certificate_validation" "portfolio-backend-acm" {
 
 # # Frontend
 # resource "aws_acm_certificate" "portfolio-frontend-acm" {
-#   domain_name       = "realshinkitv.com"
+#   domain_name       = "stuctive.link"
 #   validation_method = "DNS"
 #   lifecycle {
 #     create_before_destroy = true
